@@ -1,0 +1,1 @@
+export const defaultAvatar = "//www.gravatar.com/avatar/7ca2d2151f27f25769d3b6f3a71d3710?s=200&r=pg&d=mm"
