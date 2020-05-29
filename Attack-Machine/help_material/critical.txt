@@ -1,0 +1,8 @@
+############################## When file is successfully executed remotely ##############################
+
+fatal: [win_10_1511]: FAILED! => {"ansible_async_watchdog_pid": 9180, "ansible_job_id": "390278285655.8120", "changed": false, "finished": 1, "msg": "timed out waiting for module completion", "results_file": "C:\\Users\\win_10_1511\\.ansible_async\\390278285655.8120", "started": 1}
+
+############################## When file is not successfully executed remotely ##############################
+fatal: [win_10_1511]: FAILED! => {"ansible_async_watchdog_pid": 5396, "ansible_job_id": "391637015930.8640", "changed": true, "cmd": "payloaaad.exe", "delta": "0:00:10.328136", "end": "2019-12-02 02:35:38.490601", "finished": 1, "msg": "non-zero return code", "rc": 3221225477, "results_file": "C:\\Users\\win_10_1511\\.ansible_async\\391637015930.8640", "start": "2019-12-02 02:35:28.162465", "started": 1, "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+
+Focus on msg in both

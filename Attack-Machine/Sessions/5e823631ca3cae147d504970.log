@@ -1,0 +1,6 @@
+2020-03-30 23:08:20,480- attack-thread - INFO - Category Not Found
+2020-03-30 23:08:20,953- attack-thread - INFO - ....................Parsing Scenario....................
+2020-03-30 23:08:20,954- attack-thread - INFO - [{'TA03_T1060_P1': {'name': 'persistence_exe', 'tactic': 'Persistence', 'try_count': 1, 'tool': 'metasploit', 'post': 'windows/manage/persistence_exe', 'options': {'REXENAME': 'REXENAME_$ref', 'REXEPATH': 'REXEPATH_$ref', 'STARTUP': 'SYSTEM', 'SESSION': 'SESSION_$ref'}}}]
+2020-03-30 23:08:20,954- attack-thread - INFO - *****************************Check tools status*****************************
+2020-03-30 23:08:20,954- attack-thread - INFO - ['metasploit']
+2020-03-30 23:08:20,954- attack-thread - INFO - msfconsole = [32mTrue[0m

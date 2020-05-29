@@ -1,0 +1,6 @@
+- hosts: win_10_1511
+  tasks:
+    - name: Copy a single file
+      win_copy:
+        src: /home/Tools/Phantom-Evasion/check.exe
+        dest: "%USERPROFILE%\\Downloads\\"

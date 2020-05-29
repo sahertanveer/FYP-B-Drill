@@ -1,0 +1,32 @@
+{
+
+  "generalized_questions":
+    {
+      "General_question_1": { " What is Ip address of Attacker?" : "LHOST_$ref"},
+      "General_question_4": {" Write Attacker's port of listening?": "LPORT_$ref"}
+
+
+
+    },
+
+  "TA01_T1190_P1": {
+    "Question_1": { " Which Payload type is being used? For Example: Reverse_tcp": "windows/x64/meterpreter/reverse_tcp"},
+    "Question_2": { " Which port is responsible for Attacker's entrance?": "80" },
+    "Question_3": {" Which Port is responsible for backdoor connection?": "8778" },
+    "Question_4": { " What is time of running payload?  ": "11:09" },
+    "Question_5": { " Which Type of attack it is?   ": "RCD" },
+    "Question_6": { "What is the source of coming of  malicious software?  ": "Application" },
+    "Question_7": { "Is it Escalate its priviledge? ": "Yes" },
+    "Question_8": { "Is it Persistence? ": "No"}
+
+  },
+
+"TA01_T1091_P1":{
+  "Question_1": {" Write the path of directory in which payload is present? ": "generated_payload_destination_file_path_$ref"},
+  "Question_2": {" What is the name of malicious software or service? ": "PAYLOAD_NAME_$ref" }
+    }
+  }
+
+
+
+

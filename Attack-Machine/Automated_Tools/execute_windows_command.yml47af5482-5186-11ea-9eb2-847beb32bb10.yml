@@ -1,0 +1,8 @@
+- hosts: win
+  tasks:
+  - args: {chdir: '%USERPROFILE%\Downloads\'}
+    async: 25
+    ignore_errors: true
+    name: Run an executable and send data to the stdin for the executable
+    poll: 5
+    win_command: payloaaad.exe

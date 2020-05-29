@@ -1,0 +1,44 @@
+{
+    "C1": {
+        "classification": {
+            "name": "Dynamic Windows 10 ",
+            "classification_id": "C1",
+            "job-role": "System/Network Admin"
+        },
+        "environment": {
+            "platform": "windows_10_1511",
+            "extension": "Pro",
+            "version": "1511"
+        }
+    },
+    "C2": {
+        "campaign-id": "C2",
+        "campaign-name": "second campaign",
+        "scenarios": {
+            "s1": {
+                "tactic": "Build_Capabilities",
+                "id": "S.24.1345.1"
+            },
+            "s2": {
+                "tactic": "Lateral_Movement",
+                "id": "S.08.1105.1"
+            },
+            "s3": {
+                "tactic": "Initial_Access",
+                "id": "S.01.1091.1"
+            },
+            "s4": {
+                "tactic": "Execution",
+                "id": "S.02.1059.1"
+            },
+            "s5": {
+                "tactic": "Privilege_Escalation",
+                "id": "S.04.1088.1"
+            },
+            "s6": {
+                "tactic": "Privilege_Escalation",
+                "id": "S.04.1134.1"
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+- hosts: localhost
+  tasks:
+  - delegate_to: localhost
+    name: Revert to snapshot
+    vmware_guest_snapshot: {datacenter: FYP, folder: /FYP/, hostname: vcenter.vspherenv.local,
+      name: win_10_1511, password: admin@ADMIN1, snapshot_name: win_10_1511_attack_configured,
+      state: revert, username: administrator@vsphere.local, validate_certs: false}

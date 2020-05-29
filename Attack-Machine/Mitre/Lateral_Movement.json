@@ -1,0 +1,48 @@
+{
+    "windows_10_1511": {
+        "TA08_T1105_P1": {
+            "scenario_tactic": {
+                "name": "Lateral_Movement",
+                "id": "TA0008"
+            },
+            "scenario_technique": {
+                "name": "Remote File Copy",
+                "id": "T1105"
+            },
+            "procedure": {
+                "classification": {
+                    "scenario_type": "helper_scenario",
+                    "name": "copy_file_to_windows",
+                    "classification_id": "TA08_T1105_P1",
+                    "scenario-type": "helper_scenario",
+                    "job-role": "System/Network Admin",
+                    "difficulty": "1"
+                },
+                "environment": {
+                    "platform": "Windows 10 pro",
+                    "version": "1511",
+                    "service-protocol": null,
+                    "cve": "",
+                    "configuration": {
+                        "settings": {
+                            "1": "Ansible should be confiured with windows",
+                            "2": "disable defender"
+                        }
+                    }
+                },
+                "execution": {
+                    "platform": "windows_10_1511",
+                    "tool": "ansible",
+                    "command-prefix": null,
+                    "folder-path": null,
+                    "absolute-path": null,
+                    "access": {
+                        "access-type": "",
+                        "access-level": "",
+                        "path-execution-file": ""
+                    }
+                }
+            }
+        }
+    }
+}

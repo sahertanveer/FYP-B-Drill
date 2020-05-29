@@ -1,0 +1,93 @@
+{
+    "windows_10_1511": {
+        "TA05_T1089_P1": {
+            "scenario_tactic": {
+                "name": "Defense_Evasion",
+                "id": "TA0005"
+            },
+            "scenario_technique": {
+                "name": "Disabling Security Tools",
+                "id": "T1089"
+            },
+            "procedure": {
+                "classification": {
+                    "scenario_type": "active_scenario",
+                    "name": "disable_firewall",
+                    "classification_id": "TA05_T1089_P1",
+                    "job-role": "System/Network Admin",
+                    "difficulty": "2"
+                },
+                "environment": {
+                    "platform": "Windows 10 pro",
+                    "version": "1511",
+                    "service-protocol": null,
+                    "cve": "",
+                    "configuration": {
+                        "settings": null
+                    }
+                },
+                "execution": {
+                    "prerequisite":[ 
+                        {
+                        "scenario_tactic": "Initial_Access",
+                        "proc_id": "TA01_T1190_P1",
+                        "type": "active_scenario"
+                    }
+                ],
+                    "tool": "cmd",
+                    "command": "netsh advfirewall set allprofiles state off",
+                    "access": {
+                        "access-type": "Sharing",
+                        "access-level": "remote service",
+                        "path-execution-file": ""
+                    }
+                }
+            }
+        },
+        "TA05_T1089_P2": {
+            "scenario_tactic": {
+                "name": "Defense_Evasion",
+                "id": "TA0005"
+            },
+            "scenario_technique": {
+                "name": "Disabling Security Tools",
+                "id": "T1089"
+            },
+            "procedure": {
+                "classification": {
+                    "scenario_type": "active_scenario",
+                    "name": "killav",
+                    "classification_id": "TA05_T1089_P2",
+                    "job-role": "System/Network Admin",
+                    "difficulty": "2"
+                },
+                "environment": {
+                    "platform": "Windows 10 pro",
+                    "version": "1511",
+                    "service-protocol": null,
+                    "cve": "",
+                    "configuration": {
+                        "settings": null
+                    }
+                },
+                "execution": {
+                    "prerequisite": [
+                        {
+                        "scenario_tactic": "Initial_Access",
+                        "proc_id": "TA01_T1190_P1",
+                        "type": "active_scenario"
+                    }
+                ],
+                    "tool": "meterpreter",
+                    "type":"script",
+                    "script": "post/windows/manage/killav",
+                    "access": {
+                        "access-type": "Sharing",
+                        "access-level": "remote service",
+                        "path-execution-file": ""
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+
+
+  "TA05_T1089_P1": {
+    "Question_1": { "Which process/application was effected": "Windows firewall"},
+    "Question_2": { "Which processed caused it": "cmd.exe" },
+    "Question_3": {"What was the command?": "netsh advfirewall set allprofiles state off" }
+
+  },
+
+  "TA05_T1089_P2": {
+    "Question_1": { "Which process/application was effected": "kaspersky"}
+  }
+    }
+
+
+
+

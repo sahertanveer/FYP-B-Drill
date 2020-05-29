@@ -1,0 +1,32 @@
+set ip's for:
+____________________________DNS__________________________
+1.) DNS server Bridged Ip
+2.) Update DNS record (forward and reverse lookup) for both esxi and vsphere
+
+____________________________esxi__________________________
+3.) ESXI ip and DNS
+4.) firewall rules for accessing web clients (e.g accessible by 172.20.16.0/24)
+
+____________________________Vsphere__________________________
+5.) Vsphere ip and DNS
+6.) Remove the old esxi host from inventory and add again in Datacenter
+
+____________________________kali__________________________
+7.) ufw rules for accepting connections (e.g ufw allow from 172.20.16.0/24 to any)
+8.) ansible hosts ip's
+9.) kali wlan ip and DNS
+10.) [NETWORK OPTIONS], [VSPHERE OPTIONS], [MONGODB OPTIONS] in B_Drill.conf
+
+____________________________Webserver__________________________
+11.) Change its wlan or eth ip accordingly
+12.) Change ip for mongdb in /etc/mongod.conf
+13.) Change ip for mongdb in Backend of code
+14.) Change ip of BackendInstace (in axiosInstance.js file) in Frontend
+15.) Change attack machine ip (dont change port) in CandSession.js File in Frontend
+16.) Change Webkms ip to that of webserver (dont change port) in SessionRoom.js file in Frontend
+17.) Chnage attack machine Ip in /var/www/html/index.html
+18.) Change ProxyPass and ProxyPassReverse ip's in /etc/apache2/sites-enabled/000-default.conf under <IfModule mode_ssl.c> <VirtualHost *:8081> to that of esxi server
+19.) Change ProxyPass and ProxyPassReverse ip's in /etc/apache2/sites-enabled/000-default.conf under <VirtualHost *:8082> to that of attack machine
+
+ 
+

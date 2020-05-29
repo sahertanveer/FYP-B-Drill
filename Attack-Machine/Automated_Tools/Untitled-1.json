@@ -1,0 +1,40 @@
+{'WORKSPACE': {'type': 'string', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Specify the workspace for this module'
+    }, 'VERBOSE': {'type': 'bool', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Enable detailed status messages', 'default': False
+    }, 'WfsDelay': {'type': 'integer', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Additional delay when waiting for a session', 'default': 0
+    }, 'EnableContextEncoding': {'type': 'bool', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Use transient context when encoding payloads', 'default': False
+    }, 'ContextInformationFile': {'type': 'path', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'The information file that contains context information'
+    }, 'DisablePayloadHandler': {'type': 'bool', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Disable the handler code for the selected payload', 'default': False
+    }, 'SESSION': {'type': 'integer', 'required': True, 'advanced': False, 'evasion': False, 'desc': 'The session to run this module on.'
+    }, 'EXE: :EICAR': {'type': 'bool', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Generate an EICAR file instead of regular payload exe', 'default': False
+    }, 'EXE: :Custom': {'type': 'path', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Use custom exe instead of automatically generating a payload exe'
+    }, 'EXE: :Path': {'type': 'path', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'The directory in which to look for the executable template'
+    }, 'EXE: :Template': {'type': 'path', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'The executable template file name.'
+    }, 'EXE: :Inject': {'type': 'bool', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Set to preserve the original EXE function', 'default': False
+    }, 'EXE: :OldMethod': {'type': 'bool', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Set to use the substitution EXE generation method.', 'default': False
+    }, 'EXE: :FallBack': {'type': 'bool', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Use the default template in case the specified one is missing', 'default': False
+    }, 'MSI: :EICAR': {'type': 'bool', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Generate an EICAR file instead of regular payload msi', 'default': False
+    }, 'MSI: :Custom': {'type': 'path', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Use custom msi instead of automatically generating a payload msi'
+    }, 'MSI: :Path': {'type': 'path', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'The directory in which to look for the msi template'
+    }, 'MSI: :Template': {'type': 'path', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'The msi template file name'
+    }, 'MSI: :UAC': {'type': 'bool', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Create an MSI with a UAC prompt (elevation to SYSTEM if accepted)', 'default': False
+    }, 'Powershell: :persist': {'type': 'bool', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Run the payload in a loop', 'default': False
+    }, 'Powershell: :prepend_sleep': {'type': 'integer', 'required': False, 'advanced': True, 'evasion': False, 'desc': 'Prepend seconds of sleep'
+    }, 'Powershell: :strip_comments': {'type': 'bool', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Strip comments', 'default': True
+    }, 'Powershell: :strip_whitespace': {'type': 'bool', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Strip whitespace', 'default': False
+    }, 'Powershell: :sub_vars': {'type': 'bool', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Substitute variable names', 'default': False
+    }, 'Powershell: :sub_funcs': {'type': 'bool', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Substitute function names', 'default': False
+    }, 'Powershell: :exec_in_place': {'type': 'bool', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Produce PSH without executable wrapper', 'default': False
+    }, 'Powershell: :remove_comspec': {'type': 'bool', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Produce script calling powershell directly', 'default': False
+    }, 'Powershell: :noninteractive': {'type': 'bool', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Execute powershell without interaction', 'default': True
+    }, 'Powershell: :encode_final_payload': {'type': 'bool', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Encode final payload for -EncodedCommand', 'default': False
+    }, 'Powershell: :encode_inner_payload': {'type': 'bool', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Encode inner payload for -EncodedCommand', 'default': False
+    }, 'Powershell: :wrap_double_quotes': {'type': 'bool', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Wraps the -Command argument in single quotes', 'default': True
+    }, 'Powershell: :no_equals': {'type': 'bool', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Pad base64 until no "=" remains', 'default': False
+    }, 'Powershell: :method': {'type': 'enum', 'required': True, 'advanced': True, 'evasion': False, 'desc': 'Payload delivery method (Accepted: net, reflection, old, msil)', 'default': 'reflection', 'enums': ['net', 'reflection', 'old', 'msil'
+        ]
+    }
+}
+['SESSION', 'Powershell: :persist', 'Powershell: :strip_comments', 'Powershell: :strip_whitespace', 'Powershell: :sub_vars', 'Powershell: :sub_funcs', 'Powershell: :exec_in_place', 'Powershell: :remove_comspec', 'Powershell: :noninteractive', 'Powershell: :encode_final_payload', 'Powershell: :encode_inner_payload', 'Powershell: :wrap_double_quotes', 'Powershell: :no_equals', 'Powershell: :method'
+]
+{'VERBOSE': False, 'WfsDelay': 0, 'EnableContextEncoding': False, 'DisablePayloadHandler': False, 'EXE: :EICAR': False, 'EXE: :Inject': False, 'EXE: :OldMethod': False, 'EXE: :FallBack': False, 'MSI: :EICAR': False, 'MSI: :UAC': False, 'Powershell: :persist': False, 'Powershell: :strip_comments': True, 'Powershell: :strip_whitespace': False, 'Powershell: :sub_vars': False, 'Powershell: :sub_funcs': False, 'Powershell: :exec_in_place': False, 'Powershell: :remove_comspec': False, 'Powershell: :noninteractive': True, 'Powershell: :encode_final_payload': False, 'Powershell: :encode_inner_payload': False, 'Powershell: :wrap_double_quotes': True, 'Powershell: :no_equals': False, 'Powershell: :method': 'reflection'
+}

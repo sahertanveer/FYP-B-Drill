@@ -1,0 +1,9 @@
+- hosts: win
+  tasks:
+    - name: Run an executable and send data to the stdin for the executable
+      win_command: "payload.exe"
+      args:
+        chdir: "%USERPROFILE%\\Downloads\\"
+      async: 25
+      poll: 5
+      ignore_errors: yes

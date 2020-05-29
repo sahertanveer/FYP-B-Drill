@@ -1,0 +1,260 @@
+#######################start commands############################
+ifmetric wlan0 100
+service network-manager restart
+service apache2 start
+cd /home/FYP
+/usr/bin/python3 /home/FYP/flask_api.py
+
+#start ui from visual code with:
+npm start
+	#or to build it
+npm run build
+serve -s build
+
+#################### mongo ##################
+pip3 install pymongo
+
+####################### flask ###################
+#see yourself for flask i forgot
+#pip3 install flask-restful
+
+
+########################   Notes   #############################
+---python library for metasploit
+pip install pymetasploit
+
+# if u want github pymetasploit3 (which is updated than available version of pip index) then type following command
+
+pip3 install --upgrade git+git://github.com/DanMcInerney/pymetasploit3.git
+
+
+---python library for tools automation------
+pip install pexpect
+
+child = pexpect.spawn('python3 phantom-evasion.py')
+        file_name = "/home/FYP/Mitre/Build_Capabilities.json"
+        with open(file_name) as json_file:
+                file_data = json.load(json_file)
+        lis = file_data["S.24.1345.1"]["procedure"]["input"]
+
+        for a in lis:
+        for key, value in a.items():
+                #child.expect(key)
+                #child.sendline(value)
+                print(key,value)
+
+#######################when firewall in enabled, then allow victim machines to communicate back########################
+
+ufw allow from 172.20.16.0/24 to any
+#after 
+
+#######################Make both wifi and ethernet in fucntion and same priority############################
+apt-get install ifmetric
+route -n
+#check metric of both interfaces and make them same by following command (lower value has higher priority)
+ifmetric wlan0 100
+
+#######################apache proxy########################
+https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
+#iss se assan link b hain
+
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+#file will be in /etc/ssl/private/apache-selfsigned.key
+
+#go to /etc/apache2-sites/enabled/default-ssl.conf and add following (keep the original file as .bak) 
+<IfModule mod_ssl.c>
+	<VirtualHost _default_:443>
+				ServerAdmin webmaster@localhost
+
+				DocumentRoot /var/www/html
+
+
+                #ServerAdmin your_email@example.com
+                ServerName 115.186.176.139
+
+                DocumentRoot /var/www/html
+
+                ErrorLog ${APACHE_LOG_DIR}/error.log
+                CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+                SSLEngine on
+
+                SSLCertificateFile      "/etc/ssl/certs/apache-selfsigned.crt"
+                SSLCertificateKeyFile "/etc/ssl/private/apache-selfsigned.key"
+
+                <FilesMatch "\.(cgi|shtml|phtml|php)$">
+                                SSLOptions +StdEnvVars
+                </FilesMatch>
+                <Directory /usr/lib/cgi-bin>
+                                SSLOptions +StdEnvVars
+                </Directory>
+
+                BrowserMatch "MSIE [2-6]" \
+                               nokeepalive ssl-unclean-shutdown \
+								downgrade-1.0 force-response-1.0
+
+	</VirtualHost>
+</IfModule>
+
+# go to /etc/apache2-sites/enabled/000-default.conf and add following 
+
+
+sudo a2enmod ssl
+a2ensite default-ssl.conf
+a2enmod proxy
+a2enmod proxy_http
+a2enmod proxy_ajp
+a2enmod rewrite
+a2enmod deflate
+a2enmod headers
+a2enmod proxy_balancer
+a2enmod proxy_connect
+a2enmod proxy_html
+sudo a2enmod proxy
+sudo a2enmod proxy_fcgi
+a2enmod proxy_wstunnel
+systemctl restart apache2
+
+<IfModule mod_ssl.c>
+	<VirtualHost *:8081>
+	
+		<Location />
+			Order Deny,Allow
+			Deny from all
+			Allow from env=allow
+		</Location>
+		
+		SetEnvIf Request_URI ^/ticket/.* allow
+		#redirectMatch 301 ^/ticket/.* 172.20.16.201:443
+		#Redirect permanent / https://172.20.16.201:443/
+		SSLProxyEngine on
+		SSLCertificateFile "/etc/ssl/certs/apache-selfsigned.crt"
+		SSLCertificateKeyFile "/etc/ssl/private/apache-selfsigned.key"
+		SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown
+		SSLProxyVerify none
+		SSLProxyCheckPeerCN off
+		SSLProxyCheckPeerCN off
+		SSLProxyCheckPeerName off
+		SSLProxyCheckPeerExpire off
+		ProxyPreserveHost On
+		ProxyPass / wss://172.20.16.201:443/
+		ProxyPassReverse / wss://172.20.16.201:443/
+		ServerName 115.186.176.139
+
+		ServerAdmin webmaster@localhost
+		#DocumentRoot /var/www/html
+
+
+		ErrorLog ${APACHE_LOG_DIR}/error.log
+		CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	
+	</VirtualHost>
+</IfModule>
+
+
+#######################ip table rules############################
+#https://unix.stackexchange.com/questions/542760/iptables-port-forwarding-public-network-to-private-network-using-two-interfaces
+
+iptables -t nat -p tcp -A PREROUTING -j DNAT -d 115.186.176.139 --dport 8080 --to-dest 172.20.16.201:443
+
+iptables -t nat -A POSTROUTING -d 172.20.16.201 -j MASQUERADE
+
+iptables -I FORWARD -i wlan0 -p tcp -d 172.20.16.201 --dport 443 -j ACCEPT
+
+iptables -I FORWARD -i eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+#######################Node############################
+iptables -L --line-numbers
+sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 3000 -j ACCEPT
+#for delete a rule
+iptables -D [chain] [line number]
+
+#######################live react on 3000############################
+#go to project folder
+npm start
+ctrl+ c
+npm run build
+npm install -g serve
+serve -s build
+# add in firewall
+ufw allow 5000/tcp
+ufw reload
+http://ip:5000
+#######################live react apach2############################
+#go to project folder
+npm run build
+#go to /inner-project-folder/build
+#copy every thing
+#paste in var/www/html
+open http://ip/index.html
+#######################serveo############################
+ssh -R 80:localhost:3000 serveo.net
+#######################Node############################
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -   ###10.16.3 was stable at the  time
+sudo apt-get install -y nodejs
+#make a folder and open it in visual code and open the terminal there
+npm init -y
+npm install express body-parser cors mongoose
+npm install -g nodemon
+npx create-react-app client
+npx create-react-app client
+npm start
+#install axios (I think in client folder)
+npm i axios -s
+
+
+
+#######################ansible############################
+---
+- hosts: localhost
+  tasks:
+  - name: Create a snapshot
+    vmware_guest_snapshot:
+      hostname: "vcenter.vspherenv.local"
+      username: "administrator@vsphere.local"
+      password: "admin@ADMIN1"
+      datacenter: "FYP"
+      folder: "/FYP/"
+      name: "win_10_1511"
+      state: revert
+      snapshot_name: win_10_1511_attack_configured
+      validate_certs: False
+    delegate_to: localhost
+
+########################   Rules   #############################
+user_id, attack_session_id, paltform (if scenario) should be given to flask to pass to attack object
+
+
+1.) if a scenario has no pre-reqs, do not include "pre-reqs" key in its json file portion
+
+2.) in procedure, "tool" key is mandatory                 ##### compulsory
+	2a.) if tool is meterpreter or cmd, it should contain "command" key
+	2b.) if tool is metasolit, it should contain "exploit", "payload" and other optional parameters like "RHOSTS" etc
+
+3.) For tooling scenarios, if use ref to options object in input list, then naming rule for that is:
+{
+	"input":[
+		{"insert host ip":"LHOST_$ref"}
+		],
+	
+	options":{
+                 "LHOST_$ref": "192.168.10.4"
+		 },
+}
+
+4.) two scenarios: "type":"active_scenario", "type":"helper_scenario"  ##### compulsory5.)
+
+5.) Build_capabilities first scenario should have {"platform": "windows"} in execution key.
+
+6.) if tool == meterpreter then must include "type":"script" or "type":"command"
+
+7.) In Forming Campaign, only mention active scenarios in dynamic_procedure (as helper scenario comes in post and pre reqs which are the only thing that are consdered as pre/post-reqs in campaign formation)
+
+8.) If one prop is setting in a helper scenario and being used in question of active scenario than put that property
+
+9.) with metasploit "spawn_seperate_session": false/true is necessarily needed
+
+https://115.186.176.139:8081	
+http://115.186.176.139:5000
+
