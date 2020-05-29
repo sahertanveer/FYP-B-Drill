@@ -326,7 +326,7 @@ class SessionRoom extends Component {
                 data: {
                     command: "end_session",
                     user_id: this.props.auth._id,
-                    machine_name: this.state.machine_name,
+                    machine_name: this.state.machine,
                     token: this.props.auth.token
                 }
             })
