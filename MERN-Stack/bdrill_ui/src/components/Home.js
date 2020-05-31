@@ -31,29 +31,33 @@ class Home extends React.Component {
                 <ParallaxLayer offset={2} speed={0} factor={3} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
                 <ParallaxLayer offset={3} speed={0} factor={3} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
                 <ParallaxLayer offset={4} speed={0} factor={3} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
-
-                <ParallaxLayer offset={1.1} speed={-0.3} style={{ opacity: 0.2, pointerEvents: 'none' }}>
-                    <img src={url('satellite4')} style={{ width: '15%', marginLeft: '70%' }} />
-                </ParallaxLayer>
         
-                <ParallaxLayer offset={0.2} speed={0.5} style={{ opacity: 0.2 }}>
-                    <img src={url('cloud')} style={{ display: 'block', width: '20%', marginLeft: '70%' }} />
-                    <img src={url('cloud')} style={{ display: 'block', width: '10%', marginLeft: '20%' }} />
+                <ParallaxLayer offset={0.6} speed={0.5} style={{ opacity: 0.5 }}>
+                    <img src={url('satellite3')} style={{ display: 'block', width: '10%', marginLeft: '10%' }} />
                 </ParallaxLayer>
 
-                <ParallaxLayer offset={1.4} speed={0.2} style={{ opacity: 0.2 }}>
-                    <img src={url('cloud')} style={{ display: 'block', width: '10%', marginLeft: '70%' }} />
-                    <img src={url('cloud')} style={{ display: 'block', width: '20%', marginLeft: '15%' }} />
+                <ParallaxLayer offset={0.0} speed={0.5} style={{ opacity: 0.4 }}>
+                    <img src={url('satellite')} style={{ display: 'block', width: '20%', marginLeft: '80%' }} />
                 </ParallaxLayer>
 
-                <ParallaxLayer offset={2.3} speed={-0.1} style={{ opacity: 0.2 }}>
-                    <img src={url('cloud')} style={{ display: 'block', width: '5%', marginLeft: '10%' }} />
-                    <img src={url('cloud')} style={{ display: 'block', width: '20%', marginLeft: '80%' }} />
+                <ParallaxLayer offset={1.1} speed={-0.3} style={{ opacity: 0.4, pointerEvents: 'none' }}>
+                    <img src={url('logo')} style={{ width: '25%', marginLeft: '65%' }} />
                 </ParallaxLayer>
 
-                <ParallaxLayer offset={3.5} speed={0.4} style={{ opacity: 0.2 }}>
-                    <img src={url('cloud')} style={{ display: 'block', width: '20%', marginLeft: '5%' }} />
-                    <img src={url('cloud')} style={{ display: 'block', width: '15%', marginLeft: '75%' }} />
+                <ParallaxLayer offset={1.6} speed={0.2} style={{ opacity: 0.4 }}>
+                    <img src={url('cloud')} style={{ display: 'block', width: '10%', marginLeft: '1%' }} />
+                </ParallaxLayer>
+
+                <ParallaxLayer offset={2.1} speed={-0.1} style={{ opacity: 0.4 }}>
+                    <img src={url('satellite4')} style={{ display: 'block', width: '9%', marginLeft: '12%' }} />
+                </ParallaxLayer>
+
+                <ParallaxLayer offset={2.8} speed={-0.1} style={{ opacity: 0.4 }}>
+                    <img src={url('bash')} style={{ display: 'block', width: '10%', marginLeft: '80%' }} />
+                </ParallaxLayer>
+
+                <ParallaxLayer offset={3.7} speed={0.4} style={{ opacity: 0.2 }}>
+                    <img src={url('earth')} style={{ display: 'block', width: '20%', marginLeft: '5%' }} />
                 </ParallaxLayer>
 
                 <ParallaxLayer
@@ -62,7 +66,7 @@ class Home extends React.Component {
                     onClick={() => this.parallax.scrollTo(1)}
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {/* <img src={url('server')} style={{ width: '20%' }} /> */}
-                    <img src= {logo2} style={{alignContent: "left", width: '80px', marginTop: "-46%",}}/>
+                    {/* <img src= {logo2} style={{alignContent: "left", width: '80px', marginTop: "-46%",}}/> */}
                     <div className="row" style={{ marginTop: "15%", marginBottom: "18%" }}>
                         <div className="col s12 m12 l12">
                             <div className="header center">
