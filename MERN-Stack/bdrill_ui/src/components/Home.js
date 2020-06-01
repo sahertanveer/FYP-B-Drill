@@ -85,12 +85,13 @@ class Home extends React.Component {
                     <div className="row">
                         <div className="col s12 m12 l12 ">
                             <h3 className="white-text center" style={{ fontFamily: "Princess Sofia" }}>Login Panels</h3>
+                            <p className="white-text center">Click on card to navigate to other Panels. </p>
                         </div>
+                        
                         <br/>
                         <br/>
                         <div className="col s12 m12 l12 ">
                             <HomeLoginCards />
-                            <p className="white-text center">Click on card to navigate to other Panels. </p>
                         </div>
                     </div>
                 </ParallaxLayer>

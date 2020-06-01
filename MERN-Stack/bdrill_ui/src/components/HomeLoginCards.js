@@ -41,7 +41,7 @@ const pages = [
                       </div>
                     </div>
                 </div>,
-({ style }) => <div className="mycard" 
+                    ({ style }) => <div className="mycard" 
                   style={{ ...style, background: '#562a3a', width:"100%", marginLeft:'-2%'}}>
                     <div className="row">
                       <div className="col s12 m12 l12 center ">
