@@ -100,7 +100,8 @@ class MongoController():
                     "user_answers": [],
                     "answered": False,
                     "score":{
-                        "total_score":(len(actual_answers) * 10),
+                        # "total_score":(len(actual_answers) * 10),
+                        "total_score":100,
                         "obtained_score":0,
                         "try_count": try_count
                     }
