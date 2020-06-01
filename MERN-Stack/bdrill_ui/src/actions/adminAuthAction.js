@@ -437,7 +437,7 @@ export const getmanagers = (organizationId) => async dispatch => {
   }
 }
 
-//get candidiates
+//get candidates
 export const getusers = (manager_id) => async dispatch => {
 
   try {

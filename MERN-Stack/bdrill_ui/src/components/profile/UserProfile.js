@@ -290,14 +290,19 @@ const UserProfile = ({ getCurrentProfile, getProfilePhoto, auth: { user, role },
                             <p color=" lighten-1" width="100%" style={{ borderTop: "5px solid cyan" }} />
                             <br />
                             <i className="fas fa-graduation-cap fa-3x white-text center"></i>
-                            {profile && profile.education ? (
+                           {/* { console.log(profile.education.length)} */}
+                            {profile && profile.education && profile.education.length > 0 ? (
+                                
                                 <Fragment>
                                     <h6 htmlFor="Education" className="white-text center ">Studied at</h6>
                                     <br />
                                 </Fragment>
 
                             ) : (
+                                <Fragment>
                                     <div className="white-text">No Education Added</div>
+                                    <br />
+                                    </Fragment>
                                 )}
                             {profile && profile.education.map(function (item, i) {
                                 return (
@@ -335,9 +340,13 @@ const UserProfile = ({ getCurrentProfile, getProfilePhoto, auth: { user, role },
                             {profile && profile.experience ? (
                                 <Fragment>
                                     <h6 htmlFor="Experience" className="white-text center ">Worked at</h6>
+                                    <br/>
                                 </Fragment>
                             ) : (
+                                <Fragment>
                                     <div className="white-text">No Experience Added</div>
+                                    <br />
+                                </Fragment>
                                 )}
                             {profile &&
                                 profile.experience.map(function (item, i) {
