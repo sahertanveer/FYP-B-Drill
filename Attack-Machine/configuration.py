@@ -67,7 +67,7 @@ class Configuration:
                 "current_tactic": None,
                 "category": None,
                 "session_id": None,
-                "logging_directory": "/home/FYP/Sessions/",
+                "logging_directory": self.get_logging_options("logging_path"),
                 "user_id": None
 
             },
@@ -121,7 +121,11 @@ class Configuration:
             "RHOSTS", self.vm_config[self.get_dyanamic_property("vm_name", category="target")]["ansible_host"])
 
     '''
-    Other than tactic keys, All will have category defined
+    Other than tactic keys, All will have category defined.
+    If an error occur while attack execution, then upon going
+    to back step does not changes Evaluation values as they
+    are already populated in configuration. The following
+    method ensures this functionality.
     '''
 
     def get_dyanamic_property(self, property_name, category=None,):
@@ -164,8 +168,6 @@ class Configuration:
                     self.session_recorder.info("Property Not Found")
                     return None
 
-
-            
 
             else:
                 self.session_recorder.info("Category Not Found")
@@ -251,6 +253,9 @@ class Configuration:
 
     def get_network_options(self, property_name):
         return self.config["NETWORK OPTIONS"][property_name]
+
+    def get_logging_options(self, property_name):
+        return self.config["LOGGING OPTIONS"][property_name]
 
     def get_attack_options(self, property_name):
         return self.config["ATTACK OPTIONS"][property_name]

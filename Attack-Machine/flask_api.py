@@ -133,9 +133,9 @@ def start_attack(attack_session_id, attack_id, user_id, platform, category, mach
         AttackObject = Attack(attack_session_id=attack_session_id, user_id=user_id, platform=platform,
                               category=category, machine_name=machine_name, end_time=end_time, tactic_name=tactic_name)
         # Defense_Evasion
-        # AttackObject.parser(category, attack_id=attack_id, tactic=tactic_name)
-    except:
-        pass
+        AttackObject.parser(category, attack_id=attack_id, tactic=tactic_name)
+    except Exception as e:
+        print(e)
     #AttackObject.parser("campaign", "C1")
     #AttackObject.parser("scenario", "S.01.1091.1",tactic="Initial_Access", )  # S.01.1190.1
 

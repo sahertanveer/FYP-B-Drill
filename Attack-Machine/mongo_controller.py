@@ -22,6 +22,11 @@ class MongoController():
         self.session_recorder = logging.getLogger(kwargs["attack_session_id"])
         init()
 
+    '''
+    Check in mongoDb if user has ended its session
+    from UI or the session has been timed out (
+    AttackSessions Collection.)
+    '''
     def continue_session(self):
         self.attack_session = self.attack_sessions_collection.find_one({'_id':ObjectId(self.attack_session_id)})
         print(self.attack_session)
@@ -46,6 +51,25 @@ class MongoController():
             {'user_id': user_id})
         return self.user_test_history
     
+    def raise_error_flag_in_attack_session(self):
+        Fore.YELLOW
+        self.session_recorder.info(
+              "************************Raising Incomplete Error Flag and Ending Session**********************")
+        Style.RESET_ALL
+        try:
+            self.attack_session_update_obj = {
+                "$set":{
+                    "incomplete_attack_error":True
+                }
+            }
+            self.result = self.attack_sessions_collection.update_one(
+                {"_id": ObjectId(self.attack_session_id)}, self.attack_session_update_obj)
+
+            if (self.result.matched_count == 1):
+                self.session_recorder.info("Flag raised in attack session.")
+        except Exception as e:
+            self.session_recorder.critical(e)
+
     def update_session_tactics(self, attacks):
         Fore.YELLOW
         self.session_recorder.info(

