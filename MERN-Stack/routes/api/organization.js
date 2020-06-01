@@ -54,7 +54,7 @@ router.post('/registerOrganization',
 
   ],
   async (req, res) => {
-    //  if (req.user.role === "organization") {
+
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {

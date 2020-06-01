@@ -110,7 +110,7 @@ router.post('/forgotPassword',
                 return res.status(400).json({ err: [{ msg: 'Email could not sent' }] });
               else
                 return res.json({ info })
-              // console.log(info);
+              
             })
           }
         }
