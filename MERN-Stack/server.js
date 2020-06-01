@@ -24,6 +24,7 @@ const Organization = require('./routes/api/organization')
 const DeleteUsers = require('./routes/api/deleteusers')
 const Password = require('./routes/api/password')
 const Visualization = require('./routes/api/visualization')
+const GetLength = require('./routes/api/getlength')
 
 const SocketManager = require('./routes/api/chat/SocketManager')
 
@@ -45,6 +46,9 @@ app.get('/', (req,res) => res.send('API Running'));
 io.on('connection', SocketManager)
 
 //user connection
+
+//dashboards
+app.use('/api/getlength', GetLength)
 
 //candidates
 app.use('/api/users', Users)

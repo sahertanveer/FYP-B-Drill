@@ -4,55 +4,55 @@ import { useTransition } from 'react-spring'
 // import './styles.css'
 
 const pages = [
-  ({ style }) => <div className="mycard" 
-  style={{ ...style, background: '#562a3a', width:"100%", marginLeft:'-2%'}}>
-                    <div className="row">
-                      <div className="col s12 m12 l12 center ">
-                        <h5 className="white-text">Admin Panel</h5>
-                      </div>
-                      <div className="col s12 m12 l12 center">
-                        <a href="/adminsignin" className=" btn btn-login">Login </a>
-                          <br />
-                      </div>
-                    </div>
-                </div>,
+  ({ style }) => <div className="mycard"
+    style={{ ...style, background: '#562a3a', width: "100%", marginLeft: '-2%' }}>
+    <div className="row">
+      <div className="col s12 m12 l12 center ">
+        <h5 className="white-text">Admin Panel</h5>
+      </div>
+      <div className="col s12 m12 l12 center">
+        <a href="/adminsignin" className=" btn btn-login">Login </a>
+        <br />
+      </div>
+    </div>
+  </div>,
 
-  ({ style }) => <div className="mycard" 
-                    style={{ ...style, background: '#562a3a', width:"100%", marginLeft:'-2%'}}>
-                    <div className="row">
-                      <div className="col s12 m12 l12 center ">
-                        <h5 className="white-text">Organization Panel</h5>
-                      </div>
-                      <div className="col s12 m12 l12 center">
-                        <a href="/orgsignin" className=" btn btn-login">Login </a>
-                          <br />
-                      </div>
-                    </div>
-                </div>,
-({ style }) =>  <div className="mycard" 
-                  style={{ ...style, background: '#562a3a', width:"100%", marginLeft:'-2%'}}>
-                    <div className="row">
-                      <div className="col s12 m12 l12 center ">
-                        <h5 className="white-text">Manager Panel</h5>
-                      </div>
-                      <div className="col s12 m12 l12 center">
-                        <a href="/managersignin" className=" btn btn-login">Login </a>
-                          <br />
-                      </div>
-                    </div>
-                </div>,
-                    ({ style }) => <div className="mycard" 
-                  style={{ ...style, background: '#562a3a', width:"100%", marginLeft:'-2%'}}>
-                    <div className="row">
-                      <div className="col s12 m12 l12 center ">
-                        <h5 className="white-text">Candidate Panel</h5>
-                      </div>
-                      <div className="col s12 m12 l12 center">
-                        <a href="/candsignin" className=" btn btn-login">Login </a>
-                          <br />
-                      </div>
-                    </div>
-                </div>,
+  ({ style }) => <div className="mycard"
+    style={{ ...style, background: '#562a3a', width: "100%", marginLeft: '-2%' }}>
+    <div className="row">
+      <div className="col s12 m12 l12 center ">
+        <h5 className="white-text">Organization Panel</h5>
+      </div>
+      <div className="col s12 m12 l12 center">
+        <a href="/orgsignin" className=" btn btn-login">Login </a>
+        <br />
+      </div>
+    </div>
+  </div>,
+  ({ style }) => <div className="mycard"
+    style={{ ...style, background: '#562a3a', width: "100%", marginLeft: '-2%' }}>
+    <div className="row">
+      <div className="col s12 m12 l12 center ">
+        <h5 className="white-text">Manager Panel</h5>
+      </div>
+      <div className="col s12 m12 l12 center">
+        <a href="/managersignin" className=" btn btn-login">Login </a>
+        <br />
+      </div>
+    </div>
+  </div>,
+  ({ style }) => <div className="mycard"
+    style={{ ...style, background: '#562a3a', width: "100%", marginLeft: '-2%' }}>
+    <div className="row">
+      <div className="col s12 m12 l12 center ">
+        <h5 className="white-text">Candidate Panel</h5>
+      </div>
+      <div className="col s12 m12 l12 center">
+        <a href="/candsignin" className=" btn btn-login">Login </a>
+        <br />
+      </div>
+    </div>
+  </div>,
 ]
 
 function HomeLoginCards() {
