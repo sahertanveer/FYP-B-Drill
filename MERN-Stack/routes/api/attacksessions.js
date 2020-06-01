@@ -493,11 +493,20 @@ router.post('/saveuseranswers', auth, async (req, res) => {
           attack_session_evaluation[scenarioId].user_answers = req.body.user_answers;
           let actual_answers = attack_session_evaluation[scenarioId].actual_answers;
 
+          /*
+          Calculating each scenario score in percent
+          */
+          
           let score = 0;
+          let total_score = actual_answers.length * 10
+
+
           for (index in actual_answers) {
+            //only two equals, so that type is not checked incase of string vs int
             if (actual_answers[index] == req.body.user_answers[index])
               score += 10;
           }
+          score = (score / total_score) * 100
 
           let aggregatedScore = await calculateScenarioAggregate(score, attack_session_evaluation[scenarioId].score.try_count)
 
@@ -683,7 +692,12 @@ router.post('/getdetailedsessionresult', auth,
         let session = await AttackSession.findOne({ _id: req.body.attack_session_id, in_progress: false }).populate(
           {
             path: 'assignment',
-            select: ['category', 'tactic_name', 'platform'],
+            select: ['category', 'tactic_name', 'platform', 'schedule'],
+            match: {},
+            populate: {
+              path: 'schedule',
+              select:['EndTime', 'StartTime']
+            }
           }
         )
           .select('-__v')

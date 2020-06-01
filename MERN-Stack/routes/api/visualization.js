@@ -180,7 +180,7 @@ router.post('/performancelinechart', [],
 
             var oneYearFromNow = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
             var elevenMonthFromNow = new Date(oneYearFromNow.getMonth() + 1)
-            await Attack_Session.find({ user_id: req.user.id, start_time: { $gte: elevenMonthFromNow }, end_time: { $ne: null } })
+            await Attack_Session.find({ user_id: req.user.id, start_time: { $gte: elevenMonthFromNow }, end_time: { $ne: null }, incomplete_attack_error:{$ne:true} })
                 .sort({ start_time: 'ascending' })
                 .populate({
                     path: 'assignment',
@@ -193,6 +193,7 @@ router.post('/performancelinechart', [],
                     sessions.map(session => {
                         //as at one time one session could be alloted,
                         //so at tha time other is considered as null
+                        if(session.assignment && session.assignment.category)
                         if (session.assignment.category === "Scenario") {
                             ScenarioPerformance.push(session.result.toFixed())
                             CampaignPerformance.push(null)
@@ -207,7 +208,8 @@ router.post('/performancelinechart', [],
                     return res.json({ label: months, ScenarioPerformance: ScenarioPerformance, CampaignPerformance: CampaignPerformance })
                 })
                 .catch(err => {
-                    return res.status(422).json(err)
+                    console.log(err)
+                    return res.status(422).json({errors:[{msg:"Could not get visualization data for performance"}]})
                 })
 
         }
