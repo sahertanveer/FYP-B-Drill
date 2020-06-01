@@ -8,6 +8,7 @@ const nodemailer = require('nodemailer')
 const generator = require('generate-password')
 const { check, validationResult } = require('express-validator');
 const config = require('config')
+const { globalEmail, globalEmailPass } = require('../../config/email')
 
 const Organization = require('../../models/Organization')
 const Manager = require('../../models/Manager')
@@ -116,12 +117,12 @@ router.post('/registerOrganization',
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'bdrill634@gmail.com',
-          pass: 'Bdrill@123'
+          user: globalEmail,
+          pass: globalEmailPass
         }
       });
       const mailOptions = {
-        from: 'bdrill634@gmail.com', // sender address
+        from: globalEmail, // sender address
         to: email, // list of receivers
         subject: 'Verify Registration', // Subject line
         html: '<h1><b>B-Drill</b></h1><p><b>We give wings to your skills, you decide where to fly.</b></p><br /><br />' +
@@ -289,13 +290,13 @@ router.post('/registerManager', auth,
         var transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-            user: 'bdrill634@gmail.com',
-            pass: 'Bdrill@123'
+            user: globalEmail,
+            pass: globalEmailPass
           }
         });
 
         const mailOptions = {
-          from: 'bdrill634@gmail.com', // sender address
+          from: globalEmail, // sender address
           to: email, // list of receivers
           subject: 'Verify Registration', // Subject line
           html: '<h1><b>B-Drill</b></h1><p><b>We give wings to your skills, you decide where to fly.</b></p><br /><br />' +
