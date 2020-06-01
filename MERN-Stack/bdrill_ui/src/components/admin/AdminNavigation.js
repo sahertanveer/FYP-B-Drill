@@ -168,19 +168,44 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, loadUser, page:{loadedPage} }) => {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const authLink = (
     <ul>
       <li>
-        <a href='/adminsignin' className="white-text">
-          <IconButton
-            edge="end"
-            onClick={logout}
-            color="inherit"
+        {/* <a onClick={logout} href='#!' /> */}
+        {/* <a href='/candsignin' className="white-text"> */}
+        <IconButton
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+          color="inherit"
+        >
+          <AccountCircle />
+          <Menu
+            className="navbar dropdown right"
+            /* style = {{top:'-20%', left:'87%'}} */
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
           >
-            <AccountCircle />
-          </IconButton>
-        </a>
+            <MenuItem><a href="/admindashboard">My account</a></MenuItem>
+            <MenuItem onClick={logout}>Logout</MenuItem>
+          </Menu>
+        </IconButton>
+        {/* </a> */}
       </li>
     </ul>
   );
@@ -198,10 +223,6 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
       </li>
     </ul>
   );
-
-  const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -238,8 +259,6 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
     to: PropTypes.string.isRequired,
   };
 
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -309,6 +328,11 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
               <IconButton aria-label="show 17 new notifications" color="inherit">
                 <Badge badgeContent={17} color="primary">
                   <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <IconButton aria-label="show 17 new notifications" color="inherit">
+                <Badge badgeContent={17} color="primary">
+                  <MailIcon />
                 </Badge>
               </IconButton>
             </div>

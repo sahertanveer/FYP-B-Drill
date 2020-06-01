@@ -6,8 +6,8 @@ export const uiInstance = axios.create({
   });
   // export default uiInstance;
   export const BackendInstance = axios.create({
-    baseURL: 'http://58.65.201.134:5000/'
+    baseURL: 'http://localhost:5000/'
 
   });
 
-  export const socketUrl = "http://58.65.201.134:5000";
+  export const socketUrl = "http://localhost:5000";

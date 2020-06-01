@@ -70,14 +70,14 @@ const AdminSignin = ({ login, isAuthenticated, role }) => {
                   />
                 </div>
                 <div className="form-group left">
-                  <input style={{ opacity: 1, pointerEvents: "auto" }} className="black-text" type="checkbox" /> 
+                    <input type="checkbox" name="remember" id="remember" style={{opacity:1}} />
                     &nbsp; &nbsp; <label htmlFor="remember">Remember me </label>
-                </div>
-                {/* <div className="p-container">
-                    <span className="right">Forgot Password?</span>
-                  </div> */}
-                <br />
-                <br />
+                  </div>
+                  <div className="p-container">
+                      <a href="/forgotpassword" className="right"> Forgot Password?</a>
+                  </div>
+                  <br />
+                  <br />
                 <button
                   type="submit"
                   className="btn btn-lg btn-primary"

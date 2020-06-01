@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { addorupdateattack } from '../../actions/adminAuthAction'
+import { addorupdateattack, getallplatforms } from '../../actions/adminAuthAction'
 import { setAlert } from '../../actions/alertAction'
 import Alert from '../../layout/Alert'
 import { BackendInstance } from '../../config/axiosInstance';
@@ -16,12 +16,17 @@ class AddorUpdateAttack extends Component {
             procedure_name: '',
             tactic_name: '',
             showMenuCategory: false,
+            showMenuPlatform: false,
             technique_name: '',
-            platform: '',
+            platform: 'Select Platform',
             procedure_id: values.procedureId,
             category: 'Scenario'
         }
 
+        this.props.getallplatforms();
+        this.showMenuPlatform = this.showMenuPlatform.bind(this);
+        this.closeMenuPlatform = this.closeMenuPlatform.bind(this);
+        this.selectPlatform = this.selectPlatform.bind(this);
         this.showMenuCategory = this.showMenuCategory.bind(this);
         this.closeMenuCategory = this.closeMenuCategory.bind(this);
         this.selectCategory = this.selectCategory.bind(this);
@@ -73,12 +78,32 @@ class AddorUpdateAttack extends Component {
 
     onChange = e =>
         this.setState({ [e.target.name]: e.target.value })
+        
     // setFormData({ ...formData, [e.target.name]: e.target.value })
 
     onSubmit = e => {
         e.preventDefault()
         console.log(this.state)
         this.props.addorupdateattack(this.state);
+    }
+
+    selectPlatform(event) {
+        event.preventDefault();
+        this.setState({ platform: event.target.innerText })
+
+    }
+
+    closeMenuPlatform() {
+        this.setState({ showMenuPlatform: false }, () => {
+            document.removeEventListener('click', this.closeMenuPlatform);
+        });
+    }
+
+    showMenuPlatform(event) {
+        event.preventDefault();
+        this.setState({ showMenuPlatform: true }, () => {
+            document.addEventListener('click', this.closeMenuPlatform);
+        });
     }
 
     selectCategory(event) {
@@ -239,15 +264,33 @@ class AddorUpdateAttack extends Component {
                                             <h6 htmlFor="platform">Platform:</h6>
                                         </div>
                                         <div className="col s12 m8 l9">
-                                            <input
-                                                type="text"
-                                                className="form-control   "
-                                                name="platform"
-                                                placeholder="Platform *"
-                                                value={this.state.platform}
-                                                onChange={e => this.onChange(e)}
-                                                required
-                                            />
+                                            <button className="btn success " onClick={this.showMenuPlatform}>
+                                                {this.state.platform} <i className="tiny material-icons">arrow_drop_down</i>
+                                            </button>
+                                            {
+                                                this.state.showMenuPlatform
+                                                    ? (
+                                                        <div className="menu" ref={(element) => {
+                                                            this.dropdownMenu = element;
+                                                        }}>
+                                                            <ul>
+                                                                <div className="collection black-text">
+                                                                    {
+                                                                        (this.props.attack.platformFound) ? (
+                                                                             this.props.attack.platforms.map((platform) => {
+                                                                                const {_id, platform_name} = platform
+                                                                                return <li key={_id} className="collection-item black-text" onClick={this.selectPlatform}>{platform_name}</li>
+                                                                            })
+                                                                        ) : null
+                                                                    }
+                                                                </div>
+                                                            </ul>
+                                                        </div>
+                                                    )
+                                                    : (
+                                                        null
+                                                    )
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -265,9 +308,7 @@ class AddorUpdateAttack extends Component {
                             </form>
                         </div>
                     </div>
-
                 </div>
-
             </BrowserRouter>
         )
     }
@@ -277,7 +318,8 @@ class AddorUpdateAttack extends Component {
 AddorUpdateAttack.propTypes = {
     addorupdateattack: PropTypes.func.isRequired,
     attack: PropTypes.object.isRequired,
-    setAlert: PropTypes.func.isRequired
+    setAlert: PropTypes.func.isRequired,
+    getallplatforms: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -285,4 +327,4 @@ const mapStateToProps = state => ({
     attack: state.attack
 })
 
-export default withRouter(connect(mapStateToProps, { addorupdateattack, setAlert })(AddorUpdateAttack))
+export default withRouter(connect(mapStateToProps, { addorupdateattack, setAlert, getallplatforms })(AddorUpdateAttack))

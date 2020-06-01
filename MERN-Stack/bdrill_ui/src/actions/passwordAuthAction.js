@@ -14,7 +14,7 @@ export const forgotPassword = ({ email }) => async dispatch => {
       dispatch(setAlert('Check your mail to reset password', 'success'));
       
     } catch {
-        dispatch(setAlert('User not found', 'danger'));
+        dispatch(setAlert('Email could not sent. Please try again later', 'danger'));
     }
   }
 
@@ -29,7 +29,7 @@ export const forgotPassword = ({ email }) => async dispatch => {
     const body = JSON.stringify({  password });
     try {
       await BackendInstance.post('/api/password/resetPassword', body, config)
-      dispatch(setAlert('Password reset', 'success'));
+      dispatch(setAlert('Password Reset Successfully', 'success'));
       
     } catch (err) {
       const errors = err.response.data.errors;
