@@ -58,7 +58,7 @@ class ChatContainer extends Component {
 		const { user, logout, role, contacts } = this.props
 		const { chats, activeChat, usersObj } = this.props.chat
 		return (
-			<div className="container">
+			<div className="container chatcontainer" >
 				<SideBar
 					logout={logout}
 					chats={chats}

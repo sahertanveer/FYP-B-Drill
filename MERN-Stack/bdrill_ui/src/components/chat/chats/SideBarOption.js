@@ -21,9 +21,9 @@ export default class SideBarOption extends PureComponent {
                 className={`user ${active ? 'active':''}`}
                 onClick={onClick}
                 >
-                <div className="user-photo">{name ? name[0].toUpperCase() : null}{activeBar && activeBar === "contacts" && onlineStatus? <GoPrimitiveDot/> : null}</div>
+                <div className="user-photo">{name ? name[0].toUpperCase() : null}</div>
                 <div className="user-info">
-                    <div className="name">{name}</div>
+                    <div className="name">{name} {activeBar && activeBar === "contacts" && onlineStatus? <GoPrimitiveDot color="green"/> : null}</div>
                     {email ? <span className="title"><small>{email}</small></span> :
                     <div className="last-message">{lastMessage}</div>
                 }

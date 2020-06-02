@@ -186,19 +186,10 @@ export default class SideBar extends Component {
 		return (
 			<div id="side-bar">
 				<div className="heading">
-					<div className="app-name">Our Cool Chat <MdKeyboardArrowDown /></div>
-					<div className="menu">
-						<MdMenu />
-					</div>
+					<p>B-Drill Chat</p>
 				</div>
 				<form onSubmit={this.handleSubmit} className="search">
-					<i className="search-icon"><FaSearch /></i>
-					<input
-						placeholder="Search"
-						type="text"
-						value={reciever}
-						onChange={(e) => { this.setState({ reciever: e.target.value }) }} />
-					<div className="plus"></div>
+					<p className="center"><center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Live Chat + Private Chat</center></p>
 				</form>
 				<div className="side-bar-select">
 					<div
@@ -249,9 +240,6 @@ export default class SideBar extends Component {
 				</div>
 				<div className="current-user">
 					<span>{user.name}</span>
-					<div onClick={() => { logout() }} title="Logout" className="logout">
-						<MdEject />
-					</div>
 				</div>
 			</div>
 		);

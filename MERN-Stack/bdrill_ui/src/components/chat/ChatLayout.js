@@ -23,7 +23,7 @@ class ChatLayout extends Component {
 		const { contacts } = this.props.auth
 		const { user } = this.props.chat
 		return (
-			<div className="container">
+			<div className="container chatcontainer">
 				{
 					user ?
 						<ChatContainer user={user} contacts={contacts} role={this.props.auth.role} firstname={this.props.auth.firstname} email={this.props.auth.email} />
