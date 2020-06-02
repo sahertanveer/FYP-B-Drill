@@ -22,16 +22,16 @@ class ChatBox extends Component {
 
   render() {
     return (
-      <div className="chatbox">
+      <div className="chatbox" style={{overflow: "hidden" }}>
         {/* {!this.state.showChatBox ? 
         <button className="btn success rcw-launcher" onClick={this.toggleChatBox}><i className="fas fa-comment-dots"/></button>
         :
         <button className="rcw-close-button" onClick={this.closeChatBox}><i className="fas fa-times-circle white-text" /></button>
         } */}
-{/* 
+
         <button className="btn success rcw-launcher" style={{ borderRadius: "50%" }} onClick={this.toggleChatBox}>
             <i className="fas fa-comment-dots" />
-          </button> */}
+          </button>
         {!this.state.showChatBox ?
         "" :
           <Fragment>
@@ -40,35 +40,15 @@ class ChatBox extends Component {
                 <button className="btn success rcw-launcher " style={{ borderRadius: "50%" }} onClick={this.closeChatBox}>
                   <i className="fas fa-times-circle white-text" />
                 </button>
-                {/* <div className="rcw-conversation-container rcw-widget-container ">
-                <div className="rcw-header">
+                <div className="rcw-conversation-container rcw-widget-container" style={{ height: "75%", width:"100%", zIndex:9999 }}>
+                {/* <div className="rcw-header">
                   <h6 className="rcw-title">B-Drill ChatBox</h6>
                   <small>We give wings to your skills, you decide where to fly</small>
+                </div> */}
+             <ChatLayout style={{height:"33rem"}}  chatWidget={true}/>
+    
+                 
                 </div>
-                <div className="rcw-messages-container">
-                  <div class="rcw-message">
-                    <div class="rcw-response">
-          <div class="rcw-message-text">
-            <p>Welcome to this awesome chat!</p>
-          </div>
-        </div>
-      </div>
-      <div class="loader false">
-        <div class="loader-container">
-          <span class="loader-dots"></span>
-          <span class="loader-dots"></span>
-          <span class="loader-dots"></span>
-        </div>
-      </div>
-    </div>
-    <form class="rcw-sender">
-      <input type="text" class="rcw-new-message" name="message" placeholder="Type a message..." autocomplete="off" />
-      <button type="submit" class="rcw-send">
-        <i className="fas fa-paper-plane white-text" />
-      </button>
-    </form> */}
-                  <ChatLayout />
-                {/* </div> */}
            </div>
             )}
           </Fragment>

@@ -841,10 +841,6 @@ if text Overflows
 
 
 
-
-
-
-
 .rcw-conversation-container .rcw-header{background-color:#1fa398;border-radius:10px 10px 0 0;color:#fff;
     display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;text-align:center;padding:15px 0 25px}
 .rcw-conversation-container .rcw-title{font-size:24px;margin:0;padding:15px 0}
@@ -859,7 +855,7 @@ if text Overflows
     .rcw-conversation-container .rcw-title{padding:0 0 15px}
     .rcw-conversation-container .rcw-close-button{background-color:#1fa398;border:0;display:block;position:absolute;
                 right:10px;top:20px;width:40px}
-    .rcw-conversation-container .rcw-close{width:20px;height:20px}
+    .rcw-conversation-container .rcw-close{width:20px;height:40%}
         }
 .rcw-message{margin:10px;display:-ms-flexbox;display:flex;word-wrap:break-word}
 .rcw-client{background-color:#1fa398; color:#f4f7f9; margin-left:auto}
@@ -883,8 +879,6 @@ if text Overflows
 @keyframes a{
     0%{transform:translateY(0)}to{transform:translateY(5px)}
 }
-.rcw-messages-container{background-color:#f7f2f2;height:50vh;max-height:410px;overflow-y:scroll;
-    padding-top:10px;-webkit-overflow-scrolling:touch; display: flex;}
 .rcw-full-screen .rcw-messages-container{height:100%;max-height:none}
 @media screen and (max-width:800px){
     .rcw-messages-container{height:100%;max-height:none}
@@ -916,14 +910,18 @@ if text Overflows
 @media screen and (max-width:800px){
     .rcw-conversation-container{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;height:100%}
 }
-.rcw-launcher { bottom:0%; right:0%}
-.rcw-launcher .rcw-badge{z-index: 9999;right:10px;bottom:0;background-color:#1fa398;color:#fff;width:25px;height:25px;
-    text-align:center;line-height:25px;border-radius:50%}
+.rcw-launcher .rcw-badge{z-index: 9999;background-color:#1fa398; color:#fff;
+  width:25px;height:25px;text-align:center;border-radius:50%}
 .rcw-launcher{-webkit-animation-delay:0;-webkit-animation-duration:.5s;-webkit-animation-name:d;
-    -webkit-animation-fill-mode:forwards;-moz-animation-delay:0;-moz-animation-duration:.5s;-moz-animation-name:d;
-    -moz-animation-fill-mode:forwards;animation-delay:0;animation-duration:.5s;animation-name:d;animation-fill-mode:forwards;
-    -ms-flex-item-align:end;align-self:flex-end;background-color:#1fa398;border:0;border-radius:50%;
-    box-shadow:0 2px 10px 1px #b5b5b5;height:60px;width:60px}
+  -webkit-animation-fill-mode:forwards;-moz-animation-delay:0;-moz-animation-duration:.5s;-moz-animation-name:d;
+  -moz-animation-fill-mode:forwards;animation-delay:0;animation-duration:.5s;animation-name:d;animation-fill-mode:forwards;
+  -ms-flex-item-align:end;align-self:flex-end;background-color:#1fa398;border:0;border-radius:50%;
+  box-shadow:0 2px 10px 1px #b5b5b5;height:60px;width:60px;
+  cursor: pointer;
+  opacity: 0.1;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;}
 .rcw-launcher:focus{outline:none}
 .rcw-open-launcher{width:30px;-webkit-animation-delay:0;-webkit-animation-duration:.5s;-webkit-animation-name:c;
     -webkit-animation-fill-mode:forwards;-moz-animation-delay:0;-moz-animation-duration:.5s;-moz-animation-name:c;
@@ -947,14 +945,14 @@ if text Overflows
     0%{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(10px)}
 }
 .rcw-widget-container{
-    bottom:0;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;margin:0 20px 20px 0;
-    max-width:370px;position:fixed;right:0;z-index:1}
+    bottom:10%;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;margin:0 20px 20px 0;
+    max-width:370px;position:fixed;right:0;z-index:1; overflow: hidden;}
 .rcw-opened{width:90vw}
 .rcw-full-screen{margin:0;max-width:none;width:100%}
 .rcw-full-screen.rcw-opened{width:100%;height:100%}
 @media screen and (max-width:800px){
-    .rcw-widget-container{margin:0;max-width:none;width:100%}
-    .rcw-widget-container.rcw-opened{height:100%}
+    .rcw-widget-container{margin:0;max-width:none;width:100%; overflow: hidden;}
+    .rcw-widget-container.rcw-opened{height:90%}
 }
 
 
@@ -964,7 +962,7 @@ if text Overflows
 
   .chatcontainer{color:#fafafa;display:flex;flex-direction:row;align-items:flex-start;
     height:35rem;width:100%; overflow: hidden; overflow-y: hidden; overflow-x: hidden;}
-  #side-bar{box-sizing:border-box;width:33.75%;height:100%;display:grid;justify-content:stretch;
+  #side-bar{box-sizing:border-box;width:25.75%;height:100%;display:grid;justify-content:stretch;
     grid-template-rows:8vh 5vh 5vh 1fr 8vh}
     #side-bar .heading{box-sizing:border-box;max-height:65px;
       padding:18px 16px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;background: #111111;}
@@ -1009,12 +1007,12 @@ if text Overflows
                   background-color:#bcddda}.thread-container::-webkit-scrollbar{width:5px;background-color:green}
                   .thread-container::-webkit-scrollbar-thumb{background-color:#1fa398}
                   .thread-container .thread{position:relative;width:100%;display:flex;flex-direction:column;
-                    justify-content:flex-end;color:#1fa398;background:#000000}
+                    justify-content:flex-end;color:#1fa398;background:#161616}
                     .message-container{display:flex;justify-content:flex-start;min-height:50px;
                       margin:10px 15px;animation:.65s ease-out 0s show}
-                      .message-container .time{order:1}
+                      .message-container .time{order:1; font-size:.75em}
                       .message-container .data{order:2;height:100%;margin-left:25px}
-                      .message-container .name{font-size:.65em;text-align:right}
+                      .message-container .name{font-size:.80em;text-align:right}
                       .message-container .message{background:#242424;border-radius:5px;border-top-left-radius:0;
                         box-sizing:border-box;color:#ffffff;height:100%;padding:10px 15px;position:relative}
                         @keyframes show{0%{opacity:0}100%{opacity:1}}
@@ -1030,7 +1028,7 @@ if text Overflows
                             .message-container.right .message::before{border-top-color:#fff;
                               border-left-color:#fff;border-right-color:transparent;left:auto;right:-7px}
                               .typing-user{text-align:right;margin:10px 15px}
-       .message-input{background:#242424;color:#ffff;box-sizing:border-box;border-radius: 40px 40px 40px 40px;width:100%}
+       .message-input{background:#242424;color:#ffff;box-sizing:border-box;border-radius: 30px 30px 30px 30px;width:100%}
                               .message-input .message-form{height:100%;width:100%;display:flex;justify-content:space-between}
                               .message-input .message-form .form-control{resize:none;padding-left:15px;
                                 box-sizing:border-box;width:80%;height:100%;border:none;font-size:16px; color:#fff;}

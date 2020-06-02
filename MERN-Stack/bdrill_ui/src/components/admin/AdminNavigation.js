@@ -479,15 +479,14 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
             loadedPage === 'chatlayout' ? <ChatLayout /> : 
             loadedPage === 'changepassword' ? <ChangePassword /> :
             loadedPage === 'profile' ? <Profile/>:
-            <AdminDashboard />
-          }
+            <AdminDashboard /> 
+          } 
+          <div className="chatbox" >
+            <ChatBox />
+        </div>
+
         </main>
-
-        <div className="chatbox" >
-            <ChatBox/>
-        </div> 
-
-
+        
       </div>
     </BrowserRouter>
   );

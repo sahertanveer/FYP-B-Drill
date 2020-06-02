@@ -19,7 +19,10 @@ class ChatContainer extends Component {
 			chats: [],
 			users: [],
 			offlineUsers: [],
-			activeChat: null
+			activeChat: null,
+			displaySideBar: false,
+			chatWidget: this.props && this.props.chatWidget? this.props.chatWidget : false 
+
 		};
 	}
 
@@ -28,6 +31,9 @@ class ChatContainer extends Component {
 		this.props.logout();
 	}
 
+	toggleSideBar =()=>{
+		this.setState((prevState)=>{this.setState({displaySideBar: !prevState.displaySideBar})})
+	}
 
 	sendOpenPrivateMessage = (reciever) => {
 		this.props.passOpenPrivateMessage(reciever);
@@ -58,8 +64,11 @@ class ChatContainer extends Component {
 		const { user, logout, role, contacts } = this.props
 		const { chats, activeChat, usersObj } = this.props.chat
 		return (
-			<div className="container chatcontainer" >
+			<div className="container chatcontainer" style={this.props && this.props.style} >
+				{ !this.state.chatWidget || this.state.displaySideBar 
+				?
 				<SideBar
+					chatWidget={this.state.chatWidget}
 					logout={logout}
 					chats={chats}
 					user={user}
@@ -69,13 +78,16 @@ class ChatContainer extends Component {
 					activeChat={activeChat}
 					setActiveChat={this.setActiveChat}
 					onSendPrivateMessage={this.sendOpenPrivateMessage}
-				/>
-				<div className="chat-room-container">
+				/> :
+				null
+			}
+				<div className="chat-room-container" style={{width:"100%"}}>
 					{
 						activeChat !== null ? (
 
-							<div className="chat-room">
-								<ChatHeading name={activeChat.name} />
+							<div className="chat-room"  >
+								
+								<ChatHeading name={activeChat.name} sideBarMenuDisplay={this.state.chatWidget} sideBarToggler={this.toggleSideBar} />
 								<Messages
 									messages={activeChat.messages}
 									user={user}

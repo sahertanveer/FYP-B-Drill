@@ -68,7 +68,7 @@ export default function AdminTactics() {
       <div className="row">
         <div className="col s12 m12 l12">
           <h5 className=" white-text" style={{ fontFamily: "Princess Sofia" }}> Techniques</h5>
-          <BarChart />
+          <BarChart style={{overflow: "hidden"}} />
         </div>
       </div>
       <AppBar position="static" color="default">

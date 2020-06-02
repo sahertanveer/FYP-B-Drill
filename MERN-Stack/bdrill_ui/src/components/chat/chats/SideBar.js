@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import { MdKeyboardArrowDown } from 'react-icons/md'
-import { MdMenu } from 'react-icons/md'
-import { FaSearch } from 'react-icons/fa'
-import { MdEject } from 'react-icons/md'
 import SideBarOption from './SideBarOption'
 import { last, get, differenceBy } from 'lodash'
 import { createChatNameFromUsers } from '../Factories'
@@ -181,15 +177,15 @@ export default class SideBar extends Component {
 
 
 	render() {
-		const { chats, activeChat, user, setActiveChat, logout, usersObj, role, contacts } = this.props
+		const { chats, activeChat, user, setActiveChat, logout, usersObj, role, contacts, chatWidget } = this.props
 		const { reciever, activeSideBar } = this.state
 		return (
-			<div id="side-bar">
+			<div id="side-bar" style={chatWidget ? {width:"75%"}: null}>
 				<div className="heading">
 					<p>B-Drill Chat</p>
 				</div>
 				<form onSubmit={this.handleSubmit} className="search">
-					<p className="center"><center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Live Chat + Private Chat</center></p>
+					<p className="center"><center>Live Chat + Private Chat</center></p>
 				</form>
 				<div className="side-bar-select">
 					<div

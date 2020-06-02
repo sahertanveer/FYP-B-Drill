@@ -36,10 +36,11 @@ export default class Messages extends Component {
 									className={`message-container ${mes.sender === user.email && 'right'}`}
 								>
 									{/* <div>{mes.sender} {user.email}</div> */}
-									<div className="time">{moment(new Date(mes.time)).format('D MM YYYY , HH:mm')}</div>
+									
 									<div className="data">
 										<div className="message">{mes.message}</div>
 										<div className="name">{mes.senderName}</div>
+										<div className="time">{moment(new Date(mes.time)).format('D MM YYYY , HH:mm')}</div>
 									</div>
 								</div>
 

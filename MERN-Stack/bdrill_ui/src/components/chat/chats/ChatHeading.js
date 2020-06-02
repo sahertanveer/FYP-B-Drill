@@ -3,11 +3,15 @@ import React from 'react';
 // import FAUserPlus from 'react-icons/lib/fa/user-plus'
 // import MdEllipsisMenu from 'react-icons/lib/md/keyboard-control'
 
-export default function({name, numberOfUsers}) {
+export default function({name, numberOfUsers, sideBarToggler, sideBarMenuDisplay}) {
 	
 	return (
 		<div className="chat-header">
 			<div className="user-info">
+				{sideBarMenuDisplay ?
+			<button className="btn btn-info" onClick={()=>sideBarToggler()}><i className="fa fa-bars" /></button>
+				: null}
+				&nbsp;&nbsp;&nbsp;
 				<div className="user-name">{name}</div>
 				<div className="status">
 					<div className="indicator"></div>
