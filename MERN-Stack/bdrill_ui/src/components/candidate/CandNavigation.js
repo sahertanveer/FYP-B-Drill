@@ -457,7 +457,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
                   <ListItemText primary={text} />
                 </ListItem>
               ))}
-            </Link >
+              </Link>
           </List>
           <Divider />
           <List aria-label="main mailbox folders">
@@ -473,6 +473,17 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
           </List>
           <Divider />
           <List aria-label="main mailbox folders">
+          <Link to="/candchatlayout" className="navlinks" >
+            {['Messenger'].map((text, index) => (
+              <ListItem button onClick={() => {loadUser(); setPage("candchatlayout")}}>
+                <ListItemIcon>{index === 0 ? <Icon className="white-text">settings_applications</Icon> : null}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+            </Link>
+          </List>
+          <Divider />
+        <List aria-label="main mailbox folders">
             <Link to="/changepassword" className="navlinks">
               {['Settings'].map((text, index) => (
                 <ListItem button onClick={() => { loadUser(); setPage("changepassword") }}>
@@ -482,18 +493,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
               ))}
             </Link>
           </List>
-          <Divider />
-          <List>
-          <Link to="/candchatlayout" className="navlinks" >
-            {['Settings'].map((text, index) => (
-              <ListItem button onClick={() => {loadUser(); setPage("candchatlayout")}}>
-                <ListItemIcon>{index === 0 ? <Icon className="white-text">settings_applications</Icon> : null}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-            </Link>
-          </List>
-        </Drawer>
+          </Drawer>
         <main //id="disability"
           className={clsx(classes.content, {
             [classes.contentShift]: open,
