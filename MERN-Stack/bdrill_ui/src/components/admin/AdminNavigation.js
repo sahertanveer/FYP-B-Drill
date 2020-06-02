@@ -35,6 +35,7 @@ import GetAllUsers from './GetAllUsers';
 import GetAllUsersProfiles from './GetAllUsersProfiles';
 import ChatLayout from '../chat/ChatLayout'
 import Profile from '../profiles/Profile'
+import ChangePassword from '../common/Password/ChangePassword'
 
 const drawerWidth = 220;
 
@@ -332,7 +333,9 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
               </IconButton>
               <IconButton aria-label="show 17 new notifications" color="inherit">
                 <Badge badgeContent={17} color="primary">
-                  <MailIcon />
+                  <a href= "/chatlayout">
+                  <MailIcon className="white-text"/>
+                  </a>
                 </Badge>
               </IconButton>
             </div>
@@ -438,13 +441,24 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
           </List>
           <Divider />
           <Link to="/chatlayout" className="navlinks" >
-            {['Settings'].map((text, index) => (
+            {['Messenger'].map((text, index) => (
               <ListItem button onClick={() => {loadUser(); setPage("chatlayout")}}>
-                <ListItemIcon>{index === 0 ? <Icon className="white-text">settings_applications</Icon> : null}</ListItemIcon>
+                <ListItemIcon>{index === 0 ? <Icon className="white-text">message</Icon> : null}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
             </Link>
+            <Divider />
+            <List aria-label="main mailbox folders">
+            <Link to="/changepassword" className="navlinks">
+              {['Settings'].map((text, index) => (
+                <ListItem button onClick={() => { loadUser(); setPage("changepassword") }}>
+                  <ListItemIcon>{index === 0 ? <Icon className="white-text">settings_applications</Icon> : null}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              ))}
+            </Link>
+          </List>
         </Drawer>
         <main //id="disability"
           className={clsx(classes.content, {
@@ -463,6 +477,7 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
             loadedPage === 'getallusers' ? <GetAllUsers />:
             loadedPage === 'getallusersprofiles' ? <GetAllUsersProfiles /> :
             loadedPage === 'chatlayout' ? <ChatLayout /> : 
+            loadedPage === 'changepassword' ? <ChangePassword /> :
             loadedPage === 'profile' ? <Profile/>:
             <AdminDashboard />
           }
