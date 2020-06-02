@@ -108,7 +108,7 @@ module.exports = function (socket) {
 				var userNameArray = [reciever.email, socket.user.email].sort();
 				var roomId = userNameArray[0] + userNameArray[1]
 				try {
-					var room = await Message.find({ room: roomId }).limit(10).sort({ 'time': 1 });
+					var room = await Message.find({ room: roomId }).sort({ 'time': 1 });
 				}
 				catch (error) {
 					console.log(error)
@@ -145,7 +145,7 @@ module.exports = function (socket) {
 		var userNameArray = [reciever.email, sender.email].sort();
 		var roomId = userNameArray[0] + userNameArray[1]
 		try {
-			var room = await Message.find({ room: roomId }).limit(10).sort({ 'time': 1 });
+			var room = await Message.find({ room: roomId }).sort({ 'time': 1 });
 		}
 		catch (error) {
 			console.log(error)

@@ -127,9 +127,9 @@ export default class SideBar extends Component {
 
 	renderAdminContacts = (contacts) => {
 		var fields = Object.keys(contacts)
-		return fields.map(field =>{
+		return fields.map((field, index) =>{
 			return(
-		  <ul className="collection with-header">
+		  <ul key={index} className="collection with-header">
 			<li className="collection-header black-text"><h6>{field}</h6></li>
 			{contacts[field] ? (field==="Organizations" ? this.displayOrganzations(contacts[field]) : field==="Candidates" ?this.displayCandidates(contacts[field]) : field==="Managers" ?this.displayManagers(contacts[field]) :null) : null}
 			</ul>
@@ -139,9 +139,9 @@ export default class SideBar extends Component {
 
 	renderManagerContacts = (contacts) => {
 		var fields = Object.keys(contacts)
-		return fields.map(field => {
+		return fields.map((field, index) => {
 			return (
-				<ul className="collection with-header">
+				<ul key={index} className="collection with-header">
 					<li className="collection-header black-text"><h6>{field}</h6></li>
 					{contacts[field] ? (field === "Admin" ? this.displayAdmin(contacts[field]) : field === "Organizations" ? this.displayOrganzations(contacts[field]) : this.displayCandidates(contacts[field])) : null}
 				</ul>
@@ -151,9 +151,9 @@ export default class SideBar extends Component {
 
 	renderOrganizationContacts = (contacts) => {
 		var fields = Object.keys(contacts)
-		return fields.map(field => {
+		return fields.map((field, index) => {
 			return (
-				<ul className="collection with-header">
+				<ul key={index} className="collection with-header">
 					<li className="collection-header black-text"><h6>{field}</h6></li>
 					{contacts[field] ? (field === "Admin" ? this.displayAdmin(contacts[field]) : field === "Managers" ? this.displayManagers(contacts[field]) : this.displayCandidates(contacts[field])) : null}
 				</ul>
@@ -163,9 +163,9 @@ export default class SideBar extends Component {
 
 	renderCandidateContacts = (contacts) => {
 		var fields = Object.keys(contacts)
-		return fields.map(field => {
+		return fields.map((field, index) => {
 			return (
-				<ul className="collection with-header">
+				<ul key={index} className="collection with-header">
 					<li className="collection-header black-text"><h6>{field}</h6></li>
 					{contacts[field] ? (field === "Admin" ? this.displayAdmin(contacts[field]) : field === "Organizations" ? this.displayOrganzations(contacts[field]) : this.displayManagers(contacts[field])) : null}
 				</ul>
@@ -185,7 +185,7 @@ export default class SideBar extends Component {
 					<p>B-Drill Chat</p>
 				</div>
 				<form onSubmit={this.handleSubmit} className="search">
-					<p className="center"><center>Live Chat + Private Chat</center></p>
+					<p className="center">Live Chat + Private Chat</p>
 				</form>
 				<div className="side-bar-select">
 					<div
