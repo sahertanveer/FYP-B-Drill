@@ -8,6 +8,7 @@ const gravatar = require('gravatar')
 const nodemailer = require('nodemailer')
 const generator = require('generate-password')
 const { check, validationResult } = require('express-validator')
+const { globalEmail, globalEmailPass } = require('../../config/email')
 
 const User = require('../../models/User')
 const Manager = require('../../models/Manager')
@@ -104,12 +105,12 @@ router.post('/registerCandidate', auth,
         var transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-            user: 'bdrill634@gmail.com',
-            pass: 'Bdrill@123'
+            user: globalEmail,
+            pass: globalEmailPass
           }
         });
         const mailOptions = {
-          from: 'bdrill634@gmail.com', // sender address
+          from: globalEmail, // sender address
           to: email, // list of receivers
           subject: 'Verify Registration', // Subject line
           html: '<h1><b>B-Drill</b></h1><p><b>We give wings to your skills, you decide where to fly.</b></p><br /><br />' +
@@ -207,7 +208,7 @@ router.post('/login',
         return res.status(404).json({ errors: [{ msg: 'Invalid Credentials' }] })
       }
 
-      //Return jsonwebtoken
+      //return jsonwebtoken
       const payload = {
         user: {
           id: user.id,

@@ -117,22 +117,48 @@ class CandHistory extends Component {
 
                         <tr>
                             <th className="modaltext">Category:</th>
-                            <td> {session.assignment.category}</td>
+                            <td> {session.assignment && session.assignment.category}</td>
                         </tr>
 
                         <tr>
                             <th className="modaltext">Platform:</th>
-                            <td> {session.assignment.platform}</td>
+                            <td> {session.assignment && session.assignment.platform}</td>
                         </tr>
 
                         <tr>
-                            <th className="modaltext">Session startd at:</th>
+                            <th className="modaltext">Time Efficiency:</th>
+                            <td> {`${session.saved_time_percent} %`}</td>
+                        </tr>
+
+                        <tr>
+                            <th className="modaltext">Status:</th>
+                            <td> {session.incomplete_attack_error ? 
+                            "Attack was not properly executed by our system due to some error" : 
+                            "Successful Attack Execution by system."}</td>
+                        </tr>
+                        
+                        <tr>
+                            <th className="modaltext">Alloted Start Time:</th>
+                            <td> {session.assignment && session.assignment.schedule && session.assignment.schedule.StartTime ?
+                                moment(new Date(session.assignment.schedule.StartTime)).format('D MMM YYYY , h:mm:ss:A') : "Not available"   
+                        }</td>
+                        </tr>
+
+                        <tr>
+                            <th className="modaltext">Alloted End Time:</th>
+                            <td> {session.assignment && session.assignment.schedule && session.assignment.schedule.EndTime ?
+                                moment(new Date(session.assignment.schedule.EndTime)).format('D MMM YYYY , h:mm:ss:A') : "Not available"   
+                        }</td>
+                        </tr>
+
+                        <tr>
+                            <th className="modaltext">Session started at:</th>
                             <td>{moment(new Date(session.start_time)).format('D MMM YYYY , h:mm:ss:A')}</td>
                         </tr>
 
                         <tr>
                             <th className="modaltext">Session ended at:</th>
-                            <td>{moment(new Date(session.start_time)).format('D MMM YYYY , h:mm:ss:A')}</td>
+                            <td>{moment(new Date(session.end_time)).format('D MMM YYYY , h:mm:ss:A')}</td>
                         </tr>
                     </center>
                     <br />
@@ -167,14 +193,14 @@ class CandHistory extends Component {
     renderSessionTableData() {
         if (this.props.attack.sessionsFound) {
             return this.props.attack.sessions.map((session, index) => {
-                const { _id, start_time, end_time, assignment, result } = session //destructuring
+                const { _id, start_time, end_time, assignment, result, incomplete_attack_error } = session //destructuring
                 return (
                     <tr key={_id}>
                         <td>{_id}</td>
                         <td>{moment(new Date(start_time)).format('D MMM YYYY , h:mm:ss:A')}</td>
                         <td>{moment(new Date(end_time)).format('D MMM YYYY , h:mm:ss:A')}</td>
-                        <td>{assignment.category}</td>
-                        <td>{`${result} %`}</td>
+                        <td>{assignment && assignment.category}</td>
+                        <td>{incomplete_attack_error? "Faulty Session" :`${result.toFixed(2)} %`}</td>
                         <td>
                             <div>
                                 <button type="button" className="btn success" value={_id} onClick={(e) => this.getSessionDetails(e)}>

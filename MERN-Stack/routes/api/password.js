@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer')
 const { check, validationResult } = require('express-validator');
 
+const { globalEmail, globalEmailPass } = require('../../config/email')
 const config = require('config')
 const User = require('../../models/User')
 const Manager = require('../../models/Manager')
@@ -86,12 +87,12 @@ router.post('/forgotPassword',
             var transporter = nodemailer.createTransport({
               service: 'gmail',
               auth: {
-                user: 'bdrill634@gmail.com',
-                pass: 'Bdrill@123'
+                user: globalEmail,
+                pass: globalEmailPass
               }
             });
             const mailOptions = {
-              from: 'bdrill634@gmail.com', // sender address
+              from: globalEmail, // sender address
               to: email, // list of receivers
               subject: 'Reset Password', // Subject line
               html: '<h1><b>B-Drill</b></h1><p><b>We give wings to your skills, you decide where to fly.</b></p><br /><br />' +
@@ -109,7 +110,7 @@ router.post('/forgotPassword',
                 return res.status(400).json({ err: [{ msg: 'Email could not sent' }] });
               else
                 return res.json({ info })
-              // console.log(info);
+              
             })
           }
         }
@@ -171,12 +172,12 @@ router.post('/resetPassword',
           var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-              user: 'bdrill634@gmail.com',
-              pass: 'Bdrill@123'
+              user: globalEmail,
+              pass: globalEmailPass
             }
           });
           const mailOptions = {
-            from: 'bdrill634@gmail.com', // sender address
+            from: globalEmail, // sender address
             to: email, // list of receivers
             subject: 'Reset Password', // Subject line
             html: '<h1><b>B-Drill</b></h1><p><b>We give wings to your skills, you decide where to fly.</b></p><br /><br />' +

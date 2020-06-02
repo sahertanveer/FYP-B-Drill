@@ -29,6 +29,7 @@ class Attack():
 
         self.attacks_list = []
         self.attack = {}
+        self.appended_evaluation = []
         self.parser_obj = None
         self.metasploit_obj = None
         self.tool = None
@@ -230,20 +231,26 @@ class Attack():
             # return
             # for item in self.attacks_list:
             #for i in range(len(self.attacks_list)):
-            i=0
-            multiple = 1
+            index=0
+            steps = 1
+            one_round_of_errors = False
             back_propagation = False
             # current_step = i
-            while i<len(self.attacks_list):
+            while index<len(self.attacks_list):
+
+                '''
+                check session has been ended.
+                '''
+                
                 if(self.mongo_controller_obj.continue_session()):
                 
                     try:
-                        self.conf.set_dyanamic_property("common", "current_step",i)
+                        self.conf.set_dyanamic_property("common", "current_step",index)
                         if(back_propagation):
-                            self.thread_controller_obj.stop_all_upper_step_threads(i)
+                            self.thread_controller_obj.stop_all_upper_step_threads(index)
             
                         back_propagation=False
-                        item = self.attacks_list[i]
+                        item = self.attacks_list[index]
                         self.attack = dict(item)
                         
                         for scenario in item:
@@ -257,36 +264,55 @@ class Attack():
                             if (self.tool == 'metasploit' and not self.metasploit_obj.connection_made):
                                 self.end_attack()
                                 return
+
+                            # eval_tactic = self.attack[self.in_progress_scenario]['tactic']
+                            eval_scenario = self.in_progress_scenario
+
+                            '''
+                            If some error occurs, then the already appended 
+                            evaluation questions should not be appended again.
+                            '''
                             
-                            self.evaluation_data()
+                            if eval_scenario not in self.appended_evaluation:
+                                self.evaluation_data()
+                                self.appended_evaluation.append(eval_scenario)
+                            
                             Fore.CYAN
                             self.session_recorder.info("******[Scenario-ID: "+ scenario +"Tactic: "+self.attack[scenario]['tactic']+" executed]******")
                             Style.RESET_ALL
-                            i +=1
+                            index +=1
                             
 
-                    except:
-                        i -= multiple
+                    except Exception as e:
+                        if(one_round_of_errors):
+                            raise Exception("Ending Attack due to bulk of errors")
+                        index -= steps
                         self.session_recorder.critical("Exception Occured somewhere!!")
+                        self.session_recorder.info(e)
                         Fore.YELLOW
                         self.session_recorder.info(
-                        "....................Going "+str(multiple)+" step back........................")
+                        "....................Going "+str(steps)+" step back........................")
                         Style.RESET_ALL
-                        multiple +=1
+                        steps +=1
                         back_propagation = True
-                        if(i < 0):
-                            i=0
-                            multiple = 1
+                        if(index < 0):
+                            one_round_of_errors=True
+                            index=0
+                            steps = 1
                 else:
-                    i = len(self.attacks_list)
+                    index = len(self.attacks_list)
                     self.session_recorder.critical("Session timedout")
                     
 
             #self.metasploit_obj.execute_meterpreter_command("getuid") #remove later, check for privEsc
             self.end_attack()
         
-        except:
-            print("Final Exception, Execution Stopped for session id"+ self.conf.get_dyanamic_property("session_id", category="session"))
+        except Exception as e:
+            self.session_recorder.critical(e)
+            self.mongo_controller_obj.raise_error_flag_in_attack_session()
+            self.session_recorder.critical("Final Exception, Execution Stopped for session id"+ self.conf.get_dyanamic_property("session_id", category="session"))
+            self.thread_controller_obj.stop_all_upper_step_threads(0)
+            self.end_attack()
         
 
     def evaluation_data(self):

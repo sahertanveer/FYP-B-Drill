@@ -67,8 +67,11 @@ class MetasploitEnv(object):
 
     def control_handler(self):
         self.loop = True
+        iteration = 0
         while (self.loop):
             
+            if(iteration >5):
+                raise Exception("Metasploit session took too long to obtain")
             self.loop = False
             Fore.YELLOW
             self.session_recorder.info("....................Executing Exploit......................................")
@@ -76,6 +79,7 @@ class MetasploitEnv(object):
             self.SESSION = self.exploit.execute(payload=self.payload)
             self.session_recorder.info(self.SESSION)
             self.loop = self.metasploit_shell_handling()
+            iteration +=1
 
         Fore.YELLOW
         self.session_recorder.info("....................Meterpreter Session List...............................")

