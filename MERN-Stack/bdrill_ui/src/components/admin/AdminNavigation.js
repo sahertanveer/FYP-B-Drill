@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/authAction'
 //import { logout } from '../../actions/adminAuthAction'
 import { setPage } from '../../actions/pageAction'
-import {loadUser} from '../../actions/authAction'
+import { loadUser } from '../../actions/authAction'
 
 import ChatBox from '../common/ChatBox';
 
@@ -34,7 +34,7 @@ import AddAttacks from './AddAttacks'
 import GetAllUsers from './GetAllUsers';
 import GetAllUsersProfiles from './GetAllUsersProfiles';
 import ChatLayout from '../chat/ChatLayout'
-import Profile from '../profiles/Profile'
+import UserProfile from '../profiles/UserProfile'
 import ChangePassword from '../common/Password/ChangePassword'
 
 const drawerWidth = 220;
@@ -157,7 +157,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: '#1fa398', 
+    backgroundColor: '#1fa398',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
@@ -168,7 +168,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, loadUser, page:{loadedPage} }) => {
+const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, loadUser, page: { loadedPage } }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -333,8 +333,8 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
               </IconButton>
               <IconButton aria-label="show 17 new notifications" color="inherit">
                 <Badge badgeContent={17} color="primary">
-                  <a href= "/chatlayout">
-                  <MailIcon className="white-text"/>
+                  <a href="/chatlayout">
+                    <MailIcon className="white-text" />
                   </a>
                 </Badge>
               </IconButton>
@@ -375,10 +375,10 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
             </IconButton>
           </div>
           <Divider />
-          <List>
+          <List aria-label="main mailbox folders">
             <Link to="/admindashboard" className="navlinks">
               {['Dashboard'].map((text, index) => (
-                <ListItem button onClick={() => {loadUser();setPage("admindashboard") }}> 
+                <ListItem button onClick={() => { loadUser(); setPage("admindashboard") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">dashboard</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -389,18 +389,18 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
           <List aria-label="main mailbox folders">
             <Link to="/admintactics" className="navlinks" >
               {['Tactics'].map((text, index) => (
-                <ListItem button onClick={() => {loadUser();setPage("admintactics")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("admintactics") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">category</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
               ))}
-              </Link>
+            </Link>
           </List>
           <Divider />
           <List aria-label="main mailbox folders">
-            <Link to ="/addattacks" className="navlinks" >
+            <Link to="/addattacks" className="navlinks" >
               {['Add Attack'].map((text, index) => (
-                <ListItem button onClick={() => {loadUser();setPage("addattacks")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("addattacks") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">add</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -408,20 +408,22 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
             </Link>
           </List>
           <Divider />
-          <Link to ="/pendingassignments" className="navlinks">
+          <List aria-label="main mailbox folders">
+            <Link to="/pendingassignments" className="navlinks">
               {['Pending Assignments'].map((text, index) => (
                 // setComponent('candsession')
-                <ListItem button onClick={() =>  { loadUser();setPage("pendingassignments")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("pendingassignments") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">computer</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
               ))}
             </Link>
+          </List>
           <Divider />
           <List aria-label="main mailbox folders">
-            <Link to ="/getallusers" className="navlinks">
+            <Link to="/getallusers" className="navlinks">
               {['Users'].map((text, index) => (
-                <ListItem button onClick={() => {loadUser();setPage("getallusers")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("getallusers") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">visibility</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -429,10 +431,10 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
             </Link>
           </List>
           <Divider />
-          <List>
+          <List aria-label="main mailbox folders">
             <Link to="/getallusersprofiles" className="navlinks" >
               {['User Profiles'].map((text, index) => (
-                 <ListItem button onClick={() => {loadUser(); setPage("getallusersprofiles")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("getallusersprofiles") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">people</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -440,16 +442,18 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
             </Link>
           </List>
           <Divider />
-          <Link to="/chatlayout" className="navlinks" >
-            {['Messenger'].map((text, index) => (
-              <ListItem button onClick={() => {loadUser(); setPage("chatlayout")}}>
-                <ListItemIcon>{index === 0 ? <Icon className="white-text">message</Icon> : null}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+          <List aria-label="main mailbox folders">
+            <Link to="/chatlayout" className="navlinks" >
+              {['Messenger'].map((text, index) => (
+                <ListItem button onClick={() => { loadUser(); setPage("chatlayout") }}>
+                  <ListItemIcon>{index === 0 ? <Icon className="white-text">message</Icon> : null}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              ))}
             </Link>
-            <Divider />
-            <List aria-label="main mailbox folders">
+          </List>
+          <Divider />
+          <List aria-label="main mailbox folders">
             <Link to="/changepassword" className="navlinks">
               {['Settings'].map((text, index) => (
                 <ListItem button onClick={() => { loadUser(); setPage("changepassword") }}>
@@ -463,30 +467,30 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
         <main //id="disability"
           className={clsx(classes.content, {
             [classes.contentShift]: open,
-          })} 
+          })}
         >
           {
-            
-            loadedPage === 'admindashboard' ? <AdminDashboard /> : 
-            loadedPage === 'addorupdateattack' ? <AddorUpdateAttack /> :
-            loadedPage === 'addorupdatemachine' ? <AddorUpdateMachine /> :
-            loadedPage === 'addorupdateplatform' ? <AddorUpdatePlatform /> :
-            loadedPage === 'addattacks' ? <AddAttacks /> :
-            loadedPage === 'admintactics' ? <AdminTactics />: 
-            loadedPage === 'pendingassignments' ? <PendingAssignments />:
-            loadedPage === 'getallusers' ? <GetAllUsers />:
-            loadedPage === 'getallusersprofiles' ? <GetAllUsersProfiles /> :
-            loadedPage === 'chatlayout' ? <ChatLayout /> : 
-            loadedPage === 'changepassword' ? <ChangePassword /> :
-            loadedPage === 'profile' ? <Profile/>:
-            <AdminDashboard /> 
-          } 
+
+            loadedPage === 'admindashboard' ? <AdminDashboard /> :
+              loadedPage === 'addorupdateattack' ? <AddorUpdateAttack /> :
+                loadedPage === 'addorupdatemachine' ? <AddorUpdateMachine /> :
+                  loadedPage === 'addorupdateplatform' ? <AddorUpdatePlatform /> :
+                    loadedPage === 'addattacks' ? <AddAttacks /> :
+                      loadedPage === 'admintactics' ? <AdminTactics /> :
+                        loadedPage === 'pendingassignments' ? <PendingAssignments /> :
+                          loadedPage === 'getallusers' ? <GetAllUsers /> :
+                            loadedPage === 'getallusersprofiles' ? <GetAllUsersProfiles /> :
+                              loadedPage === 'userprofile' ? <UserProfile /> :
+                                loadedPage === 'chatlayout' ? <ChatLayout /> :
+                                  loadedPage === 'changepassword' ? <ChangePassword /> :
+                                    <AdminDashboard />
+          }
           <div className="chatbox" >
             <ChatBox />
-        </div>
+          </div>
 
         </main>
-        
+
       </div>
     </BrowserRouter>
   );
@@ -494,10 +498,10 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
 
 AdminNavigation.propTypes = {
   logout: PropTypes.func.isRequired,
-  setPage:PropTypes.func.isRequired,
+  setPage: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   page: PropTypes.object.isRequired,
-  loadUser:PropTypes.func.isRequired
+  loadUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -505,4 +509,4 @@ const mapStateToProps = state => ({
   page: state.page
 })
 
-export default connect(mapStateToProps, { logout, setPage,loadUser })(AdminNavigation)
+export default connect(mapStateToProps, { logout, setPage, loadUser })(AdminNavigation)

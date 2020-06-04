@@ -7,12 +7,10 @@ import Card from '../common/cards/Card';
 import CardHeader from '../common/cards/CardHeader';
 import CardIcon from "../common/cards/CardIcon.js";
 import CardFooter from "../common/cards/CardFooter.js";
-import BarChart from '../chart/BarChart'
 import Icon from "@material-ui/core/Icon";
 import Update from "@material-ui/icons/Update";
-import Warning from "@material-ui/icons/Warning";
-import Danger from "../common/cards/Danger.js";
 import { getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength } from '../../actions/dashboardAuthAction'
+import BarChart from '../chart/BarChart'
 
 class AdminDashboard extends Component {
   constructor(props) {
