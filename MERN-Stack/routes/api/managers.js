@@ -572,5 +572,28 @@ const {manager_id} = req.body
   }
 });
 
+// @route   POST api/managers/deleteassignment
+// @desc    Delete Assignment
+// @access  Private
+router.post('/deleteassignment', auth, async (req, res) => {
+  if (req.user.role === "manager") {
+  try {
+    //Remove Attack
+    await Assignments.findOneAndDelete({ _id: req.body._id})
+    .then(async assignment=>{
+      await Schedule.findByIdAndDelete(assignment.schedule)
+    })
+
+    res.status(200).json({ msg: 'Assignment Deleted' });
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).send('Server Error')
+  }
+}
+else {
+  res.status(401).send('Unauthorized Access')
+}
+});
+
 
 module.exports = router
