@@ -117,9 +117,15 @@ router.get('/getprofilephoto', auth, async (req, res) => {
 // @access  Private
 router.get('/me', auth, async (req, res) => {
   try {
+
+  let user = null  
+  if(req.user.role === "candidate"){
+      user="user"
+  }
+  else user="manager"
     const profile = await Profile
-      .findOne({ user: req.user.id })
-      .populate('user', ['firstname', 'lastname', 'avatar']);
+      .findOne({ [user]: req.user.id })
+      .populate(user, ['firstname', 'lastname', 'avatar']);
 
     if (!profile) {
       return res.status(400).json({ errors: [{ msg: 'User profile does not exists' }] });
@@ -240,13 +246,19 @@ router.post('/', auth,
     console.log(profileFields.experience)
 
     try {
-      let profile = await Profile.findOne({ user: req.user.id });
+
+      let profileUser = null
+      if(req.user.role === "candidate"){
+        profileUser="user"
+    }
+    else profileUser="manager"
+      let profile = await Profile.findOne({ [profileUser]: req.user.id });
 
       if (profile) {
         //Update Profile
 
         profile = await Profile.findOneAndUpdate(
-          { user: req.user.id },
+          {[profileUser]: req.user.id },
           { $set: profileFields },
           { new: true }
         );

@@ -3,16 +3,14 @@ const router = express.Router()
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const gravatar = require('gravatar');
 const { check, validationResult } = require('express-validator');
 
 const config = require('config')
-const Admin = require('../../models/Admin')
 const Assignments = require('../../models/Assignments')
+const Admin = require('../../models/Admin')
 const Organization = require('../../models/Organization')
-const User = require('../../models/User')
 const Manager = require('../../models/Manager')
-const Profile = require ('../../models/Profile')
+const User = require('../../models/User')
 const auth = require('../../middleware/auth')
 router.use(cors())
 
@@ -53,18 +51,12 @@ router.post('/register',
 
   try{
     //check if user exists
-    let user = await Admin.findOne({ email });
-
+    let user = await Admin.findOne({ email }) || await Organization.findOne({email}) || await Manager.findOne({ email }) || await User.findOne({email})
+    
     if(user) {
       return res.status(400).json({errors:[{msg:'User already exists'}]});
     }
 
-    //Get user gravatar
-    // const avatar = gravatar.url(email , {
-    //   s: '200', //size
-    //   r:'pg',   //rating
-    //   d:'mm'    //default
-    // })
     const avatar = null
 
     user = new Admin({

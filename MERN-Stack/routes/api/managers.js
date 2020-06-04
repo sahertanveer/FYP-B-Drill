@@ -4,14 +4,15 @@ const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const config = require('config')
-const gravatar = require('gravatar')
 const nodemailer = require('nodemailer')
 const generator = require('generate-password')
 const { check, validationResult } = require('express-validator')
 const { globalEmail, globalEmailPass } = require('../../config/email')
 
-const User = require('../../models/User')
+const Admin = require('../../models/Admin')
+const Organization = require('../../models/Organization')
 const Manager = require('../../models/Manager')
+const User = require('../../models/User')
 const Assignments = require('../../models/Assignments')
 const Machine = require('../../models/Machine')
 const AttackInventory = require('../../models/Attack_Inventory')
@@ -64,7 +65,7 @@ router.post('/registerCandidate', auth,
 
       try {
         //check if user exists
-        let user = await User.findOne({ email })
+        let user = await Admin.findOne({ email }) || await Organization.findOne({email}) || await Manager.findOne({ email }) || await User.findOne({email})
 
         if (user) {
           return res.status(400).json({ errors: [{ msg: 'User already exists' }] });

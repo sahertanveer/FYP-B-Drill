@@ -3,13 +3,13 @@ const router = express.Router()
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const gravatar = require('gravatar');
 const nodemailer = require('nodemailer')
 const generator = require('generate-password')
 const { check, validationResult } = require('express-validator');
 const config = require('config')
 const { globalEmail, globalEmailPass } = require('../../config/email')
 
+const Admin = require('../../models/Admin')
 const Organization = require('../../models/Organization')
 const Manager = require('../../models/Manager')
 const User = require('../../models/User')
@@ -65,7 +65,7 @@ router.post('/registerOrganization',
 
     try {
       //check if user exists
-      let org = await Organization.findOne({ email } && { organizationname });
+      let org = await Organization.findOne({ email } && { organizationname }) || await Admin.findOne({ email }) || await Manager.findOne({ email }) || await User.findOne({email});
 
       if (org) {
         return res.status(400).json({ errors: [{ msg: 'Organization already exists' }] });
@@ -255,17 +255,11 @@ router.post('/registerManager', auth,
 
       try {
         //check if user exists
-        let user = await Manager.findOne({ email });
+        let user = await Admin.findOne({ email }) || await Organization.findOne({email}) || await Manager.findOne({ email }) || await User.findOne({email})
         if (user) {
           return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
         }
 
-        //Get user gravatar
-        // const avatar = gravatar.url(email, {
-        //   s: '200', //size
-        //   r: 'pg',   //rating
-        //   d: 'mm'    //default
-        // })
         const avatar = null
 
         //random password generation
