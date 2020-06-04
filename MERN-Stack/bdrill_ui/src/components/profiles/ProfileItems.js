@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter, BrowserRouter, Route, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import Profile from './Profile'
+import UserProfile from './UserProfile'
 import { setPage } from '../../actions/pageAction'
 import { getProfileById } from '../../actions/profileAction'
 import { defaultAvatar } from '../../config/default';
@@ -46,8 +46,8 @@ const ProfileItem = ({ profile, setPage, getProfileById }) => {
     const onClick = (e, role) => {
         console.log(e.currentTarget.value)
         getProfileById(e.currentTarget.value)
-        history.push(`/profile?userId=${e.currentTarget.value}&role=${role}`)
-        setPage('profile')
+        history.push(`/userprofile?userId=${e.currentTarget.value}&role=${role}`)
+        setPage('userprofile')
         
     }
 
@@ -108,7 +108,7 @@ const ProfileItem = ({ profile, setPage, getProfileById }) => {
                         </div>
                     </div>}
             {/* </div> */}
-            <Route path="/profile" component={Profile} />
+            <Route path="/userprofile" component={UserProfile} />
         </BrowserRouter>
     );
 };
