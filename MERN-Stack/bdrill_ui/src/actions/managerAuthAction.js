@@ -226,23 +226,21 @@ export const checkuser = (user_id) => async dispatch => {
     }
 }
 
-export const deleteCandidate = (id) => async dispatch => {
-    if (window.confirm('Do you want to permanently delete user account? This can NOT be undone!')) {
+export const deleteAssignment = (id) => async dispatch => {
+    if (window.confirm('Are you sure? This can NOT be undone!')) {
       try {
-        {console.log(id)}
-        const res = await BackendInstance({
+        await BackendInstance({
           method: 'post',
-          url: '/api/managers/deletecandidate',
-          data: {
-              _id: id,
-          }
-      }).then(res=>dispatch(setAlert('User has been permanantly deleted', 'success')))
-      .catch(err=> dispatch(setAlert('User not deleted', 'danger')))
+          url: '/api/managers/deleteassignment',
+          data: {_id: id}
+        })
+      .then(res=>dispatch(setAlert('Assignment has been permanantly deleted', 'success')))
+      .catch(err=> dispatch(setAlert('Assignment not deleted', 'danger')))
        
   
         
       } catch  {
-          dispatch(setAlert('User not deleted', 'danger'));
+          dispatch(setAlert('Assignment not deleted', 'danger'));
         };
       }
   };
