@@ -11,6 +11,8 @@ import Icon from "@material-ui/core/Icon";
 import Update from "@material-ui/icons/Update";
 import { getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength } from '../../actions/dashboardAuthAction'
 import BarChart from '../chart/BarChart'
+import RadarChartManager from '../chart/RadarChartManager'
+import DoughnutChartManager from '../chart/DoughnutChartManager'
 
 class ManagerDashboard extends Component {
   constructor(props) {
@@ -160,6 +162,33 @@ class ManagerDashboard extends Component {
             </div>
           </div>
 
+          <div className="row">
+            <div className="col s12 m6 l6">
+              <div className="card animate fadeLeft uicards">
+                <div className="card-content">
+                  <h5 className="card-stats-number"> Assignments </h5>
+                  <hr />
+                  <br />
+                  <RadarChartManager labelA="Assigned Scenarios" labelB="Assigned Campaigns"/>
+                  <br />
+                </div>
+              </div>
+            </div>
+
+            <div className="col s12 m6 l6">
+              <div className="card animate fadeLeft uicards">
+                <div className="card-content">
+                  <h5 className="card-stats-number"> Assignment Status </h5>
+                  <hr />
+                  <br />
+                  <DoughnutChartManager labels={['Attempted & Passed', 'Attempted & Failed', 'Not Attempted']}
+                  />
+                  <br />
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="row" style={{ overflowX: "hidden" }}>
             <div className="col xs12 s12 m6 l3">
               <Card>
@@ -238,7 +267,7 @@ class ManagerDashboard extends Component {
             </div>
           </div>
 
-          
+
 
         </div>
 
