@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { logout } from '../../actions/candidateAuthAction'
-import { logout } from '../../actions/authAction'
-import { setPage } from '../../actions/pageAction'
 import { BackendInstance } from '../../config/axiosInstance';
-
+import { deleteAssignment } from '../../actions/managerAuthAction'
 import moment from "moment";
 //paths
 
@@ -18,7 +15,15 @@ class AllotedAssignments extends Component {
             assignments: null
         }
 
-        BackendInstance({
+        this.deleteassignment = this.deleteassignment.bind(this);
+        this.getAssignments = this.getAssignments.bind(this);
+        this.getAssignments()
+       
+    }
+
+    getAssignments = () => {
+        console.log("qwer")
+         BackendInstance({
             method: 'post',
             url: '/api/managers/getassignments',//'http://115.186.176.139:5000/api/attacksessions/startattacksession',
             data: {
@@ -32,6 +37,11 @@ class AllotedAssignments extends Component {
             .catch(err => alert(err + 'session cannot be initiated'));
     }
 
+    deleteassignment= async (e) => {
+        e.preventDefault();
+        await this.props.deleteAssignment(e.currentTarget.value);
+        this.getAssignments();
+    }
 
     render() {
 
@@ -63,7 +73,7 @@ class AllotedAssignments extends Component {
                                         <td>{field.schedule.Subject}</td>
                                         <td>{moment(new Date(field.schedule.StartTime)).format('D MMM YYYY , h:mm:ss:A')}</td>
                                         <td>{moment(new Date(field.schedule.EndTime)).format('D MMM YYYY , h:mm:ss:A')}</td>
-                                        <td><button className="btn btn-danger" > <i className="material-icons">delete</i></button></td>
+                                        <td><button className="btn btn-danger" value={field._id} onClick={(e) => { this.deleteassignment(e) }}> <i className="material-icons">delete</i></button></td>
                                     </tr>)
                             }) : null}
                         </table>
@@ -75,18 +85,15 @@ class AllotedAssignments extends Component {
     }
 }
 AllotedAssignments.propTypes = {
-    logout: PropTypes.func.isRequired,
-    setPage: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    page: PropTypes.object.isRequired
+    deleteAssignment: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth,
-    page: state.page
+    auth: state.auth
 })
 
 //export default withRouter(CandSession);
-export default withRouter(connect(mapStateToProps, { logout, setPage })(AllotedAssignments))
+export default withRouter(connect(mapStateToProps, { deleteAssignment })(AllotedAssignments))
 
 

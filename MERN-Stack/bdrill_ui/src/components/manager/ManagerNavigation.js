@@ -4,16 +4,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/authAction'
 import { setPage } from '../../actions/pageAction'
-import {loadUser} from '../../actions/authAction'
-import Profile from '../profiles/Profile'
-
-import ChatBox from '../common/ChatBox';
-import ChatLayout from '../chat/ChatLayout'
+import { loadUser } from '../../actions/authAction'
 
 import clsx from 'clsx';
 import { makeStyles, useTheme, fade } from '@material-ui/core/styles';
 import {
-  Icon, Drawer, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, Badge,
+  Icon, Drawer, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, Badge, MenuItem, Menu,
   ListItem, ListItemIcon, ListItemText, InputBase
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -26,14 +22,17 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import ManagerDashboard from './ManagerDashboard'
-import AllotedAssignments  from './AllotedAssignments'
+import AllotedAssignments from './AllotedAssignments'
 import ManagerProfile from './ManagerProfile'
 import AssignAttack from './AssignAttack'
 import AddCandidate from './AddCandidate'
 import CandidateList from './CandidateList'
 import EditCreateProfile from '../profile/EditCreateProfile'
 import GetCandidatesProfiles from './GetCandidatesProfiles'
-import ProfileItems from '../profiles/ProfileItems'
+import UserProfile from '../profiles/UserProfile'
+import ChatBox from '../common/ChatBox';
+import ChatLayout from '../chat/ChatLayout'
+import ChangePassword from '../common/Password/ChangePassword'
 
 const drawerWidth = 220;
 
@@ -155,7 +154,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: '#1fa398', 
+    backgroundColor: '#1fa398',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
@@ -166,20 +165,45 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,setPage, page:{loadedPage} }) => {
+const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, setPage, page: { loadedPage } }) => {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const authLink = (
     <ul>
       <li>
-        <a href='/managersignin' className="white-text">
-          <IconButton
-            edge="end"
-            onClick={logout}
-            color="inherit"
+        {/* <a onClick={logout} href='#!' /> */}
+        {/* <a href='/candsignin' className="white-text"> */}
+        <IconButton
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+          color="inherit"
+        >
+          <AccountCircle />
+          <Menu
+            className="navbar dropdown right"
+            /* style = {{top:'-20%', left:'87%'}} */
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
           >
-            <AccountCircle />
-          </IconButton>
-        </a>
+            <MenuItem><a href="/orgdashboard">My account</a></MenuItem>
+            <MenuItem onClick={logout}>Logout</MenuItem>
+          </Menu>
+        </IconButton>
+        {/* </a> */}
       </li>
     </ul>
   );
@@ -187,7 +211,7 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
   const guestLink = (
     <ul>
       <li>
-        <a href='/managersignin' className="white-text"> <IconButton
+        <a href='/adminsignin' className="white-text"> <IconButton
           edge="end"
           color="inherit"
         >
@@ -197,10 +221,6 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
       </li>
     </ul>
   );
-
-  const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -237,8 +257,6 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
     to: PropTypes.string.isRequired,
   };
 
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -264,7 +282,7 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
   const mobileMenuId = 'primary-search-account-menu-mobile';
 
   return (
-  
+
     <BrowserRouter>
       <div className={classes.root}>
         <CssBaseline />
@@ -310,6 +328,13 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
+              <IconButton aria-label="show 17 new notifications" color="inherit">
+                <Badge badgeContent={17} color="primary">
+                  <a href="/managerchatlayout">
+                    <MailIcon className="white-text" />
+                  </a>
+                </Badge>
+              </IconButton>
             </div>
             {!loading && (<Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>)}
             <div className={classes.sectionMobile}>
@@ -350,7 +375,7 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
           <List aria-label="main mailbox folders">
             <Link to="/managerdashboard" className="navlinks">
               {['Dashboard'].map((text, index) => (
-                <ListItem button onClick={() => {loadUser();setPage("managerdashboard") }}> 
+                <ListItem button onClick={() => { loadUser(); setPage("managerdashboard") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">dashboard</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -361,7 +386,7 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
           <List aria-label="main mailbox folders">
             <Link to="/managerprofile" className="navlinks" >
               {['Profile'].map((text, index) => (
-                 <ListItem button onClick={() => {loadUser(); setPage("managerprofile")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("managerprofile") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">person</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -372,7 +397,7 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
           <List aria-label="main mailbox folders">
             <Link to="/getcandidatesprofiles" className="navlinks">
               {['User Profiles'].map((text, index) => (
-                 <ListItem button onClick={() => {loadUser(); setPage("getcandidatesprofiles")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("getcandidatesprofiles") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">people</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -383,30 +408,30 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
           <List aria-label="main mailbox folders" >
             <Link to="/assignattack" className="navlinks">
               {['Assign Attack'].map((text, index) => (
-                <ListItem button onClick={() => {loadUser();setPage("assignattack")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("assignattack") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">category</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
               ))}
-           </Link>
+            </Link>
           </List>
           <Divider />
           <List aria-label="main mailbox folders" >
-            <Link to ="/candidatelist" className="navlinks">
+            <Link to="/candidatelist" className="navlinks">
               {['Candidates'].map((text, index) => (
-                <ListItem button onClick={() => {loadUser();setPage("candidatelist")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("candidatelist") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">visibility</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
               ))}
             </Link>
-            </List>
-            <Divider />
-             <List aria-label="main mailbox folders" >
-            <Link to ="/allotedassignments" className="navlinks">
+          </List>
+          <Divider />
+          <List aria-label="main mailbox folders" >
+            <Link to="/allotedassignments" className="navlinks">
               {['Alloted Assignments'].map((text, index) => (
                 // setComponent('candsession')
-                <ListItem button onClick={() =>  {  loadUser();setPage("allotedassignments")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("allotedassignments") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">computer</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -415,9 +440,9 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
           </List>
           <Divider />
           <List aria-label="main mailbox folders" >
-            <Link to ="/addcandidate" className="navlinks">
+            <Link to="/addcandidate" className="navlinks">
               {['Add Candidate'].map((text, index) => (
-                <ListItem button onClick={() => {loadUser();setPage("addcandidate")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("addcandidate") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">add</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -425,10 +450,21 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
             </Link>
           </List>
           <Divider />
-          <List>
+          <List aria-label="main mailbox folders">
             <Link to="/managerchatlayout" className="navlinks" >
-              {['Settings'].map((text, index) => (
+              {['Messenger'].map((text, index) => (
                 <ListItem button onClick={() => { loadUser(); setPage("managerchatlayout") }}>
+                  <ListItemIcon>{index === 0 ? <Icon className="white-text">message</Icon> : null}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              ))}
+            </Link>
+          </List>
+          <Divider />
+          <List aria-label="main mailbox folders">
+            <Link to="/mangerchangepassword" className="navlinks">
+              {['Settings'].map((text, index) => (
+                <ListItem button onClick={() => { loadUser(); setPage("mangerchangepassword") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">settings_applications</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -439,26 +475,26 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
         <main //id="disability"
           className={clsx(classes.content, {
             [classes.contentShift]: open,
-          })} 
+          })}
         >
           {
-            loadedPage === 'managerdashboard' ? <ManagerDashboard /> : 
-            loadedPage === 'managerprofile' ? <ManagerProfile /> :
-            loadedPage === 'assignattack' ? <AssignAttack /> :
-            loadedPage === 'candidatelist' ? <CandidateList /> :
-            loadedPage === 'allotedassignments' ? <AllotedAssignments /> :
-            loadedPage === 'addcandidate' ? <AddCandidate /> :
-            loadedPage === 'editcreateprofile' ? <EditCreateProfile />:
-            loadedPage === 'getcandidatesprofiles' ? <GetCandidatesProfiles />:
-            loadedPage === 'profileitems' ? <ProfileItems />:
-            loadedPage === 'managerchatlayout' ? <ChatLayout /> :
-            loadedPage === 'profile' ? <Profile/>:
-            <ManagerDashboard />
+            loadedPage === 'managerdashboard' ? <ManagerDashboard /> :
+              loadedPage === 'managerprofile' ? <ManagerProfile /> :
+                loadedPage === 'assignattack' ? <AssignAttack /> :
+                  loadedPage === 'candidatelist' ? <CandidateList /> :
+                    loadedPage === 'allotedassignments' ? <AllotedAssignments /> :
+                      loadedPage === 'addcandidate' ? <AddCandidate /> :
+                        loadedPage === 'userprofile' ? <UserProfile /> :
+                          loadedPage === 'editcreateprofile' ? <EditCreateProfile /> :
+                            loadedPage === 'getcandidatesprofiles' ? <GetCandidatesProfiles /> :
+                              loadedPage === 'managerchatlayout' ? <ChatLayout /> :
+                                loadedPage === 'managerchangepassword' ? <ChangePassword /> :
+                                  <ManagerDashboard />
           }
         </main>
         <div className="chatbox" >
-            <ChatBox/>
-        </div> 
+          <ChatBox />
+        </div>
 
       </div>
     </BrowserRouter>
@@ -467,10 +503,10 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
 
 ManagerNavigation.propTypes = {
   logout: PropTypes.func.isRequired,
-  setPage:PropTypes.func.isRequired,
+  setPage: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   page: PropTypes.object.isRequired,
-  loadUser:PropTypes.func.isRequired
+  loadUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
