@@ -7,9 +7,6 @@ import { logout } from '../../actions/authAction'
 import { setPage } from '../../actions/pageAction'
 import { loadUser } from '../../actions/authAction'
 
-import ChatBox from '../common/ChatBox'
-import ChatLayout from '../chat/ChatLayout'
-
 import clsx from 'clsx';
 import { makeStyles, useTheme, fade } from '@material-ui/core/styles'
 import {
@@ -32,6 +29,8 @@ import CandHistory from './CandHistory'
 import SessionRoom from './SessionRoom'
 import EditCreateProfile from '../profile/EditCreateProfile'
 import ChangePassword from '../common/Password/ChangePassword'
+import ChatBox from '../common/ChatBox'
+import ChatLayout from '../chat/ChatLayout'
 
 const drawerWidth = 200;
 
@@ -387,6 +386,13 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
+              <IconButton aria-label="show 17 new notifications" color="inherit">
+                <Badge badgeContent={17} color="primary">
+                  <a href="/candchatlayout">
+                    <MailIcon className="white-text" />
+                  </a>
+                </Badge>
+              </IconButton>
             </div>
             {!loading && (<Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>)}
             <div className={classes.sectionMobile}>
@@ -457,7 +463,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
                   <ListItemText primary={text} />
                 </ListItem>
               ))}
-              </Link>
+            </Link>
           </List>
           <Divider />
           <List aria-label="main mailbox folders">
@@ -473,27 +479,27 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
           </List>
           <Divider />
           <List aria-label="main mailbox folders">
-          <Link to="/candchatlayout" className="navlinks" >
-            {['Messenger'].map((text, index) => (
-              <ListItem button onClick={() => {loadUser(); setPage("candchatlayout")}}>
-                <ListItemIcon>{index === 0 ? <Icon className="white-text">settings_applications</Icon> : null}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            <Link to="/candchatlayout" className="navlinks" >
+              {['Messenger'].map((text, index) => (
+                <ListItem button onClick={() => { loadUser(); setPage("candchatlayout") }}>
+                  <ListItemIcon>{index === 0 ? <Icon className="white-text">message</Icon> : null}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              ))}
             </Link>
           </List>
           <Divider />
-        <List aria-label="main mailbox folders">
-            <Link to="/changepassword" className="navlinks">
+          <List aria-label="main mailbox folders">
+            <Link to="/candchangepassword" className="navlinks">
               {['Settings'].map((text, index) => (
-                <ListItem button onClick={() => { loadUser(); setPage("changepassword") }}>
+                <ListItem button onClick={() => { loadUser(); setPage("candchangepassword") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">settings_applications</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
               ))}
             </Link>
           </List>
-          </Drawer>
+        </Drawer>
         <main //id="disability"
           className={clsx(classes.content, {
             [classes.contentShift]: open,
@@ -506,10 +512,10 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
                   loadedPage === 'candsession' ? <CandSession /> :
                     loadedPage === 'sessionroom' ? <SessionRoom /> :
                       loadedPage === 'editorcreateprofile' ? <EditCreateProfile /> :
-                        loadedPage === 'changepassword' ? <ChangePassword /> :
                         loadedPage === 'candchatlayout' ? <ChatLayout /> :
+                          loadedPage === 'candchangepassword' ? <ChangePassword /> :
 
-                          <CandDashboard />
+                            <CandDashboard />
           }
         </main>
 
