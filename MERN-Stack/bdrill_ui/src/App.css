@@ -524,12 +524,10 @@ input[type=checkbox] {
 
 .myprofileimg {
   position: relative;
-  width: 180px;
-  height: 160px;
+  width: 70%;
+  height: auto;
   opacity: 1;
-  border: 5px solid #1fa398 ;
-  border-radius: 50%;
-  margin-top: -20px;
+  margin-top: 10px;
   transition: .5s ease;
   display: inline-block;
   backface-visibility: hidden;
@@ -541,8 +539,8 @@ input[type=checkbox] {
 
 .myprofileimgdisplayed {
   position: relative;
-  width: 500px;
-  height: 340px;
+  width: 70%;
+  height: auto;
   opacity: 1;
   transition: .5s ease;
   display: inline-block;
@@ -561,13 +559,16 @@ input[type=checkbox] {
   background-color: transparent;
 }
 
-.myprofileimg:hover  {
-  opacity: 0.3;
-}
-
 .userimage:hover .overlay {
   opacity: 1;
 }
+
+.userimage:hover  {
+  opacity: 0.5;
+}
+/* .userimage:hover .userimage .myprofileimg {
+  opacity: 1;
+} */
 
 .icon {
   color: rgb(239, 240, 239);
