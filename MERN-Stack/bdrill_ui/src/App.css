@@ -72,6 +72,10 @@ body{
   color: white
 }
 
+.cardStyle{
+  border-radius: 0px 30px 0px 30px;
+}
+
 .uicards1{
   background-color:  #60b3a8;
   color: white
@@ -531,6 +535,20 @@ input[type=checkbox] {
   backface-visibility: hidden;
 }
 
+.userimagedisplayed{
+  position: relative;
+}
+
+.myprofileimgdisplayed {
+  position: relative;
+  width: 500px;
+  height: 340px;
+  opacity: 1;
+  transition: .5s ease;
+  display: inline-block;
+  backface-visibility: hidden;
+}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -656,7 +674,7 @@ border-radius: 100% 0 20px 100%;
 		left: 4px;
   }
 	.avDelete {
-    background-color: black;
+    background-color: rgb(253, 252, 252);
     color: #B5AFA3;
     top: 174px;
     left: 0px;
@@ -683,7 +701,7 @@ border-radius: 100% 0 20px 100%;
 }
 
 .linkbtn {
-  background-color: #343a40;
+  background-color: #1fa398;
   border-radius: 70%;
   font-size: 1rem;
   border: none;
