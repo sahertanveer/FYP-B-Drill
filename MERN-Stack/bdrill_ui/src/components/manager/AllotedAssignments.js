@@ -22,7 +22,6 @@ class AllotedAssignments extends Component {
     }
 
     getAssignments = () => {
-        console.log("qwer")
          BackendInstance({
             method: 'post',
             url: '/api/managers/getassignments',//'http://115.186.176.139:5000/api/attacksessions/startattacksession',

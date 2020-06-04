@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/authAction'
 import { setPage } from '../../actions/pageAction'
 import { BackendInstance } from '../../config/axiosInstance';
+import { deleteAssignment } from '../../actions/managerAuthAction'
 
 import moment from "moment";
 //paths
@@ -18,6 +19,12 @@ class PendingAssignments extends Component {
             assignments: null
         }
 
+        this.deleteassignment = this.deleteassignment.bind(this);
+        this.getAssignments = this.getAssignments.bind(this);
+        this.getAssignments()
+    }
+
+    getAssignments = () => {
         BackendInstance({
             method: 'post',
             url: '/api/admin/getassignments',//'http://115.186.176.139:5000/api/attacksessions/startattacksession',
@@ -28,7 +35,14 @@ class PendingAssignments extends Component {
 
             })
             .catch(err => alert(err + 'session cannot be initiated'));
-    }
+   }
+
+   deleteassignment= async (e) => {
+       e.preventDefault();
+       await this.props.deleteAssignment(e.currentTarget.value);
+       this.getAssignments();
+   }
+
 
 
     render() {
@@ -64,7 +78,7 @@ class PendingAssignments extends Component {
                                                     <td>{field.schedule.Subject}</td>
                                                     <td>{moment(new Date(field.schedule.StartTime)).format('D MMM YYYY , h:mm:ss:A')}</td>
                                                     <td>{moment(new Date(field.schedule.EndTime)).format('D MMM YYYY , h:mm:ss:A')}</td>
-                                                    <td><button className="btn btn-danger" > <i class="material-icons">delete</i></button></td>
+                                                    <td><button className="btn btn-danger" value={field._id} onClick={(e) => { this.deleteassignment(e) }} > <i class="material-icons">delete</i></button></td>
                                                 </tr>)
                                         }) : null}
                                     </table>
