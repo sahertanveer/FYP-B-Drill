@@ -52,27 +52,27 @@ class ImageUpload extends Component {
         }
 
         return (
-            <div className="container-fluid black">
-                <div className="card animate fadeLeft black">
-                    <div className="card-content white-text mycard" style={{ backgroundColor: '#1fa398'}}>
-                        <b><h5 className="card-stats-number white-text center">Upload Image</h5></b>
+            <div className="container-fluid">
+                <div className="card animate fadeLeft">
+                    <div className="card-content mycard" style={{ backgroundColor: '#1fa398'}}>
+                        <b><h5 className="card-stats-number  center">Upload Image</h5></b>
                     </div>
                     <div className="card-action center">
-                        <div className="previewComponent white-text">
+                        <div className="previewComponent">
                         <Alert />
                             <form onSubmit={(e) => this.handleSubmit(e)}>
-                                <input className="fileInput"
+                                <input className="fileInput black-text"
                                     type="file"
                                     onChange={(e) => this.handleImageChange(e)} 
                                 />
                            
         
                             <div className="avatarWrapper">
-                                <div className="avatarNav white-text">
+                                <div className="avatarNav ">
                                     <a href="#" className="avZoomIn" data-placement="right" title="Zoom In"><span className="fa fa-plus-circle white-text"></span></a>
                                     <a href="#" className="avZoomOut" data-placement="right" title="Zoom Out"><span className="fa fa-minus-circle white-text"></span></a>
-                                    <button type='submit' className="avSave" data-placement="right" title="Upload"><i className="fas fa-upload white-text" /></button>
-                                    <span className="divider"><span className="fa fa-ellipsis-h white-text"></span></span>
+                                    <button type='submit' className="avSave" data-placement="right" title="Upload"><i className="fas fa-upload" style={{color:"#1fa398"}} /></button>
+                                    <span className="divider"><span className="fa fa-ellipsis-h "></span></span>
                                     <a href="#" className="avDelete" data-toggle="tooltip" data-placement="right" title="Delete"><span className="fa fa-trash grey-text"></span></a>
                                 </div>
                                 <div className="avatar cursor-move">
