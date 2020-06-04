@@ -63,6 +63,7 @@ const OrgRegistration = ({ registerOrganization, isAuthenticated, role }) => {
 
     return (
         <BrowserRouter>
+        <Route exact path="/orgsignin" component={OrgSignin} />
 
             <div className="container-fluid">
                 <div className="particles" style={{ zIndex: 9996, position: 'fixed', opacity: '1' }}>
@@ -151,9 +152,6 @@ const OrgRegistration = ({ registerOrganization, isAuthenticated, role }) => {
                                                 required
                                             />
                                         </div>
-                                        <small className="form-text">
-                                            This site uses Gravatar, so to add a profile image, use a Gravatar email
-                                    </small>
                                     </div>
                                 </div>
 
@@ -264,13 +262,6 @@ const OrgRegistration = ({ registerOrganization, isAuthenticated, role }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="center">
-                                    <p>
-                                        Already have an Account?
-                            &nbsp;<a href="/orgsignin"> SIGN IN</a>
-                                    </p>
-                                </div>
-                                <br />
                                 <button
                                     type="submit"
                                     className="btn btn-lg btn-primary"
@@ -278,6 +269,14 @@ const OrgRegistration = ({ registerOrganization, isAuthenticated, role }) => {
                                 >
                                     Signup
                                 </button>
+                                <br />
+                                <br />
+                                <div className="center">
+                                    <p>
+                                        Already have an Account?
+                                         &nbsp;<a href="/orgsignin"> SIGN IN</a>
+                                    </p>
+                                </div>
                             </div>
                         </form>
                     </div>

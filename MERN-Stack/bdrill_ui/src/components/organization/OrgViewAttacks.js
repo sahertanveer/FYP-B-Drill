@@ -8,7 +8,6 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-import BarChart from '../chart/BarChart'
 import GetAllAttacks from './GetAllAttacks'
 import GetAllMachines from './GetAllMachines'
 import GetAllPlatforms from './GetAllPlatforms'
@@ -65,12 +64,6 @@ export default function OrgViewAttacks() {
 
   return (
     <div className={classes.root}>
-      <div className="row">
-        <div className="col s12 m12 l12">
-          <h5 className=" white-text" style={{ fontFamily: "Princess Sofia" }}> Techniques</h5>
-          <BarChart />
-        </div>
-      </div>
       <AppBar position="static" color="default">
         <Tabs
           value={value}

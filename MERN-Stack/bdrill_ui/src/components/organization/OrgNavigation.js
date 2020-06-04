@@ -4,16 +4,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/authAction'
 import { setPage } from '../../actions/pageAction'
-import {loadUser} from '../../actions/authAction'
-
-import Profile from '../profiles/Profile'
-import ChatBox from '../common/ChatBox';
-import ChatLayout from '../chat/ChatLayout'
+import { loadUser } from '../../actions/authAction'
 
 import clsx from 'clsx';
 import { makeStyles, useTheme, fade } from '@material-ui/core/styles';
 import {
-  Icon, Drawer, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, Badge,
+  Icon, Drawer, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, Badge, MenuItem, Menu,
   ListItem, ListItemIcon, ListItemText, InputBase
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -30,7 +26,10 @@ import AddManager from './AddManager'
 import UsersList from './UsersList'
 import OrgViewAttacks from './OrgViewAttacks'
 import GetUsersProfiles from './GetUsersProfiles';
-// import CandidateList from './CandidateList'
+import UserProfile from '../profiles/UserProfile'
+import ChangePassword from '../common/Password/ChangePassword'
+import ChatBox from '../common/ChatBox';
+import ChatLayout from '../chat/ChatLayout'
 
 const drawerWidth = 200;
 
@@ -152,7 +151,7 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: '#1fa398', 
+    backgroundColor: '#1fa398',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
@@ -163,20 +162,46 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,setPage, page:{loadedPage} }) => {
+const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, setPage, page: { loadedPage } }) => {
 
+  const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const authLink = (
     <ul>
       <li>
-        <a href='/orgsignin' className="white-text">
-          <IconButton
-            edge="end"
-            onClick={logout}
-            color="inherit"
+        {/* <a onClick={logout} href='#!' /> */}
+        {/* <a href='/candsignin' className="white-text"> */}
+        <IconButton
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+          color="inherit"
+        >
+          <AccountCircle />
+          <Menu
+            className="navbar dropdown right"
+            /* style = {{top:'-20%', left:'87%'}} */
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
           >
-            <AccountCircle />
-          </IconButton>
-        </a>
+            <MenuItem><a href="/orgdashboard">My account</a></MenuItem>
+            <MenuItem onClick={logout}>Logout</MenuItem>
+          </Menu>
+        </IconButton>
+        {/* </a> */}
       </li>
     </ul>
   );
@@ -184,7 +209,7 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,se
   const guestLink = (
     <ul>
       <li>
-        <a href='/orgsignin' className="white-text"> <IconButton
+        <a href='/adminsignin' className="white-text"> <IconButton
           edge="end"
           color="inherit"
         >
@@ -194,10 +219,6 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,se
       </li>
     </ul>
   );
-
-  const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -234,8 +255,6 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,se
     to: PropTypes.string.isRequired,
   };
 
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -264,7 +283,7 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,se
 
   return (
 
-  
+
     <BrowserRouter>
       <div className={classes.root}>
         <CssBaseline />
@@ -310,6 +329,13 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,se
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
+              <IconButton aria-label="show 17 new notifications" color="inherit">
+                <Badge badgeContent={17} color="primary">
+                  <a href="/orgchatlayout">
+                    <MailIcon className="white-text" />
+                  </a>
+                </Badge>
+              </IconButton>
             </div>
             {!loading && (<Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>)}
             <div className={classes.sectionMobile}>
@@ -347,10 +373,10 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,se
             </IconButton>
           </div>
           <Divider />
-          <List>
+          <List aria-label="main mailbox folders">
             <Link to="/orgdashboard" className="navlinks">
               {['Dashboard'].map((text, index) => (
-                <ListItem button onClick={() => {loadUser();setPage("orgdashboard") }}> 
+                <ListItem button onClick={() => { loadUser(); setPage("orgdashboard") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">dashboard</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -361,18 +387,18 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,se
           <List aria-label="main mailbox folders">
             <Link to="/orgviewattack" className="navlinks">
               {['Attacks'].map((text, index) => (
-                <ListItem button onClick={() => {loadUser();setPage("orgviewattack")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("orgviewattack") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">category</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
               ))}
-             </Link>
+            </Link>
           </List>
           <Divider />
           <List aria-label="main mailbox folders">
-            <Link to ="/userslist" className="navlinks">
+            <Link to="/userslist" className="navlinks">
               {['Users'].map((text, index) => (
-                <ListItem button onClick={() => {loadUser();setPage("userslist")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("userslist") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">visibility</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -381,9 +407,9 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,se
           </List>
           <Divider />
           <List aria-label="main mailbox folders">
-            <Link to="/getusersprofiles"  className="navlinks">
+            <Link to="/getusersprofiles" className="navlinks">
               {['User Profiles'].map((text, index) => (
-                 <ListItem button onClick={() => {loadUser(); setPage("getusersprofiles")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("getusersprofiles") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">people</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -392,9 +418,9 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,se
           </List>
           <Divider />
           <List aria-label="main mailbox folders">
-            <Link to ="/addmanager" className="navlinks">
+            <Link to="/addmanager" className="navlinks">
               {['Add Manager'].map((text, index) => (
-                <ListItem button onClick={() => {loadUser();setPage("addmanager")}}>
+                <ListItem button onClick={() => { loadUser(); setPage("addmanager") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">add</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -402,10 +428,21 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,se
             </Link>
           </List>
           <Divider />
-          <List>
+          <List aria-label="main mailbox folders">
             <Link to="/orgchatlayout" className="navlinks" >
-              {['Settings'].map((text, index) => (
+              {['Messenger'].map((text, index) => (
                 <ListItem button onClick={() => { loadUser(); setPage("orgchatlayout") }}>
+                  <ListItemIcon>{index === 0 ? <Icon className="white-text">message</Icon> : null}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              ))}
+            </Link>
+          </List>
+          <Divider />
+          <List aria-label="main mailbox folders">
+            <Link to="/orgchangepassword" className="navlinks">
+              {['Settings'].map((text, index) => (
+                <ListItem button onClick={() => { loadUser(); setPage("orgchangepassword") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">settings_applications</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
@@ -416,22 +453,24 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,se
         <main //id="disability"
           className={clsx(classes.content, {
             [classes.contentShift]: open,
-          })} 
+          })}
         >
           {
-            loadedPage === 'orgdashboard' ? <OrgDashboard /> : 
-            loadedPage === 'addmanager' ? <AddManager /> :
-            loadedPage === 'userslist' ? <UsersList /> :
-            loadedPage === 'orgviewattack' ? <OrgViewAttacks /> :
-            loadedPage === 'getusersprofiles' ? <GetUsersProfiles /> :
-            loadedPage === 'orgchatlayout' ? <ChatLayout /> :
-            loadedPage === 'profile' ? <Profile/>:
-            <OrgDashboard />
+            loadedPage === 'orgdashboard' ? <OrgDashboard /> :
+              loadedPage === 'addmanager' ? <AddManager /> :
+                loadedPage === 'userslist' ? <UsersList /> :
+                  loadedPage === 'orgviewattack' ? <OrgViewAttacks /> :
+                    loadedPage === 'getusersprofiles' ? <GetUsersProfiles /> :
+                      loadedPage === 'userprofile' ? <UserProfile /> :
+                        loadedPage === 'orgchatlayout' ? <ChatLayout /> :
+                          loadedPage === 'orgchangepassword' ? <ChangePassword /> :
+
+                            <OrgDashboard />
           }
         </main>
         <div className="chatbox" >
-            <ChatBox/>
-        </div> 
+          <ChatBox />
+        </div>
 
       </div>
     </BrowserRouter>
@@ -440,10 +479,10 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser,se
 
 OrgNavigation.propTypes = {
   logout: PropTypes.func.isRequired,
-  setPage:PropTypes.func.isRequired,
+  setPage: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   page: PropTypes.object.isRequired,
-  loadUser:PropTypes.func.isRequired
+  loadUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

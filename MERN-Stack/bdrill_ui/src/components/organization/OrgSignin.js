@@ -28,16 +28,15 @@ const OrgSignin = ({ login, isAuthenticated, role }) => {
 
     //Redirect if logged  in 
     if (isAuthenticated && role === "organization") {
-        return <Redirect to='/orgdashboard' />
+        return (<Redirect to='/orgdashboard' />)
     }
 
     return (
         <BrowserRouter>
-            <Route path="/orgregistration" component={OrgRegistration} />
+            {/* <Route path="/orgregistration" component={OrgRegistration} /> */}
 
             <div className="container-fluid">
                 <div className="particles" style={{ zIndex: 9996, position: 'fixed', opacity: '1' }}>
-
                     <Particles />
                 </div>
                 <center >
@@ -76,9 +75,9 @@ const OrgSignin = ({ login, isAuthenticated, role }) => {
                                     <input type="checkbox" name="remember" id="remember" style={{ opacity: 1 }} />
                                     &nbsp; &nbsp; <label htmlFor="remember">Remember me </label>
                                 </div>
-                                {/* <div className="p-container">
-                    <span className="right">Forgot Password?</span>
-                  </div> */}
+                                <div className="p-container">
+                                    <a href="/forgotpassword" className="right"> Forgot Password?</a>
+                                </div>
                                 <br />
                                 <br />
                                 <button
@@ -88,11 +87,13 @@ const OrgSignin = ({ login, isAuthenticated, role }) => {
                                 >
                                     Login
                                 </button>
+                                <br />
+                                <br />
+                                <div className="center">Dont have Account?
+                                    <a href="/orgregistration"> SIGN UP</a>
+                                </div>
                             </div>
                         </form>
-                        <div className="center">Dont have Account?
-                            <a href="/orgregistration"> SIGN UP</a>
-                        </div>
                     </div>
                 </center>
             </div>
