@@ -5,11 +5,6 @@ import { Radar } from 'react-chartjs-2';
 
 
 class RadarChart extends Component {
-    constructor(props) {
-        super(props)
-    }
-    
-
     render() {
 
         const data = {

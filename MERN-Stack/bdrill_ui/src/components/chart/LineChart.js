@@ -1,14 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter} from 'react-router-dom'
 import {Line} from 'react-chartjs-2';
-
-
-
-  
+ 
 class LineChart extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   static defaultProps = {
     displayTitle:true,
@@ -28,19 +22,19 @@ class LineChart extends Component {
                 pointBackgroundColor: 'rgba(179,181,198,1)',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(179,181,198,1)',
+                pointHoverBorderColor: '#fff',
             data: this.props.dataSetA,
             spanGaps:true
           },
           {
             label: this.props.labelB,
-            fill: false,
+            fill: true,
             backgroundColor: 'rgba(255,99,132,0.2)',
             borderColor: 'rgba(255,99,132,1)',
             pointBackgroundColor: 'rgba(255,99,132,1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor:  '#fff',
-            pointHoverBorderColor: 'rgba(255,99,132,1)',
+            pointHoverBorderColor: '#fff',
             data:this.props.dataSetB,
             spanGaps:true
           },
