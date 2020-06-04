@@ -620,12 +620,12 @@ const EditCreateProfile = ({ profile: { profile, loading }, auth: { user, role, 
                                             <CardBody>
                                                 <div className="row form-group social-input">
                                                     <div className="col s2 m2 l2">
-                                                        <i className="fas fa-globe fa-2x right control-label white-text" />
+                                                        <i className="fab fa-github fa-2x right control-label white-text" />
                                                     </div>
                                                     <div className="col s3 m4 l4">
                                                         <input
                                                             type="text"
-                                                            placeholder="Github Username"
+                                                            placeholder="Github URL "
                                                             name="githubusername"
                                                             defaultValue={social && social.githubusername}
                                                             onChange={e => onSocialChange(e)}
