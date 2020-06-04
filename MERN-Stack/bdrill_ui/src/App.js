@@ -80,10 +80,11 @@ const App = () => {
           <AdminPrivateRoute path="/getallusers" component={AdminNavigation} />
           <AdminPrivateRoute path="/getallusersprofiles" component={AdminNavigation} />
           <AdminPrivateRoute path="/chatlayout" component={AdminNavigation} />
-          <AdminPrivateRoute path="/profile" component={AdminNavigation} />
+          <AdminPrivateRoute path="/userprofile" component={AdminNavigation} />
+          <AdminPrivateRoute path="/changepassword" component={AdminNavigation} />
 
           {/* Organization */}
-          <OrganizationPrivateRoute path="/orgregistration" component={OrgRegistration} />
+          <Route path="/orgregistration" component={OrgRegistration} />
           <OrganizationPrivateRoute path="/orgsignin" component={OrgSignin} />
           <OrganizationPrivateRoute path="/orgdashboard" component={OrgNavigation} />
           <OrganizationPrivateRoute path="/addmanager" component={OrgNavigation} />
@@ -91,7 +92,8 @@ const App = () => {
           <OrganizationPrivateRoute path="/orgviewattack" component={OrgNavigation} />
           <OrganizationPrivateRoute path="/getusersprofiles" component={OrgNavigation} />
           <OrganizationPrivateRoute path="/orgchatlayout" component={OrgNavigation} />
-          <OrganizationPrivateRoute path="/profile" component={OrgNavigation} />
+          <OrganizationPrivateRoute path="/userprofile" component={OrgNavigation} />
+          <OrganizationPrivateRoute path="/orgchangepassword" component={OrgNavigation} />
 
           {/* Manager */}
           
@@ -101,13 +103,14 @@ const App = () => {
           <ManagerPrivateRoute path="/candidatelist" component={ManagerNavigation} />
           <ManagerPrivateRoute path="/addcandidate" component={ManagerNavigation} />
           <ManagerPrivateRoute path="/assignattack" component={ManagerNavigation} />
+          <ManagerPrivateRoute path="/userprofile" component={ManagerNavigation} />
           <ManagerPrivateRoute path="/allotedassignments" component={ManagerSignin} />
           <ManagerPrivateRoute path="/managerprofile" component={ManagerNavigation} />
           <ManagerPrivateRoute path="/editcreateprofile" component={ManagerNavigation} />
           <ManagerPrivateRoute path="/getcandidatesprofiles" component={ManagerNavigation} />
           <ManagerPrivateRoute path="profileitems" component={ManagerNavigation} />
           <ManagerPrivateRoute path="/managerchatlayout" component={ManagerNavigation} />
-          <ManagerPrivateRoute path="/profile" component={ManagerNavigation} />
+          <ManagerPrivateRoute path="/mangerchangepassword" component={ManagerNavigation} />
 
           {/* Candidate */}
           <CandidatePrivateRoute path="/candprofile" component={CandNavigation} />
@@ -117,7 +120,7 @@ const App = () => {
           <CandidatePrivateRoute path="/sessionroom" component={CandNavigation} />
           <CandidatePrivateRoute path="/editorcreateprofile" component={CandNavigation} />
           <CandidatePrivateRoute path="/candsignin" component={CandSignin} />
-          <CandidatePrivateRoute path="/changepassword" component={CandNavigation} />
+          <CandidatePrivateRoute path="/candchangepassword" component={CandNavigation} />
           <CandidatePrivateRoute path="/candchatlayout" component={CandNavigation} />
 
           <Route path="/editcreateprofile" component={EditCreateProfile} />
