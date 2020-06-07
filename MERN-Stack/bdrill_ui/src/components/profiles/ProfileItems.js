@@ -44,11 +44,9 @@ const ProfileItem = ({ profile, setPage, getProfileById }) => {
     let style = { borderColor: color, backgroundColor: color }
 
     const onClick = (e, role) => {
-        console.log(e.currentTarget.value)
         getProfileById(e.currentTarget.value)
         history.push(`/userprofile?userId=${e.currentTarget.value}&role=${role}`)
-        setPage('userprofile')
-        
+        setPage('userprofile')  
     }
 
     return (

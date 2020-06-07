@@ -134,7 +134,6 @@ router.get('/', auth, async (req, res) => {
     const user =await Admin.findById(req.user.id).select('-password');
     let roleBasedUser = user.toObject();
     roleBasedUser["role"] = "admin";
-    console.log(roleBasedUser);
     res.json(roleBasedUser);
 
     }
@@ -162,7 +161,6 @@ router.post('/login',
     
   ],
   async (req, res) => {
-  //console.log(res)
   const errors = validationResult(req);
 
   if(!errors.isEmpty()) {
@@ -224,11 +222,8 @@ router.post('/getorganizations', auth, async (req, res) => {
     try {
       let org = await Organization.find({}, function (err, docs) {
         if (err) res.json(err);
-        console.log("aaya")
-        // else console.log('index', {users: docs});
       })
         .select('-password')
-        // .select('-avatar')
         .select('-date')
         .select('-__v')
         .select('-countrycode')
@@ -236,7 +231,6 @@ router.post('/getorganizations', auth, async (req, res) => {
         .select('-address')
         .select('-faxnumber')
         .select('-year')
-console.log(org)
       return res.json({ org });
     }
     catch (err) {
@@ -263,10 +257,8 @@ router.post('/getmanagers', auth, async (req, res) => {
     try {
       let managers = await Manager.find({ "organization_id": req.body.id }, function (err, docs) {
         if (err) res.json(err);
-        // else console.log('index', {users: docs});
       })
         .select('-password')
-        // .select('-avatar')
         .select('-date')
         .select('-__v')
         .select('-organization_id')
@@ -296,15 +288,12 @@ router.post('/getusers', auth, async (req, res) => {
     try {
       let users = await User.find({ "manager_id": req.body.id }, function (err, docs) {
         if (err) res.json(err);
-        // else console.log('index', {users: docs});
       })
         .select('-password')
-        // .select('-avatar')
         .select('-date')
         .select('-__v')
         .select('-manager_id')
         .select('-organization_id')
-console.log({users})
       return res.json({ users });
       
     }

@@ -36,10 +36,8 @@ class AddorUpdatePlatform extends Component {
                 platform_name: this.state.platform_name//'5db080230b62e76104bdd4bd'
               }
             })
-            console.log(res.data)
       
             if ((res.data.platforms).length === 1) {
-              console.log(res.data)
               this.setState({ platform_family: res.data.platforms[0].platform_family})
             }
       
@@ -62,7 +60,6 @@ class AddorUpdatePlatform extends Component {
 
 onSubmit = e => {
     e.preventDefault()
-    console.log(this.state)
     this.props.addorupdateplatform(this.state);
 }
 

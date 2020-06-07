@@ -57,7 +57,6 @@ class Assign_Attack extends Component {
         this.setState({ platforms: res.data.platforms })
 
       }
-      console.log(res.data.platforms)
     }).catch(err => {
       const errors = err.response.data.errors;
 
@@ -119,9 +118,7 @@ class Assign_Attack extends Component {
 
   }
   //  componentWillReceiveProps = ()=> async dispatch => {
-  //    console.log("qwer")
   //   if (this.state.platformSelected) {
-  //     console.log("uyt")
   //     try {
   //       const res = await BackendInstance({
   //         method: 'post',
@@ -130,12 +127,10 @@ class Assign_Attack extends Component {
   //           platform: this.state.platform//'5db080230b62e76104bdd4bd'
   //         }
   //       })
-  //       console.log(res.data)
 
   //       if (Object.keys(res.data).length !== 0) {
 
   //         this.setState({ machinesAvailable: true })
-  //         console.log(res.data  )
   //       }
   //       else {
   //         this.setState({ machinesAvailable: false })
@@ -270,12 +265,9 @@ class Assign_Attack extends Component {
           platform: this.state.platform//'5db080230b62e76104bdd4bd'
         }
       })
-      console.log(res.data)
 
       if (Object.keys(res.data).length !== 0) {
-        console.log(res.data)
         this.setState({ machinesAvailable: true, machines: res.data.machines }, () => { console.log(this.state) })
-
       }
       else {
         this.setState({ machinesAvailable: false })
@@ -306,7 +298,6 @@ class Assign_Attack extends Component {
           machine_name: this.state.machine//'5db080230b62e76104bdd4bd'
         }
       })
-      console.log(res.data)
 
       if (Object.keys(res.data).length !== 0) {
         // this.setState({ machinesAvailable: true, machines: res.data.machines }, () => { console.log(this.state) })
@@ -340,21 +331,15 @@ class Assign_Attack extends Component {
       if (this.state.actualScheduleLength === this.state.schedules.length) {
         // TODO
         this.setState({ scheduleReady: false, detectChange: false })
-        console.log("States equal")
-        console.log(this.state.scheduleReady)
 
 
       }
       else if (this.state.actualScheduleLength + 1 === this.state.schedules.length) {
-        this.setState({ scheduleReady: true, detectChange: false }) //detectChange:false => to prevent infinite loop
-        console.log("Schedule set")
-        console.log(this.state.scheduleReady)
+        this.setState({ scheduleReady: true, detectChange: false }) 
       }
       else {
         //alert: set only one schedule
         this.setState({ scheduleReady: false, detectChange: false })
-        console.log("Set only one schedule")
-        console.log(this.state.scheduleReady)
 
       }
     }
@@ -516,7 +501,7 @@ class Assign_Attack extends Component {
                             }}>
 
                               <ul className="collection black-text">
-                                {this.state.platforms && this.state.platforms.length != 0 ?
+                                {this.state.platforms && this.state.platforms.length !== 0 ?
                                   this.state.platforms.map((field, idx) => {
                                     return (
                                       <li className="collection-item black-text " onClick={this.selectPlatform}>{field.platform_name}</li>
@@ -612,7 +597,7 @@ class Assign_Attack extends Component {
                         </div> */}
                         {/* <div className="col s8 m8 l7"> */}
                         <div className="input-field center">
-                          <input id="Selected-Scenario " style={{ backgroundColor: "#d1d1d1" }} className="main-search-input-field center validate black-text" placeholder="Selected Scenario" type="text" disabled value={!this.state.procedure_id ? "Selected Procedure" : this.state.procedure_id} id="selectedScenario" />
+                          <input style={{ backgroundColor: "#d1d1d1" }} className="main-search-input-field center validate black-text" placeholder="Selected Scenario" type="text" disabled value={!this.state.procedure_id ? "Selected Procedure" : this.state.procedure_id} id="selectedScenario" />
                           {/* </div> */}
                         </div>
                       </div>

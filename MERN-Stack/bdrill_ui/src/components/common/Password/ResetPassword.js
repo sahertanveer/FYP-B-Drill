@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BackendInstance } from '../../../config/axiosInstance';
-import { BrowserRouter, Redirect, withRouter, useHistory } from 'react-router-dom'
+import { BrowserRouter, withRouter, useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import queryString from 'query-string'
@@ -33,11 +33,9 @@ const ResetPassword = ({ setAlert , resetPassword, setPage }) => {
            BackendInstance.get('/api/password/authtoken', config )
            .then((res) =>{
            setFormData({...formData, render: true, request:false})
-           console.log(formData)
         }
            )
            .catch( (err) =>{
-               console.log(err.response.data.msg)
             // return <Redirect to = '/home' />
             hist.push(`/home`)
             setPage("home")
@@ -47,8 +45,6 @@ const ResetPassword = ({ setAlert , resetPassword, setPage }) => {
         } catch (err) {
           console.log(err)
         }
-
-    console.log(values.token)
  
     const {  password, confirmpassword, token } = formData;
         

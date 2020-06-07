@@ -28,8 +28,6 @@ export const registerCandidate = ({ organization_id, manager_id, firstname, last
         // const res = await axios.post('http://115.186.176.139:5000/api/managers/registerCandidate', body, config);
         const res = await BackendInstance.post('/api/managers/registerCandidate', body, config);
 
-        console.log(res);
-
         dispatch({
             type: CANDIDATE_ADDED,
             payload: res.data
@@ -61,7 +59,6 @@ export const registerCandidate = ({ organization_id, manager_id, firstname, last
 //                 platform: platform//'5db080230b62e76104bdd4bd'
 //             }
 //         })
-//         console.log(res.data)
 
 //         if (Object.keys(res.data).length !==0){
 
@@ -101,7 +98,6 @@ export const getusers = (managerId) => async dispatch => {
                 id: managerId//'5db080230b62e76104bdd4bd'
             }
         })
-        console.log(res.data)
 
         dispatch({
             type: USERS_FOUND,
@@ -138,8 +134,6 @@ export const login = ({ email, password }) => async dispatch => {
     try {
         // const res = await axios.post('http://115.186.176.139:5000/api/admin/login', body, config);
         const res = await BackendInstance.post('/api/managers/login', body, config);
-        console.log("login")
-        console.log(res.data)
         dispatch({
             type: LOGIN_SUCCESS,
             payload: res.data
@@ -166,7 +160,7 @@ export const addAssignment = (schedule, user_id, manager_id, procedure_id, platf
             'Content-Type': ' application/json'
         }
     }
-console.log(category)
+
     const body = JSON.stringify({ schedule, user_id, manager_id, procedure_id, platform, machine, category, tactic_name });
     try {
         // const res = await axios.post('http://115.186.176.139:5000/api/admin/login', body, config);
@@ -194,7 +188,7 @@ console.log(category)
 }
 
 export const checkuser = (user_id) => async dispatch => {
-    console.log(user_id)
+
     const config = {
         headers: {
             'Content-Type': ' application/json'

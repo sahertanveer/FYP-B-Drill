@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { logout } from '../../actions/candidateAuthAction'
-import { logout } from '../../actions/authAction'
-import { setPage } from '../../actions/pageAction'
 import { BackendInstance } from '../../config/axiosInstance';
 import { deleteAssignment } from '../../actions/managerAuthAction'
 
@@ -94,8 +91,7 @@ class PendingAssignments extends Component {
     }
 }
 PendingAssignments.propTypes = {
-    logout: PropTypes.func.isRequired,
-    setPage: PropTypes.func.isRequired,
+    deleteAssignment: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired
 }
@@ -106,6 +102,6 @@ const mapStateToProps = state => ({
 })
 
 //export default withRouter(CandSession);
-export default withRouter(connect(mapStateToProps, { logout, setPage })(PendingAssignments))
+export default withRouter(connect(mapStateToProps, { deleteAssignment })(PendingAssignments))
 
 

@@ -65,7 +65,7 @@ router.post('/registerCandidate', auth,
 
       try {
         //check if user exists
-        let user = await Admin.findOne({ email }) || await Organization.findOne({email}) || await Manager.findOne({ email }) || await User.findOne({email})
+        let user = await Admin.findOne({ email }) || await Organization.findOne({ email }) || await Manager.findOne({ email }) || await User.findOne({ email })
 
         if (user) {
           return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
@@ -133,9 +133,6 @@ router.post('/registerCandidate', auth,
             console.log(info);
         })
 
-        console.log("password1" + password)
-
-
       } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error')
@@ -159,7 +156,6 @@ router.get('/', auth, async (req, res) => {
       const user = await Manager.findById(req.user.id).select('-password');
       let roleBasedUser = user.toObject()
       roleBasedUser["role"] = "manager"
-      console.log(roleBasedUser)
       res.json(roleBasedUser)
     }
     else {
@@ -243,10 +239,8 @@ router.post('/getusers', auth, async (req, res) => {
       return res.status(422).json({ errors: errors.array() });
     }
     try {
-      console.log(req.body)
       let users = await User.find({ "manager_id": req.body.id }, function (err, docs) {
         if (err) res.json(err);
-        // else console.log('index', {users: docs});
       })
         .select('-password')
         .select('-date')
@@ -278,10 +272,8 @@ router.post('/getmachines', auth, async (req, res) => {
       return res.status(422).json({ errors: errors.array() });
     }
     try {
-      console.log(req.body)
       let machines = await Machine.find({ "platform": req.body.platform }, function (err, docs) {
         if (err) res.json(err);
-        // else console.log('index', {users: docs});
       })
         .select('-plaform')
 
@@ -316,7 +308,6 @@ router.post('/checkuser', auth,
         //check if user exists
         let candidate = await User.findOne({ _id: req.body.user_id })
           .select('_id')
-        console.log(candidate)
         if (candidate.length < 1)
           return res.status(400).send('candidate not exist')
 
@@ -357,7 +348,6 @@ router.post('/assignattack', auth,
   ],
   async (req, res) => {
     if (req.user.role === "manager") {
-      console.log(req.body)
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
@@ -365,19 +355,19 @@ router.post('/assignattack', auth,
       }
 
       const {
-         EndTime, StartTime, Subject } = req.body.schedule;
+        EndTime, StartTime, Subject } = req.body.schedule;
       const {
         user_id, manager_id, procedure_id, machine, platform, category, tactic_name } = req.body
 
       try {
-        if(category === "Scenario"){
+        if (category === "Scenario") {
 
-        let attack = await AttackInventory.findOne({ procedure_id: procedure_id }, function (err, docs) {
-          if (err) res.json(err);
-        })
-        if (attack.length < 1)
-          return res.status(400).send('Procedure does not exist')
-      }
+          let attack = await AttackInventory.findOne({ procedure_id: procedure_id }, function (err, docs) {
+            if (err) res.json(err);
+          })
+          if (attack.length < 1)
+            return res.status(400).send('Procedure does not exist')
+        }
 
         let machines = await Machine.findOne({ platform: platform, machine_name: machine }, function (err, docs) {
           if (err) res.json(err);
@@ -386,30 +376,25 @@ router.post('/assignattack', auth,
           return res.status(400).send('machine does not exist')
 
         const scheduleFields = {};
-        console.log(req.body.schedule)
         if (user_id) scheduleFields.candidate_id = user_id;
         if (EndTime) scheduleFields.EndTime = EndTime;
         if (StartTime) scheduleFields.StartTime = StartTime;
         if (Subject) scheduleFields.Subject = Subject;
         if (machine) scheduleFields.machine_name = machine;
         if (platform) scheduleFields.platform = platform;
-        
+
         scheduleFields.IsBlock = true;
-        console.log(44)
         // let machine = await Machine.find({ "platform": platform, "machine_name": machine_name }, function (err, docs) {
         //   if (err) res.json(err);
         // });
-        // console.log(machine)
         // if (machine.length < 1) return res.status(404).send('Machine Not Found')
 
         let schedule = new Schedule(scheduleFields)
         schedule.save().then(record => {
-          console.log(req.body)
           // let assignment = new Assignments({ user_id: req.body.user_id, manager_id: req.body.manager_id, procedure_id: req.body.procedure_id, platform: req.body.platform })
-          let assignment = new Assignments({ user_id: user_id, manager_id: manager_id, procedure_id: procedure_id, platform: platform, schedule: record._id, category:category, tactic_name:tactic_name, end_time: EndTime })
+          let assignment = new Assignments({ user_id: user_id, manager_id: manager_id, procedure_id: procedure_id, platform: platform, schedule: record._id, category: category, tactic_name: tactic_name, end_time: EndTime })
           assignment.save(function (err, new_assignment) {
             if (err) return res.status(422).json({ errors: errors.array() });
-            console.log(new_assignment._id + "save to database")
             return res.status(200).send("Assignment Added Successfully")
           });
         })
@@ -447,7 +432,6 @@ router.post('/setschedule', auth,
   ],
   async (req, res) => {
     if (req.user.role === "manager") {
-      console.log(req.body)
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
@@ -470,13 +454,11 @@ router.post('/setschedule', auth,
         let machine = await Machine.find({ "platform": platform, "machine_name": machine_name }, function (err, docs) {
           if (err) res.json(err);
         });
-        console.log(machine)
         if (machine.length < 1) return res.status(404).send('Machine Not Found')
 
         let schedule = new Schedule(scheduleFields)
         schedule.save(function (err, schedule) {
           if (err) return res.status(422).json({ errors: errors.array() });
-          console.log(schedule._id + "save to database")
         });
         return res.json({ result: "success" });
 
@@ -507,10 +489,8 @@ router.post('/getschedule', auth, [
         return res.status(422).json({ errors: errors.array() });
       }
       try {
-        console.log(req.body)
         let schedules = await Schedule.find({ "machine_name": req.body.machine_name }, function (err, docs) {
           if (err) res.json(err);
-          // else console.log('index', {users: docs});
         })
           .select('-platform')
           .select('-date')
@@ -541,20 +521,15 @@ router.post('/getassignments', auth, async (req, res) => {
       return res.status(422).json({ errors: errors.array() });
     }
     try {
-      console.log(req.body)
-      
-const {manager_id} = req.body
-      console.log(new Date())
+      const { manager_id } = req.body
 
-//let assignments =
-       await Assignments.find({end_time:{"$gte":new Date()}, manager_id:manager_id}).populate("schedule").then(   //populate("schedule_id",null,{EndTime:{"$gte":new Date()
-       assignments=> {
-        return res.json({ assignments });
-        // else console.log('index', {users: docs});
-        }) .catch(err => { return res.status(422).json({ errors: errors.array() }) });
+      await Assignments.find({ end_time: { "$gte": new Date() }, manager_id: manager_id }).populate("schedule").then(   //populate("schedule_id",null,{EndTime:{"$gte":new Date()
+        assignments => {
+          return res.json({ assignments });
+        }).catch(err => { return res.status(422).json({ errors: errors.array() }) });
 
-     // return res.json({ assignments });
-     
+      // return res.json({ assignments });
+
       // let schedules = await Schedule.find({ candidate_id: candidate_id, EndTime:{"$gte":new Date()} }, function (err, docs) {
       //   if (err) res.json(err);
       //   // else console.log('index', {users: docs});
@@ -578,22 +553,22 @@ const {manager_id} = req.body
 // @access  Private
 router.post('/deleteassignment', auth, async (req, res) => {
   if (req.user.role === "manager") {
-  try {
-    //Remove Attack
-    await Assignments.findOneAndDelete({ _id: req.body._id})
-    .then(async assignment=>{
-      await Schedule.findByIdAndDelete(assignment.schedule)
-    })
+    try {
+      //Remove Attack
+      await Assignments.findOneAndDelete({ _id: req.body._id })
+        .then(async assignment => {
+          await Schedule.findByIdAndDelete(assignment.schedule)
+        })
 
-    res.status(200).json({ msg: 'Assignment Deleted' });
-  } catch (err) {
-    console.error(err.message);
-    return res.status(500).send('Server Error')
+      res.status(200).json({ msg: 'Assignment Deleted' });
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).send('Server Error')
+    }
   }
-}
-else {
-  res.status(401).send('Unauthorized Access')
-}
+  else {
+    res.status(401).send('Unauthorized Access')
+  }
 });
 
 

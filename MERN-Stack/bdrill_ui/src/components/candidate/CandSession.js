@@ -9,7 +9,6 @@ import { BackendInstance } from '../../config/axiosInstance';
 import Loader from 'react-loader-spinner'
 import { setAlert } from '../../actions/alertAction'
 import Alert from '../../layout/Alert'
-import axios from 'axios';
 
 import moment from "moment";
 //paths
@@ -52,7 +51,6 @@ class CandSession extends Component {
                         }.bind(this), 3000)
 
                     }
-                    console.log(response.data)
 
                 })
                 .catch(err => this.props.setAlert(err + ' Error ocurred while checking in_progress sessions!', "danger"));
@@ -69,7 +67,6 @@ class CandSession extends Component {
             }
         })
             .then(response => {
-                console.log(response.data.assignments)
                 this.setState({ assignments: response.data.assignments })
 
             })
@@ -99,9 +96,7 @@ class CandSession extends Component {
                         tactic_name: response.data.assignment.tactic_name,
                         procedure_id : response.data.assignment.procedure_id
                     })
-                    console.log(response.data.assignment)
                     this.props.setAlert('Session Validated sucessfully', "success");
-                    console.log(response.data.assignment_validation)
                     this.StartSession()
                 }
             })
@@ -157,14 +152,13 @@ class CandSession extends Component {
                 })
                     .catch(async (err) => {
                         this.props.setAlert(err + '. Session cannot be initiated', "danger")
-                        const deleteSesion = await BackendInstance({
+                         await BackendInstance({
                             method: 'post',
                             url: '/api/attacksessions/deletesession',//'http://115.186.176.139:5000/api/attacksessions/startattacksession',
                             data: {//'5db080230b62e76104bdd4bd'
                                 attack_session_id: response.data.attack_session_id
                             }
                         })
-                        console.log(deleteSesion)
                         this.props.setAlert('session deleted successfully', "success")
                         this.setState({ loading: false })
                         // .then(()=> this.props.setAlert('session deleted successfully', "succes") ).catch(err => {
@@ -234,6 +228,8 @@ class CandSession extends Component {
                                                         <td><button onClick={e => this.CheckAssignmentStatus(e)} value={field._id} disabled={moment().isAfter(moment(new Date(field.schedule.StartTime))) && moment().isBefore(moment(new Date(field.schedule.EndTime))) ? false : true} className="btn btn-danger">Start Session</button></td>
                                                     </tr>
                                                 </tbody>)
+                                                else
+                                                return null
                                         
                                         }) : null}
                                     </table>

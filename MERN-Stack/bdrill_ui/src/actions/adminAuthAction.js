@@ -24,8 +24,6 @@ export const login = ({ email, password }) => async dispatch => {
   try {
     // const res = await axios.post('http://115.186.176.139:5000/api/admin/login', body, config);
     const res = await BackendInstance.post('/api/admin/login', body, config);
-    console.log("login")
-    console.log(res.data)
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
@@ -89,10 +87,7 @@ export const addorupdateattack = ( formData ) => async dispatch => {
       }
   }
 
-  // const newAttack = { formData };
-  // const body = JSON.stringify(newAttack);
-  console.log(formData)
-  try {
+   try {
     if(formData.category === "Scenario"){
     const res = await BackendInstance.post('/api/attackinventory/addorupdatescenario', formData, config);
     dispatch({
@@ -134,13 +129,11 @@ export const addorupdateattack = ( formData ) => async dispatch => {
   
   //   // const newAttack = { formData };
   //   // const body = JSON.stringify(newAttack);
-  //   console.log(formData)
   //   try {
   //     // const res =
   //        await BackendInstance.post('/api/attackinventory/addorupdateattack', formData, config)
   //       .then((res) => {
          
-  //           console.log(res.data)
   //           dispatch(setAlert("attack added", 'primary'))
   //           // dispatch({
   //           //  type:ATTACK_ADDED,
@@ -202,7 +195,6 @@ export const getallattacks = () => async dispatch => {
   export const deleteAttack = (id) => async dispatch => {
     if (window.confirm('Are you sure? This can NOT be undone!')) {
       try {
-        // {console.log(id)}
         //  await BackendInstance.post('/api/attackinventory/')
         await BackendInstance({
           method: 'post',
@@ -227,7 +219,6 @@ export const addorupdatemachine = ( formData ) => async dispatch => {
       }
   }
 
-  console.log(formData)
   try {
     const res = await BackendInstance.post('/api/attackinventory/addorupdatemachine', formData, config)
 
@@ -278,7 +269,6 @@ export const getallmachines = () => async dispatch => {
 export const deleteMachine = (id) => async dispatch => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
-      // {console.log(id)}
       //  await BackendInstance.post('/api/attackinventory/')
       await BackendInstance({
         method: 'post',
@@ -303,7 +293,6 @@ export const addorupdateplatform = ( formData ) => async dispatch => {
       }
   }
 
-  console.log(formData)
   try {
     const res = await BackendInstance.post('/api/attackinventory/addorupdateplatform', formData, config)
 
@@ -355,7 +344,6 @@ export const getallplatforms = () => async dispatch => {
 export const deletePlatform = (id) => async dispatch => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
-      // {console.log(id)}
       //  await BackendInstance.post('/api/attackinventory/')
       await BackendInstance({
         method: 'post',
@@ -413,7 +401,6 @@ export const getmanagers = (organizationId) => async dispatch => {
               id: organizationId//'5db080230b62e76104bdd4bd'
           }
       })
-      console.log(res.data)
 
       dispatch({
           type: MANAGERS_FOUND,
@@ -448,7 +435,6 @@ export const getusers = (manager_id) => async dispatch => {
               id: manager_id,
           }
       })
-      console.log(res.data)
 
       dispatch({
           type: USERS_FOUND,

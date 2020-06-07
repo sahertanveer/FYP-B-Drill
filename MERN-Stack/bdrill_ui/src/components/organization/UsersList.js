@@ -43,27 +43,21 @@ class UsersList extends Component {
 
     }
     getManagerUsers(e) {
-        console.log(e.target.value)
         this.setState({ manager_id: e.target.value })
         this.props.getusers(e.target.value)
     }
 
     deleteMan(e) {
         e.preventDefault();
-        console.log(e.currentTarget.value)
         this.props.deleteManager(e.currentTarget.value);
         this.props.getmanagers();
       }
     
       deleteCand(e) {
         e.preventDefault();
-        console.log(e.currentTarget.value)
         this.props.deleteCandidate(e.currentTarget.value);
         this.props.getusers();
       }
-    
-
-
 
     renderCandidates() {
         if (this.props.user.usersFound)

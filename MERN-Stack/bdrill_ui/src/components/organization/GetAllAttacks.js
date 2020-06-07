@@ -36,7 +36,7 @@ class GetAllAttacks extends Component {
       return FilterAttacks.map((attack, index) => {
         const { _id, procedure_id, procedure_name, tactic_name, technique_name, category, platform } = attack //destructuring
         return (
-          <tr key={procedure_id}>
+          <tr key={_id}>
             <td>{procedure_id}</td>
             <td>{procedure_name}</td>
             <td>{tactic_name ? tactic_name : <center>--</center>}</td>

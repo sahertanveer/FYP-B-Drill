@@ -112,8 +112,6 @@ router.post('/registerOrganization',
         }
       )
 
-      //   .catch(err => console.log(err));
-
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -141,7 +139,6 @@ router.post('/registerOrganization',
         if (err)
           console.log(err)
         else
-          console.log(info);
         return res.status(200).json({ message: 'Your account has been registered,please verify registration that has been send to your email.' })
       })
 
@@ -184,7 +181,6 @@ router.post('/login',
     try {
       //check if user exists
       let user = await Organization.findOne({ email });
-      console.log(user)
       if (!user) {
         return res.status(404).json({ errors: [{ msg: 'Invalid Credentials' }] })
       }
@@ -278,8 +274,6 @@ router.post('/registerManager', auth,
             return res.status(200).json({ message: 'User added successfully. Refreshing data...' })
 
           })
-          // .catch(err => console.log(err));
-
 
         var transporter = nodemailer.createTransport({
           service: 'gmail',
@@ -335,10 +329,8 @@ router.post('/getmanagers', auth, async (req, res) => {
       return res.status(422).json({ errors: errors.array() });
     }
     try {
-      console.log(req.body)
       let managers = await Manager.find({ "organization_id": req.body.id }, function (err, docs) {
         if (err) res.json(err);
-        // else console.log('index', {users: docs});
       })
         .select('-password')
         .select('-date')
@@ -392,14 +384,12 @@ router.post('/getusers', auth, async (req, res) => {
     try {
       let users = await User.find({ "manager_id": req.body.id }, function (err, docs) {
         if (err) res.json(err);
-        // else console.log('index', {users: docs});
       })
         .select('-password')
         .select('-date')
         .select('-__v')
         .select('-manager_id')
         .select('-organization_id')
-console.log({users})
       return res.json({ users });
       
     }

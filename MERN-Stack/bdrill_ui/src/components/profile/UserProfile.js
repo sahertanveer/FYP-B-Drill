@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Popup from "reactjs-popup"
 import moment from "moment";
-import Loader from 'react-loader-spinner'
 import { BackendInstance } from '../../config/axiosInstance';
 import { defaultAvatar } from '../../config/default';
 
@@ -42,7 +41,7 @@ const UserProfile = ({ getCurrentProfile, getProfilePhoto, auth: { user, role },
                                                     trigger=
                                                     {
                                                         <div className="overlay">
-                                                            <a href="#" className="btn icon">
+                                                            <a href="#!" className="btn icon">
                                                                 <i className="fas fa-edit small"></i>
                                                             </a>
                                                         </div>

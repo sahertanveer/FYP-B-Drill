@@ -10,7 +10,6 @@ class LineChart extends Component {
     legendPosition:'bottom',
   }
     render() { 
-      console.log(this.props.dataSet1)
       const data = {
         labels: this.props.xAxis_label,
         datasets: [

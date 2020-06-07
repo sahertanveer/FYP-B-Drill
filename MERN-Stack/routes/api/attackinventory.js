@@ -271,7 +271,6 @@ else {
          
 
           let machines = await Machine.findOne({ machine_name: machine_name });
-          console.log("foundOne")
           if (machines) {
             //Update Attack
             machines = await Machine.findOneAndUpdate(
@@ -520,9 +519,7 @@ router.post('/getscenariosfromtactic', auth,
   ],
   async (req, res) => {
     if (req.user.role === "admin" || req.user.role === "manager") {
-      //console.log(res)
       const errors = validationResult(req);
-      console.log(req.body)
       if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
       }

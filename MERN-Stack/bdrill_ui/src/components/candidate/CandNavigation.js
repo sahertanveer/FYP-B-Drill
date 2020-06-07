@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import { BrowserRouter, Route as RouterLink, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-// import { logout } from '../../actions/candidateAuthAction'
 import { logout } from '../../actions/authAction'
 import { setPage } from '../../actions/pageAction'
 import { loadUser } from '../../actions/authAction'
@@ -262,75 +261,75 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
 
 
   // const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [ setMobileMoreAnchorEl] = React.useState(null);
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  // const isMenuOpen = Boolean(anchorEl);
+  // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  function handleProfileMenuOpen(event) {
-    setAnchorEl(event.currentTarget);
-  }
+  // function handleProfileMenuOpen(event) {
+  //   setAnchorEl(event.currentTarget);
+  // }
 
-  function handleMobileMenuClose() {
-    setMobileMoreAnchorEl(null);
-  }
+  // function handleMobileMenuClose() {
+  //   setMobileMoreAnchorEl(null);
+  // }
 
-  function handleMenuClose() {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  }
+  // function handleMenuClose() {
+  //   setAnchorEl(null);
+  //   handleMobileMenuClose();
+  // }
 
   function handleMobileMenuOpen(event) {
     setMobileMoreAnchorEl(event.currentTarget);
   }
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
+  // const menuId = 'primary-search-account-menu';
+  // const renderMenu = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     open={isMenuOpen}
+  //     onClose={handleMenuClose}
+  //   >
+  //     <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+  //     <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+  //   </Menu>
+  // );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+  // const renderMobileMenu = (
+  //   <Menu
+  //     anchorEl={mobileMoreAnchorEl}
+  //     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     id={mobileMenuId}
+  //     keepMounted
+  //     transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     open={isMobileMenuOpen}
+  //     onClose={handleMobileMenuClose}
+  //   >
+  //     <MenuItem>
+  //       <IconButton aria-label="show 11 new notifications" color="inherit">
+  //         <Badge badgeContent={11} color="secondary">
+  //           <NotificationsIcon />
+  //         </Badge>
+  //       </IconButton>
+  //       <p>Notifications</p>
+  //     </MenuItem>
+  //     <MenuItem onClick={handleProfileMenuOpen}>
+  //       <IconButton
+  //         aria-label="account of current user"
+  //         aria-controls="primary-search-account-menu"
+  //         aria-haspopup="true"
+  //         color="inherit"
+  //       >
+  //         <AccountCircle />
+  //       </IconButton>
+  //       <p>Profile</p>
+  //     </MenuItem>
+  //   </Menu>
+  // );
   // if(!isAuthenticated){
   //   return <Redirect to='/candsignin' />
   //  }
@@ -436,7 +435,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
                 // setComponent('aaa')
                 <ListItem button onClick={() => { loadUser(); setPage("canddashboard") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">dashboard</Icon> : null}</ListItemIcon>
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text}  />
                 </ListItem>
               ))}
             </Link>
@@ -445,10 +444,9 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
           <List aria-label="main mailbox folders">
             <Link to="/candprofile" className="navlinks">
               {['Profile'].map((text, index) => (
-                // setComponent('candprofile')
                 <ListItem button onClick={() => { loadUser(); setPage("candprofile") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">person</Icon> : null}</ListItemIcon>
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text} key={index} />
                 </ListItem>
               ))}
             </Link>
@@ -457,7 +455,6 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
           <List aria-label="main mailbox folders">
             <Link to="/candhistory" className="navlinks">
               {['History'].map((text, index) => (
-                // setComponent('candhistory')
                 <ListItem button onClick={() => { loadUser(); setPage("candhistory") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">history</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
@@ -469,7 +466,6 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
           <List aria-label="main mailbox folders">
             <Link to="/candsession" className="navlinks">
               {['Session Room'].map((text, index) => (
-                // setComponent('candsession')
                 <ListItem button onClick={() => { loadUser(); setPage("candsession") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">computer</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
@@ -500,7 +496,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
             </Link>
           </List>
         </Drawer>
-        <main //id="disability"
+        <main 
           className={clsx(classes.content, {
             [classes.contentShift]: open,
           })} // `container-fluid ${disability ? "disable-class": ""} `

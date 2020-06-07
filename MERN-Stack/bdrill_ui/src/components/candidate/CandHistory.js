@@ -77,7 +77,6 @@ class CandHistory extends Component {
         this.props.PerformanceLineGraph();
 
         this.props.getallsessions(this.props.auth._id);
-        console.log(this.props.auth._id)
         this.renderSessionTableData = this.renderSessionTableData.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -94,19 +93,15 @@ class CandHistory extends Component {
     };
 
     getSessionDetails(e) {
-        console.log(e.currentTarget.value)
         this.setState({ open: true, attack_session_id: e.currentTarget.value }, () => console.log(this.state))
         this.props.getsessionsdetail(e.currentTarget.value)
     }
 
     renderSessionDetails() {
-        console.log("savds")
         if (this.props.attack.evaluationDetailsFound) {
             // return this.props.attack.evaluationDetails.map((evalu, index) => {
-            console.log(this.props.attack.evaluationDetails)
             const { session, evaluation } = this.props.attack.evaluationDetails
             let tactics = Object.keys(evaluation);
-            console.log(session)
             return (
                 <table className={styles.content} key={session._id}>
                     <center>
@@ -238,7 +233,7 @@ class CandHistory extends Component {
         }
     }
     render() {
-        const { classes } = this.props;
+        // const { classes } = this.props;
         return (
             <BrowserRouter>
                 <div className="container-fluid">

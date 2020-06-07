@@ -36,7 +36,6 @@ export function chatSocketMiddleware({ getState, dispatch }) {
         socket = io(socketUrl)
 
     socket.on(CONNECT, () => {
-        console.log("Connected");
         dispatch({
             type: CONNECTION_ESTABLISHED,
             payload: socket

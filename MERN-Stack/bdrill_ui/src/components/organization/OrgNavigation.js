@@ -255,28 +255,28 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, s
     to: PropTypes.string.isRequired,
   };
 
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [ setMobileMoreAnchorEl] = React.useState(null);
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  // const isMenuOpen = Boolean(anchorEl);
+  // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  function handleProfileMenuOpen(event) {
-    setAnchorEl(event.currentTarget);
-  }
+  // function handleProfileMenuOpen(event) {
+  //   setAnchorEl(event.currentTarget);
+  // }
 
-  function handleMobileMenuClose() {
-    setMobileMoreAnchorEl(null);
-  }
+  // function handleMobileMenuClose() {
+  //   setMobileMoreAnchorEl(null);
+  // }
 
-  function handleMenuClose() {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  }
+  // function handleMenuClose() {
+  //   setAnchorEl(null);
+  //   handleMobileMenuClose();
+  // }
 
   function handleMobileMenuOpen(event) {
     setMobileMoreAnchorEl(event.currentTarget);
   }
-  const menuId = 'primary-search-account-menu';
+  // const menuId = 'primary-search-account-menu';
   const mobileMenuId = 'primary-search-account-menu-mobile';
 
 

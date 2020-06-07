@@ -1,4 +1,3 @@
-import { render } from 'react-dom'
 import React, { useState, useCallback } from 'react'
 import { useTransition } from 'react-spring'
 // import './styles.css'

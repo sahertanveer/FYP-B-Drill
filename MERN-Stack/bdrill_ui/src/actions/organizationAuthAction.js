@@ -11,8 +11,6 @@ import {
   USERS_NOT_FOUND,
   MANAGERS_FOUND, 
   MANAGERS_NOT_FOUND,
-  USER_DELETED,
-  USER_NOT_DELETED,
 } from './types';
 import { setAlert } from './alertAction'
 
@@ -66,8 +64,6 @@ export const login = ({ email, password }) => async dispatch => {
   
     try {
       const res = await BackendInstance.post('api/organization/login', body, config); 
-      console.log("login")
-      console.log(res.data)
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
@@ -102,8 +98,6 @@ export const login = ({ email, password }) => async dispatch => {
     try {
         const res = await BackendInstance.post('/api/organization/registerManager', body, config);
 
-        console.log(res);
-
         dispatch({
             type: MANAGER_ADDED,
             payload: res.data
@@ -134,7 +128,6 @@ export const getmanagers = (organizationId) => async dispatch => {
               id: organizationId//'5db080230b62e76104bdd4bd'
           }
       })
-      console.log(res.data)
 
       dispatch({
           type: MANAGERS_FOUND,
@@ -169,7 +162,6 @@ export const getusers = (manager_id) => async dispatch => {
               id: manager_id,
           }
       })
-      console.log(res.data)
 
       dispatch({
           type: USERS_FOUND,
@@ -196,8 +188,7 @@ export const getusers = (manager_id) => async dispatch => {
 export const deleteCandidate = (id) => async dispatch => {
   if (window.confirm('Do you want to permanently delete Candidate account? This can NOT be undone!')) {
     try {
-      {console.log(id)}
-      const res = await BackendInstance({
+      await BackendInstance({
         method: 'post',
         url: '/api/organization/deletecandidate',
         data: {
@@ -217,8 +208,7 @@ export const deleteCandidate = (id) => async dispatch => {
 export const deleteManager = (id) => async dispatch => {
   if (window.confirm('Do you want to permanently delete Manager account? This can NOT be undone!')) {
     try {
-      {console.log(id)}
-      const res = await BackendInstance({
+       await BackendInstance({
         method: 'post',
         url: '/api/organization/deletemanager',
         data: {

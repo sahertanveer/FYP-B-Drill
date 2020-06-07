@@ -10,7 +10,6 @@ import Card from '../common/cards/Card';
 import CardHeader from '../common/cards/CardHeader';
 import CardIcon from "../common/cards/CardIcon.js";
 import CardBody from "../common/cards/CardBody"
-import CardFooter from "../common/cards/CardFooter.js";
 
 import { createorupdateProfile, getCurrentProfile } from '../../actions/profileAction';
 
@@ -51,15 +50,9 @@ const EditCreateProfile = ({ profile: { profile, loading }, auth: { user, role, 
 
 
     useEffect(() => {
-        console.log(formData)
-        // if (role==="candidate"){
-        //     setFormData({ ...formData, manager_id: manager_id });
-        // }
-        console.log(formData)
         if (!profile) getCurrentProfile();
         if (!loading) {
             const profileData = { ...formData };
-            console.log(profile)
             for (const key in profile) {
 
 
@@ -77,9 +70,6 @@ const EditCreateProfile = ({ profile: { profile, loading }, auth: { user, role, 
                 if (key in profileData && profile[key] !== null) {
                     profileData[key] = profile[key];
                 }
-                console.log(profileData)
-
-
             }
             if (profileData && profileData.skills && Array.isArray(profileData.skills)) {
                 profileData.skills = profileData.skills.join(",");
@@ -93,7 +83,6 @@ const EditCreateProfile = ({ profile: { profile, loading }, auth: { user, role, 
 
             if (profile && profile.social) {
                 toggleSocialInputs(true);
-                console.log(social)
             }
 
             if (profile && profile.education) {
@@ -102,7 +91,6 @@ const EditCreateProfile = ({ profile: { profile, loading }, auth: { user, role, 
             if (profile && profile.experience) {
                 setExperienceFields(profile.experience)
             }
-            console.log(profileData)
             setFormData(profileData);
         }
     }, [loading, getCurrentProfile, profile]);
@@ -154,7 +142,6 @@ const EditCreateProfile = ({ profile: { profile, loading }, auth: { user, role, 
         let formValues = { ...formData };
         formValues.education.push(values[values.length - 1])
         setFormData(formValues)
-        console.log(educationFields)
 
     }
 
@@ -197,7 +184,6 @@ const EditCreateProfile = ({ profile: { profile, loading }, auth: { user, role, 
 
     const onSubmit = e => {
         e.preventDefault();
-        console.log(formData)
         createorupdateProfile(formData, true);
         if (role && role === "manager") {
             history.push('/managerprofile');

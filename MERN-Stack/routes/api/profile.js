@@ -48,7 +48,6 @@ var validateFile = function (file, cb) {
 // @access  Private
 router.post('/uploadphoto', auth, async (req, res) => {
   upload(req, res, async (error) => {
-    console.log(req.file)
     if (error) {
       let msg = null
       if (error.message)
@@ -96,7 +95,6 @@ router.post('/uploadphoto', auth, async (req, res) => {
 router.get('/getprofilephoto', auth, async (req, res) => {
   await Profile.findOne({ user: req.user.id })
     .then(pro => {
-      console.log(pro);
       return res.status(200).json({ photo: pro, msg: "Hoooo gaie" })
 
     })
@@ -213,7 +211,6 @@ router.post('/', auth,
 
     if (education) {
       education.map(fields => {
-        console.log(fields)
         singleObject = {}
         if (fields.school) singleObject.school = fields.school;
         if (fields.degree) singleObject.degree = fields.degree;
@@ -230,7 +227,6 @@ router.post('/', auth,
     profileFields.experience = [];
     if (experience) {
       experience.map(fields => {
-        console.log(fields)
         singleObject = {}
         if (fields.jobtitle) singleObject.jobtitle = fields.jobtitle;
         if (fields.jobcompany) singleObject.jobcompany = fields.jobcompany;
@@ -242,8 +238,6 @@ router.post('/', auth,
         profileFields.experience.push(singleObject)
       })
     }
-
-    console.log(profileFields.experience)
 
     try {
 
@@ -266,7 +260,6 @@ router.post('/', auth,
       }
 
       //Create Profile
-      console.log(profileFields)
       profile = new Profile(profileFields);
       await profile.save()
       res.json(profile);
@@ -303,8 +296,6 @@ router.post('/getprofiles', auth, async (req, res) => {
         //  nullField="user"
 
       }
-      console.log(filter)
-      // console.log(nullField)
       // const profiles = await Profile
       //   .find({[field] : req.body.id, [nullField]:null})
       //   .populate(field, ['_id', 'firstname', 'lastname', 'avatar', 'email']);
@@ -327,7 +318,6 @@ router.post('/getprofiles', auth, async (req, res) => {
 // @access  Public
 router.post('/getuserprofile', async (req, res) => {
   try {
-    console.log(req.body)
     const {role, userId} = req.body
     var field = null
     if (role === "candidate")
@@ -365,7 +355,6 @@ router.post('/getuserprofile', async (req, res) => {
     //       ]
     //   })
       .populate(field, ['_id', 'firstname', 'lastname', 'avatar', 'email'])
-      console.log(profile)
       return res.json(profile);
       
       // .populate("manager", ['_id', 'firstname', 'lastname', 'avatar', 'email'])

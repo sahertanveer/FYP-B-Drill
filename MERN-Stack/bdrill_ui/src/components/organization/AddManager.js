@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter, Redirect, Route } from 'react-router-dom'
+import { BrowserRouter} from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { registerManager } from '../../actions/organizationAuthAction'

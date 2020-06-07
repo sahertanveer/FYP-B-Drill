@@ -50,16 +50,13 @@ router.post('/startattacksession', auth,
       const { user_id, assignment_id } = req.body
       var new_attack_session = new AttackSession({ user_id: user_id, assignment: assignment_id, in_progress: true });
       new_attack_session.save(function (err, new_attack_session) {
-        if (err) return res.json({ result: "failure", reason: err }), console.log(err);  //if (err) return console.error(err);
-        // console.log(mongoose.connection.readyState)
+        if (err) return res.json({ result: "failure", reason: err }), console.log(err);  
         console.log(new_attack_session._id + "saved to database")
 
         var new_attack_session_evaluation = new AttackSessionsEvaluation({ attack_session_id: new_attack_session._id, user_id: req.body.user_id });
         new_attack_session_evaluation.save(function (err, new_attack_session_evaluation) {
-          if (err) return res.json({ result: "failure", reason: err }), console.log(err); //console.error(err);
-          // console.log(mongoose.connection.readyState)
+          if (err) return res.json({ result: "failure", reason: err }), console.log(err); 
           console.log(new_attack_session_evaluation._id + "save to database")
-          //res.json(new_attack_session_evaluation)
         });
 
         return res.json({ result: "success", attack_session_id: new_attack_session._id })
@@ -94,7 +91,6 @@ router.post('/deletesession', auth,
     if (req.user.role === "candidate") {
       try {
         const { attack_session_id } = req.body
-        console.log("aaya delete honey")
         var deleteSession = await AttackSession.findByIdAndDelete(attack_session_id);
         var deleteSessionEvaluation = await AttackSessionsEvaluation.findOneAndDelete({ attack_session_id });
 
@@ -164,7 +160,6 @@ router.post('/attackrequest', auth,
 
     if (req.user.role === "candidate") {
       try {
-        console.log(attackMachineBaseUrl)
         await axios(
           {
             method: 'post',
@@ -213,7 +208,6 @@ router.post('/endsession', auth,
     if (req.user.role === "candidate") {
       try {
         const { attack_session_id, assignment_id } = req.body
-        console.log("aaya false honey")
 
         let totalScore = 0
         let totalAggregatedScore = 0
@@ -334,7 +328,6 @@ router.post('/checkandgetattacksession', auth,
 
         await AttackSession.find({ user_id: user_id, in_progress: true }).populate('assignment', null, { end_time: { "$gte": new Date() } })
           .then(attackSessions => {
-            // console.log(attackSessions)
             for (i = attackSessions.length - 1; i >= 0; --i) {
 
               if (attackSessions[i].assignment && attackSessions[i].assignment !== null) {
@@ -366,7 +359,6 @@ router.post('/checkandgetattacksession', auth,
                 }
               })
                 .then(session => {
-                  console.log(session)
                   return res.json(
                     {
                       result: "success",
@@ -389,8 +381,6 @@ router.post('/checkandgetattacksession', auth,
               return res.status(400).json({ msg: 'You have two sessions running at a time please contact manager or admin' })
             }
             else {
-
-              console.log("404")
               return res.status(404).json({ msg: "No session found" })
             }
 
@@ -438,7 +428,6 @@ router.post('/checkattacksession', auth,
 
       await AttackSession.find({ user_id: user_id, in_progress: true }).populate('assignment', null, { end_time: { "$gte": new Date() } })
         .then(attackSessions => {
-          console.log(attackSessions)
           for (i = attackSessions.length - 1; i >= 0; --i) {
 
             if (attackSessions[i].assignment && attackSessions[i].assignment !== null) {
@@ -458,7 +447,6 @@ router.post('/checkattacksession', auth,
 
             }
           }
-          console.log(attackSessions)
           return res.json({ attackSessions })
         }
         ).catch(err => {
@@ -569,7 +557,6 @@ updateUserHistory = async (usrId, scenarioId, try_count, score) => {
 
     if (tacticId === tactics[key]) {
       var tacticName = key;
-      console.log(key)
       break;
     }
   }
@@ -765,7 +752,6 @@ router.post('/getusersessions', auth,
   async (req, res) => {
     if (req.user.role === "candidate") {
       try {
-        console.log(req.body.user_id)
         await normalizeCandidateAssignmentEvaluation(req.body.user_id)
 
         await AttackSession.find({ user_id: req.body.user_id, in_progress: false }).populate( //'assignment')
@@ -815,7 +801,6 @@ normalizeCandidateAssignmentEvaluation = async (userId) => {
       let totalScenariosAggregate = 0;
       // let percentSavedTime = 0;
       let endResult = 0;
-      console.log(attackSessions)
       for (var i = 0; i < attackSessions.length; i++) {
         totalScore = 0
         totalAggregatedScore = 0
@@ -906,16 +891,10 @@ calculateScenarioAggregate = async (score, tryCount) => {
 }
 
 calculateTotalScenariosAggregate = async (aggregatedScore, totalScore) => {
-  console.log(aggregatedScore)
-  console.log(totalScore)
   return (aggregatedScore / totalScore) * 100
 }
 
 calculatePercentSavedTime = async (alloted_start, alloted_end, actual_start, actual_end) => {
-  // console.log(moment(new Date(alloted_start)).format('D MMM YYYY , h:mm:ss:A'))
-  // console.log(moment(new Date(actual_start)).format('D MMM YYYY , h:mm:ss:A'))
-  // console.log(moment(new Date(actual_end)).format('D MMM YYYY , h:mm:ss:A'))
-  // console.log(moment(new Date(alloted_end)).format('D MMM YYYY , h:mm:ss:A'))
 
   let percentConsumedTime = Math.round(
     (
@@ -930,16 +909,11 @@ calculatePercentSavedTime = async (alloted_start, alloted_end, actual_start, act
     aggregatedEfficiencyPercent = 100 - Math.round((percentConsumedTime / 75) * 100)
   }
 
-  // console.log([100 - percentConsumedTime, aggregatedEfficiencyPercent])
   return [100 - percentConsumedTime, aggregatedEfficiencyPercent]
 }
 
 calculateSessionResult = async (TotalScenariosAggregate, aggregatedEfficiencyPercent) => {
   //75 % weightage for scenario questions and 25% for Time
-
-  // console.log(TotalScenariosAggregate)
-  // console.log(aggregatedEfficiencyPercent)
-  // console.log(aggregatedEfficiencyPercent)
   return ((TotalScenariosAggregate * 0.75) + (aggregatedEfficiencyPercent * 0.25)) || 0
 }
 

@@ -163,12 +163,9 @@ router.post('/resetPassword',
 
       const salt = await bcrypt.genSalt(10);
       var pwd = await bcrypt.hash(password, salt);
-      console.log(email)
-      console.log(pwd)
 
       Role.findOneAndUpdate({ email: email }, { password: pwd }, { new: true })
         .then(usr => {
-          console.log(usr)
           var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -193,7 +190,6 @@ router.post('/resetPassword',
               console.log(err)
             else
               console.log("Email sent")
-            // console.log(info);
           })
           return res.status(200).send("Password updated successfully");
         }).catch(err => {
@@ -213,7 +209,6 @@ router.post('/resetPassword',
 // @desc    Login User / Returning JWT Token
 // @access  Public
 router.get('/authtoken', auth, async (req, res) => {
-  console.log("GFGCH")
   return res.status(200).json({ msg: "Valid Token" })
 })
 
@@ -271,7 +266,6 @@ router.post('/changePassword',
 
       const salt = await bcrypt.genSalt(10);
       var newpass = await bcrypt.hash(newpassword, salt);
-      console.log("newpassword" + newpass)
 
       Role.findOneAndUpdate(
         { _id: _id },
@@ -279,7 +273,6 @@ router.post('/changePassword',
         { new: true }
       )
         .then(usr => {
-          console.log(usr)
           return res.status(200).send("Password updated successfully");
         }).catch(err => {
           return res.status(400).send('Could not change password.');

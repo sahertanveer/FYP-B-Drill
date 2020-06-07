@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter, Redirect } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import PasswordStrengthBar from 'react-password-strength-bar';

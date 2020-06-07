@@ -1,5 +1,4 @@
 import { BackendInstance } from '../config/axiosInstance';
-import { loadUser } from './authAction'
 import {
     VIS_TACTICS_FOUND, VIS_TACTICS_NOT_FOUND,
     VIS_ASSIGNMENTS_ATTEMPTED_STATUS_FOUND, VIS_ASSIGNMENTS_ATTEMPTED_STATUS_NOT_FOUND,

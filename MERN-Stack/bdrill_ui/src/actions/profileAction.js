@@ -17,9 +17,7 @@ export const uploadPhoto = ( file ) => async dispatch => {
       'Content-Type': "multipart/form-data"
     }
   }
-  console.log(file + "fgh")
-// const body = JSON.stringify( {file: file} );
-console.log(  "gdh")
+
     try {
       await BackendInstance.post('/api/profile/uploadphoto', file, config);
   
@@ -91,10 +89,8 @@ export const getCurrentProfile = () => async dispatch => {
       }
   }
     const body = JSON.stringify({requestedRole: requestedRole, all: all, id: id});
-    console.log(body)
     try {
       const res = await BackendInstance.post('/api/profile/getprofiles' , body, config);
-      console.log(res.data)
       dispatch({
         type: GET_PROFILES,
         payload: res.data
@@ -116,8 +112,6 @@ export const getCurrentProfile = () => async dispatch => {
         }
       };
       const body = JSON.stringify({role:role, userId:userId});
-      console.log(userId)
-      console.log(role)
       const res = await BackendInstance.post(`/api/profile/getuserprofile`, body, config);
       
       dispatch({

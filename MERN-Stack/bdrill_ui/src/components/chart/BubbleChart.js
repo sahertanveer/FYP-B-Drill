@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import { withRouter} from 'react-router-dom'
 import { Bubble} from 'react-chartjs-2';
 
-
-
-
-
 // const options={
 //   scales: {
 //     xAxes:[
@@ -55,9 +51,6 @@ import { Bubble} from 'react-chartjs-2';
   
 // ]
 class BubbleChart extends Component {
-  constructor(props) {
-    super(props)
-  }
   
     render() { 
       const options = this.props.options

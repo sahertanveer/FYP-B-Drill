@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react'
-import { withRouter, Route, BrowserRouter, useLocation } from 'react-router-dom';
+import { withRouter, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import moment from "moment";
@@ -13,24 +13,20 @@ import Card from '../common/cards/Card';
 import CardHeader from '../common/cards/CardHeader';
 import CardIcon from "../common/cards/CardIcon.js";
 import CardBody from "../common/cards/CardBody.js";
-import CardFooter from "../common/cards/CardFooter.js";
 
 //  const location =useLocation()
-
 
 const BioProfile = ({ getProfileById, auth: { user }, profile: { userprofile } }) => {
     const nullProfile = !userprofile;
     const values = queryString.parse(window.location.search)
 
     useEffect(() => {
-
-        console.log(values)
         getProfileById(values.role, values.userId);
     }, [getProfileById, nullProfile])
     if (userprofile === null) {
         return (<div className="white-text center">
             <Loader color="#00BFFF" height={100} width={100} timeout={0} /> <br></br>
-        Fetching User Profil
+                <p>Fetching User Profile</p>
         </div>);
     }
     else

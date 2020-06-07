@@ -47,10 +47,8 @@ class AddorUpdateAttack extends Component {
                     procedure_id: this.state.procedure_id//'5db080230b62e76104bdd4bd'
                 }
             })
-            console.log(res.data)
 
             if ((res.data.attacks).length === 1) {
-                console.log(res.data)
                 this.setState({
                     tactic_name: res.data.attacks[0].tactic_name,
                     technique_name: res.data.attacks[0].technique_name,
@@ -83,7 +81,6 @@ class AddorUpdateAttack extends Component {
 
     onSubmit = e => {
         e.preventDefault()
-        console.log(this.state)
         this.props.addorupdateattack(this.state);
     }
 

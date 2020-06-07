@@ -28,9 +28,6 @@ router.get('/', auth, async (req, res) => {
             .select('email');
 
             roleBasedUser["contacts"] ={Admin: [{firstname: "Support"}], Managers: [manager], Organizations: [organization]}
-
-
-            console.log(roleBasedUser)
             res.json(roleBasedUser)
         }
         else if (req.user.role === "organization") {
@@ -48,7 +45,6 @@ router.get('/', auth, async (req, res) => {
             .select('email');
 
             roleBasedUser["contacts"] ={Admin: [{firstname: "Support"}], Candidates: candidates, Managers: managers}
-            console.log(roleBasedUser);
             res.json(roleBasedUser);
 
         }
@@ -71,7 +67,6 @@ router.get('/', auth, async (req, res) => {
             .select('email');
 
             roleBasedUser["contacts"] ={Candidates: candidates, Managers: managers,  Organizations: organizations}
-            console.log(roleBasedUser);
             res.json(roleBasedUser);
 
         }
@@ -89,8 +84,6 @@ router.get('/', auth, async (req, res) => {
             .select('email');
 
             roleBasedUser["contacts"] ={Admin: [{firstname: "Support"}], Candidates: candidates, Organizations: [organization]}
-
-            console.log(roleBasedUser)
             res.json(roleBasedUser)
         }
         else {

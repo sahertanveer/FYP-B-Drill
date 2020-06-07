@@ -32,13 +32,8 @@ render(){
               this.props.profile.profiles.map((prof, i)=> {
                 elements.push(
                 <ProfileItems key={prof._id} profile={prof} />)
-                
-                
               
                 if ((i+1)%3 === 0){
-                  console.log("in 3")
-                  console.log(i)
-                console.log(elements)
                   cards.push( <div key={prof._id} className ="row">
                   {elements}
                   </div>)
@@ -47,17 +42,12 @@ render(){
 
          if (i+1 === this.props.profile.profiles.length){
             if(elements.length >0 ){
-              console.log("in full")
-              console.log(i)
-                console.log(elements)
                           cards.push( <div key={prof._id} className ="row">
                           {elements}
                         </div>)
                           elements=[]
                      }
           }
-    
-
               })
             ) : (
               <Loader className="center" type="BallTriangle" color="cyan" height={80} width={80} />

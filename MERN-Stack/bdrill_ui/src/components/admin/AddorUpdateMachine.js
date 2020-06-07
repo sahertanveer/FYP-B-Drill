@@ -41,10 +41,8 @@ class AddorUpdateMachine extends Component {
                     machine_name: this.state.machine_name
                 }
             })
-            console.log(res.data)
 
             if ((res.data.machines).length === 1) {
-                console.log(res.data)
                 this.setState({
                     platform: res.data.machines[0].platform,
                     architecture: res.data.machines[0].architecture
@@ -70,14 +68,12 @@ class AddorUpdateMachine extends Component {
 
     onSubmit = e => {
         e.preventDefault()
-        console.log(this.state)
         this.props.addorupdatemachine(this.state)
     }
 
     selectPlatform(event) {
         event.preventDefault();
         this.setState({ platform: event.target.innerText })
-
     }
 
     closeMenuPlatform() {

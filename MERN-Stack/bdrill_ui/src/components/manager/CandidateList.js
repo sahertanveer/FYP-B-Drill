@@ -14,19 +14,16 @@ class CandidateList extends Component {
     constructor(props) {
         super(props);
         this.props.getusers(this.props.auth._id);
-        console.log(this.props.auth._id)
     }
 
     deleteCand(e) {
         e.preventDefault();
-        console.log(e.currentTarget.value)
         this.props.deleteCandidate(e.currentTarget.value);
         this.props.getusers();
     }
 
     setUserId(e) {
-        console.log(e.target.value)
-        let cand_id = e.target.value
+        // let cand_id = e.target.value
         this.props.history.push(`/assignattack?candId=${e.target.value}`)
         this.props.setPage('assignattack')
     }

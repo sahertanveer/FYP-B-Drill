@@ -19,7 +19,6 @@ export const forgotPassword = ({ email }) => async dispatch => {
   }
 
   export const resetPassword = ({  password, token }) => async dispatch => {
-      console.log(token)
     const config = {
       headers: {
         'Content-Type': ' application/json',

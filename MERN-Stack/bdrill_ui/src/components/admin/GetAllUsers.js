@@ -1,4 +1,4 @@
-import React, { Component, memo, useState, Fragment } from 'react'
+import React, { Component, memo, useState } from 'react'
 import { useSpring, a } from 'react-spring'
 import { BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -46,34 +46,29 @@ class GetAllUsers extends Component {
   }
 
   getOrganizationUsers(e) {
-    console.log(e.target.value)
     this.setState({ organization_id: e.target.value }, () => console.log(this.state))
     this.props.getmanagers(e.target.value)
   }
 
   getManagerUsers(e) {
-    console.log(e.target.value)
     this.setState({ manager_id: e.target.value })
     this.props.getusers(e.target.value)
   }
 
   deleteOrg(e) {
     e.preventDefault();
-    console.log(e.currentTarget.value)
     this.props.deleteOrganization(e.currentTarget.value);
     this.props.getorganizations();
   }
 
   deleteMan(e) {
     e.preventDefault();
-    console.log(e.currentTarget.value)
     this.props.deleteManager(e.currentTarget.value);
     this.props.getmanagers();
   }
 
   deleteCand(e) {
     e.preventDefault();
-    console.log(e.currentTarget.value)
     this.props.deleteCandidate(e.currentTarget.value);
     this.props.getusers();
   }
@@ -191,9 +186,6 @@ class GetAllUsers extends Component {
               </button>
             </div>
             <div className="col s12 m12 l12">
-              {console.log(this.state.organization_id),
-                console.log(this.state.organization_id === _id)
-              }
               {this.state.organization_id === _id ?
                 <Tree name="managers" defaultOpen >
                   <div className="row center badge-light   ">

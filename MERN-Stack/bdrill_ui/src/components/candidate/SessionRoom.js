@@ -124,8 +124,7 @@ class SessionRoom extends Component {
             .then(response => {
                 if (response.data.result === "success") {
 
-                    console.log(response.data.assignment_id)
-                    var startTime = moment(new Date);
+                    var startTime = moment(new Date());
                     var endTime = moment(new Date(response.data.end_time))
                     var diffTime = moment.duration(endTime.diff(startTime));
                     this.reset = diffTime
@@ -140,10 +139,8 @@ class SessionRoom extends Component {
                         steps: response.data.tactics,
                         machine: response.data.machine_name
                     })
-                    console.log(response.data)
                 }
                 else {
-                    console.log("No session found!");
                     this.props.history.push(`/candsession`)
                     this.props.setPage('candsession')
                 }
@@ -151,7 +148,6 @@ class SessionRoom extends Component {
             .catch(err => {
 
                 this.props.setAlert(err.response.data.msg, 'danger')
-                console.log("No session found!");
                 this.props.history.push(`/candsession`)
                 this.props.setPage('candsession')
 
@@ -220,7 +216,6 @@ class SessionRoom extends Component {
             }
         )
             .then(response => {
-                console.log(response.data)
                 if (response.data.result === "success") {
                     this.questions = response.data.questions;
                     let questionsLength = this.questions.length;
@@ -271,8 +266,6 @@ class SessionRoom extends Component {
             children.push(this.state.inputs[i].current.value)
             // children.push(this.refs[this.state.inputs[i]].value)
         }
-        console.log(children)
-
 
         BackendInstance(
             {
@@ -285,8 +278,6 @@ class SessionRoom extends Component {
                 }
             }
         ).then(response => {
-
-            console.log(response);
             if (response.data.result === "success") {
                 this.setState(prevState => ({
                     inputs: [],
@@ -307,7 +298,7 @@ class SessionRoom extends Component {
     }
     async endSession() {
         try {
-            const endSession = await BackendInstance({
+            await BackendInstance({
                 method: 'post',
                 url: '/api/attacksessions/endsession',//'http://115.186.176.139:5000/api/attacksessions/startattacksession',
                 data: {
@@ -320,7 +311,7 @@ class SessionRoom extends Component {
                 }
             })
 
-            const endSessionInAttackMachine = await Axios({
+             await Axios({
                 method: 'post',
                 url: 'https://58.65.201.134:8082/post_command',//'http://115.186.176.139:5000/api/attacksessions/startattacksession',
                 data: {
@@ -330,7 +321,6 @@ class SessionRoom extends Component {
                     token: this.props.auth.token
                 }
             })
-            console.log(endSession)
             this.props.setAlert('session ended successfully', "success")
             this.props.history.push(`/candsession`)
             this.props.setPage('candsession')

@@ -2,16 +2,9 @@ import React, { Component } from 'react'
 import { withRouter} from 'react-router-dom'
 import {Bar} from 'react-chartjs-2';
 
-
-
-
-
 class VisitLineChart extends Component {
 //   displayName: 'RandomizedDataLineExample',
 
-constructor(props) {
-  super(props)
-}
 
 // componentWillMount(){
 //     this.setState(initialState);

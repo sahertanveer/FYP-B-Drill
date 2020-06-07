@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, BrowserRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Alert from '../../layout/Alert'
@@ -46,7 +46,7 @@ class ImageUpload extends Component {
         let { imagePreviewUrl } = this.state;
         let imagePreview = null;
         if (imagePreviewUrl) {
-            imagePreview = (<img src={imagePreviewUrl} />);
+            imagePreview = (<img src={imagePreviewUrl} alt="" />);
         } else {
             imagePreview = (<div className="previewText center">Please select an Image for Preview</div>);
         }
@@ -69,11 +69,11 @@ class ImageUpload extends Component {
 
                                 <div className="avatarWrapper">
                                     <div className="avatarNav ">
-                                        <a href="#" className="avZoomIn" data-placement="right" title="Zoom In"><span className="fa fa-plus-circle white-text"></span></a>
-                                        <a href="#" className="avZoomOut" data-placement="right" title="Zoom Out"><span className="fa fa-minus-circle white-text"></span></a>
+                                        <a href="#!" className="avZoomIn" data-placement="right" title="Zoom In"><span className="fa fa-plus-circle white-text"></span></a>
+                                        <a href="#!" className="avZoomOut" data-placement="right" title="Zoom Out"><span className="fa fa-minus-circle white-text"></span></a>
                                         <button type='submit' className="avSave" data-placement="right" title="Upload"><i className="fas fa-upload" style={{ color: "#1fa398" }} /></button>
                                         <span className="divider"><span className="fa fa-ellipsis-h "></span></span>
-                                        <a href="#" className="avDelete" data-toggle="tooltip" data-placement="right" title="Delete"><span className="fa fa-trash grey-text"></span></a>
+                                        <a href="#!" className="avDelete" data-toggle="tooltip" data-placement="right" title="Delete"><span className="fa fa-trash grey-text"></span></a>
                                         {this.props.auth && this.props.auth.role === "manager" ?
                                             <a href="/managerprofile" className="avDelete" data-toggle="tooltip" data-placement="right" title="Delete"><span className="fa fa-trash grey-text"></span></a>
                                             : <a href="/candprofile" className="avDelete" data-toggle="tooltip" data-placement="right" title="Delete"><span className="fa fa-trash grey-text"></span></a>

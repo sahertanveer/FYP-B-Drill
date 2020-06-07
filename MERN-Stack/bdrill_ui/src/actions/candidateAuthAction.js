@@ -51,7 +51,6 @@ export const register = ({ firstname, lastname, email, password }) => async disp
 
 //Login User
 export const login = ({ email, password }) => async dispatch => {
-  console.log(email)
   const config = {
     headers: {
       'Content-Type': ' application/json'
@@ -62,8 +61,6 @@ export const login = ({ email, password }) => async dispatch => {
 
   try {
     const res = await BackendInstance.post('api/users/login', body, config);  //'http://115.186.176.139:5000/api/users/login'
-    console.log("login")
-    console.log(res.data)
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
@@ -83,13 +80,13 @@ export const login = ({ email, password }) => async dispatch => {
   }
 }
 
- //get all attacks
- export const getallsessions = (userId) => async dispatch => {
-  const config = {
-    headers: {
-      'Content-Type': ' application/json'
-    }
-  }
+//get all attacks
+export const getallsessions = (userId) => async dispatch => {
+  // const config = {
+  //   headers: {
+  //     'Content-Type': ' application/json'
+  //   }
+  // }
   try {
     // const res = await BackendInstance.post('/api/attacksessions/getusersessions', config);
     const res = await BackendInstance({
@@ -98,33 +95,32 @@ export const login = ({ email, password }) => async dispatch => {
       data: {
         user_id: userId//'5db080230b62e76104bdd4bd'
       }
-  })
-  console.log(res.data)
+    })
     dispatch({
       type: SESSIONS_FOUND,
       payload: res.data
     });
   } catch (err) {
-   
+
     const errors = err.response.data.errors;
-    
+
     if (errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
     }
-    
+
     dispatch({
       type: SESSIONS_NOT_FOUND
     });
   }
 }
 
- //get all sessions details
- export const getsessionsdetail = (attackSessionId) => async dispatch => {
-  const config = {
-    headers: {
-      'Content-Type': ' application/json'
-    }
-  }
+//get all sessions details
+export const getsessionsdetail = (attackSessionId) => async dispatch => {
+  // const config = {
+  //   headers: {
+  //     'Content-Type': ' application/json'
+  //   }
+  // }
   try {
     // const res = await BackendInstance.post('/api/attacksessions/getusersessions', config);
     const res = await BackendInstance({
@@ -133,20 +129,20 @@ export const login = ({ email, password }) => async dispatch => {
       data: {
         attack_session_id: attackSessionId//'5db080230b62e76104bdd4bd'
       }
-  })
-  console.log(res.data)
+    })
+  
     dispatch({
       type: EVALUATION_FOUND,
       payload: res.data
     });
   } catch (err) {
-   
+
     const errors = err.response.data.errors;
-    
+
     if (errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
     }
-    
+
     dispatch({
       type: EVALUATION_NOT_FOUND
     });

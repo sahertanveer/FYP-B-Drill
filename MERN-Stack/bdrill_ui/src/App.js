@@ -11,7 +11,6 @@ import setAuthToken from './utils/SetAuthToken';
 import { setPage } from './actions/pageAction'
 
 import Home from './components/Home'
-import ChatLayout from './components/chat/ChatLayout'
 import ForgotPassword from './components/common/Password/ForgotPassword';
 import ResetPassword from './components/common/Password/ResetPassword';
 
@@ -51,7 +50,6 @@ const App = () => {
 
     store.dispatch(loadUser());
     
-    console.log(window.location.pathname)
     store.dispatch(setPage((window.location.pathname).replace('/', '')))
 
     window.onpopstate = (e) => {

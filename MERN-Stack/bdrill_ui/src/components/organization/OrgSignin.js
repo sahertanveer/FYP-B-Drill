@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { BrowserRouter, Redirect, Route } from 'react-router-dom'
+import { BrowserRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import Particles from '../common/Particles'
 import { login } from '../../actions/organizationAuthAction'
-import OrgRegistration from './OrgRegistration'
 import Alert from '../../layout/Alert'
 
 const OrgSignin = ({ login, isAuthenticated, role }) => {
