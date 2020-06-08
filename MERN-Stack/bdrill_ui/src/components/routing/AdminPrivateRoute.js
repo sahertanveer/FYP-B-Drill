@@ -26,7 +26,6 @@ const AdminPrivateRoute = ({ component: Component, auth: { isAuthenticated, load
 
 AdminPrivateRoute.propTypes = {
     auth: PropTypes.object.isRequired,
-    setPage: PropTypes.func.isRequired,
 }
 
 
