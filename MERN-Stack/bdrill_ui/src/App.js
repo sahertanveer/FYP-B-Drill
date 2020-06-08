@@ -108,7 +108,7 @@ const App = () => {
           <ManagerPrivateRoute path="/getcandidatesprofiles" component={ManagerNavigation} />
           <ManagerPrivateRoute path="profileitems" component={ManagerNavigation} />
           <ManagerPrivateRoute path="/managerchatlayout" component={ManagerNavigation} />
-          <ManagerPrivateRoute path="/mangerchangepassword" component={ManagerNavigation} />
+          <ManagerPrivateRoute path="/managerchangepassword" component={ManagerNavigation} />
 
           {/* Candidate */}
           <CandidatePrivateRoute path="/candprofile" component={CandNavigation} />

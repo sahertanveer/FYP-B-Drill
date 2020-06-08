@@ -65,22 +65,24 @@ class UsersList extends Component {
                 const { _id, firstname, lastname, email, avatar } = user //destructuring
                 return (
                     <div className="row center" key={_id}>
-                        <div className="col s2 m2 l2 offet-s1 offst-m1 offset-l1 center">
+                        <div className="col s12 m1 l1 offst-m1 offset-l1 center">
                         <img src={avatar?`${BackendInstance.defaults.baseURL}${avatar}`:defaultAvatar}
                                    alt=''
                                     className='round-img center' style={{ borderRadius: '50%', width: '40px', height:'40px', display:'block' }}
                                 />
                         </div>
-                        <div className="col s2 m2 l2">
-                            <p>{firstname}</p>
+                        <div className="col s12 m3 l3 center">
+                            <p>{firstname} {lastname}</p>
                         </div>
-                        <div className="col s2 m2 l2">
-                            <p>{lastname}</p>
-                        </div>
-                        <div className="col s3 m3 l3">
+                        <div className="col s12 m3 l3 center">
                             <p>{email}</p>
                         </div>
-                        <div className="col s2 m2 l2">
+                        <div className="col s12 m2 l2 center">
+                            <button className="btn btn-info" value={_id}  onClick={(e) => {this.deleteMan(e)}}>
+                                Profile
+                            </button>
+                        </div>
+                        <div className="col s12 m2 l2 center">
                             <button className="btn btn-danger" value={_id}  onClick={(e) => {this.deleteCand(e)}}>
                                 <i className=" tiny material-icons white-text"> delete</i>
                             </button>
@@ -99,26 +101,28 @@ class UsersList extends Component {
                 const { _id, firstname, lastname, email, avatar } = manager //destructuring
                 return (
                     <div className="row " key={_id}>
-                        <div className="col s1 m1 l1 center">
-                            <button className="btn btn-primary" value={_id} onClick={e => this.getManagerUsers(e)}>+
+                        <div className="col s12 m1 l1 center">
+                            <button className="btn btn-info" value={_id} onClick={e => this.getManagerUsers(e)}>+
                             </button>
                         </div>
-                        <div className="col s2 m2 l2 center">
+                        <div className="col s12 m1 l1 center">
                         <img src={avatar?`${BackendInstance.defaults.baseURL}${avatar}`:defaultAvatar}
                                    alt=''
                                     className='round-img center' style={{ borderRadius: '50%', width: '40px', height:'40px', display:'block' }}
                                 />
                         </div>
-                        <div className="col s2 m2 l2 center">
-                            <p>{firstname}</p>
+                        <div className="col s12 m3 l3 center">
+                            <p>{firstname} {lastname}</p>
                         </div>
-                        <div className="col s2 m2 l2 center">
-                            <p>{lastname}</p>
-                        </div>
-                        <div className="col s3 m3 l3 center">
+                        <div className="col s12 m3 l3 center">
                             <p>{email}</p>
                         </div>
-                        <div className="col s2 m2 l2 center">
+                        <div className="col s12 m2 l2 center">
+                            <button className="btn btn-info" value={_id}  onClick={(e) => {this.deleteMan(e)}}>
+                                Profile
+                            </button>
+                        </div>
+                        <div className="col s12 m2 l2 center">
                             <button className="btn btn-danger" value={_id}  onClick={(e) => {this.deleteMan(e)}}>
                                 <i className=" tiny material-icons white-text"> delete</i>
                             </button>
@@ -128,14 +132,9 @@ class UsersList extends Component {
                                 <div className="col s12 m12 l12 left">
                                     <Tree name="candidates" defaultOpen >
                                         {this.renderCandidates()}
-
                                     </Tree>
                                 </div>
                             : null}
-
-
-
-
                     </div>
                 )
             })
@@ -154,25 +153,24 @@ class UsersList extends Component {
                                     <br />
 
                                     <div className="row center badge-light white-text ">
-                                        <div className="col s2 m2 l2 offset-s1 offset-m1 offset-l1 white-text">
+                                        <div className="col s12 m1 l1 offset-m1 offset-l1 white-text">
                                             <h6>Avatar</h6>
                                         </div>
-                                        <div className="col s2 m2 l2">
-                                            <h6>First Name</h6>
+                                        <div className="col s12 m3 l3">
+                                            <h6>Name</h6>
                                         </div>
-                                        <div className="col s2 m2 l2">
-                                            <h6>Last Name</h6>
-                                        </div>
-                                        <div className="col s3 m3 l3">
+                                        <div className="col s12 m3 l3">
                                             <h6>Email</h6>
                                         </div>
-                                        <div className="col s2 m2 l2">
+                                        <div className="col s12 m2 l2">
+                                            <h6>Profile</h6>
+                                        </div>
+                                        <div className="col s12 m2 l2">
                                             <h6>Delete User</h6>
                                         </div>
                                     </div>
 
                                     <div className="row">
-                                        
                                         <div className="col s12 m12 l12">
                                             {this.renderTableData()}
                                         </div>

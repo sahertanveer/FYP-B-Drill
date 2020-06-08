@@ -40,12 +40,12 @@ class ChatBox extends Component {
                 <button className="btn success rcw-launcher " style={{ borderRadius: "50%" }} onClick={this.closeChatBox}>
                   <i className="fas fa-times-circle white-text" />
                 </button>
-                <div className="rcw-conversation-container rcw-widget-container" style={{ height: "75%", width:"100%", zIndex:9999 }}>
+                <div className="rcw-conversation-container rcw-widget-container" style={{ height: "auto", width:"100%", zIndex:9999 }}>
                 {/* <div className="rcw-header">
                   <h6 className="rcw-title">B-Drill ChatBox</h6>
                   <small>We give wings to your skills, you decide where to fly</small>
                 </div> */}
-             <ChatLayout style={{height:"33rem"}}  chatWidget={true}/>
+             <ChatLayout style={{height:"35rem"}}  chatWidget={true}/>
     
                  
                 </div>

@@ -79,26 +79,25 @@ class GetAllUsers extends Component {
       return this.props.user.users.map((user, index) => {
         const { _id, firstname, lastname, email, avatar } = user //destructuring
         return (
-          <div className="row center" key={_id}>
-            <div className="col s2 m2 l2 offet-s1 offst-m1 offset-l1 center">
-
-                              
-                                <img src={avatar?`${BackendInstance.defaults.baseURL}${avatar}`:defaultAvatar}
-                                   alt=''
-                                    className='round-img center' style={{ borderRadius: '50%', width: '40px', height:'40px', display:'block' }}
-                                />
-
+          <div className="row " key={_id}>
+            <div className="col s12 m1 l1 offet-s1 offst-m1 offset-l1 ">
+              <img src={avatar ? `${BackendInstance.defaults.baseURL}${avatar}` : defaultAvatar}
+                alt=''
+                className='round-img center' style={{ borderRadius: '50%', width: '40px', height: '40px', display: 'block' }}
+              />
             </div>
-            <div className="col s2 m2 l2">
-              <p>{firstname}</p>
+            <div className="col s12 m3 l3 center">
+              <p>{firstname}{lastname}</p>
             </div>
-            <div className="col s2 m2 l2">
-              <p>{lastname}</p>
-            </div>
-            <div className="col s3 m3 l3">
+            <div className="col s12 m4 l4 center">
               <p>{email}</p>
             </div>
-            <div className="col s1 m1 l1">
+            <div className="col s12 m2 l2 ">
+              <button className="btn btn-info" value={_id} onClick={(e) => { this.deleteMan(e) }}>
+                Profile
+              </button>
+            </div>
+            <div className="col s12 m1 l1 ">
               <button className="btn btn-danger" value={_id} onClick={(e) => { this.deleteCand(e) }}>
                 <i className=" tiny material-icons  "> delete</i>
               </button>
@@ -116,36 +115,38 @@ class GetAllUsers extends Component {
         const { _id, firstname, lastname, email, avatar } = manager //destructuring
         return (
           <div className="row " key={_id}>
-            <div className="col s1 m1 l1 ">
-              <button className="btn btn-primary" value={_id} onClick={e => this.getManagerUsers(e)}>+
-                          </button>
-            </div>
-            <div className="col s3 m3 l3 center">
-            <img src={avatar?`${BackendInstance.defaults.baseURL}${avatar}`:defaultAvatar}
-                                   alt=''
-                                    className='round-img center' style={{ borderRadius: '50%', width: '40px', height:'40px', display:'block' }}
-                                />
-            </div>
-            <div className="col s2 m2 l2 ">
-              <p>{firstname}</p>
-            </div>
-            <div className="col s2 m2 l2 ">
-              <p>{lastname}</p>
-            </div>
-            <div className="col s3 m3 l3 ">
-              <p>{email}</p>
-            </div>
-            <div className="col s1 m1 l1 ">
-              <button className="btn btn-danger" value={_id} onClick={(e) => { this.deleteMan(e) }}>
-                <i className=" tiny material-icons  "> delete</i>
+            <div className="col s12 m1 l1 ">
+              <button className="btn btn-info" value={_id} onClick={e => this.getManagerUsers(e)}>+
               </button>
             </div>
+            <div className="col s12 m2 l2 center">
+              <img src={avatar ? `${BackendInstance.defaults.baseURL}${avatar}` : defaultAvatar}
+                alt=''
+                className='round-img center' style={{ borderRadius: '50%', width: '40px', height: '40px', display: 'block' }}
+              />
+            </div>
+            <div className="col s12 m3 l3 ">
+              <p>{firstname} {lastname}</p>
+            </div>
+            <div className="col s12 m3 l3 ">
+              <p>{email}</p>
+            </div>
+            <div className="col s12 m2 l2 ">
+              <button className="btn btn-info" value={_id} onClick={(e) => { this.deleteMan(e) }}>
+                Profile
+              </button>
+            </div>
+            <div className="col s12 m1 l1 ">
+              <button className="btn btn-danger" value={_id} onClick={(e) => { this.deleteMan(e) }}>
+                <i className=" tiny material-icons"> delete</i>
+              </button>
+            </div>
+
 
             {this.state.manager_id === _id ?
               <div className="col s12 m12 l12 left">
                 <Tree name="candidates" defaultOpen >
                   {this.renderCandidates()}
-
                 </Tree>
               </div>
               : null}
@@ -162,25 +163,25 @@ class GetAllUsers extends Component {
         const { _id, username, organizationname, email, avatar } = organization //destructuring
         return (
           <div className="row " key={_id}>
-            <div className="col s1 m1 l1 center">
-              <button className="btn btn-primary" value={_id} onClick={e => this.getOrganizationUsers(e)}>+</button>
+            <div className="col s12 m1 l1 center">
+              <button className="btn btn-info" value={_id} onClick={e => this.getOrganizationUsers(e)}>+</button>
             </div>
-            <div className="col s3 m3 l3 center">
-            <img src={avatar?`${BackendInstance.defaults.baseURL}${avatar}`:defaultAvatar}
-                                   alt=''
-                                    className='round-img center' style={{ borderRadius: '50%', width: '40px', height:'40px', display:'block' }}
-                                />
+            <div className="col s12 m1 l1 center">
+              <img src={avatar ? `${BackendInstance.defaults.baseURL}${avatar}` : defaultAvatar}
+                alt=''
+                className='round-img center' style={{ borderRadius: '50%', width: '40px', height: '40px', display: 'block' }}
+              />
             </div>
-            <div className="col s2 m2 l2 center">
+            <div className="col s12 m3 l3 center">
               <p>{organizationname}</p>
             </div>
-            <div className="col s2 m2 l2 center">
+            <div className="col s12 m2 l2 center">
               <p>{username}</p>
             </div>
-            <div className="col s3 m3 l3 center">
+            <div className="col s12 m3 l3 center">
               <p>{email}</p>
             </div>
-            <div className="col s1 m1 l1 center">
+            <div className="col s12 m2 l2 center">
               <button className="btn btn-danger" value={_id} onClick={(e) => { this.deleteOrg(e) }}>
                 <i className=" tiny material-icons  "> delete</i>
               </button>
@@ -189,30 +190,26 @@ class GetAllUsers extends Component {
               {this.state.organization_id === _id ?
                 <Tree name="managers" defaultOpen >
                   <div className="row center badge-light   ">
-                    <div className="col s2 m2 l2 offset-s1 offset-m1 offset-l1  ">
+                    <div className="col s12 m1 l1 offset-m1 offset-l1  ">
                       <h6>Avatar</h6>
                     </div>
-                    <div className="col s2 m2 l2">
-                      <h6>First Name</h6>
+                    <div className="col s12 m3 l3 center">
+                      <h6>Name</h6>
                     </div>
-                    <div className="col s2 m2 l2">
-                      <h6>Last Name</h6>
-                    </div>
-                    <div className="col s3 m3 l3">
+                    <div className="col s12 m4 l4 center">
                       <h6>Email</h6>
                     </div>
-                    <div className="col s2 m2 l2">
-                      <h6>Delete User</h6>
+                    <div className="col s12 m2 l2 center">
+                      <h6>Profile</h6>
+                    </div>
+                    <div className="col s12 m1 l1 ">
+                      <h6>Delete</h6>
                     </div>
                   </div>
                   {this.renderManagers()}
-
                 </Tree>
                 : null}
             </div>
-
-
-
           </div>
         )
       })
@@ -231,19 +228,19 @@ class GetAllUsers extends Component {
                   <br />
 
                   <div className="row center badge-light ">
-                    <div className="col s3 m3 l3 offset-s1 offset-m1 offset-l1  ">
+                    <div className="col s12 m1 l1 offset-m1 offset-l1  ">
                       <h6>Avatar</h6>
                     </div>
-                    <div className="col s2 m2 l2 center">
+                    <div className="col s12 m3 l3 center">
                       <h6>Organization</h6>
                     </div>
-                    <div className="col s2 m2 l2 center">
+                    <div className="col s12 m2 l2 center">
                       <h6>User Name</h6>
                     </div>
-                    <div className="col s3 m3 l3 center">
+                    <div className="col s12 m3 l3 center">
                       <h6>Email</h6>
                     </div>
-                    <div className="col s1 m1 l1 center">
+                    <div className="col s12 m2 l2 center">
                       <h6>Delete</h6>
                     </div>
                   </div>

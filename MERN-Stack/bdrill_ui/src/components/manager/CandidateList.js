@@ -39,10 +39,14 @@ class CandidateList extends Component {
                                    alt=''
                                     className='round-img center' style={{ borderRadius: '50%', width: '40px', height:'40px', display:'block' }}
                                 /></td>
-                        <td>{firstname}</td>
-                        <td>{lastname}</td>
+                        <td>{firstname} {lastname}</td>
                         <td>{email}</td>
                         <td><button className="white-text btn btn-info" value={_id} onClick={(e) => { this.setUserId(e) }}>Assign</button></td>
+                        <td>
+                            <button className="btn btn-info" value={_id} onClick={(e) => { this.deleteMan(e) }}>
+                                Profile
+                            </button>
+                        </td>
                         <td>
                             <button className="btn btn-danger" value={_id}  onClick={(e) => {this.deleteCand(e)}}>
                                 <i className=" tiny material-icons white-text"> delete</i>
@@ -70,10 +74,10 @@ class CandidateList extends Component {
                                             <thead className="center badge-light white-text">
                                                 <tr>
                                                     <th>Avatar</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
+                                                    <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Assign Attack</th>
+                                                    <th>Profile</th>
                                                     <th>Delete User</th>
                                                 </tr>
                                             </thead>

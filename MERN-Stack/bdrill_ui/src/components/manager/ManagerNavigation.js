@@ -199,7 +199,7 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem><a href="/orgdashboard">My account</a></MenuItem>
+            <MenuItem><a href="/managerdashboard">My account</a></MenuItem>
             <MenuItem onClick={logout}>Logout</MenuItem>
           </Menu>
         </IconButton>
@@ -211,7 +211,7 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
   const guestLink = (
     <ul>
       <li>
-        <a href='/adminsignin' className="white-text"> <IconButton
+        <a href='/managersignin' className="white-text"> <IconButton
           edge="end"
           color="inherit"
         >
@@ -462,9 +462,9 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
           </List>
           <Divider />
           <List aria-label="main mailbox folders">
-            <Link to="/mangerchangepassword" className="navlinks">
+            <Link to="/managerchangepassword" className="navlinks">
               {['Settings'].map((text, index) => (
-                <ListItem button onClick={() => { loadUser(); setPage("mangerchangepassword") }}>
+                <ListItem button onClick={() => { loadUser(); setPage("managerchangepassword") }}>
                   <ListItemIcon>{index === 0 ? <Icon className="white-text">settings_applications</Icon> : null}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>

@@ -11,6 +11,7 @@ import Icon from "@material-ui/core/Icon";
 import Update from "@material-ui/icons/Update";
 import { getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength } from '../../actions/dashboardAuthAction'
 import BarChart from '../chart/BarChart'
+import PieChart from '../chart/PieChart'
 
 class AdminDashboard extends Component {
   constructor(props) {
@@ -144,7 +145,7 @@ class AdminDashboard extends Component {
           </div>
 
           <div className="row ">
-            <div className="col s12 m12 l12">
+            <div className="col s12 m12 l8">
               <div className="card animate fadeLeft uicards">
                 <div className="card-content">
                   <a href="/admintactics"><h5 className=" card-stats-number white-text"> Tactics</h5></a>
@@ -153,6 +154,21 @@ class AdminDashboard extends Component {
                   <div className="row">
                     <div className="col s12 m12 l11 offset-l1">
                       <BarChart />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col s12 m12 l4">
+              <div className="card animate fadeLeft uicards">
+                <div className="card-content">
+                  <h5 className=" card-stats-number white-text"> Machines</h5>
+                  <hr />
+                  <br />
+                  <div className="row">
+                    <div className="col s12 m12 l11 offset-l1">
+                      <PieChart />
                     </div>
                   </div>
                 </div>
