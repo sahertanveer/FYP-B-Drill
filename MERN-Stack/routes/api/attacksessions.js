@@ -51,12 +51,12 @@ router.post('/startattacksession', auth,
       var new_attack_session = new AttackSession({ user_id: user_id, assignment: assignment_id, in_progress: true });
       new_attack_session.save(function (err, new_attack_session) {
         if (err) return res.json({ result: "failure", reason: err }), console.log(err);  
-        console.log(new_attack_session._id + "saved to database")
+
 
         var new_attack_session_evaluation = new AttackSessionsEvaluation({ attack_session_id: new_attack_session._id, user_id: req.body.user_id });
         new_attack_session_evaluation.save(function (err, new_attack_session_evaluation) {
           if (err) return res.json({ result: "failure", reason: err }), console.log(err); 
-          console.log(new_attack_session_evaluation._id + "save to database")
+
         });
 
         return res.json({ result: "success", attack_session_id: new_attack_session._id })
@@ -656,7 +656,7 @@ router.post('/getdetailedsessionresult', auth,
 
   ],
   async (req, res) => {
-    if (req.user.role === "candidate") {
+    if (req.user.role === "admin" || req.user.role === "organization" || req.user.role === "manager"  || req.user.role === "candidate") {
       try {
 
         let tactics =
@@ -750,7 +750,7 @@ router.post('/getusersessions', auth,
 
   ],
   async (req, res) => {
-    if (req.user.role === "candidate") {
+    if (req.user.role === "admin" || req.user.role === "organization" || req.user.role === "manager" || req.user.role === "candidate") {
       try {
         await normalizeCandidateAssignmentEvaluation(req.body.user_id)
 
@@ -859,7 +859,7 @@ normalizeCandidateAssignmentEvaluation = async (userId) => {
         }
 
       }
-      console.log(attackSessions)
+      // console.log(attackSessions)
     }
     )
   // .catch(err => {
@@ -869,7 +869,7 @@ normalizeCandidateAssignmentEvaluation = async (userId) => {
   //set assignments is_pending to false  
   await Assignments.updateMany({ "user_id": userId, end_time: { "$lte": new Date() }, "pending": true }, { "$set": { "pending": false } }, { multi: true })
     .then(result => {
-      console.log({ msg: "Success" })
+      // console.log({ msg: "Success" })
     })
   // .catch(err => {
   //   return res.json({ result: "failure", msg: err })
