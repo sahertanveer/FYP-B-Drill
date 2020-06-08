@@ -74,7 +74,7 @@ class CandHistory extends Component {
             attack_session_id: false,
             open: false,
         }
-        this.props.PerformanceLineGraph();
+        this.props.PerformanceLineGraph(this.props.auth._id);
 
         this.props.getallsessions(this.props.auth._id);
         this.renderSessionTableData = this.renderSessionTableData.bind(this);
@@ -93,7 +93,7 @@ class CandHistory extends Component {
     };
 
     getSessionDetails(e) {
-        this.setState({ open: true, attack_session_id: e.currentTarget.value }, () => console.log(this.state))
+        this.setState({ open: true, attack_session_id: e.currentTarget.value })
         this.props.getsessionsdetail(e.currentTarget.value)
     }
 
@@ -104,7 +104,8 @@ class CandHistory extends Component {
             let tactics = Object.keys(evaluation);
             return (
                 <table className={styles.content} key={session._id}>
-                    <center>
+                   <div className="center">
+                    <tbody>
                         <tr>
                             <th className="modaltext">Id:</th>
                             <td> {session._id}</td>
@@ -155,13 +156,15 @@ class CandHistory extends Component {
                             <th className="modaltext">Session ended at:</th>
                             <td>{moment(new Date(session.end_time)).format('D MMM YYYY , h:mm:ss:A')}</td>
                         </tr>
-                    </center>
+                        </tbody>
+                    </div>
                     <br />
-                    {tactics.map((tact) => {
+                    {tactics.map((tact, i) => {
                         return (
-                            <center>
-                                <tr> {tact}
+                            <div className="center" key={`${tact}-${i}`}>
+                                <tr>{tact}
                                     <table key={tactics} className="center">
+                                    <tbody>
                                         <tr className="modaltext">
                                             <th>Total Score</th>
                                             <th>Obtained Score</th>
@@ -174,9 +177,10 @@ class CandHistory extends Component {
                                             <td> {evaluation[tact].try_count}</td>
                                             <td> {evaluation[tact].score_aggregate}</td>
                                         </tr>
+                                        </tbody>
                                     </table>
                                 </tr>
-                            </center>
+                            </div>
                         )
                     })}
                 </table>
