@@ -155,7 +155,7 @@ const BioProfile = ({ getProfileById, auth: { user }, profile: { userprofile } }
                                         <CardBody >
                                             {userprofile && userprofile.education && userprofile.education.length > 0 ? (
                                                 <Fragment>
-                                                    <p htmlFor="Education" className="white-text center ">Studied at</p>
+                                                    {/* <p htmlFor="Education" className="white-text center ">Studied at</p> */}
                                                     {userprofile &&
                                                         userprofile.education.map(function (item, i) {
                                                             return (
@@ -163,7 +163,7 @@ const BioProfile = ({ getProfileById, auth: { user }, profile: { userprofile } }
                                                                     <br />
                                                                     <p htmlFor="Education" className="white-text center ">Studied at</p>
                                                                     <h5>{item.school}</h5>
-                                                                    <p className="white-text center" key={`${item}-${i}`}>
+                                                                    <p className="white-text center" key={`${item}-${i} degree`}>
                                                                         {item && item.degree} {item && item.fieldofstudy}
                                                                     </p>
                                                                     <p className="white-text center" key={`${item}-${i}`}>
@@ -205,11 +205,11 @@ const BioProfile = ({ getProfileById, auth: { user }, profile: { userprofile } }
                                                                     <h5>{item.jobtitle} </h5>
                                                                     <p className="white-text lighten-1 center" key={`${item}-${i}`}>
                                                                         <br />at {item.jobcompany}, {item && item.joblocation}
-                                                                        <p className="white-text">
+                                                                        <br />
                                                                             from {moment(new Date(item && item.jobfrom)).format('YYYY-MM-DD')}
                                                                          &nbsp; to {item.jobcurrent ? <>Current</> :
                                                                                 moment(new Date(item && item.jobto)).format('YYYY-MM-DD')}
-                                                                        </p>
+                                                                    
                                                                     </p>
                                                                     <hr />
                                                                 </div>
@@ -241,7 +241,7 @@ const BioProfile = ({ getProfileById, auth: { user }, profile: { userprofile } }
                                             <hr />
                                             <br />
                                             {userprofile && userprofile.skills.map(function (item, i) {
-                                                return <ul><li>{item}</li></ul>
+                                                return <ul key={`skill-${i}`}><li>{item}</li></ul>
                                             })}
                                         </div>
                                     </div>
@@ -257,7 +257,7 @@ const BioProfile = ({ getProfileById, auth: { user }, profile: { userprofile } }
                                             <hr />
                                             <br />
                                             {userprofile && userprofile.interests.map(function (item, i) {
-                                                return <ul><li>{item}</li></ul>
+                                                return <ul key={`interest-${i}`}><li>{item}</li></ul>
                                             })}
                                         </div>
                                     </div>
@@ -273,7 +273,7 @@ const BioProfile = ({ getProfileById, auth: { user }, profile: { userprofile } }
                                             <hr />
                                             <br />
                                             {userprofile && userprofile.achievements.map(function (item, i) {
-                                                return <ul><li>{item}</li></ul>
+                                                return <ul key={`achievement-${i}`}><li>{item}</li></ul>
                                             })}
                                         </div>
                                     </div>
@@ -290,7 +290,7 @@ const BioProfile = ({ getProfileById, auth: { user }, profile: { userprofile } }
 }
 
 BioProfile.propTypes = {
-    getCurrentProfile: PropTypes.func.isRequired,
+    // getCurrentProfile: PropTypes.func.isRequired,
     getProfileById: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
