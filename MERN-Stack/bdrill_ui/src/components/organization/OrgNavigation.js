@@ -461,7 +461,7 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, s
                 loadedPage === 'userslist' ? <UsersList /> :
                   loadedPage === 'orgviewattack' ? <OrgViewAttacks /> :
                     loadedPage === 'getusersprofiles' ? <GetUsersProfiles /> :
-                      loadedPage === 'userprofile' ? <UserProfile /> :
+                      loadedPage === 'organizationchilduserprofile' ? <UserProfile /> :
                         loadedPage === 'orgchatlayout' ? <ChatLayout /> :
                           loadedPage === 'orgchangepassword' ? <ChangePassword /> :
 

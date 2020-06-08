@@ -480,7 +480,7 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
                         loadedPage === 'pendingassignments' ? <PendingAssignments /> :
                           loadedPage === 'getallusers' ? <GetAllUsers /> :
                             loadedPage === 'getallusersprofiles' ? <GetAllUsersProfiles /> :
-                              loadedPage === 'userprofile' ? <UserProfile /> :
+                              loadedPage === 'adminchilduserprofile' ? <UserProfile /> :
                                 loadedPage === 'chatlayout' ? <ChatLayout /> :
                                   loadedPage === 'changepassword' ? <ChangePassword /> :
                                     <AdminDashboard />

@@ -19,7 +19,6 @@ export const tacticsBarGraph = () => async dispatch => {
     // const res = await axios.post('http://115.186.176.139:5000/api/admin/login', body, config);
     const res = await BackendInstance.post('/api/visualization/tacticsbargraph', null, config);
 
-    console.log(res.data)
     dispatch({
       type:   VIS_TACTICS_FOUND,
       payload: res.data
@@ -39,17 +38,17 @@ export const tacticsBarGraph = () => async dispatch => {
 }
 
 
-export const AssignmentHistoryRadarGraph = () => async dispatch => {
+export const AssignmentHistoryRadarGraph = (userId) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': ' application/json'
     }
   }
+  const body = JSON.stringify({user_id: userId});
   try {
     // const res = await axios.post('http://115.186.176.139:5000/api/admin/login', body, config);
-    const res = await BackendInstance.post('/api/visualization/assignedscenariosandcampaignsradarchart', null, config);
+    const res = await BackendInstance.post('/api/visualization/assignedscenariosandcampaignsradarchart', body, config);
 
-    console.log(res.data)
     dispatch({
       type:   VIS_ASSIGNMENTS_HISTORY_FOUND,
       payload: res.data
@@ -69,17 +68,16 @@ export const AssignmentHistoryRadarGraph = () => async dispatch => {
 }
 
 
-export const SessionsBubbleGraph = () => async dispatch => {
+export const SessionsBubbleGraph = (userId) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': ' application/json'
     }
   }
   try {
-    // const res = await axios.post('http://115.186.176.139:5000/api/admin/login', body, config);
-    const res = await BackendInstance.post('/api/visualization/sessionsbubblechart', null, config);
+    const body = JSON.stringify({user_id: userId});
+    const res = await BackendInstance.post('/api/visualization/sessionsbubblechart', body, config);
 
-    console.log(res.data)
     dispatch({
       type:   VIS_SESSIONS_FOUND,
       payload: res.data
@@ -100,17 +98,16 @@ export const SessionsBubbleGraph = () => async dispatch => {
 
 
 
-export const PerformanceLineGraph = () => async dispatch => {
+export const PerformanceLineGraph = (userId) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': ' application/json'
     }
   }
   try {
-    // const res = await axios.post('http://115.186.176.139:5000/api/admin/login', body, config);
-    const res = await BackendInstance.post('/api/visualization/performancelinechart', null, config);
+    const body = JSON.stringify({user_id: userId});
+    const res = await BackendInstance.post('/api/visualization/performancelinechart', body, config);
 
-    console.log(res.data)
     dispatch({
       type:   VIS_PERFORMANCE_FOUND,
       payload: res.data
@@ -130,17 +127,16 @@ export const PerformanceLineGraph = () => async dispatch => {
 }
 
 
-export const AssignmentAttemptionStatusDoughnutGraph = () => async dispatch => {
+export const AssignmentAttemptionStatusDoughnutGraph = (userId) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': ' application/json'
     }
   }
   try {
-    // const res = await axios.post('http://115.186.176.139:5000/api/admin/login', body, config);
-    const res = await BackendInstance.post('/api/visualization/assignmentsstatusdoughnutchart', null, config);
+    const body = JSON.stringify({user_id: userId});
+    const res = await BackendInstance.post('/api/visualization/assignmentsstatusdoughnutchart', body, config);
 
-    console.log(res.data)
     dispatch({
       type:   VIS_ASSIGNMENTS_ATTEMPTED_STATUS_FOUND,
       payload: res.data
@@ -160,17 +156,16 @@ export const AssignmentAttemptionStatusDoughnutGraph = () => async dispatch => {
 }
 
 
-export const MitrePerformanceVisitLineGraph = () => async dispatch => {
+export const MitrePerformanceVisitLineGraph = (userId) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': ' application/json'
     }
   }
   try {
-    // const res = await axios.post('http://115.186.176.139:5000/api/admin/login', body, config);
-    const res = await BackendInstance.post('/api/visualization/mitreperformancevisitlinechart', null, config);
+    const body = JSON.stringify({user_id: userId});
+    const res = await BackendInstance.post('/api/visualization/mitreperformancevisitlinechart', body, config);
 
-    console.log(res.data)
     dispatch({
       type:   VIS_MITRE_PERFORMANCE_FOUND,
       payload: res.data

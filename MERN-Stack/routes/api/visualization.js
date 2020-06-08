@@ -66,17 +66,25 @@ router.post('/tacticsbargraph', auth, async (req, res) => {
 // @route   POST api/visualization/assignmentstatusdoughnutchart
 // @desc    Post assignments status in Doughnut Chart
 // @access  Public
-router.post('/assignmentsstatusdoughnutchart', [],
-    auth, async (req, res) => {
-        if (req.user.role === "candidate") {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                return res.status(400).json({ errors: errors.array() });
-            }
+router.post('/assignmentsstatusdoughnutchart', [
+    check('user_id', 'user id is required')
+    .not()
+    .isEmpty(),
 
-            const totalAssignments = await Assignments.find({ user_id: req.user.id }).countDocuments();
-            const passedAssignments = await Attack_Session.find({ user_id: req.user.id, result: { $ne: null }, result: { $gte: 50 } }).countDocuments();
-            const failedAssignments = await Attack_Session.find({ user_id: req.user.id, result: { $ne: null }, result: { $lt: 50 } }).countDocuments();
+  ],
+    auth, async (req, res) => {
+        
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        if (req.user.role === "admin" || req.user.role === "organization" || req.user.role === "manager"  ||  req.user.role === "candidate") {
+
+
+            const totalAssignments = await Assignments.find({ user_id: req.body.user_id }).countDocuments();
+            const passedAssignments = await Attack_Session.find({ user_id: req.body.user_id, result: { $ne: null }, result: { $gte: 50 } }).countDocuments();
+            const failedAssignments = await Attack_Session.find({ user_id: req.body.user_id, result: { $ne: null }, result: { $lt: 50 } }).countDocuments();
 
             const Attempted = passedAssignments + failedAssignments;
 
@@ -92,19 +100,26 @@ router.post('/assignmentsstatusdoughnutchart', [],
 // @route   POST api/visualization/assignedscenariosandcampaignsradarchart
 // @desc    Post assigned category month wise for previous one year in Radar Chart
 // @access  Public
-router.post('/assignedscenariosandcampaignsradarchart', [],
+router.post('/assignedscenariosandcampaignsradarchart', [
+    check('user_id', 'user id is required')
+    .not()
+    .isEmpty(),
+
+  ],
     auth, async (req, res) => {
 
-        if (req.user.role === "candidate") {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                return res.status(400).json({ errors: errors.array() });
-            }
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        
+        if (req.user.role === "admin" || req.user.role === "organization" || req.user.role === "manager"  ||   req.user.role === "candidate") {
+
             let campaignArray = new Array(12).fill(0)
             let scenarioArray = new Array(12).fill(0)
 
             var oneYearFromNow = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
-            await Assignments.find({ user_id: req.user.id, date: { $gte: oneYearFromNow } })
+            await Assignments.find({ user_id: req.body.user_id, date: { $gte: oneYearFromNow } })
                 .then(assignments => {
                     assignments.map(assignment => {
                         if (assignment.category === "Scenario") {
@@ -129,17 +144,23 @@ router.post('/assignedscenariosandcampaignsradarchart', [],
 // @route   POST api/visualization/sessionsbubblechart
 // @desc    Post sessions with their start time, Date, and time taken in hours in bubble chart
 // @access  Public
-router.post('/sessionsbubblechart', [],
-    auth, async (req, res) => {
+router.post('/sessionsbubblechart', [
+    check('user_id', 'user id is required')
+    .not()
+    .isEmpty(),
 
-        if (req.user.role === "candidate") {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                return res.status(400).json({ errors: errors.array() });
-            }
+  ],
+    auth, async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        if (req.user.role === "admin" || req.user.role === "organization" || req.user.role === "manager"  || req.user.role === "candidate") {
+
             let data = []
             var oneYearFromNow = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
-            await Attack_Session.find({ user_id: req.user.id, start_time: { $gte: oneYearFromNow }, end_time: { $ne: null } })
+            await Attack_Session.find({ user_id: req.body.user_id, start_time: { $gte: oneYearFromNow }, end_time: { $ne: null } })
                 .sort({ start_time: 'ascending' })
                 .select('start_time')
                 .select('end_time')
@@ -165,14 +186,21 @@ router.post('/sessionsbubblechart', [],
 // @route   POST api/visualization/performancelinechart
 // @desc    Post session performance calculated seperately for scenario, campaign and overall, in line chart
 // @access  Public
-router.post('/performancelinechart', [],
+router.post('/performancelinechart', [
+    check('user_id', 'user id is required')
+    .not()
+    .isEmpty(),
+
+  ],
     auth, async (req, res) => {
 
-        if (req.user.role === "candidate") {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                return res.status(400).json({ errors: errors.array() });
-            }
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        if (req.user.role === "admin" || req.user.role === "organization" || req.user.role === "manager"  ||  req.user.role === "candidate") {
+
             
             let ScenarioPerformance = []
             let CampaignPerformance = []
@@ -180,7 +208,7 @@ router.post('/performancelinechart', [],
 
             var oneYearFromNow = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
             var elevenMonthFromNow = new Date(oneYearFromNow.getMonth() + 1)
-            await Attack_Session.find({ user_id: req.user.id, start_time: { $gte: elevenMonthFromNow }, end_time: { $ne: null }, incomplete_attack_error:{$ne:true} })
+            await Attack_Session.find({ user_id: req.body.user_id, start_time: { $gte: elevenMonthFromNow }, end_time: { $ne: null }, incomplete_attack_error:{$ne:true} })
                 .sort({ start_time: 'ascending' })
                 .populate({
                     path: 'assignment',
@@ -222,10 +250,19 @@ router.post('/performancelinechart', [],
 // @route   POST api/visualization/mitreperformancevisitlinechart
 // @desc    Post session mitre performance calculated for each Tactic visit line chart
 // @access  Public
-router.post('/mitreperformancevisitlinechart', [],
-    auth, async (req, res) => {
+router.post('/mitreperformancevisitlinechart', [
+    check('user_id', 'user id is required')
+    .not()
+    .isEmpty(),
 
-        if (req.user.role === "candidate") {
+  ],
+    auth, async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        if (req.user.role === "admin" || req.user.role === "organization" || req.user.role === "manager"  ||   req.user.role === "candidate") {
             // tacticId = scenarioId.split('_')[0];
             let tactics =
             {
@@ -269,7 +306,7 @@ router.post('/mitreperformancevisitlinechart', [],
             }
 
             let scenarioIds = []
-            await AttackSessionsEvaluation.find({ user_id: req.user.id })
+            await AttackSessionsEvaluation.find({ user_id: req.body.user_id })
                 .populate({
                     path: 'attack_session_id',
                     select: ['in_progress']

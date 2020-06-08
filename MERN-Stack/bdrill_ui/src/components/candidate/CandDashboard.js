@@ -92,11 +92,11 @@ class CandDashboard extends Component {
             bigChartData: "data1"
         };
 
-        this.props.AssignmentHistoryRadarGraph()
-        this.props.AssignmentAttemptionStatusDoughnutGraph()
-        this.props.SessionsBubbleGraph()
-        this.props.PerformanceLineGraph()
-        this.props.MitrePerformanceVisitLineGraph()
+        this.props.AssignmentHistoryRadarGraph(this.props.authId)
+        this.props.AssignmentAttemptionStatusDoughnutGraph(this.props.authId)
+        this.props.SessionsBubbleGraph(this.props.authId)
+        this.props.PerformanceLineGraph(this.props.authId)
+        this.props.MitrePerformanceVisitLineGraph(this.props.authId)
         this.GetMachinesLength();
         this.GetAttacksLength();
         this.GetOrganizationsLength();
@@ -419,8 +419,8 @@ class CandDashboard extends Component {
 
 CandDashboard.propTypes = {
     visualization: PropTypes.object.isRequired,
-    AssignmentAttemptionStatusRadarDoughnutGraph: PropTypes.func.isRequired,
-    AssignmentHistoryGraph: PropTypes.func.isRequired,
+    AssignmentAttemptionStatusDoughnutGraph: PropTypes.func.isRequired,
+    AssignmentHistoryRadarGraph: PropTypes.func.isRequired,
     SessionsBubbleGraph: PropTypes.func.isRequired,
     PerformanceLineGraph: PropTypes.func.isRequired,
     MitrePerformanceVisitLineGraph: PropTypes.func.isRequired,
@@ -429,11 +429,13 @@ CandDashboard.propTypes = {
     getorganizationslength: PropTypes.func.isRequired,
     getmanagerslength: PropTypes.func.isRequired,
     getuserslength: PropTypes.func.isRequired,
+    auth_id: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => ({
     visualization: state.visualization,
-    page: state.page
+    page: state.page,
+    authId:state.auth._id
 })
 
 export default connect(mapStateToProps, {

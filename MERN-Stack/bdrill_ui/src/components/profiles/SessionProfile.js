@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import queryString from 'query-string'
 
 import RadarChart from '../chart/RadarChart'
 import LineChart from '../chart/LineChart'
@@ -81,15 +82,20 @@ const LineChartOptions = {
 class SessionProfile extends Component {
     constructor(props) {
         super(props);
+        const values = queryString.parse(window.location.search)
         this.state = {
-            bigChartData: "data1"
+            bigChartData: "data1",
+            userId: values.userId,
+            role: values.role
         };
 
-        this.props.AssignmentHistoryRadarGraph()
-        this.props.AssignmentAttemptionStatusDoughnutGraph()
-        this.props.SessionsBubbleGraph()
-        this.props.PerformanceLineGraph()
-        this.props.MitrePerformanceVisitLineGraph()
+        if( values.role === "candidate"){
+        this.props.AssignmentHistoryRadarGraph(values.userId)
+        this.props.AssignmentAttemptionStatusDoughnutGraph(values.userId)
+        this.props.SessionsBubbleGraph(values.userId)
+        this.props.PerformanceLineGraph(values.userId)
+        this.props.MitrePerformanceVisitLineGraph(values.userId)
+    }
 
     }
     setBgChartData = name => {
@@ -250,8 +256,8 @@ class SessionProfile extends Component {
 
 SessionProfile.propTypes = {
     visualization: PropTypes.object.isRequired,
-    AssignmentAttemptionStatusRadarDoughnutGraph: PropTypes.func.isRequired,
-    AssignmentHistoryGraph: PropTypes.func.isRequired,
+    AssignmentAttemptionStatusDoughnutGraph: PropTypes.func.isRequired,
+    AssignmentHistoryRadarGraph: PropTypes.func.isRequired,
     SessionsBubbleGraph: PropTypes.func.isRequired,
     PerformanceLineGraph: PropTypes.func.isRequired,
     MitrePerformanceVisitLineGraph: PropTypes.func.isRequired
@@ -262,9 +268,9 @@ const mapStateToProps = state => ({
     page: state.page
 })
 
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
     AssignmentAttemptionStatusDoughnutGraph, AssignmentHistoryRadarGraph,
     SessionsBubbleGraph, PerformanceLineGraph, MitrePerformanceVisitLineGraph
-})(SessionProfile)
+})(SessionProfile))
 
 

@@ -484,7 +484,7 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
                   loadedPage === 'candidatelist' ? <CandidateList /> :
                     loadedPage === 'allotedassignments' ? <AllotedAssignments /> :
                       loadedPage === 'addcandidate' ? <AddCandidate /> :
-                        loadedPage === 'userprofile' ? <UserProfile /> :
+                        loadedPage === 'managerchilduserprofile' ? <UserProfile /> :
                           loadedPage === 'editcreateprofile' ? <EditCreateProfile /> :
                             loadedPage === 'getcandidatesprofiles' ? <GetCandidatesProfiles /> :
                               loadedPage === 'managerchatlayout' ? <ChatLayout /> :

@@ -8,7 +8,7 @@ import { getProfileById } from '../../actions/profileAction'
 import { defaultAvatar } from '../../config/default';
 import { BackendInstance } from '../../config/axiosInstance';
 
-const ProfileItem = ({ profile, setPage, getProfileById }) => {
+const ProfileItem = ({ profile, setPage, getProfileById, authRole }) => {
     
     const history = useHistory()
     const colors = [
@@ -45,8 +45,9 @@ const ProfileItem = ({ profile, setPage, getProfileById }) => {
 
     const onClick = (e, role) => {
         getProfileById(e.currentTarget.value)
-        history.push(`/userprofile?userId=${e.currentTarget.value}&role=${role}`)
-        setPage('userprofile')  
+        setPage(`${authRole}childuserprofile`) ;
+        history.push(`/${authRole}childuserprofile?userId=${e.currentTarget.value}&role=${role}`);
+         
     }
 
     return (
@@ -115,10 +116,12 @@ ProfileItem.propTypes = {
     profile: PropTypes.object.isRequired,
     setPage:  PropTypes.object.isRequired,
     getProfileById: PropTypes.func.isRequired,
+    authRole: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
-    page: state.page
+    page: state.page,
+    authRole: state.auth.role
 })
 
 
