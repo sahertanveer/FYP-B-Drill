@@ -1,6 +1,6 @@
 import React, { Component, memo, useState } from 'react'
 import { useSpring, a } from 'react-spring'
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getmanagers, getusers } from '../../actions/organizationAuthAction'
@@ -10,6 +10,9 @@ import { Frame, Title, Content, toggle } from '../common/styles'
 import * as Icons from '../common/icons'
 import { defaultAvatar } from '../../config/default';
 import { BackendInstance } from '../../config/axiosInstance';
+import { setPage } from '../../actions/pageAction'
+import { getProfileById } from '../../actions/profileAction'
+
 
 
 const Tree = memo(({ children, name, style, defaultOpen = false }) => {
@@ -40,6 +43,7 @@ class UsersList extends Component {
         }
         this.props.getmanagers(this.props.auth._id);
         this.getManagerUsers = this.getManagerUsers.bind(this)
+        this.getProfile = this.getProfile.bind(this)
 
     }
     getManagerUsers(e) {
@@ -58,6 +62,13 @@ class UsersList extends Component {
         this.props.deleteCandidate(e.currentTarget.value);
         this.props.getusers();
       }
+
+      getProfile(e, role) {
+        this.props.getProfileById(e.currentTarget.value)
+        this.props.setPage(`${this.props.auth.role}childuserprofile`) ;
+        this.props.history.push(`/${this.props.auth.role}childuserprofile?userId=${e.currentTarget.value}&role=${role}`);
+         
+    }
 
     renderCandidates() {
         if (this.props.user.usersFound)
@@ -78,7 +89,7 @@ class UsersList extends Component {
                             <p>{email}</p>
                         </div>
                         <div className="col s12 m2 l2 center">
-                            <button className="btn btn-info" value={_id}  onClick={(e) => {this.deleteMan(e)}}>
+                            <button className="btn btn-info" value={_id}  onClick={(e) => {this.getProfile(e, "candidate") }}>
                                 Profile
                             </button>
                         </div>
@@ -118,7 +129,7 @@ class UsersList extends Component {
                             <p>{email}</p>
                         </div>
                         <div className="col s12 m2 l2 center">
-                            <button className="btn btn-info" value={_id}  onClick={(e) => {this.deleteMan(e)}}>
+                            <button className="btn btn-info" value={_id}  onClick={(e) => {this.getProfile(e, "manager")}}>
                                 Profile
                             </button>
                         </div>
@@ -188,6 +199,8 @@ class UsersList extends Component {
 }
 
 UsersList.propTypes = {
+    setPage: PropTypes.func.isRequired,
+    getProfileById: PropTypes.func.isRequired,
     deleteAccount: PropTypes.func.isRequired,
     getmanagers: PropTypes.func.isRequired,
     getusers: PropTypes.func.isRequired,
@@ -202,4 +215,4 @@ const mapStateToProps = state => ({
     page: state.page
 })
 
-export default (connect(mapStateToProps, { deleteManager, deleteCandidate, getmanagers, getusers })(UsersList));
+export default withRouter(connect(mapStateToProps, {getProfileById, setPage, deleteManager, deleteCandidate, getmanagers, getusers })(UsersList));

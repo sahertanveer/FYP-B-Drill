@@ -1,6 +1,6 @@
 import React, { Component, memo, useState } from 'react'
 import { useSpring, a } from 'react-spring'
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getorganizations, getmanagers, getusers } from '../../actions/adminAuthAction'
@@ -10,6 +10,8 @@ import { Frame, Title, Content, toggle } from '../common/styles'
 import * as Icons from '../common/icons'
 import { defaultAvatar } from '../../config/default';
 import { BackendInstance } from '../../config/axiosInstance';
+import { setPage } from '../../actions/pageAction'
+import { getProfileById } from '../../actions/profileAction'
 
 
 const Tree = memo(({ children, name, style, defaultOpen = false }) => {
@@ -39,14 +41,15 @@ class GetAllUsers extends Component {
       organization_id: false,
       manager_id: false
     }
-    this.props.getorganizations(this.props.auth._id);
+    this.props.getorganizations();
     this.getOrganizationUsers = this.getOrganizationUsers.bind(this)
     this.getManagerUsers = this.getManagerUsers.bind(this)
+    this.getProfile = this.getProfile.bind(this)
 
   }
 
   getOrganizationUsers(e) {
-    this.setState({ organization_id: e.target.value }, () => console.log(this.state))
+    this.setState({ organization_id: e.target.value })
     this.props.getmanagers(e.target.value)
   }
 
@@ -73,6 +76,13 @@ class GetAllUsers extends Component {
     this.props.getusers();
   }
 
+  getProfile(e, role) {
+    this.props.getProfileById(e.currentTarget.value)
+    this.props.setPage(`${this.props.authRole}childuserprofile`) ;
+    this.props.history.push(`/${this.props.authRole}childuserprofile?userId=${e.currentTarget.value}&role=${role}`);
+     
+}
+
 
   renderCandidates() {
     if (this.props.user.usersFound)
@@ -93,12 +103,12 @@ class GetAllUsers extends Component {
               <p>{email}</p>
             </div>
             <div className="col s12 m2 l2 ">
-              <button className="btn btn-info" value={_id} onClick={(e) => { this.deleteMan(e) }}>
+              <button className="btn btn-info" value={_id} onClick={(e) => {  this.getProfile(e, "candidate") }}>
                 Profile
               </button>
             </div>
             <div className="col s12 m1 l1 ">
-              <button className="btn btn-danger" value={_id} onClick={(e) => { this.deleteCand(e) }}>
+              <button className="btn btn-danger" value={_id} onClick={(e) => { this.deleteCand(e)}}>
                 <i className=" tiny material-icons  "> delete</i>
               </button>
             </div>
@@ -132,12 +142,12 @@ class GetAllUsers extends Component {
               <p>{email}</p>
             </div>
             <div className="col s12 m2 l2 ">
-              <button className="btn btn-info" value={_id} onClick={(e) => { this.deleteMan(e) }}>
+              <button className="btn btn-info" value={_id} onClick={(e) => { this.getProfile(e, "manager")}}>
                 Profile
               </button>
             </div>
             <div className="col s12 m1 l1 ">
-              <button className="btn btn-danger" value={_id} onClick={(e) => { this.deleteMan(e) }}>
+              <button className="btn btn-danger" value={_id} onClick={(e) => { this.deleteMan(e)}}>
                 <i className=" tiny material-icons"> delete</i>
               </button>
             </div>
@@ -264,18 +274,20 @@ class GetAllUsers extends Component {
 
 GetAllUsers.propTypes = {
   // deleteAccount: PropTypes.func.isRequired,
+  setPage: PropTypes.func.isRequired,
+  getProfileById: PropTypes.func.isRequired,
   getorganizations: PropTypes.func.isRequired,
   getmanagers: PropTypes.func.isRequired,
   getusers: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  authRole: PropTypes.string.isRequired,
   user: PropTypes.object.isRequired,
   page: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
   user: state.user,
-  auth: state.auth,
+  authRole: state.auth.role,
   page: state.page
 })
 
-export default (connect(mapStateToProps, { getorganizations, getmanagers, getusers, deleteOrganization, deleteManager, deleteCandidate })(GetAllUsers));
+export default withRouter(connect(mapStateToProps, { getProfileById, setPage, getorganizations, getmanagers, getusers, deleteOrganization, deleteManager, deleteCandidate })(GetAllUsers));

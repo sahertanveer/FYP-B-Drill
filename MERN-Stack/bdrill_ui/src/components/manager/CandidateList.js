@@ -9,6 +9,7 @@ import { logout } from '../../actions/authAction'
 import { setPage } from '../../actions/pageAction'
 import { defaultAvatar } from '../../config/default';
 import { BackendInstance } from '../../config/axiosInstance'
+import { getProfileById } from '../../actions/profileAction'
 
 class CandidateList extends Component {
     constructor(props) {
@@ -28,6 +29,14 @@ class CandidateList extends Component {
         this.props.setPage('assignattack')
     }
 
+    getProfile(e, role) {
+        this.props.getProfileById(e.currentTarget.value)
+        this.props.setPage(`${this.props.auth.role}childuserprofile`) ;
+        this.props.history.push(`/${this.props.auth.role}childuserprofile?userId=${e.currentTarget.value}&role=${role}`);
+         
+    }
+
+
     renderTableData() {
         // return this.state.candidates.map((candidate, index) => {
         if (this.props.user.usersFound)
@@ -43,7 +52,7 @@ class CandidateList extends Component {
                         <td>{email}</td>
                         <td><button className="white-text btn btn-info" value={_id} onClick={(e) => { this.setUserId(e) }}>Assign</button></td>
                         <td>
-                            <button className="btn btn-info" value={_id} onClick={(e) => { this.deleteMan(e) }}>
+                            <button className="btn btn-info" value={_id} onClick={(e) => { this.getProfile(e, "candidate") }}>
                                 Profile
                             </button>
                         </td>
@@ -96,6 +105,7 @@ class CandidateList extends Component {
 }
 
 CandidateList.propTypes = {
+    getProfileById: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
     setPage: PropTypes.func.isRequired,
     checkuser: PropTypes.func.isRequired,
@@ -111,4 +121,4 @@ const mapStateToProps = state => ({
     page: state.page
 })
 
-export default withRouter((connect(mapStateToProps, { logout, deleteCandidate, setPage, getusers, checkuser })(CandidateList)));
+export default withRouter((connect(mapStateToProps, { getProfileById, logout, deleteCandidate, setPage, getusers, checkuser })(CandidateList)));
