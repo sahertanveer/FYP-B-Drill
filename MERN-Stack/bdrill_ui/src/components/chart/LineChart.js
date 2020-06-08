@@ -15,7 +15,7 @@ class LineChart extends Component {
         datasets: [
           {
             label: this.props.labelA,
-            fill: false,
+            fill: true,
               backgroundColor: 'rgba(179,181,198,0.2)',
                 borderColor: 'rgba(179,181,198,1)',
                 pointBackgroundColor: 'rgba(179,181,198,1)',

@@ -293,7 +293,7 @@ class CandDashboard extends Component {
                         <div className="col s12 m6 l6">
                             <div className="card animate fadeLeft uicards">
                                 <div className="card-content">
-                                    <h5 className="card-stats-number"> Assignments </h5>
+                                    <h5 className="card-stats-number"> Assignments Status</h5>
                                     <hr />
                                     <br />
                                     <DoughnutChart labels={['Attempted & Passed', 'Attempted & Failed', 'Not Attempted']}

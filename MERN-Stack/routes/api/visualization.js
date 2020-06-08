@@ -341,7 +341,6 @@ router.post('/mitreperformancevisitlinechart', [
                             console.log(err)
                         }
                     })
-                    console.log(data)
                     tacticsArray.map(tactic => {
                         averageScore.push(average(data[tactic]))
                     })
