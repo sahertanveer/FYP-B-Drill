@@ -12,7 +12,8 @@ import VisitLineChart from '../chart/VisitLineChart'
 
 import {
     AssignmentAttemptionStatusDoughnutGraph, SessionsBubbleGraph,
-    AssignmentHistoryRadarGraph, PerformanceLineGraph, MitrePerformanceVisitLineGraph
+    AssignmentHistoryRadarGraph, PerformanceLineGraph, MitrePerformanceVisitLineGraph,
+    ManagerAssignmentAttemptionStatusDoughnutGraph, ManagerAssignmentHistoryRadarGraph
 } from '../../actions/visualizationAction'
 
 const BubbleChartOptions = {
@@ -260,7 +261,9 @@ SessionProfile.propTypes = {
     AssignmentHistoryRadarGraph: PropTypes.func.isRequired,
     SessionsBubbleGraph: PropTypes.func.isRequired,
     PerformanceLineGraph: PropTypes.func.isRequired,
-    MitrePerformanceVisitLineGraph: PropTypes.func.isRequired
+    MitrePerformanceVisitLineGraph: PropTypes.func.isRequired,
+    ManagerAssignmentAttemptionStatusDoughnutGraph: PropTypes.func.isRequired,
+    ManagerAssignmentHistoryRadarGraph: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -270,7 +273,8 @@ const mapStateToProps = state => ({
 
 export default withRouter(connect(mapStateToProps, {
     AssignmentAttemptionStatusDoughnutGraph, AssignmentHistoryRadarGraph,
-    SessionsBubbleGraph, PerformanceLineGraph, MitrePerformanceVisitLineGraph
+    SessionsBubbleGraph, PerformanceLineGraph, MitrePerformanceVisitLineGraph,
+    ManagerAssignmentHistoryRadarGraph, ManagerAssignmentAttemptionStatusDoughnutGraph,
 })(SessionProfile))
 
 

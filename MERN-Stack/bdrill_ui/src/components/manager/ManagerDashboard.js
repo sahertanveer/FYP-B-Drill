@@ -10,9 +10,12 @@ import CardFooter from "../common/cards/CardFooter.js";
 import Icon from "@material-ui/core/Icon";
 import Update from "@material-ui/icons/Update";
 import { getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength } from '../../actions/dashboardAuthAction'
-import BarChart from '../chart/BarChart'
-import RadarChartManager from '../chart/RadarChartManager'
-import DoughnutChartManager from '../chart/DoughnutChartManager'
+import BarChart from '../chart/BarChart';
+import RadarChart from '../chart/RadarChart';
+import DoughnutChart from '../chart/DoughnutChart';
+import {
+  ManagerAssignmentAttemptionStatusDoughnutGraph, ManagerAssignmentHistoryRadarGraph
+} from '../../actions/visualizationAction'
 
 class ManagerDashboard extends Component {
   constructor(props) {
@@ -24,6 +27,8 @@ class ManagerDashboard extends Component {
       managersLength: 0,
       candidatesLength: 0
     }
+    this.props.ManagerAssignmentHistoryRadarGraph(this.props.authId);
+    this.props.ManagerAssignmentAttemptionStatusDoughnutGraph(this.props.authId);
     this.GetMachinesLength();
     this.GetAttacksLength();
     this.GetOrganizationsLength();
@@ -169,7 +174,11 @@ class ManagerDashboard extends Component {
                   <h5 className="card-stats-number"> Assignments </h5>
                   <hr />
                   <br />
-                  <RadarChartManager labelA="Assigned Scenarios" labelB="Assigned Campaigns"/>
+                  <RadarChart labelA="Assigned Scenarios" labelB="Assigned Campaigns"
+                                        dataSetA={this.props.visualization.managerAssignmentHistoryFound ?
+                                            this.props.visualization.managerAssignmentHistoryData.scenarioArray : null}
+                                        dataSetB={this.props.visualization.managerAssignmentHistoryFound ?
+                                            this.props.visualization.managerAssignmentHistoryData.campaignArray : null} />
                   <br />
                 </div>
               </div>
@@ -178,11 +187,15 @@ class ManagerDashboard extends Component {
             <div className="col s12 m6 l6">
               <div className="card animate fadeLeft uicards">
                 <div className="card-content">
-                  <h5 className="card-stats-number"> Assignment Status </h5>
+                  <h5 className="card-stats-number"> Candidates Assignments Status </h5>
                   <hr />
                   <br />
-                  <DoughnutChartManager labels={['Attempted & Passed', 'Attempted & Failed', 'Not Attempted']}
-                  />
+                  <DoughnutChart labels={['Attempted & Passed', 'Attempted & Failed', 'Not Attempted']}
+                                        dataSet={this.props.visualization.managerAssignmentAttemptedFound ?
+                                            [this.props.visualization.managerAssignmentAttemptedData.passedAssignments,
+                                            this.props.visualization.managerAssignmentAttemptedData.failedAssignments,
+                                            this.props.visualization.managerAssignmentAttemptedData.unAttempted] : null}
+                                    />
                   <br />
                 </div>
               </div>
@@ -276,19 +289,23 @@ class ManagerDashboard extends Component {
   }
 }
 ManagerDashboard.propTypes = {
+  visualization: PropTypes.object.isRequired,
   getmachineslength: PropTypes.func.isRequired,
   getattackslength: PropTypes.func.isRequired,
   getorganizationslength: PropTypes.func.isRequired,
   getmanagerslength: PropTypes.func.isRequired,
+  ManagerAssignmentAttemptionStatusDoughnutGraph: PropTypes.func.isRequired,
+  ManagerAssignmentHistoryRadarGraph: PropTypes.func.isRequired,
   getuserslength: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  authId: PropTypes.string.isRequired,
   user: PropTypes.object.isRequired,
   page: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
+  visualization: state.visualization,
   user: state.user,
-  auth: state.auth,
+  authId: state.auth._id,
   page: state.page
 })
-export default (connect(mapStateToProps, { getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength })(ManagerDashboard));
+export default (connect(mapStateToProps, {ManagerAssignmentHistoryRadarGraph, ManagerAssignmentAttemptionStatusDoughnutGraph, getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength })(ManagerDashboard));

@@ -5,6 +5,8 @@ import {
     VIS_MITRE_PERFORMANCE_FOUND, VIS_MITRE_PERFORMANCE_NOT_FOUND,
     VIS_PERFORMANCE_FOUND, VIS_PERFORMANCE_NOT_FOUND,
     VIS_SESSIONS_FOUND, VIS_SESSIONS_NOT_FOUND,
+    VIS_MANAGER_ASSIGNMENTS_ATTEMPTED_STATUS_FOUND, VIS_MANAGER_ASSIGNMENTS_ATTEMPTED_STATUS_NOT_FOUND,
+    VIS_MANAGER_ASSIGNMENTS_HISTORY_FOUND, VIS_MANAGER_ASSIGNMENTS_HISTORY_NOT_FOUND,
 } from '../actions/types';
 
 const initialState = {
@@ -19,7 +21,12 @@ const initialState = {
     performanceFound: false, 
     performanceData:{},
     sessionsFound: false,
-    sessionsData: []
+    sessionsData: [],
+    /* Managers */
+    managerAssignmentAttemptedFound: false,
+    managerAssignmentAttemptedData :{},
+    managerAssignmentHistoryFound: false,
+    managerAssignmentHistoryData:{},
 
     
 }
@@ -98,6 +105,32 @@ export default function (state = initialState, action) {
                 ...state,
                 sessionsFound: false
             }
+        /* Manager Visualization */
+
+        case VIS_MANAGER_ASSIGNMENTS_ATTEMPTED_STATUS_FOUND:
+            return {
+                ...state,
+                managerAssignmentAttemptedData: payload,
+                managerAssignmentAttemptedFound: true
+            }
+        case VIS_MANAGER_ASSIGNMENTS_ATTEMPTED_STATUS_NOT_FOUND:
+            return {
+                ...state,
+                managerAssignmentAttemptedFound: false
+            }
+
+        case VIS_MANAGER_ASSIGNMENTS_HISTORY_FOUND:
+            return {
+                ...state,
+                managerAssignmentHistoryData: payload,
+                managerAssignmentHistoryFound: true
+            }
+        case VIS_MANAGER_ASSIGNMENTS_HISTORY_NOT_FOUND:
+            return {
+                ...state,
+                managerAssignmentHistoryFound: false
+            }
+
 
         default:
             return state;
