@@ -8,6 +8,7 @@ import {
     VIS_SESSIONS_FOUND, VIS_SESSIONS_NOT_FOUND,
     VIS_MANAGER_ASSIGNMENTS_ATTEMPTED_STATUS_FOUND, VIS_MANAGER_ASSIGNMENTS_ATTEMPTED_STATUS_NOT_FOUND,
     VIS_MANAGER_ASSIGNMENTS_HISTORY_FOUND, VIS_MANAGER_ASSIGNMENTS_HISTORY_NOT_FOUND,
+    VIS_ADMIN_PLATFORMS_FOUND, VIS_ADMIN_PLATFORMS_NOT_FOUND
 
 
 } from './types';
@@ -249,3 +250,35 @@ export const ManagerAssignmentAttemptionStatusDoughnutGraph = (userId) => async 
   }
 }
 
+/*
+Admin Visualazation starts from here.
+*/
+
+
+export const AdminPlatformsPieChart = () => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': ' application/json'
+    }
+  }
+  try {
+
+    const res = await BackendInstance.post('/api/visualization/adminplatformspiechart', null, config);
+
+    dispatch({
+      type:   VIS_ADMIN_PLATFORMS_FOUND,
+      payload: res.data
+    });
+    
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+    }
+
+    dispatch({
+      type: VIS_ADMIN_PLATFORMS_NOT_FOUND,
+    });
+  }
+}

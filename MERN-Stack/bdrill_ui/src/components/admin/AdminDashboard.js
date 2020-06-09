@@ -10,8 +10,10 @@ import CardFooter from "../common/cards/CardFooter.js";
 import Icon from "@material-ui/core/Icon";
 import Update from "@material-ui/icons/Update";
 import { getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength } from '../../actions/dashboardAuthAction'
+import { AdminPlatformsPieChart} from '../../actions/visualizationAction'
 import BarChart from '../chart/BarChart'
 import PieChart from '../chart/PieChart'
+
 
 class AdminDashboard extends Component {
   constructor(props) {
@@ -23,6 +25,7 @@ class AdminDashboard extends Component {
       managersLength: 0,
       candidatesLength: 0
     }
+    this.props.AdminPlatformsPieChart();
     this.GetMachinesLength();
     this.GetAttacksLength();
     this.GetOrganizationsLength();
@@ -101,7 +104,7 @@ class AdminDashboard extends Component {
                 </CardHeader>
                 <CardFooter >
                   <div >
-                    Ubuntu + Windows
+                    Total Machines
                     </div>
                 </CardFooter>
               </Card>
@@ -163,12 +166,16 @@ class AdminDashboard extends Component {
             <div className="col s12 m12 l4">
               <div className="card animate fadeLeft uicards">
                 <div className="card-content">
-                  <h5 className=" card-stats-number white-text"> Machines</h5>
+                  <h5 className=" card-stats-number white-text"> Platform Machines</h5>
                   <hr />
                   <br />
                   <div className="row">
                     <div className="col s12 m12 l11 offset-l1">
-                      <PieChart />
+                      <PieChart labels={this.props.visualization.adminPlatformsFound ? 
+                                        this.props.visualization.adminPlatformsData.label : null}
+                                dataSet={this.props.visualization.adminPlatformsFound ?
+                                        this.props.visualization.adminPlatformsData.values : null}
+                                            />
                     </div>
                   </div>
                 </div>
@@ -264,6 +271,8 @@ class AdminDashboard extends Component {
 }
 
 AdminDashboard.propTypes = {
+  visualization: PropTypes.object.isRequired,
+  AdminPlatformsPieChart: PropTypes.func.isRequired,
   getmachineslength: PropTypes.func.isRequired,
   getattackslength: PropTypes.func.isRequired,
   getorganizationslength: PropTypes.func.isRequired,
@@ -277,6 +286,7 @@ AdminDashboard.propTypes = {
 const mapStateToProps = state => ({
   user: state.user,
   auth: state.auth,
-  page: state.page
+  page: state.page,
+  visualization: state.visualization,
 })
-export default (connect(mapStateToProps, { getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength })(AdminDashboard));
+export default (connect(mapStateToProps, {AdminPlatformsPieChart, getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength })(AdminDashboard));

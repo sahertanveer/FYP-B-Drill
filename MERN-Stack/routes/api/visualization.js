@@ -16,6 +16,8 @@ const User = require('../../models/User')
 const Manager = require('../../models/Manager')
 const AttackInventory = require('../../models/Attack_Inventory')
 const auth = require('../../middleware/auth')
+const Machine = require('../../models/Machine')
+const Platform = require('../../models/Platform')
 
 router.use(cors())
 
@@ -452,6 +454,48 @@ router.post('/managerassignmentstatusdoughnutchart', [
 
                 const Attempted = passedAssignments + failedAssignments;
                 return res.json({ passedAssignments: passedAssignments, failedAssignments: failedAssignments, unAttempted: totalAssignments - Attempted })
+
+        }
+        else {
+            return res.status(401).send('Unauthorized Access')
+        }
+    })
+
+
+// @route   POST api/visualization/adminplatformspiechart
+// @desc    Post Platforms info in Pie Chart
+// @access  Public
+router.post('/adminplatformspiechart', [],
+    auth, async (req, res) => {
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        if (req.user.role === "admin") {
+
+            let platformNames = []
+            let noOfMachines = []
+              
+            await Platform.find()
+            .select('platform_name')
+            .then(async (platforms) =>{
+                const promises = platforms.map(async (platform)=>{
+
+                    let machinesCount = await Machine.find({platform:platform.platform_name}).countDocuments();
+                    platformNames.push(platform.platform_name);
+                    noOfMachines.push(machinesCount);
+
+                })
+                 await Promise.all(promises);
+            })
+            .catch(err=>{
+                return res.status(400).json({ errors: [{ msg: err }]}); 
+                }
+                );
+
+            return res.json({label: platformNames, values: noOfMachines })
 
         }
         else {

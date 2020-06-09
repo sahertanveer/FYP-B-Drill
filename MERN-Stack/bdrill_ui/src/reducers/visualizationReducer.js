@@ -7,28 +7,32 @@ import {
     VIS_SESSIONS_FOUND, VIS_SESSIONS_NOT_FOUND,
     VIS_MANAGER_ASSIGNMENTS_ATTEMPTED_STATUS_FOUND, VIS_MANAGER_ASSIGNMENTS_ATTEMPTED_STATUS_NOT_FOUND,
     VIS_MANAGER_ASSIGNMENTS_HISTORY_FOUND, VIS_MANAGER_ASSIGNMENTS_HISTORY_NOT_FOUND,
+    VIS_ADMIN_PLATFORMS_FOUND, VIS_ADMIN_PLATFORMS_NOT_FOUND
 } from '../actions/types';
 
 const initialState = {
     tacticsFound: false,
     tactics: [],
     assignmentAttemptedFound: false,
-    assignmentAttemptedData :{},
+    assignmentAttemptedData: {},
     assignmentHistoryFound: false,
-    assignmentHistoryData:{},
+    assignmentHistoryData: {},
     mitrePerformanceFound: false,
-    mitrePerformanceData:{},
-    performanceFound: false, 
-    performanceData:{},
+    mitrePerformanceData: {},
+    performanceFound: false,
+    performanceData: {},
     sessionsFound: false,
     sessionsData: [],
     /* Managers */
     managerAssignmentAttemptedFound: false,
-    managerAssignmentAttemptedData :{},
+    managerAssignmentAttemptedData: {},
     managerAssignmentHistoryFound: false,
-    managerAssignmentHistoryData:{},
+    managerAssignmentHistoryData: {},
+    /* Admins */
+    adminPlatformsFound: false,
+    adminPlatformsData: {}
 
-    
+
 }
 
 export default function (state = initialState, action) {
@@ -131,6 +135,19 @@ export default function (state = initialState, action) {
                 managerAssignmentHistoryFound: false
             }
 
+        /* Admin Visualization */
+        case VIS_ADMIN_PLATFORMS_FOUND:
+            return {
+                ...state,
+                adminPlatformsData: payload,
+                adminPlatformsFound: true
+            }
+        case VIS_ADMIN_PLATFORMS_NOT_FOUND:
+            return {
+                ...state,
+                adminPlatformsData: payload,
+                adminPlatformsFound: false
+            }
 
         default:
             return state;
