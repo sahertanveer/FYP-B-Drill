@@ -7,43 +7,53 @@ import { connect } from 'react-redux';
 import { getscenariosfromtactic } from '../../actions/adminAuthAction'
 import { addAssignment } from '../../actions/managerAuthAction'
 import { setAlert } from '../../actions/alertAction'
+import { sendNotification } from '../../actions/notificationAction'
 import Alert from '../../layout/Alert'
 import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from "@syncfusion/ej2-react-schedule";
 import { setPage } from '../../actions/pageAction';
 import queryString from 'query-string'
 
+const initialState = {
+  showMenuTactic: false,
+  showMenuCategory: false,
+  showMenuPlatform: false,
+  showList: false,
+  procedure_id: false,
+  tacticName: "Select Tactic",
+  tacticSelected: false,
+  platformSelected: false,
+  machineSelected: false,
+  category: "Select Category",
+  platform: "Select Platform",
+  machine: "Select Machine",
+  checkedCheckbox: null,
+  machinesAvailable: false,
+  machines: [],
+  schedules: [],
+  showSchedule: false,
+  actualScheduleLength: -1,
+  detectChange: false,
+  scheduleReady: false
+}
+
 class Assign_Attack extends Component {
   constructor(props) {
     super(props);
     const values = queryString.parse(this.props.location.search)
+    
+    
     this.state = {
+    ...initialState,
+    platforms: [],
+    candidateId: values.candId,
+    candidateEmail: values.candEmail,
+    }
       //dropdown
-      showMenuTactic: false,
-      showMenuCategory: false,
-      showMenuPlatform: false,
-      showList: false,
-      procedure_id: false,
-      tacticName: "Select Tactic",
-      tacticSelected: false,
-      platformSelected: false,
-      machineSelected: false,
-      category: "Select Category",
-      platform: "Select Platform",
-      machine: "Select Machine",
-      checkedCheckbox: null,
-      machinesAvailable: false,
-      candidateId: values.candId,
-      machines: [],
-      schedules: [],
-      platforms: [],
-      showSchedule: false,
-      actualScheduleLength: -1,
-      detectChange: false,
-      scheduleReady: false
+      
       // schedule :{
       //   dataSource:[]
       // }
-    }
+    // }
 
 
 
@@ -113,7 +123,7 @@ class Assign_Attack extends Component {
     this.checkFilter = this.checkFilter.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.Assign = this.Assign.bind(this)
-
+    this.notifyCandidate = this.notifyCandidate.bind(this)
 
 
   }
@@ -155,6 +165,16 @@ class Assign_Attack extends Component {
 
   // }
   //dropdown
+  notifyCandidate(){
+    let notificationFields = {}
+    notificationFields.sender = this.props.auth.email;
+			notificationFields.url = "candsession";
+			notificationFields.reciever_role = "candidate";
+			notificationFields.message = "You have a new assignment";
+			notificationFields.reciever_email = this.state.candidateEmail;
+			notificationFields.notification_type = "Assignment";
+    this.props.sendNotification(notificationFields)
+  }
 
   showMenuTactic(event) {
     event.preventDefault();
@@ -408,7 +428,21 @@ class Assign_Attack extends Component {
   checkAlert() {
     if (this.props.attack.attacksFound && this.props.attack.assignedSuccess) {
       this.props.setAlert('Attack Assigned to candidate successfully', 'primary') //light
-      this.setState({ procedure_id: "" })
+      // this.setState({ procedure_id: "" });
+      this.notifyCandidate();
+      this.setState(prevState =>{
+        return{
+          ...initialState,
+          platforms:  prevState.platforms,
+          candidateId:prevState.candidateId,
+          candidateEmail:prevState.Email,
+          
+        }
+      }) ;
+      this.props.history.push(`/candidatelist`)
+      this.props.setPage('candidatelist')
+
+      
 
     }
     else
@@ -451,7 +485,7 @@ class Assign_Attack extends Component {
 
             <div className="row">
               <div className="col s12 m12 l12">
-                <h6 className="white-text">Alotting Attack To: {this.state.candidateId}</h6>
+                <h6 className="white-text">Alotting Attack To: {this.state.candidateEmail}</h6>
                 <hr></hr>
               </div>
             </div>
@@ -697,6 +731,7 @@ Assign_Attack.propTypes = {
   getscenariosfromtactic: PropTypes.func.isRequired,
   setPage: PropTypes.func.isRequired,
   addAssignment: PropTypes.func.isRequired,
+  sendNotification: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   attack: PropTypes.object.isRequired,
   setAlert: PropTypes.func.isRequired
@@ -707,5 +742,5 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default withRouter(connect(mapStateToProps, { getscenariosfromtactic, addAssignment, setAlert, setPage })(Assign_Attack));
+export default withRouter(connect(mapStateToProps, { getscenariosfromtactic, addAssignment, setAlert, setPage, sendNotification })(Assign_Attack));
 //  export default withRouter(Assign_Attack)

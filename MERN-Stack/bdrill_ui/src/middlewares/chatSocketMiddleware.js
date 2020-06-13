@@ -20,7 +20,9 @@ import {
     PRIVATE_MESSAGE,
     ADD_CHAT,
     UPDATE_CHAT,
-    CONNECT
+    CONNECT,
+    NOTIFICATIONS_FOUND, NOTIFICATIONS_NOT_FOUND , PASS_SEND_NOTIFICATION_TO_MIDDLEWARE,
+    SEND_NOTIFICATION, RECIEVE_NOTIFICATION, ADD_NOTIFICATION
 } from '../actions/types';
 import io from 'socket.io-client'
 import { values } from 'lodash'
@@ -85,17 +87,36 @@ export function chatSocketMiddleware({ getState, dispatch }) {
         addChat(chat, false, { socket, chats: getState().chat.chats, dispatch: dispatch, activeChat: getState().chat.activeChat, user: getState().chat.user })
     })
 
+    socket.on(RECIEVE_NOTIFICATION, (notification)=>{
+
+                dispatch({
+                            type: ADD_NOTIFICATION,
+                            payload: notification
+                 })
+
+    })
+
 
     return function (next) {
         return function (action) {
 
             if (action.type === PASS_VERIFY_USER_TO_MIDDLEWARE) {
-                socket.emit(VERIFY_USER, action.payload.email, action.payload.role, ({ user, isUser }) => {
+                socket.emit(VERIFY_USER, action.payload.email, action.payload.role, ({ user, isUser, notifications }) => {
 
                     if (!isUser) {
                         dispatch({
                             type: SET_CHAT_USER,
                             payload: user
+                        })
+                        if (notifications.length > 0)
+                        dispatch({
+                            type: NOTIFICATIONS_FOUND,
+                            payload: notifications
+                        })
+                        else
+                        dispatch({
+                            type: NOTIFICATIONS_NOT_FOUND,
+                            payload: notifications
                         })
                         socket.emit(USER_CONNECTED, user);
                         socket.emit(COMMUNITY_CHAT, (chat) => {
@@ -133,6 +154,10 @@ export function chatSocketMiddleware({ getState, dispatch }) {
 
             if (action.type === CHAT_LOGOUT) {
                 socket.emit(LOGOUT);
+            }
+
+            if (action.type === PASS_SEND_NOTIFICATION_TO_MIDDLEWARE) {
+                socket.emit(SEND_NOTIFICATION, {notification: action.payload});
             }
 
             return next(action)

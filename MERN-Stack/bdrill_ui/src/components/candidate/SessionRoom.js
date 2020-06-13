@@ -14,6 +14,7 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
 import { logout } from '../../actions/authAction'
 import { setPage } from '../../actions/pageAction'
+import { sendNotification, getUserEmail } from '../../actions/notificationAction'
 import { BackendInstance } from '../../config/axiosInstance';
 import Loader from 'react-loader-spinner'
 import { setAlert } from '../../actions/alertAction'
@@ -321,9 +322,10 @@ class SessionRoom extends Component {
                     token: this.props.auth.token
                 }
             })
-            this.props.setAlert('session ended successfully', "success")
-            this.props.history.push(`/candsession`)
-            this.props.setPage('candsession')
+            this.props.setAlert('session ended successfully', "success");
+            this.notifyManager(this.props.auth.manager_id);
+            this.props.history.push(`/candsession`);
+            this.props.setPage('candsession');
         }
 
         catch (err) { this.props.setAlert(err + ' Session could not be ended!', "danger") };
@@ -331,6 +333,26 @@ class SessionRoom extends Component {
 
 
     }
+
+    
+    notifyManager = async (user_id) => {
+        
+        let result = await this.props.getUserEmail(user_id, "manager")
+        if(result.msg==="success"){
+            let notificationFields = {}
+          notificationFields.sender = this.props.auth.email;
+                  notificationFields.url = `managerchilduserprofile?userId=${this.props.auth._id}&role=candidate`;
+                  notificationFields.reciever_role = "manager";
+                  notificationFields.message = `${this.props.auth.email} has ended his session.`;
+                  notificationFields.reciever_email = result.email;
+                  notificationFields.notification_type = "Assignment";
+          this.props.sendNotification(notificationFields)
+        }
+        
+      }
+
+
+
     renderTime = (value) => {
         var dur = moment.duration(value, 'seconds')
 
@@ -654,6 +676,8 @@ class SessionRoom extends Component {
 SessionRoom.propTypes = {
     logout: PropTypes.func.isRequired,
     setPage: PropTypes.func.isRequired,
+    sendNotification: PropTypes.func.isRequired,
+    getUserEmail: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired
 }
@@ -663,7 +687,7 @@ const mapStateToProps = state => ({
     page: state.page
 })
 
-export default withRouter(connect(mapStateToProps, { logout, setAlert, setPage })(SessionRoom))
+export default withRouter(connect(mapStateToProps, { logout, setAlert, setPage, sendNotification, getUserEmail  })(SessionRoom))
 
 
 

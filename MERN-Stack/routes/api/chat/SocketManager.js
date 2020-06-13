@@ -3,12 +3,16 @@ const Organization = require('../../../models/Organization')
 const User = require('../../../models/User')
 const Manager = require('../../../models/Manager')
 const Message = require('../../../models/Message')
+const Notification = require('../../../models/Notification')
 const values = require('lodash')
+const { webServerUrl } = require('../../../config/url')
+const axios = require('axios');
+const { v4: uuidv4 } = require('uuid');
 const io = require('../../../server.js').io
 
 const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED,
 	LOGOUT, COMMUNITY_CHAT, MESSAGE_RECIEVED, MESSAGE_SENT,
-	TYPING, PRIVATE_MESSAGE, GET_AVAILABLE_CONTACTS } = require('./Events')
+	TYPING, PRIVATE_MESSAGE, SEND_NOTIFICATION, RECIEVE_NOTIFICATION, GET_AVAILABLE_CONTACTS } = require('./Events')
 
 const { createUser, createMessage, createChat } = require('./Factories')
 
@@ -45,9 +49,15 @@ module.exports = function (socket) {
 			user = await User.findOne({ email });
 		}
 		if (user) {
-			callback({ isUser: false, user: createUser({ name: user.firstname, socketId: socket.id, email: user.email, role: role }) })
+			let notifications = []
+			try {
+				notifications = await Notification.find({ reciever_email: user.email, read: false });
+			}
+			catch (err) { console.log(err); }
+
+			callback({ isUser: false, user: createUser({ name: user.firstname, socketId: socket.id, email: user.email, userId: user._id, role: role }), notifications: notifications })
 		} else
-			callback({ isUser: true, user: null })
+			callback({ isUser: true, user: null, notifications: null })
 
 	})
 
@@ -67,6 +77,7 @@ module.exports = function (socket) {
 		io.emit(USER_CONNECTED, connectedUsers, connectedAdmins, user.role)
 
 	})
+
 
 
 	//User disconnects
@@ -118,11 +129,42 @@ module.exports = function (socket) {
 				socket.to(recieverSocket).emit(PRIVATE_MESSAGE, newChat)
 			}
 		}
-		catch{
-			console.log("Caught some error!!")
+		catch (err) {
+			console.log(err)
 		}
 
 		sendMessageToChatFromUser(chatId, message)
+
+		//Message Notification
+		if(chatId !=="Community"){
+		try {
+			const entryExist = await Notification.findOne({ reciever_email: reciever.email, read: false, sender: socket.user.email, notification_type: "chat" });
+
+			let notification_id = uuidv4();
+			const notificationFields = {};
+			notificationFields.sender = socket.user.email;
+			notificationFields.url = "chatlayout";
+			notificationFields.notification_id = notification_id
+			notificationFields.reciever_role = reciever.role;
+			notificationFields.message = `You have new message from ${socket.user.email}`;
+			notificationFields.reciever_email = reciever.email;
+			notificationFields.notification_type = "chat";
+
+			if (!entryExist) {
+				notification = new Notification(notificationFields);
+				notification.save();
+			}
+			if (reciever.email in connectedUsers) {
+				socket.to(connectedUsers[reciever.email].socketId).emit(RECIEVE_NOTIFICATION, notificationFields)
+
+			} else if (reciever.email in connectedAdmins) {
+				socket.to(connectedAdmins[reciever.email].socketId).emit(RECIEVE_NOTIFICATION, notificationFields)
+			}
+		}
+		catch (err) {
+			console.log(err)
+		}
+	}
 	})
 
 	socket.on(TYPING, ({ chatId, isTyping }) => {
@@ -163,7 +205,64 @@ module.exports = function (socket) {
 		else
 
 			socket.emit(PRIVATE_MESSAGE, newChat)
+	});
+
+
+	socket.on(SEND_NOTIFICATION, ({ notification }) => {
+		// 	const config = { 
+		// 		headers: {
+		// 			'Content-Type': ' application/json ' //application/x-www.form-urlencoded
+		// 		}
+		// 	}
+		// 	const body = JSON.stringify(notification);
+		//   await axios.post(
+		//     `${webServerUrl}api/notification/addnewnotification`,
+		//     body,
+		//     config
+		//   );
+
+
+		const { sender, reciever_role, message, reciever_email, notification_type, url } = notification;
+		if (reciever_email && reciever_role && message) {
+
+			let notification_id = uuidv4();
+			let recieverList = connectedUsers;
+			if (reciever_role !== "admin")
+				recieverList = connectedUsers;
+			else recieverList = connectedAdmins;
+
+			try {
+
+				notification.notification_id = notification_id
+				if (reciever_email in recieverList) {
+					const recieverSocket = recieverList[reciever_email].socketId
+					socket.to(recieverSocket).emit(RECIEVE_NOTIFICATION, notification)
+				}
+			}
+			catch (err) {
+				console.log(err);
+			}
+
+			const notificationFields = {};
+			if (sender) notificationFields.sender = sender;
+			if (url) notificationFields.url = url;
+			notificationFields.notification_id = notification_id
+			notificationFields.reciever_role = reciever_role;
+			notificationFields.message = message;
+			notificationFields.reciever_email = reciever_email;
+			notificationFields.notification_type = notification_type;
+
+			try {
+				notification = new Notification(notificationFields);
+				notification.save();
+
+			} catch (err) {
+				console.error(err);
+			}
+		}
+
 	})
+
 
 }
 /*

@@ -8,6 +8,7 @@ import { setPage } from '../../actions/pageAction'
 import { BackendInstance } from '../../config/axiosInstance';
 import Loader from 'react-loader-spinner'
 import { setAlert } from '../../actions/alertAction'
+import { sendNotification, getUserEmail } from '../../actions/notificationAction'
 import Alert from '../../layout/Alert'
 
 import moment from "moment";
@@ -146,6 +147,7 @@ class CandSession extends Component {
                 ).then(async (r) => {
                     // alert(response.data)
                     this.props.setAlert('Starting Session, just a moment', "success");
+                    this.notifyManager(this.props.auth.manager_id);
                     await new Promise(r => setTimeout(r, 2000));
                     this.props.history.push(`/sessionroom`)
                     this.props.setPage('sessionroom')
@@ -176,6 +178,22 @@ class CandSession extends Component {
 
 
     }
+
+    notifyManager = async (user_id) => {
+        
+        let result = await this.props.getUserEmail(user_id, "manager")
+        if(result.msg==="success"){
+            let notificationFields = {}
+          notificationFields.sender = this.props.auth.email;
+                  notificationFields.url = "allotedassignments";
+                  notificationFields.reciever_role = "manager";
+                  notificationFields.message = `${this.props.auth.email} has started his assignment session.`;
+                  notificationFields.reciever_email = result.email;
+                  notificationFields.notification_type = "Assignment";
+          this.props.sendNotification(notificationFields)
+        }
+        
+      }
 
 
     render() {
@@ -217,7 +235,7 @@ class CandSession extends Component {
                                         {this.state.assignments ? this.state.assignments.map((field, idx) => {
                                             if (field.pending)
                                             return (
-                                                <tbody className="white-text center">
+                                                <tbody key={`${field.procedure_id}-${idx}`} className="white-text center">
                                                     <tr>
                                                         <td>{field.procedure_id}</td>
                                                         <td>{field.platform}</td>
@@ -246,6 +264,8 @@ class CandSession extends Component {
 CandSession.propTypes = {
     logout: PropTypes.func.isRequired,
     setPage: PropTypes.func.isRequired,
+    sendNotification: PropTypes.func.isRequired,
+    getUserEmail: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired,
     setAlert: PropTypes.func.isRequired
@@ -257,6 +277,6 @@ const mapStateToProps = state => ({
 })
 
 //export default withRouter(CandSession);
-export default withRouter(connect(mapStateToProps, { logout, setPage, setAlert })(CandSession))
+export default withRouter(connect(mapStateToProps, { logout, setPage, setAlert, sendNotification, getUserEmail })(CandSession))
 
 

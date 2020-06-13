@@ -7,6 +7,7 @@ import profileReducer from './profileReducer'
 import attackReducer from './attackReducer'
 import visualizationReducer from './visualizationReducer'
 import chatSocketReducer from './chatSocketReducer'
+import notificationReducer from './notificationReducer'
 
 export default combineReducers({
   alert: alertReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   profile:profileReducer,
   attack:attackReducer,
   visualization:visualizationReducer,
-  chat:chatSocketReducer
+  chat:chatSocketReducer,
+  notification: notificationReducer
 });

@@ -10,22 +10,44 @@ import { setPage } from '../../actions/pageAction'
 import { defaultAvatar } from '../../config/default';
 import { BackendInstance } from '../../config/axiosInstance'
 import { getProfileById } from '../../actions/profileAction'
+import { sendNotification, getUserEmail } from '../../actions/notificationAction'
 
 class CandidateList extends Component {
     constructor(props) {
         super(props);
         this.props.getusers(this.props.auth._id);
+        this.notifyCandidate = this.notifyOrganization.bind(this);
+        this.deleteCand = this.deleteCand.bind(this);
     }
 
-    deleteCand(e) {
+    notifyOrganization = async (user_id) => {
+        
+        let result = await this.props.getUserEmail(user_id, "organization")
+        if(result.msg==="success"){
+            let notificationFields = {}
+          notificationFields.sender = this.props.auth.email;
+                  notificationFields.url = "userslist";
+                  notificationFields.reciever_role = "organization";
+                  notificationFields.message = "A candidate is removed from your organization.";
+                  notificationFields.reciever_email = result.email;
+                  notificationFields.notification_type = "Candidate";
+          this.props.sendNotification(notificationFields)
+        }
+        
+      }
+
+    deleteCand = async (e) => {
         e.preventDefault();
-        this.props.deleteCandidate(e.currentTarget.value);
-        this.props.getusers();
+        let result =  await this.props.deleteCandidate(e.currentTarget.value);
+        this.props.getusers(this.props.auth._id);
+        if(result.msg==="success"){
+            this.notifyOrganization(this.props.auth.organization_id);
+        }
     }
 
-    setUserId(e) {
+    setUserId(id, email) {
         // let cand_id = e.target.value
-        this.props.history.push(`/assignattack?candId=${e.target.value}`)
+        this.props.history.push(`/assignattack?candId=${id}&candEmail=${email}`)
         this.props.setPage('assignattack')
     }
 
@@ -50,7 +72,7 @@ class CandidateList extends Component {
                                 /></td>
                         <td>{firstname} {lastname}</td>
                         <td>{email}</td>
-                        <td><button className="white-text btn btn-info" value={_id} onClick={(e) => { this.setUserId(e) }}>Assign</button></td>
+                        <td><button className="white-text btn btn-info"  onClick={(e) => { this.setUserId(_id, email) }}>Assign</button></td>
                         <td>
                             <button className="btn btn-info" value={_id} onClick={(e) => { this.getProfile(e, "candidate") }}>
                                 Profile
@@ -110,6 +132,8 @@ CandidateList.propTypes = {
     setPage: PropTypes.func.isRequired,
     checkuser: PropTypes.func.isRequired,
     getusers: PropTypes.func.isRequired,
+    sendNotification: PropTypes.func.isRequired,
+    getUserEmail: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired
@@ -121,4 +145,4 @@ const mapStateToProps = state => ({
     page: state.page
 })
 
-export default withRouter((connect(mapStateToProps, { getProfileById, logout, deleteCandidate, setPage, getusers, checkuser })(CandidateList)));
+export default withRouter((connect(mapStateToProps, { getProfileById, logout, deleteCandidate, setPage, getusers, checkuser, sendNotification, getUserEmail })(CandidateList)));

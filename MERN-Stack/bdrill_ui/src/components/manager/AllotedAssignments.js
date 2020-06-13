@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BackendInstance } from '../../config/axiosInstance';
 import { deleteAssignment } from '../../actions/managerAuthAction'
+import { sendNotification, getUserEmail } from '../../actions/notificationAction'
 import moment from "moment";
 //paths
 
@@ -17,6 +18,7 @@ class AllotedAssignments extends Component {
 
         this.deleteassignment = this.deleteassignment.bind(this);
         this.getAssignments = this.getAssignments.bind(this);
+        this.notifyCandidate = this.notifyCandidate.bind(this);
         this.getAssignments()
        
     }
@@ -36,11 +38,31 @@ class AllotedAssignments extends Component {
             .catch(err => alert(err + 'session cannot be initiated'));
     }
 
-    deleteassignment= async (e) => {
+    deleteassignment= async (e, user_id) => {
         e.preventDefault();
-        await this.props.deleteAssignment(e.currentTarget.value);
+        let result =  await this.props.deleteAssignment(e.currentTarget.value);
         this.getAssignments();
+        if(result.msg==="success"){
+        this.notifyCandidate(user_id);
     }
+    }
+
+    notifyCandidate = async (user_id) => {
+        
+        let result = await this.props.getUserEmail(user_id, "candidate")
+        if(result.msg==="success"){
+            let notificationFields = {}
+          notificationFields.sender = this.props.auth.email;
+                  notificationFields.url = "candsession";
+                  notificationFields.reciever_role = "candidate";
+                  notificationFields.message = "Your Assignment has been deleted";
+                  notificationFields.reciever_email = result.email;
+                  notificationFields.notification_type = "Assignment";
+          this.props.sendNotification(notificationFields)
+        }
+        
+      }
+    
 
     render() {
 
@@ -72,7 +94,7 @@ class AllotedAssignments extends Component {
                                         <td>{field.schedule.Subject}</td>
                                         <td>{moment(new Date(field.schedule.StartTime)).format('D MMM YYYY , h:mm:ss:A')}</td>
                                         <td>{moment(new Date(field.schedule.EndTime)).format('D MMM YYYY , h:mm:ss:A')}</td>
-                                        <td><button className="btn btn-danger" value={field._id} onClick={(e) => { this.deleteassignment(e) }}> <i className="material-icons">delete</i></button></td>
+                                        <td><button className="btn btn-danger" value={field._id} onClick={(e) => { this.deleteassignment(e, field.user_id) }}> <i className="material-icons">delete</i></button></td>
                                     </tr>)
                             }) : null}
                         </table>
@@ -85,6 +107,8 @@ class AllotedAssignments extends Component {
 }
 AllotedAssignments.propTypes = {
     deleteAssignment: PropTypes.func.isRequired,
+    sendNotification: PropTypes.func.isRequired,
+    getUserEmail: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
 }
 
@@ -93,6 +117,6 @@ const mapStateToProps = state => ({
 })
 
 //export default withRouter(CandSession);
-export default withRouter(connect(mapStateToProps, { deleteAssignment })(AllotedAssignments))
+export default withRouter(connect(mapStateToProps, { deleteAssignment, sendNotification, getUserEmail })(AllotedAssignments))
 
 

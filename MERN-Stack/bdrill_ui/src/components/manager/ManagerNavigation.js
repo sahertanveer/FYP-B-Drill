@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { BrowserRouter, Route as RouterLink, Link } from 'react-router-dom';
+import { BrowserRouter, Route as RouterLink, Link, useHistory  } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/authAction'
@@ -31,8 +31,9 @@ import EditCreateProfile from '../profile/EditCreateProfile'
 import GetCandidatesProfiles from './GetCandidatesProfiles'
 import UserProfile from '../profiles/UserProfile'
 import ChatBox from '../common/ChatBox';
-import ChatLayout from '../chat/ChatLayout'
-import ChangePassword from '../common/Password/ChangePassword'
+import ChatLayout from '../chat/ChatLayout';
+import ChangePassword from '../common/Password/ChangePassword';
+import { readNotification } from '../../actions/notificationAction';
 
 const drawerWidth = 220;
 
@@ -165,11 +166,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, setPage, page: { loadedPage } }) => {
+const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, readNotification, setPage, page: { loadedPage }, notification  }) => {
   const classes = useStyles();
+  const history = useHistory();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [notificationAnchorEl, setnotificationAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -178,6 +181,32 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleNotificationClick = (event) => {
+    setnotificationAnchorEl(event.currentTarget);
+  };
+
+  const handleNotificationClose = () => {
+    setnotificationAnchorEl(null);
+  };
+
+  const notificationItemClick = (url, id) => {
+
+    handleNotificationClose()
+    if(url === "chatlayout"){
+      history.push(`/manager${url}`);
+      readNotification(id);
+      setPage(`manager${url}`)
+    }
+    else{
+    history.push(`/${url}`);
+    readNotification(id);
+    setPage(url.split("?")[0])
+  }
+    // setPage(url, id);
+  };
+  
+
   const authLink = (
     <ul>
       <li>
@@ -190,6 +219,7 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
           color="inherit"
         >
           <AccountCircle />
+          </IconButton>
           <Menu
             className="navbar dropdown right"
             /* style = {{top:'-20%', left:'87%'}} */
@@ -202,12 +232,60 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
             <MenuItem><a href="/managerdashboard">My account</a></MenuItem>
             <MenuItem onClick={logout}>Logout</MenuItem>
           </Menu>
-        </IconButton>
+       
         {/* </a> */}
       </li>
     </ul>
   );
 
+  const notificationLink = (
+    <ul>
+      <li>
+        {/* <a onClick={logout} href='#!' /> */}
+        {/* <a href='/candsignin' className="white-text"> */}
+        {/* <IconButton aria-label="show 17 new notifications" color="inherit">
+                <Badge badgeContent={notification && notification.notifications ? notification.notifications.length : 0} color="primary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton> */}
+        <IconButton
+         aria-label="notifications"
+          aria-controls="long-menu"
+          aria-haspopup="true"
+          onClick={handleNotificationClick}
+          color="inherit"
+        >
+          <Badge badgeContent={notification && notification.notifications ? notification.notifications.length : 0} color="primary">
+                  <NotificationsIcon />
+                </Badge>
+          </IconButton>
+          <Menu
+            className="navbar dropdown right"
+            /* style = {{top:'-20%', left:'87%'}} */
+            id="long-menu"
+            anchorEl={notificationAnchorEl}
+            keepMounted
+            open={Boolean(notificationAnchorEl)}
+            onClose={handleNotificationClose}
+            PaperProps={{style:{
+              maxHeight: 48 * 4.5,
+            }}}
+          >
+           { notification && notification.notifications.map(notif =>{
+              const { sender, reciever_role, message, reciever_email, notification_type, url, notification_id, _id } = notif
+            return <MenuItem id={_id} onClick={()=> notificationItemClick(url, notification_id)} > {`${notification_type} | ${message}`} </MenuItem> 
+           })}
+            {/* <MenuItem> <a href="/candprofile">Profile</a></MenuItem>
+            <MenuItem><a href="/canddashboard">My account</a></MenuItem>
+            <MenuItem onClick={logout}>Logout</MenuItem> */}
+          </Menu>
+        
+        {/* </a> */}
+      </li>
+    </ul>
+  );
+
+  
   const guestLink = (
     <ul>
       <li>
@@ -323,18 +401,14 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton aria-label="show 17 new notifications" color="inherit">
-                <Badge badgeContent={17} color="primary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              <IconButton aria-label="show 17 new notifications" color="inherit">
+            {!loading && (<Fragment>{isAuthenticated ? notificationLink : null}</Fragment>)}
+              {/* <IconButton aria-label="show 17 new notifications" color="inherit">
                 <Badge badgeContent={17} color="primary">
                   <a href="/managerchatlayout">
                     <MailIcon className="white-text" />
                   </a>
                 </Badge>
-              </IconButton>
+              </IconButton> */}
             </div>
             {!loading && (<Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>)}
             <div className={classes.sectionMobile}>
@@ -505,13 +579,16 @@ ManagerNavigation.propTypes = {
   logout: PropTypes.func.isRequired,
   setPage: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  readNotification: PropTypes.func.isRequired,
+  notification: PropTypes.object.isRequired,
   page: PropTypes.object.isRequired,
   loadUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  page: state.page
+  page: state.page,
+  notification: state.notification
 })
 
-export default connect(mapStateToProps, { logout, setPage, loadUser })(ManagerNavigation)
+export default connect(mapStateToProps, { logout, setPage, loadUser, readNotification })(ManagerNavigation)

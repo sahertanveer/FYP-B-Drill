@@ -3,6 +3,7 @@ import { setAlert } from './alertAction'
 
 export const deleteCandidate = (id) => async dispatch => {
   if (window.confirm('Do you want to permanently delete Candidate account? This can NOT be undone!')) {
+    let result = {msg: "failure"}
     try {
       await BackendInstance({
         method: 'post',
@@ -10,12 +11,19 @@ export const deleteCandidate = (id) => async dispatch => {
         data: {
           _id: id,
         }
-      }).then(res => dispatch(setAlert('User has been permanantly deleted', 'success')))
-        .catch(err => dispatch(setAlert('User not deleted', 'danger')))
+      }).then(res =>{
+         dispatch(setAlert('User has been permanantly deleted', 'success'));
+         result.msg="success";
+        })
+        .catch(err => {
+          dispatch(setAlert('User not deleted', 'danger'));
+        result.msg="failure"});
 
     } catch  {
       dispatch(setAlert('User not deleted', 'danger'));
+      result.msg="failure"
     };
+    return result;
   }
 };
 

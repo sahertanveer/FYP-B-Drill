@@ -13,6 +13,7 @@ import {
     CANDIDATE_FOUND
 } from './types';
 import { setAlert } from './alertAction'
+import { Result } from 'express-validator';
 
 export const registerCandidate = ({ organization_id, manager_id, firstname, lastname, email }) => async dispatch => {
     const config = { 
@@ -20,14 +21,14 @@ export const registerCandidate = ({ organization_id, manager_id, firstname, last
             'Content-Type': ' application/json ' //application/x-www.form-urlencoded
         }
     }
-
+    let result = {msg: "failure"}
     const newUser = { organization_id, manager_id, firstname, lastname, email };
     const body = JSON.stringify(newUser);
 
     try {
         // const res = await axios.post('http://115.186.176.139:5000/api/managers/registerCandidate', body, config);
         const res = await BackendInstance.post('/api/managers/registerCandidate', body, config);
-
+        result.msg="success"
         dispatch({
             type: CANDIDATE_ADDED,
             payload: res.data
@@ -35,7 +36,7 @@ export const registerCandidate = ({ organization_id, manager_id, firstname, last
 
     } catch (err) {
         const errors = err.response.data.errors;
-
+        result.msg="failure"
         if (errors) {
             errors.forEach(error => { dispatch(setAlert(error.msg, 'danger')) })
         }
@@ -45,6 +46,7 @@ export const registerCandidate = ({ organization_id, manager_id, firstname, last
 
         });
     }
+    return result;
 }
 
 
@@ -222,19 +224,27 @@ export const checkuser = (user_id) => async dispatch => {
 
 export const deleteAssignment = (id) => async dispatch => {
     if (window.confirm('Are you sure? This can NOT be undone!')) {
+        let result = {msg: "failure"}
       try {
+       
         await BackendInstance({
           method: 'post',
           url: '/api/managers/deleteassignment',
           data: {_id: id}
         })
-      .then(res=>dispatch(setAlert('Assignment has been permanantly deleted', 'success')))
-      .catch(err=> dispatch(setAlert('Assignment not deleted', 'danger')))
+      .then(res=>{
+          dispatch(setAlert('Assignment has been permanantly deleted', 'success'));
+          result.msg="success"
+        })
+      .catch(err=> {
+          dispatch(setAlert('Assignment not deleted', 'danger'))
+          result.msg = "failure";
+    })
        
-  
-        
+  return result;
       } catch  {
           dispatch(setAlert('Assignment not deleted', 'danger'));
+          return result;
         };
       }
   };
