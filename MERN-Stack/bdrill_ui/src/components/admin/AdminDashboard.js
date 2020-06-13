@@ -192,7 +192,7 @@ class AdminDashboard extends Component {
                   </CardIcon>
                   <br />
                   <p>Online Users</p>
-                  <h3>49</h3>
+                  <h3>{this.props.onlineUsers !== null ? Object.keys(this.props.onlineUsers).length : 0 }</h3>
                 </CardHeader>
                 <CardFooter stats>
                   <div >
@@ -280,6 +280,7 @@ AdminDashboard.propTypes = {
   getuserslength: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
+  onlineUsers: PropTypes.object.isRequired,
   page: PropTypes.object.isRequired
 }
 
@@ -288,5 +289,6 @@ const mapStateToProps = state => ({
   auth: state.auth,
   page: state.page,
   visualization: state.visualization,
+  onlineUsers: state.chat.usersObj
 })
 export default (connect(mapStateToProps, {AdminPlatformsPieChart, getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength })(AdminDashboard));
