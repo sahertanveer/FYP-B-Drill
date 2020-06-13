@@ -315,7 +315,8 @@ class Assign_Attack extends Component {
         method: 'post',
         url: '/api/managers/getschedule',
         data: {
-          machine_name: this.state.machine//'5db080230b62e76104bdd4bd'
+          machine_name: this.state.machine, //'5db080230b62e76104bdd4bd'
+          candidate_id: this.state.candidateId
         }
       })
 

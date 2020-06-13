@@ -477,7 +477,10 @@ router.post('/setschedule', auth,
 // @desc    POST Schedule
 // @access  Public
 router.post('/getschedule', auth, [
-  check('machine_name', 'machine_name is required')
+  check('machine_name', 'machine name is required')
+    .not()
+    .isEmpty(),
+  check('candidate_id', 'candidate id is required')
     .not()
     .isEmpty()
 ],
@@ -489,9 +492,19 @@ router.post('/getschedule', auth, [
         return res.status(422).json({ errors: errors.array() });
       }
       try {
-        let schedules = await Schedule.find({ "machine_name": req.body.machine_name }, function (err, docs) {
-          if (err) res.json(err);
-        })
+        let schedules = await Schedule.find(
+          {
+            $or: [
+
+              {
+                machine_name: req.body.machine_name
+              }, {
+                candidate_id: req.body.candidate_id
+              }
+            ]
+          }, function (err, docs) {
+            if (err) res.json(err);
+          })
           .select('-platform')
           .select('-date')
           .select('-__v')
