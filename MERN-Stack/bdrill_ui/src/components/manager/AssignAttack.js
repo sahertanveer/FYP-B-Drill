@@ -124,6 +124,9 @@ class Assign_Attack extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.Assign = this.Assign.bind(this)
     this.notifyCandidate = this.notifyCandidate.bind(this)
+    this.onPopupOpen = this.onPopupOpen.bind(this);
+    this.onRenderCell = this.onRenderCell.bind(this);
+    this.onActionBegin = this.onActionBegin.bind(this);
 
 
   }
@@ -275,6 +278,39 @@ class Assign_Attack extends Component {
 
   }
 
+  onPopupOpen(args) { 
+    if (args.data.name === "cellClick") { 
+      if ((args.data.startTime) < new Date(new Date().setHours(0, 0, 0, 0))) { 
+        args.cancel = true; 
+      } 
+    } else { 
+      if ((args.data.StartTime) < new Date(new Date().setHours(0, 0, 0, 0))) { 
+        args.cancel = true; 
+      } 
+    } 
+  } 
+  onRenderCell(args) { 
+    if (args.date < new Date(new Date().setHours(0, 0, 0, 0))) { 
+      args.element.classList.add('e-disableCell'); 
+    } 
+ 
+  } 
+  onActionBegin(args) { 
+    if (args.requestType === "eventChange") { 
+      if ((args.data.StartTime) < new Date(new Date().setHours(0, 0, 0, 0))) { 
+        args.cancel = true; 
+      } 
+    } 
+    if (args.requestType === "eventCreate") { 
+      for (var i = 0; i < args.data.length; i++) { 
+        if ((args.data[i].StartTime) < new Date(new Date().setHours(0, 0, 0, 0))) { 
+          args.cancel = true; 
+        } 
+      } 
+    } 
+  } 
+
+
 
   async getMachines() {
     try {
@@ -376,7 +412,10 @@ class Assign_Attack extends Component {
 
   getCalendar() {
     // popupClose ={() => this.onAnyChange()} onClick={() => this.onAnyChange()}
-    return this.state.showSchedule ? <ScheduleComponent actionComplete={() => this.onAnyChange()} currentView='Month' eventSettings={{ dataSource: this.state.schedules }}>
+    return this.state.showSchedule ? <ScheduleComponent 
+    actionComplete={() => this.onAnyChange()} currentView='Month' eventSettings={{ dataSource: this.state.schedules }}
+    renderCell={(e) => this.onRenderCell(e)} popupOpen={(e) => this.onPopupOpen(e)} actionBegin={(e) => this.onActionBegin(e)}
+    >
       {/* <ViewsDirective>
                     <ViewDirective option='Day'/>
                     <ViewDirective option='Week'/>
