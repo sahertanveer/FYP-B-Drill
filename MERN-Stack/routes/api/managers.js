@@ -565,7 +565,7 @@ router.post('/getassignments', auth, async (req, res) => {
 // @desc    Delete Assignment
 // @access  Private
 router.post('/deleteassignment', auth, async (req, res) => {
-  if (req.user.role === "manager") {
+  if (req.user.role === "manager" || req.user.role === "admin") {
     try {
       //Remove Attack
       await Assignments.findOneAndDelete({ _id: req.body._id })
