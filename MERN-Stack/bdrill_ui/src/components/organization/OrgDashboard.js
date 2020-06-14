@@ -169,8 +169,8 @@ class OrgDashboard extends Component {
                   </CardIcon>
                   <br />
                   <p>Online Users</p>
-                  <h3>49</h3>
-                </CardHeader>
+                  <h3>{this.props.onlineUsers !== null ? Object.keys(this.props.onlineUsers).length : 0 }</h3>
+                  </CardHeader>
                 <CardFooter stats>
                   <div >
                     <Update />
@@ -254,12 +254,14 @@ OrgDashboard.propTypes = {
   getuserslength: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-  page: PropTypes.object.isRequired
+  page: PropTypes.object.isRequired,
+  onlineUsers: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
   user: state.user,
   auth: state.auth,
-  page: state.page
+  page: state.page,
+  onlineUsers: state.chat.usersObj
 })
 export default (connect(mapStateToProps, { getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength })(OrgDashboard));

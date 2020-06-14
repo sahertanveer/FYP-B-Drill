@@ -341,7 +341,7 @@ class CandDashboard extends Component {
                                     </CardIcon>
                                     <br />
                                     <p>Online Users</p>
-                                    <h3>2</h3>
+                                    <h3>{this.props.onlineUsers !== null ? Object.keys(this.props.onlineUsers).length : 0 }</h3>
                                 </CardHeader>
                                 <CardFooter stats>
                                     <div >
@@ -429,13 +429,15 @@ CandDashboard.propTypes = {
     getorganizationslength: PropTypes.func.isRequired,
     getmanagerslength: PropTypes.func.isRequired,
     getuserslength: PropTypes.func.isRequired,
-    auth_id: PropTypes.string.isRequired
+    auth_id: PropTypes.string.isRequired,
+    onlineUsers: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
     visualization: state.visualization,
     page: state.page,
-    authId:state.auth._id
+    authId:state.auth._id,
+    onlineUsers: state.chat.usersObj
 })
 
 export default connect(mapStateToProps, {

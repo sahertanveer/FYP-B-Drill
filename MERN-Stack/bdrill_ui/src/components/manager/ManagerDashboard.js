@@ -211,8 +211,8 @@ class ManagerDashboard extends Component {
                   </CardIcon>
                   <br />
                   <p>Online Users</p>
-                  <h3>49</h3>
-                </CardHeader>
+                  <h3>{this.props.onlineUsers !== null ? Object.keys(this.props.onlineUsers).length : 0 }</h3>
+                  </CardHeader>
                 <CardFooter stats>
                   <div >
                     <Update />
@@ -299,13 +299,15 @@ ManagerDashboard.propTypes = {
   getuserslength: PropTypes.func.isRequired,
   authId: PropTypes.string.isRequired,
   user: PropTypes.object.isRequired,
-  page: PropTypes.object.isRequired
+  page: PropTypes.object.isRequired,
+  onlineUsers: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
   visualization: state.visualization,
   user: state.user,
   authId: state.auth._id,
+  onlineUsers: state.chat.usersObj,
   page: state.page
 })
 export default (connect(mapStateToProps, {ManagerAssignmentHistoryRadarGraph, ManagerAssignmentAttemptionStatusDoughnutGraph, getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength })(ManagerDashboard));
