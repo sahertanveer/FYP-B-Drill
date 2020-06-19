@@ -13,29 +13,29 @@ class DoughnutChart extends Component {
 		datasets: [{
 			data: this.props.dataSet,
 			fill: false,
-			backgroundColor: ['#70cad1', '#b08ea2', '#BBB6DF']
-			// backgroundColor: [
-			// 	'rgba(95,192,197,0.7)',
-			// 	'rgba(179,181,198,0.7)',
-			// 	'rgba(255,99,132,0.7)',
-			// ],
-			// borderColor: [
-			// 	'rgba(95,192,197,1)',
-			// 	'rgba(179,181,198,1)',
-			// 	'rgba(255,99,132,1)',
-			// ],
-			// pointBackgroundColor: [
-			// 	'rgba(95,192,197,1)',
-			// 	'rgba(179,181,198,1)',
-			// 	'rgba(255,99,132,1)',
-			// ],
-			// pointBorderColor: '#fff',
-			// pointHoverBackgroundColor: '#fff',
-			// pointHoverBorderColor: [
-			// 	'rgba(95,192,197,1)',
-			// 	'rgba(179,181,198,1)',
-			// 	'rgba(255,99,132,1)',
-			// ],
+			// backgroundColor: ['#70cad1', '#b08ea2', '#BBB6DF']
+			backgroundColor: [
+				'rgba(255,99,132,0.5)',
+				'rgba(95,192,197,0.5)',
+				'rgba(179,181,198,0.5)',
+			],
+			borderColor: [
+				'rgba(255,99,132,1)',
+				'rgba(95,192,197,1)',
+				'rgba(179,181,198,1)',
+			],
+			pointBackgroundColor: [
+				'rgba(255,99,132,1)',
+				'rgba(95,192,197,1)',
+				'rgba(179,181,198,1)',
+			],
+			pointBorderColor: '#fff',
+			pointHoverBackgroundColor: '#fff',
+			pointHoverBorderColor: [
+				'rgba(255,99,132,1)',
+				'rgba(95,192,197,1)',
+				'rgba(179,181,198,1)',
+			],
 	
 		}]
 	};

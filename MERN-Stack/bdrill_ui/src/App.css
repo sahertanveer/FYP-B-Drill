@@ -563,7 +563,7 @@ input[type=checkbox] {
   opacity: 1;
 }
 
-.userimage:hover  {
+.myprofileimg:hover  {
   opacity: 0.5;
 }
 /* .userimage:hover .userimage .myprofileimg {

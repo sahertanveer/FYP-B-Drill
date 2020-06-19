@@ -15,7 +15,6 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
 import NotificationsIcon from '@material-ui/icons/Notifications'
@@ -31,6 +30,7 @@ import ChangePassword from '../common/Password/ChangePassword'
 import ChatBox from '../common/ChatBox';
 import ChatLayout from '../chat/ChatLayout';
 import { readNotification } from '../../actions/notificationAction';
+import BDrill_logo from'../BDrill_logo.png'
 
 const drawerWidth = 200;
 
@@ -56,6 +56,23 @@ const useStyles = makeStyles(theme => ({
   },
   grow: {
     flexGrow: 1,
+  },
+  logo: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 35,
+    marginRight: 20,
+    width: '20%',
+    height: '45px',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(5),
+      display: 'flex-box',
+      width: 'auto',
+      height: '45px',
+    },
   },
   title: {
     display: 'flex',
@@ -383,6 +400,7 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, r
             >
               <MenuIcon />
             </IconButton>
+            <img src={BDrill_logo} alt="B-Drill" className={classes.logo}/>
             <Typography variant="h4" noWrap>
               B-Drill
           </Typography>

@@ -36,11 +36,11 @@ const UserProfile = ({ getCurrentProfile, getProfilePhoto, auth: { user, role },
                                                 src={profile && profile.path ? `${BackendInstance.defaults.baseURL}${profile && profile.path}` : defaultAvatar}
                                                 alt=""
                                             />
-                                            <div className="">
+                                            <div>
                                                 <Popup
                                                     trigger=
                                                     {
-                                                        <div className="overlay">
+                                                        <div className="overlay" style={{ zIndex: 1 }}>
                                                             <a href="#!" className="btn icon">
                                                                 <i className="fas fa-edit small"></i>
                                                             </a>
@@ -49,7 +49,7 @@ const UserProfile = ({ getCurrentProfile, getProfilePhoto, auth: { user, role },
                                                     modal
                                                     closeOnDocumentClick
                                                 >
-                                                    <div className="uicards" style={{ backgroundColor: "black", zIndex: 9999 }} >
+                                                    <div className="uicards" style={{ zIndex: 1 }} >
                                                         <ImageUpload />
                                                     </div>
                                                 </Popup>
