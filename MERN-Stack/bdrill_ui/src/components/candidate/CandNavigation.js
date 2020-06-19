@@ -15,8 +15,6 @@ import {
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import MoreIcon from '@material-ui/icons/MoreVert'
-import SearchIcon from '@material-ui/icons/Search'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 
@@ -260,13 +258,6 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
   const notificationLink = (
     <ul>
       <li>
-        {/* <a onClick={logout} href='#!' /> */}
-        {/* <a href='/candsignin' className="white-text"> */}
-        {/* <IconButton aria-label="show 17 new notifications" color="inherit">
-                <Badge badgeContent={notification && notification.notifications ? notification.notifications.length : 0} color="primary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton> */}
         <IconButton
          aria-label="notifications"
           aria-controls="long-menu"
@@ -294,12 +285,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
               const { sender, reciever_role, message, reciever_email, notification_type, url, notification_id, _id } = notif
             return <MenuItem id={_id} onClick={()=> notificationItemClick(url, notification_id)} > {`${notification_type} | ${message}`} </MenuItem> 
            })}
-            {/* <MenuItem> <a href="/candprofile">Profile</a></MenuItem>
-            <MenuItem><a href="/canddashboard">My account</a></MenuItem>
-            <MenuItem onClick={logout}>Logout</MenuItem> */}
           </Menu>
-        
-        {/* </a> */}
       </li>
     </ul>
   );
@@ -320,9 +306,6 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
   );
 
   function handleDrawerOpen() {
-    //this.setState(useState => ({ isDisabled: true }));
-    // setDisability = true
-    // document.getElementById("disability").classList.add("disable-class")
     setOpen(true);
   }
 
@@ -460,7 +443,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
             <Typography variant="h4" noWrap>
               B-Drill
           </Typography>
-            <div className={classes.search}>
+            {/* <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
@@ -472,7 +455,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
                 }}
                 inputProps={{ 'aria-label': 'search' }}
               />
-            </div>
+            </div> */}
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
             {!loading && (<Fragment>{isAuthenticated ? notificationLink : null}</Fragment>)}
@@ -486,7 +469,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
               </IconButton> */}
             </div>
             {!loading && (<Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>)}
-            <div className={classes.sectionMobile}>
+            {/* <div className={classes.sectionMobile}>
               <IconButton
                 aria-label="show more"
                 aria-controls={mobileMenuId}
@@ -497,7 +480,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
               >
                 <MoreIcon />
               </IconButton>
-            </div>
+            </div> */}
           </Toolbar>
         </AppBar>
 
