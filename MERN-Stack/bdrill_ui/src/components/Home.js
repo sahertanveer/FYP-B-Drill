@@ -2,7 +2,7 @@ import React from 'react'
 import { Parallax, ParallaxLayer } from 'react-spring/renderprops-addons'
 import comsatslogo from './comsatslogo.png'
 import HomeLoginCards from './HomeLoginCards'
-// import logo2 from './logo2.PNG'
+import BDrill_logo from'./BDrill_logo.png'
 
 // Little helpers ...
 const url = (name, wrap = false) => `${wrap ? 'url(' : ''}https://awv3node-homepage.surge.sh/build/assets/${name}.svg${wrap ? ')' : ''}`
@@ -20,28 +20,24 @@ class Home extends React.Component {
         return (
             <Parallax ref={ref => (this.parallax = ref)} pages={4}>
 
-                <ParallaxLayer offset={0} speed={1} style={{ backgroundColor: '#32325d' }} />
+                <ParallaxLayer offset={0} speed={1} style={{background: 'linear-gradient(to bottom, #205072 0%, #9f8189 100%)'}} />
                 <ParallaxLayer offset={1} speed={1} style={{ backgroundColor: '#805E73' }} />
-                <ParallaxLayer offset={2} speed={1} style={{ backgroundColor: '#87BCDE' }} />
+                <ParallaxLayer offset={2} speed={1} style={{ background: 'linear-gradient(to bottom, #80d0c7 0%, #87BCDE 50%, #13547a 100%)' }} />
                 <ParallaxLayer offset={3} speed={1} style={{ backgroundColor: '#909090' }} />
-                <ParallaxLayer offset={3.7} speed={1} style={{ backgroundColor: '#000000' }} />
+                <ParallaxLayer offset={3.7} speed={1} style={{ background: 'linear-gradient(to right, #434343 0%, #000000 60%, #000000 100%)' }} />
 
                 <ParallaxLayer offset={0} speed={0} factor={3} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
                 <ParallaxLayer offset={1} speed={0} factor={3} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
                 <ParallaxLayer offset={2} speed={0} factor={3} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
                 <ParallaxLayer offset={3} speed={0} factor={3} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
                 <ParallaxLayer offset={4} speed={0} factor={3} style={{ backgroundImage: url('stars', true), backgroundSize: 'cover' }} />
-        
-                <ParallaxLayer offset={0.6} speed={0.5} style={{ opacity: 0.5 }}>
-                    <img src={url('satellite3')} alt="items" style={{ display: 'block', width: '10%', marginLeft: '10%' }} />
-                </ParallaxLayer>
 
                 <ParallaxLayer offset={0.0} speed={0.5} style={{ opacity: 0.4 }}>
                     <img src={url('satellite')} alt="items" style={{ display: 'block', width: '20%', marginLeft: '80%' }} />
                 </ParallaxLayer>
 
-                <ParallaxLayer offset={1.1} speed={-0.3} style={{ opacity: 0.4, pointerEvents: 'none' }}>
-                    <img src={url('logo')} alt="items" style={{ width: '25%', marginLeft: '65%' }} />
+                <ParallaxLayer offset={1.2} speed={-0.3} style={{ opacity: 0.4, pointerEvents: 'none' }}>
+                    <img src={url('logo')} alt="items" style={{ width: '25%', marginLeft: '75%' }} />
                 </ParallaxLayer>
 
                 <ParallaxLayer offset={1.6} speed={0.2} style={{ opacity: 0.4 }}>
@@ -53,11 +49,11 @@ class Home extends React.Component {
                 </ParallaxLayer>
 
                 <ParallaxLayer offset={2.8} speed={-0.1} style={{ opacity: 0.4 }}>
-                    <img src={url('bash')} alt="items" style={{ display: 'block', width: '10%', marginLeft: '80%' }} />
+                    <img src={url('satellite3')} alt="items" style={{ display: 'block', width: '10%', marginLeft: '80%' }} />
                 </ParallaxLayer>
 
                 <ParallaxLayer offset={3.7} speed={0.4} style={{ opacity: 0.2 }}>
-                    <img src={url('earth')} alt="items" style={{ display: 'block', width: '20%', marginLeft: '5%' }} />
+                    <img src={url('earth')} alt="items" style={{ display: 'block', width: '20%', marginLeft: '-5%' }} />
                 </ParallaxLayer>
 
                 <ParallaxLayer
@@ -70,7 +66,8 @@ class Home extends React.Component {
                     <div className="row" style={{ marginTop: "15%", marginBottom: "18%" }}>
                         <div className="col s12 m12 l12">
                             <div className="header center">
-                                <h1 className="white-text center" style={{ fontFamily: "Princess Sofia", fontSize: "84px" }}>B-Drill</h1>
+                                <img src={BDrill_logo} alt="B-Drill" style={{height:"250px", width:"250px"}}/>
+                                <h1 className="white-text center" style={{ fontFamily: "Princess Sofia", fontSize: "84px", marginTop:"-10px" }}>B-Drill</h1>
                                 <p className="white-text center">We give wings to your skills, you decide where to fly...</p>
                             </div>
                         </div>
@@ -133,20 +130,21 @@ class Home extends React.Component {
                     onClick={() => this.parallax.scrollTo(4)}>
                     <div className="row ">
                         <div className="col s12 m12 l12 ">
-                            <h3 className="white-text center" style={{ fontFamily: "Princess Sofia" }}>About B-Drill</h3>
+                            <h3 className="white-text center" style={{ fontFamily: "Princess Sofia" }}>About</h3>
                             <p className=" white-text justify" style={{ marginLeft: "15px", marginRight: "15px" }}>
-                                We will provide a simulated environment which will represent the SDN (software defined network)
-                                infrastructure which we will call Cyber Range.  Our system will automatically create different
-                                dynamic attack scenarios (which will change according to user’s performance) for the user in Cyber Range.
-                                Our system will provide reward-based learning and assessment for individual professionals, who want to
-                                train themselves. Also, an organization can also test skills of a professional, who wants to be hired.
-                                    It will provide real-time feedback. So, our automatic simulations are limited to: <br />
+                                We will provide a simulated environment which will represent the Automated Attack Machine 
+                                which we will call Cyber Range.   Our system can be used by organizations, who want to examine 
+                                their security professionals. System will also be helpful for organization during recruitment. 
+                                It will provide real-time feedback. So, our automatic simulations are limited to: <br />
+                                <br />
                                 • Attack scenarios <br />
                                 • Organizational network (Cyber Range)<br />
-                                Automated attack system will simulate a wide range of malicious activities. Which will be according
-                                to MITRE ATTACK framework (TTP’s “Tactic, Techniques and Procedure”). During the training session,
-                                user activities monitoring will be done. After the training session, user profiling (on the basis of monitored
-                                    data) will be done which will assess the capabilities of that person.<br />
+                                <br />
+                                Automated attack system will simulate a wide range of malicious activities which will be according to 
+                                MITRE ATTACK framework (TTP’s “Tactic, Techniques and Procedure”). During the examination session, user 
+                                activities will be monitored and evaluated. After session, user profiling will be done which will assess 
+                                the capabilities of that person.<br />
+                                <br />
 
                                 Our system does not include organization’s cyber security capability evaluation, but only that of a
                                 security professional. Therefore, our system will never replicate an organization network

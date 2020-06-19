@@ -3,11 +3,8 @@ import { BrowserRouter, Route as RouterLink, Link, useHistory  } from 'react-rou
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/authAction'
-//import { logout } from '../../actions/adminAuthAction'
 import { setPage } from '../../actions/pageAction'
 import { loadUser } from '../../actions/authAction'
-
-import ChatBox from '../common/ChatBox';
 
 import clsx from 'clsx';
 import { makeStyles, useTheme, fade } from '@material-ui/core/styles';
@@ -18,7 +15,6 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import MailIcon from '@material-ui/icons/Mail';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
 import NotificationsIcon from '@material-ui/icons/Notifications'
@@ -37,6 +33,8 @@ import ChatLayout from '../chat/ChatLayout'
 import UserProfile from '../profiles/UserProfile'
 import ChangePassword from '../common/Password/ChangePassword';
 import { readNotification } from '../../actions/notificationAction';
+import ChatBox from '../common/ChatBox';
+import BDrill_logo from'../BDrill_logo.png'
 
 const drawerWidth = 220;
 
@@ -63,7 +61,25 @@ const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
   },
+  logo: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 35,
+    marginRight: 20,
+    width: '20%',
+    height: '45px',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(5),
+      display: 'flex-box',
+      width: 'auto',
+      height: '45px',
+    },
+  },
   title: {
+    marginLeft: 75,
     display: 'flex',
     [theme.breakpoints.up('sm')]: {
       display: 'flex-box',
@@ -77,7 +93,7 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginLeft: 65,
-    width: '30%',
+    width: '50%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(15),
       width: 'auto',
@@ -379,6 +395,7 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
             >
               <MenuIcon />
             </IconButton>
+            <img src={BDrill_logo} alt="B-Drill" className={classes.logo}/>
             <Typography variant="h4" noWrap>
               B-Drill
           </Typography>
@@ -407,18 +424,6 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
               </IconButton> */}
             </div>
             {!loading && (<Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>)}
-            <div className={classes.sectionMobile}>
-              <IconButton
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
-            </div>
           </Toolbar>
         </AppBar>
 
