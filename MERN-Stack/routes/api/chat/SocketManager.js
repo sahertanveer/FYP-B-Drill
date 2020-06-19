@@ -136,35 +136,35 @@ module.exports = function (socket) {
 		sendMessageToChatFromUser(chatId, message)
 
 		//Message Notification
-		if(chatId !=="Community"){
-		try {
-			const entryExist = await Notification.findOne({ reciever_email: reciever.email, read: false, sender: socket.user.email, notification_type: "chat" });
+		if (chatId !== "Community") {
+			try {
+				const entryExist = await Notification.findOne({ reciever_email: reciever.email, read: false, sender: socket.user.email, notification_type: "chat" });
 
-			let notification_id = uuidv4();
-			const notificationFields = {};
-			notificationFields.sender = socket.user.email;
-			notificationFields.url = "chatlayout";
-			notificationFields.notification_id = notification_id
-			notificationFields.reciever_role = reciever.role;
-			notificationFields.message = `You have new message from ${socket.user.email}`;
-			notificationFields.reciever_email = reciever.email;
-			notificationFields.notification_type = "chat";
+				let notification_id = uuidv4();
+				const notificationFields = {};
+				notificationFields.sender = socket.user.email;
+				notificationFields.url = "chatlayout";
+				notificationFields.notification_id = notification_id
+				notificationFields.reciever_role = reciever.role;
+				notificationFields.message = `You have new message from ${socket.user.email}`;
+				notificationFields.reciever_email = reciever.email;
+				notificationFields.notification_type = "chat";
 
-			if (!entryExist) {
-				notification = new Notification(notificationFields);
-				notification.save();
+				if (!entryExist) {
+					notification = new Notification(notificationFields);
+					notification.save();
+				}
+				if (reciever.email in connectedUsers) {
+					socket.to(connectedUsers[reciever.email].socketId).emit(RECIEVE_NOTIFICATION, notificationFields)
+
+				} else if (reciever.email in connectedAdmins) {
+					socket.to(connectedAdmins[reciever.email].socketId).emit(RECIEVE_NOTIFICATION, notificationFields)
+				}
 			}
-			if (reciever.email in connectedUsers) {
-				socket.to(connectedUsers[reciever.email].socketId).emit(RECIEVE_NOTIFICATION, notificationFields)
-
-			} else if (reciever.email in connectedAdmins) {
-				socket.to(connectedAdmins[reciever.email].socketId).emit(RECIEVE_NOTIFICATION, notificationFields)
+			catch (err) {
+				console.log(err)
 			}
 		}
-		catch (err) {
-			console.log(err)
-		}
-	}
 	})
 
 	socket.on(TYPING, ({ chatId, isTyping }) => {
@@ -175,8 +175,30 @@ module.exports = function (socket) {
 
 		if (reciever.role === "admin") {
 			let fields = Object.keys(connectedAdmins)
-			if (!fields.length > 0)
+
+			//If no admin is  availble, notify user.
+			if (!fields.length > 0) { 
+
+				const notificationFields = {};
+				notificationFields.notification_id = uuidv4();
+				notificationFields.sender = "System";
+				notificationFields.reciever_role = socket.user.role;
+				notificationFields.message = "No Support Available right now!";
+				notificationFields.reciever_email = socket.user.email;
+				notificationFields.notification_type = "chat";
+
+				socket.emit(RECIEVE_NOTIFICATION, notificationFields)
+				
+				try {
+					notification = new Notification(notificationFields);
+					notification.save();
+	
+				} catch (err) {
+					console.error(err);
+				}
+				
 				return
+			}
 
 
 			let key = fields[Math.floor(Math.random() * fields.length)]

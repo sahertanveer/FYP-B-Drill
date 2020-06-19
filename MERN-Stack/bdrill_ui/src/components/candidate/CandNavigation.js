@@ -197,6 +197,9 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
       readNotification(id);
       setPage(`cand${url}`)
     }
+    else if(url==="" || !url){
+      readNotification(id);
+    }
     else{
     history.push(`/${url}`);
     readNotification(id);

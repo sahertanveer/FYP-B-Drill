@@ -9,7 +9,7 @@ import CardIcon from "../common/cards/CardIcon.js";
 import CardFooter from "../common/cards/CardFooter.js";
 import Icon from "@material-ui/core/Icon";
 import Update from "@material-ui/icons/Update";
-import { getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength } from '../../actions/dashboardAuthAction'
+import { getlivesesssionslength, getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength } from '../../actions/dashboardAuthAction'
 import { AdminPlatformsPieChart} from '../../actions/visualizationAction'
 import BarChart from '../chart/BarChart'
 import PieChart from '../chart/PieChart'
@@ -19,6 +19,7 @@ class AdminDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      sessionsLength:0,
       machinesLength: 0,
       attacksLength: 0,
       organizationsLength: 0,
@@ -31,7 +32,12 @@ class AdminDashboard extends Component {
     this.GetOrganizationsLength();
     this.GetManagersLength();
     this.GetUsersLength();
-  }
+    this.GetSessionsLength();
+}
+async GetSessionsLength() {
+  var sessionLength = await this.props.getlivesesssionslength();
+  this.setState({ sessionsLength: sessionLength })
+}
   async GetMachinesLength() {
     var machinelength = await this.props.getmachineslength();
     this.setState({ machinesLength: machinelength })
@@ -81,8 +87,8 @@ class AdminDashboard extends Component {
                     <Icon>network_check</Icon>
                   </CardIcon>
                   <br />
-                  <p> Connections</p>
-                  <h3>2</h3>
+                  <p>Ongoing Drills</p>
+                  <h3>{this.state.sessionsLength}</h3>
                 </CardHeader>
                 <CardFooter >
                   <div >
@@ -278,6 +284,7 @@ AdminDashboard.propTypes = {
   getorganizationslength: PropTypes.func.isRequired,
   getmanagerslength: PropTypes.func.isRequired,
   getuserslength: PropTypes.func.isRequired,
+  getlivesesssionslength: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   onlineUsers: PropTypes.object.isRequired,
@@ -291,4 +298,6 @@ const mapStateToProps = state => ({
   visualization: state.visualization,
   onlineUsers: state.chat.usersObj
 })
-export default (connect(mapStateToProps, {AdminPlatformsPieChart, getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength })(AdminDashboard));
+export default (connect(mapStateToProps, {AdminPlatformsPieChart, getlivesesssionslength, 
+  getmachineslength, getattackslength, getorganizationslength, getmanagerslength, 
+  getuserslength })(AdminDashboard));

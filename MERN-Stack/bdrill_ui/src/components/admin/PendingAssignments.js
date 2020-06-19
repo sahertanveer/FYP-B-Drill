@@ -177,8 +177,11 @@ class PendingAssignments extends Component {
                                                         <td>{moment(new Date(field.schedule.EndTime)).format('D MMM YYYY , h:mm:ss:A')}</td>
                                                         <td><button className="btn btn-danger" value={field._id} onClick={(e) => { this.deleteassignment(e) }} > <i class="material-icons">delete</i></button></td>
                                                     </tr>)
-                                            }) : null}
+                                            }) :  null}
                                         </table>
+                                        { this.state.assignments && !this.state.assignments.length>0 ? 
+                                                <div className="center">No Pending Assignments.</div> : null
+                                                }
                                     </div>
                                 </div>
                             </div>

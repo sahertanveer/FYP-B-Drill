@@ -196,6 +196,9 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, r
       readNotification(id);
       setPage(`org${url}`)
     }
+    else if(url==="" || !url){
+      readNotification(id);
+    }
     else{
     history.push(`/${url}`);
     readNotification(id);

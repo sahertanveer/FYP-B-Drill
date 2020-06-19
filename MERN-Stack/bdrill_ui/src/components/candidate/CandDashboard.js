@@ -6,7 +6,7 @@ import {
     AssignmentAttemptionStatusDoughnutGraph, SessionsBubbleGraph,
     AssignmentHistoryRadarGraph, PerformanceLineGraph, MitrePerformanceVisitLineGraph
 } from '../../actions/visualizationAction'
-import { getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength } from '../../actions/dashboardAuthAction'
+import { getlivesesssionslength, getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength } from '../../actions/dashboardAuthAction'
 
 import Card from '../common/cards/Card';
 import CardHeader from '../common/cards/CardHeader';
@@ -89,7 +89,13 @@ class CandDashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bigChartData: "data1"
+            bigChartData: "data1",
+            sessionsLength:0,
+            machinesLength: 0,
+            attacksLength: 0,
+            organizationsLength: 0,
+            managersLength: 0,
+            candidatesLength: 0
         };
 
         this.props.AssignmentHistoryRadarGraph(this.props.authId)
@@ -102,7 +108,13 @@ class CandDashboard extends Component {
         this.GetOrganizationsLength();
         this.GetManagersLength();
         this.GetUsersLength();
+        this.GetSessionsLength();
     }
+    async GetSessionsLength() {
+        var sessionLength = await this.props.getlivesesssionslength();
+        this.setState({ sessionsLength: sessionLength })
+    }
+
     async GetMachinesLength() {
         var machinelength = await this.props.getmachineslength();
         this.setState({ machinesLength: machinelength })
@@ -157,8 +169,8 @@ class CandDashboard extends Component {
                                         <Icon>network_check</Icon>
                                     </CardIcon>
                                     <br />
-                                    <p> Connections</p>
-                                    <h3>2</h3>
+                                    <p>Ongoing Drills</p>
+                                <h3>{this.state.sessionsLength}</h3>
                                 </CardHeader>
                                 <CardFooter >
                                     <div >
@@ -429,6 +441,7 @@ CandDashboard.propTypes = {
     getorganizationslength: PropTypes.func.isRequired,
     getmanagerslength: PropTypes.func.isRequired,
     getuserslength: PropTypes.func.isRequired,
+    getlivesesssionslength: PropTypes.func.isRequired,
     auth_id: PropTypes.string.isRequired,
     onlineUsers: PropTypes.object.isRequired,
 }
@@ -443,7 +456,8 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
     AssignmentAttemptionStatusDoughnutGraph, AssignmentHistoryRadarGraph,
     SessionsBubbleGraph, PerformanceLineGraph, MitrePerformanceVisitLineGraph,
-    getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength
+    getlivesesssionslength, getmachineslength, getattackslength, getorganizationslength, 
+    getmanagerslength, getuserslength
 })(CandDashboard)
 
 

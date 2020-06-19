@@ -1,5 +1,21 @@
 import { BackendInstance } from '../config/axiosInstance';
 
+//get live sessions
+export const getlivesesssionslength = () => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': ' application/json'
+        }
+    }
+
+    try {
+        const res = await BackendInstance.post('/api/getlength/getinprogresssessions', config)
+        return (res.data.sessions);
+
+    } catch {
+        return 0;
+    }
+}
 //get Machines length
 export const getmachineslength = () => async dispatch => {
     const config = {

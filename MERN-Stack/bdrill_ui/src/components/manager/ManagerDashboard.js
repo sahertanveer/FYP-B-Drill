@@ -9,7 +9,7 @@ import CardIcon from "../common/cards/CardIcon.js";
 import CardFooter from "../common/cards/CardFooter.js";
 import Icon from "@material-ui/core/Icon";
 import Update from "@material-ui/icons/Update";
-import { getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength } from '../../actions/dashboardAuthAction'
+import { getlivesesssionslength, getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength } from '../../actions/dashboardAuthAction'
 import BarChart from '../chart/BarChart';
 import RadarChart from '../chart/RadarChart';
 import DoughnutChart from '../chart/DoughnutChart';
@@ -21,6 +21,7 @@ class ManagerDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      sessionsLength:0,
       machinesLength: 0,
       attacksLength: 0,
       organizationsLength: 0,
@@ -34,7 +35,12 @@ class ManagerDashboard extends Component {
     this.GetOrganizationsLength();
     this.GetManagersLength();
     this.GetUsersLength();
-  }
+    this.GetSessionsLength();
+}
+async GetSessionsLength() {
+  var sessionLength = await this.props.getlivesesssionslength();
+  this.setState({ sessionsLength: sessionLength })
+}
   async GetMachinesLength() {
     var machinelength = await this.props.getmachineslength();
     this.setState({ machinesLength: machinelength })
@@ -84,8 +90,8 @@ class ManagerDashboard extends Component {
                     <Icon>network_check</Icon>
                   </CardIcon>
                   <br />
-                  <p> Connections</p>
-                  <h3>2</h3>
+                  <p>Ongoing Drills</p>
+                  <h3>{this.state.sessionsLength}</h3>
                 </CardHeader>
                 <CardFooter >
                   <div >
@@ -297,6 +303,7 @@ ManagerDashboard.propTypes = {
   ManagerAssignmentAttemptionStatusDoughnutGraph: PropTypes.func.isRequired,
   ManagerAssignmentHistoryRadarGraph: PropTypes.func.isRequired,
   getuserslength: PropTypes.func.isRequired,
+  getlivesesssionslength: PropTypes.func.isRequired,
   authId: PropTypes.string.isRequired,
   user: PropTypes.object.isRequired,
   page: PropTypes.object.isRequired,
@@ -310,4 +317,6 @@ const mapStateToProps = state => ({
   onlineUsers: state.chat.usersObj,
   page: state.page
 })
-export default (connect(mapStateToProps, {ManagerAssignmentHistoryRadarGraph, ManagerAssignmentAttemptionStatusDoughnutGraph, getmachineslength, getattackslength, getorganizationslength, getmanagerslength, getuserslength })(ManagerDashboard));
+export default (connect(mapStateToProps, {ManagerAssignmentHistoryRadarGraph, ManagerAssignmentAttemptionStatusDoughnutGraph, getlivesesssionslength,
+   getmachineslength, getattackslength, getorganizationslength, getmanagerslength, 
+   getuserslength })(ManagerDashboard));

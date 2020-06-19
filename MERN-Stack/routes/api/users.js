@@ -201,7 +201,7 @@ router.post('/getassignments', auth, async (req, res) => {
       const { candidate_id } = req.body
 
       //let assignments =
-      await Assignments.find({ end_time: { "$gte": new Date() }, user_id: candidate_id }).populate("schedule").then(   //populate("schedule_id",null,{EndTime:{"$gte":new Date()
+      await Assignments.find({ end_time: { "$gte": new Date() }, user_id: candidate_id, pending: true }).populate("schedule").then(   //populate("schedule_id",null,{EndTime:{"$gte":new Date()
         assignments => {
           return res.json({ assignments });
           // else console.log('index', {users: docs});

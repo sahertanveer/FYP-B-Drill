@@ -12,6 +12,7 @@ const User = require('../../models/User')
 const Manager = require('../../models/Manager')
 const Organization = require('../../models/Organization')
 const Admin = require('../../models/Admin')
+const { uiServerUrl } = require('../../config/url')
 
 const auth = require('../../middleware/auth')
 router.use(cors())
@@ -98,7 +99,7 @@ router.post('/forgotPassword',
               html: '<h1><b>B-Drill</b></h1><p><b>We give wings to your skills, you decide where to fly.</b></p><br /><br />' +
                 '<h4><b>Reset Password</b></h4>' +
                 '<p>To reset your password, Click on url to access the platform. </p>' +
-                '<a href=" http://localhost:3000/resetPassword?token=' + token + '">' + 'http://localhost:3000/resetPassword/' + token + '</a>' +
+                '<a href= "'+uiServerUrl+'resetPassword?token=' + token + '">' + uiServerUrl+'resetPassword/' + token + '</a>' +
                 '<p>This URL is valid only for an hour. </p>' +
                 '<br/>' +
                 '<br/>' +

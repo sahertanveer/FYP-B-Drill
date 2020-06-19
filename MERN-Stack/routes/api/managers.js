@@ -17,6 +17,7 @@ const Assignments = require('../../models/Assignments')
 const Machine = require('../../models/Machine')
 const AttackInventory = require('../../models/Attack_Inventory')
 const Schedule = require('../../models/Schedule')
+const { uiServerUrl } = require('../../config/url')
 const auth = require('../../middleware/auth')
 
 router.use(cors())
@@ -121,7 +122,7 @@ router.post('/registerCandidate', auth,
             '<p>Email: ' + email + '</p>' +
             '<p />Password: ' + password + '</p>' +
             '<p>Click on url to access the platform.' + '</p>' +
-            '<a href=" http://localhost:3000/"> http://localhost:3000/ </a>' +
+            '<a href=" '+uiServerUrl+'"> '+uiServerUrl+' </a>' +
             '<br /><br />' +
             '<p>Delivered By: <b>B-Drill</b></p>'// plain text body
         };
@@ -536,7 +537,7 @@ router.post('/getassignments', auth, async (req, res) => {
     try {
       const { manager_id } = req.body
 
-      await Assignments.find({ end_time: { "$gte": new Date() }, manager_id: manager_id }).populate("schedule").then(   //populate("schedule_id",null,{EndTime:{"$gte":new Date()
+      await Assignments.find({ end_time: { "$gte": new Date() }, manager_id: manager_id, pending: true }).populate("schedule").then(   //populate("schedule_id",null,{EndTime:{"$gte":new Date()
         assignments => {
           return res.json({ assignments });
         }).catch(err => { return res.status(422).json({ errors: errors.array() }) });

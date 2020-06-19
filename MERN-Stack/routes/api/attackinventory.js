@@ -488,7 +488,10 @@ router.post('/deleteplatform', auth, async (req, res) => {
   if (req.user.role === "admin") {
   try {
     //Remove Attack
-    await Platform.findOneAndDelete({ _id: req.body._id}) 
+    const platform =  await Platform.findById(req.body._id)
+    .select('platform_name');
+    await Platform.findOneAndDelete({ _id: req.body._id})
+    await Machine.deleteMany({platform: platform.platform_name}); 
 
     res.status(200).json({ msg: 'Platform Deleted' });
   } catch (err) {

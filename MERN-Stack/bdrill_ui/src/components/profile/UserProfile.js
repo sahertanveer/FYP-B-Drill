@@ -16,7 +16,7 @@ import { getCurrentProfile, getProfilePhoto } from '../../actions/profileAction'
 import ImageUpload from './ImageUpload'
 import EditCreateProfile from './EditCreateProfile'
 
-const UserProfile = ({ getCurrentProfile, getProfilePhoto, auth: { user, role }, profile: { profile, loading } }) => {
+const UserProfile = ({ getCurrentProfile, getProfilePhoto, auth: { user, role, avatar }, profile: { profile, loading } }) => {
     useEffect(() => {
         getCurrentProfile();
     }, [getCurrentProfile])
@@ -33,7 +33,9 @@ const UserProfile = ({ getCurrentProfile, getProfilePhoto, auth: { user, role },
                                         <div className="userimage center">
                                             <img
                                                 className="myprofileimg center"
-                                                src={profile && profile.path ? `${BackendInstance.defaults.baseURL}${profile && profile.path}` : defaultAvatar}
+                                                src={profile && profile.path ? `${BackendInstance.defaults.baseURL}${profile && profile.path}` : avatar ? 
+                                                
+                                                 `${BackendInstance.defaults.baseURL}${avatar}` : defaultAvatar}
                                                 alt=""
                                             />
                                             <div className="">

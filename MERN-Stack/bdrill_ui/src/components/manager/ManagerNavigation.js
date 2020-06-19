@@ -198,6 +198,9 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
       readNotification(id);
       setPage(`manager${url}`)
     }
+    else if(url==="" || !url){
+      readNotification(id);
+    }
     else{
     history.push(`/${url}`);
     readNotification(id);

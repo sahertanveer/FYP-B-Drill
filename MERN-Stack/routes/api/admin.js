@@ -110,7 +110,7 @@ router.post('/getassignments', auth, async (req, res) => {
       return res.status(422).json({ errors: errors.array() });
     }
     try {
-      await Assignments.find({ end_time: { "$gte": new Date() } }).populate("schedule").then(   //populate("schedule_id",null,{EndTime:{"$gte":new Date()
+      await Assignments.find({ end_time: { "$gte": new Date() }, pending: true }).populate("schedule").then(   //populate("schedule_id",null,{EndTime:{"$gte":new Date()
         assignments => {
           return res.json({ assignments });
         }).catch(err => { return res.status(422).json({ errors: errors.array() }) });

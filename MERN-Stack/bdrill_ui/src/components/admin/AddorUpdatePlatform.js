@@ -2,7 +2,7 @@ import React, { Component }  from 'react'
 import { BrowserRouter, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { addorupdateplatform } from '../../actions/adminAuthAction'
+import { addorupdateplatform, getallplatforms } from '../../actions/adminAuthAction'
 import { setAlert } from '../../actions/alertAction'
 import Alert from '../../layout/Alert'
 import { BackendInstance } from '../../config/axiosInstance';
@@ -58,9 +58,10 @@ class AddorUpdatePlatform extends Component {
     this.setState({[e.target.name] : e.target.value})
 // setFormData({ ...formData, [e.target.name]: e.target.value })
 
-onSubmit = e => {
+onSubmit = async e => {
     e.preventDefault()
-    this.props.addorupdateplatform(this.state);
+    await this.props.addorupdateplatform(this.state);
+    this.props.getallplatforms();
 }
 
 selectCategory(event) {
@@ -164,7 +165,8 @@ return (
 AddorUpdatePlatform.propTypes = {
     addorupdateplatform: PropTypes.func.isRequired,
     attack: PropTypes.object.isRequired,
-    setAlert: PropTypes.func.isRequired
+    setAlert: PropTypes.func.isRequired,
+    getallplatforms: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -172,4 +174,4 @@ const mapStateToProps = state => ({
     attack: state.attack
 })
 
-export default withRouter(connect(mapStateToProps, { addorupdateplatform, setAlert })(AddorUpdatePlatform))
+export default withRouter(connect(mapStateToProps, { addorupdateplatform, setAlert, getallplatforms })(AddorUpdatePlatform))

@@ -98,6 +98,9 @@ class AllotedAssignments extends Component {
                                     </tr>)
                             }) : null}
                         </table>
+                        { this.state.assignments && !this.state.assignments.length>0 ? 
+                                                <div className="center">No Pending Assignments.</div> : null
+                                                }
                     </div>
                     </div>
                 </div>

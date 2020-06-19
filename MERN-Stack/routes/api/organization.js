@@ -14,6 +14,7 @@ const Organization = require('../../models/Organization')
 const Manager = require('../../models/Manager')
 const User = require('../../models/User')
 const Profile = require('../../models/Profile')
+const { uiServerUrl } = require('../../config/url')
 const auth = require('../../middleware/auth')
 
 router.use(cors())
@@ -130,7 +131,7 @@ router.post('/registerOrganization',
           '<p>Email: ' + email + '</p>' +
           '<p />Password: ' + password + '</p>' +
           '<p>Click on url to access the platform.' + '</p>' +
-          '<a href=" http://localhost:3000/"> http://localhost:3000/ </a>' +
+          '<a href=" '+uiServerUrl+'"> '+uiServerUrl+' </a>' +
           '<br /><br />' +
           '<p>Delivered By: <b>B-Drill</b></p>'// plain text body
       };
@@ -294,7 +295,7 @@ router.post('/registerManager', auth,
             '<p>Email: ' + email + '</p>' +
             '<p />Password: ' + password + '</p>' +
             '<p>Click on url to access the platform.' + '</p>' +
-            '<a href=" http://localhost:3000/"> http://localhost:3000/ </a>' +
+            '<a href=" '+uiServerUrl+'"> '+uiServerUrl+' </a>' +
             '<br /><br />' +
             '<p>Delivered By: <b>B-Drill</b></p>'// plain text body
         };
@@ -351,25 +352,25 @@ router.post('/getmanagers', auth, async (req, res) => {
 
 
 
-// @route   Delete api/organization
-// @desc    Delete User Profile or User
-// @access  Private
-router.delete('/', async (req, res) => {
-  try {
-    //Remove Profile
-    await Profile.findOneAndRemove({ user: req.user.id });
-    //Remove Manager
-    await Manager.findOneAndRemove({ user: req.user.id });
+// // @route   Delete api/organization
+// // @desc    Delete User Profile or User
+// // @access  Private
+// router.delete('/', async (req, res) => {
+//   try {
+//     //Remove Profile
+//     await Profile.findOneAndRemove({ user: req.user.id });
+//     //Remove Manager
+//     await Manager.findOneAndRemove({ user: req.user.id });
 
-    //Remove User
-    await User.findOneAndRemove({ user: req.user.id });
+//     //Remove User
+//     await User.findOneAndRemove({ user: req.user.id });
 
-    return res.status(200).json({ msg: 'User Deleted' });
-  } catch (err) {
-    console.error(err.message);
-    return res.status(500).send('Server Error')
-  }
-});
+//     return res.status(200).json({ msg: 'User Deleted' });
+//   } catch (err) {
+//     console.error(err.message);
+//     return res.status(500).send('Server Error')
+//   }
+// });
 
 // @route   GET api/organization/getusers
 // @desc    Get All Canodidates
@@ -403,25 +404,23 @@ router.post('/getusers', auth, async (req, res) => {
   }
 });
 
-// @route   Delete api/organization
-// @desc    Delete User Profile or User
-// @access  Private
-router.delete('/', async (req, res) => {
-  try {
-    //Remove Profile
-    await Profile.findOneAndRemove({ user: req.user.id });
-    //Remove Manager
-    await Manager.findOneAndRemove({ user: req.user.id });
+// // @route   Delete api/organization
+// // @desc    Delete User Profile or User
+// // @access  Private
+// router.delete('/', async (req, res) => {
+//   try {
+//     //Remove Profile
+//     await Profile.findOneAndRemove({ user: req.user.id });
+//     //Remove Manager
+//     await Manager.findOneAndRemove({ user: req.user.id });
 
-    //Remove User
-    await User.findOneAndRemove({ user: req.user.id });
+//     //Remove User
+//     await User.findOneAndRemove({ user: req.user.id });
 
-    return res.status(200).json({ msg: 'User Deleted' });
-  } catch (err) {
-    console.error(err.message);
-    return res.status(500).send('Server Error')
-  }
-});
-
-
+//     return res.status(200).json({ msg: 'User Deleted' });
+//   } catch (err) {
+//     console.error(err.message);
+//     return res.status(500).send('Server Error')
+//   }
+// });
 module.exports = router;

@@ -3,6 +3,7 @@ const router = express.Router()
 const cors = require('cors')
 const { validationResult } = require('express-validator');
 
+const AttackSession = require('../../models/AttackSession')
 const Machine = require('../../models/Machine')
 const Attack = require('../../models/Attack_Inventory')
 const Organization = require('../../models/Organization')
@@ -10,6 +11,28 @@ const Manager = require('../../models/Manager')
 const User = require('../../models/User')
 const auth = require('../../middleware/auth')
 router.use(cors())
+
+
+  // @route   POST api/getlength/getinprogresssessions
+  // @desc    Get All Candidates Length
+  // @access  Public
+  router.post('/getinprogresssessions', auth, async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    try {
+      let sessions = await AttackSession.find({ in_progress: true}).countDocuments();
+          return res.json({ sessions });
+    }
+    catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error')
+    }
+});
+
+
 
 // @route   POST api/getlength/getmachineslength
 // @desc    GET All Organizations Length
@@ -115,6 +138,7 @@ router.post('/getorganizationslength', auth, async (req, res) => {
         res.status(500).send('Server Error')
       }
   });
+  
   
   
   module.exports = router

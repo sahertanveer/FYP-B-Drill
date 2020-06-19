@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getallplatforms, deletePlatform } from '../../actions/adminAuthAction'
+import { getallplatforms, getallmachines, deletePlatform } from '../../actions/adminAuthAction'
 import { setAlert } from '../../actions/alertAction'
 import Alert from '../../layout/Alert'
 
@@ -23,10 +23,11 @@ class GetAllPlatforms extends Component {
         this.setState({ search: e.target.value })
     }
 
-    deleteplatform(e) {
+    async deleteplatform(e) {
         e.preventDefault();
-        this.props.deletePlatform(e.currentTarget.value);
+        await this.props.deletePlatform(e.currentTarget.value);
         this.props.getallplatforms();
+        this.props.getallmachines();
     }
 
     renderPlatformTableData() {
@@ -115,6 +116,7 @@ class GetAllPlatforms extends Component {
 GetAllPlatforms.propTypes = {
     deletePlatform: PropTypes.func.isRequired,
     getallplatforms: PropTypes.func.isRequired,
+    getallmachines: PropTypes.func.isRequired,
     attack: PropTypes.object.isRequired,
     setAlert: PropTypes.func.isRequired
 }
@@ -123,4 +125,4 @@ const mapStateToProps = state => ({
     attack: state.attack,
 })
 
-export default (connect(mapStateToProps, { setAlert, deletePlatform, getallplatforms })(GetAllPlatforms))
+export default (connect(mapStateToProps, { setAlert, getallmachines, deletePlatform, getallplatforms })(GetAllPlatforms))
