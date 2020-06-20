@@ -50,7 +50,8 @@ render(){
           }
               })
             ) : (
-              <Loader className="center" type="BallTriangle" color="cyan" height={80} width={80} />
+              <div className="center white-text">No Profiles Available </div>
+              
               /* <h4 className="alert-danger center white-text">No profiles found...</h4> */
             )}
 

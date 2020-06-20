@@ -10,13 +10,11 @@ import clsx from 'clsx';
 import { makeStyles, useTheme, fade } from '@material-ui/core/styles';
 import {
   Icon, Drawer, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, Badge, MenuItem, Menu,
-  ListItem, ListItemIcon, ListItemText, InputBase
+  ListItem, ListItemIcon, ListItemText
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import SearchIcon from '@material-ui/icons/Search';
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
@@ -292,7 +290,7 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
             }}}
           >
            { notification && notification.notifications.map(notif =>{
-              const { sender, reciever_role, message, reciever_email, notification_type, url, notification_id, _id } = notif
+              const { message, notification_type, url, notification_id, _id } = notif
             return <MenuItem id={_id} onClick={()=> notificationItemClick(url, notification_id)} > {`${notification_type} | ${message}`} </MenuItem> 
            })}
             {/* <MenuItem> <a href="/candprofile">Profile</a></MenuItem>
@@ -355,7 +353,7 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
     to: PropTypes.string.isRequired,
   };
 
-  const [ setMobileMoreAnchorEl] = React.useState(null);
+  // const [ setMobileMoreAnchorEl] = React.useState(null);
 
   // const isMenuOpen = Boolean(anchorEl);
   // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -373,11 +371,11 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
   //   handleMobileMenuClose();
   // }
 
-  function handleMobileMenuOpen(event) {
-    setMobileMoreAnchorEl(event.currentTarget);
-  }
+  // function handleMobileMenuOpen(event) {
+  //   setMobileMoreAnchorEl(event.currentTarget);
+  // }
   // const menuId = 'primary-search-account-menu';
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  // const mobileMenuId = 'primary-search-account-menu-mobile';
 
   return (
 
@@ -407,7 +405,7 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
             <Typography variant="h4" noWrap>
               B-Drill
           </Typography>
-            <div className={classes.search}>
+            {/* <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
@@ -419,18 +417,12 @@ const ManagerNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUse
                 }}
                 inputProps={{ 'aria-label': 'search' }}
               />
-            </div>
+            </div> */}
             <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
+            {/* <div className={classes.sectionDesktop}> */}
             {!loading && (<Fragment>{isAuthenticated ? notificationLink : null}</Fragment>)}
-              {/* <IconButton aria-label="show 17 new notifications" color="inherit">
-                <Badge badgeContent={17} color="primary">
-                  <a href="/managerchatlayout">
-                    <MailIcon className="white-text" />
-                  </a>
-                </Badge>
-              </IconButton> */}
-            </div>
+     
+            {/* </div> */}
             {!loading && (<Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>)}
           </Toolbar>
         </AppBar>

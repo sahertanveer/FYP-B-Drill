@@ -24,7 +24,7 @@ export const readNotification = (id) => async dispatch => {
 
   try {
 
-    const res = BackendInstance.post('/api/notification/readnotification', body, config);
+    BackendInstance.post('/api/notification/readnotification', body, config);
     //not await because notification should be read if request succeed or not.
     dispatch({
       type: READ_NOTIFICATION,
@@ -34,7 +34,7 @@ export const readNotification = (id) => async dispatch => {
   }
   catch (err) {
     const errors = err.response.data.errors;
-
+    console.log(errors)
     // if (errors) {
     //     errors.forEach(error => { dispatch(setAlert(error.msg, 'danger')) })
     // }
@@ -66,6 +66,7 @@ export const getUserEmail = (user_id, role) => async dispatch => {
   }
   catch (err) {
     const errors = err.response.data.errors;
+    console.log(errors);
     return { msg: "failure" }
   }
 }

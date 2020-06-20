@@ -13,7 +13,6 @@ import {
     CANDIDATE_FOUND
 } from './types';
 import { setAlert } from './alertAction'
-import { Result } from 'express-validator';
 
 export const registerCandidate = ({ organization_id, manager_id, firstname, lastname, email }) => async dispatch => {
     const config = { 

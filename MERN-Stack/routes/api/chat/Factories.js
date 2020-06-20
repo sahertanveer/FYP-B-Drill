@@ -58,7 +58,7 @@ const createMessage = ({message = "", sender = "", senderName=""} = { })=>(
 *		users {Array.string}
 * 
 */
-const createChat = ({id="Community", messages = [], name = "Community", users = [], usersEmail=[]} = {})=>(
+const createChat = ({id="Community", messages = [], name = "Community", users = [], usersEmail=[], avatar=null} = {})=>(
 	{
 		// id:uuidv4(),
 		id,
@@ -66,7 +66,8 @@ const createChat = ({id="Community", messages = [], name = "Community", users = 
 		messages,
 		users,
 		typingUsers:[],
-		usersEmail
+		usersEmail,
+		avatar
 	}
 )
 

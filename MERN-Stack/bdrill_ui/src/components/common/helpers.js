@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
 
 export function usePrevious(value) {
@@ -14,6 +14,6 @@ export function useMeasure() {
   useEffect(() => {
     if (ref.current) ro.observe(ref.current)
     return () => ro.disconnect()
-  }, [])
+  }, [ro])
   return [{ ref }, bounds]
 }

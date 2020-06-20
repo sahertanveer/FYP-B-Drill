@@ -1,7 +1,6 @@
 import {
     NOTIFICATIONS_FOUND, NOTIFICATIONS_NOT_FOUND, ADD_NOTIFICATION, READ_NOTIFICATION, CANNOT_READ_NOTIFICATION
 } from '../actions/types';
-import { stat } from 'fs';
 
 const initialState = {
     notificationsFound: false,

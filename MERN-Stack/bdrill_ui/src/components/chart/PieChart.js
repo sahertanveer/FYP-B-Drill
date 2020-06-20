@@ -17,9 +17,6 @@ const options = {
   
 class PieChart extends Component {
   
-  constructor(props) {
-    super(props)
-  }
     render() { 
       const data = {
         labels:this.props.labels,

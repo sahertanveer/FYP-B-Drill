@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SideBar from './SideBar'
-import { COMMUNITY_CHAT, MESSAGE_SENT, MESSAGE_RECIEVED, TYPING, PRIVATE_MESSAGE, USER_CONNECTED, USER_DISCONNECTED } from '../Events'
 import ChatHeading from './ChatHeading'
 import Messages from '../messages/Messages'
 import MessageInput from '../messages/MessageInput'
@@ -8,7 +7,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { passOpenPrivateMessage, passMessageSent, passTyping, setActiveChat, logout } from '../../../actions/chatAction'
 
-import { values } from 'lodash'
 
 
 class ChatContainer extends Component {
@@ -122,7 +120,6 @@ class ChatContainer extends Component {
 ChatContainer.propTypes = {
 	chat: PropTypes.object.isRequired,
 	passOpenPrivateMessage: PropTypes.func.isRequired,
-	passMessageSent: PropTypes.func.isRequired,
 	passMessageSent: PropTypes.func.isRequired,
 	setActiveChat: PropTypes.func.isRequired,
 	logout: PropTypes.func.isRequired

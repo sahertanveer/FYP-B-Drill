@@ -372,6 +372,48 @@ router.post('/getmanagers', auth, async (req, res) => {
 //   }
 // });
 
+
+
+// @route   GET api/organization/searchcandidates
+// @desc    Get All Candidates
+// @access  Public
+router.post('/searchcandidates', auth,
+[
+  check('organization_id', 'Organization ID is required')
+    .not()
+    .isEmpty()
+], async (req, res) => {
+
+  if ( req.user.role === "organization" ) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    try {
+      let users = await User.find({ organization_id: req.body.organization_id }, function (err, docs) {
+        if (err) res.json(err);
+      })
+        .select('-password')
+        .select('-date')
+        .select('-avatar')
+        .select('-__v')
+        .select('-manager_id')
+        .select('-organization_id')
+      return res.json(users);
+      
+    }
+    catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error')
+    }
+  }
+  else {
+    res.status(401).send('Unauthorized Access')
+  }
+});
+
+
 // @route   GET api/organization/getusers
 // @desc    Get All Canodidates
 // @access  Public

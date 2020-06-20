@@ -5,21 +5,24 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/authAction'
 import { setPage } from '../../actions/pageAction'
 import { loadUser } from '../../actions/authAction'
+import { getProfileById } from '../../actions/profileAction'
 
 import clsx from 'clsx';
-import { makeStyles, useTheme, fade } from '@material-ui/core/styles';
+import { makeStyles, useTheme, fade, withStyles } from '@material-ui/core/styles';
 import {
   Icon, Drawer, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, MenuItem, Menu, Badge,
-  ListItem, ListItemIcon, ListItemText, InputBase
+  ListItem, ListItemIcon, ListItemText
 } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import SearchIcon from '@material-ui/icons/Search';
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
+import { BackendInstance } from '../../config/axiosInstance';
 import AdminDashboard from './AdminDashboard'
 import AdminTactics from './AdminTactics'
 import PendingAssignments from './PendingAssignments'
@@ -34,6 +37,7 @@ import UserProfile from '../profiles/UserProfile'
 import ChangePassword from '../common/Password/ChangePassword';
 import { readNotification } from '../../actions/notificationAction';
 import ChatBox from '../common/ChatBox';
+import Loading from '../common/Loading';
 import BDrill_logo from'../BDrill_logo.png'
 
 const drawerWidth = 220;
@@ -114,9 +118,11 @@ const useStyles = makeStyles(theme => ({
     color: 'inherit',
     marginLeft: '30%',
     marginRight: '5%',
+    marginTop:'5%',
 
   },
   inputInput: {
+    color: 'white',
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -185,13 +191,77 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, loadUser, readNotification, page: { loadedPage }, notification  }) => {
+const NoPaddingAutocomplete = withStyles({
+  inputRoot: {
+    '&&[class*="MuiOutlinedInput-root"] $input': {
+      padding: 0,
+      paddingLeft:2
+    },
+    '&&[class*="MuiOutlinedInput-root"]': {
+      padding: 0
+    },
+  },
+  input: {}
+})(Autocomplete);
+
+const AdminNavigation = ({ auth: { isAuthenticated, loading, role }, logout, setPage, loadUser, readNotification, page: { loadedPage }, notification  }) => {
   const classes = useStyles();
   const history = useHistory();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [notificationAnchorEl, setnotificationAnchorEl] = React.useState(null);
+  //for Search
+  const [searchOpen, searchSetOpen] = React.useState(false);
+  const [options, setOptions] = React.useState([]);
+  const searchLoading = searchOpen && options.length === 0;
+  const [selectedUser, setSeletctedUser] = React.useState(null);
+
+  React.useEffect(() => {
+    let active = true;
+
+    if (!searchLoading) {
+      return undefined;
+    }
+
+    (async () => {
+      const config = {
+        headers: {
+          'Content-Type': ' application/json ' //application/x-www.form-urlencoded
+        }
+      }
+    
+      const body = JSON.stringify();
+      const response = await BackendInstance.post('/api/admin/searchmangersandcandidates', body, config);
+      
+      const cands = response.data.users.map(cand => ({...cand, role: "candidate"}));
+      const mans = response.data.managers.map(man => ({...man, role: "manager"}));
+      await Promise.all([cands, mans]);
+      const mergedUsers= [...cands, ...mans]
+      if (active) {
+        setOptions((mergedUsers).map((user) => user));
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [searchLoading]);
+
+  React.useEffect(() => {
+    if (!searchOpen) {
+      setOptions([]);
+    }
+  }, [searchOpen]);
+  
+  React.useEffect(()=>{
+    if (selectedUser){
+    setPage(`${role}childuserprofile`);
+    history.push(`/${role}childuserprofile?userId=${selectedUser._id}&role=${selectedUser.role}`);
+  }
+  },[selectedUser] )
+
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -284,7 +354,7 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
             }}}
           >
            { notification && notification.notifications.map(notif =>{
-              const { sender, reciever_role, message, reciever_email, notification_type, url, notification_id, _id } = notif
+              const { message, notification_type, url, notification_id, _id } = notif
             return <MenuItem id={_id} onClick={()=> notificationItemClick(url, notification_id)} > {`${notification_type} | ${message}`} </MenuItem> 
            })}
             {/* <MenuItem> <a href="/candprofile">Profile</a></MenuItem>
@@ -365,12 +435,21 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
   //   handleMobileMenuClose();
   // }
 
-  function handleMobileMenuOpen(event) {
-    setMobileMoreAnchorEl(event.currentTarget);
-  }
+  // function handleMobileMenuOpen(event) {
+  //   setMobileMoreAnchorEl(event.currentTarget);
+  // }
   // const menuId = 'primary-search-account-menu';
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  // const mobileMenuId = 'primary-search-account-menu-mobile';
 
+  const onSelectSearchUser = (e, value)=>{
+    if(value){
+    getProfileById(value._id)
+    
+    history.push('/adminloading');
+    setPage('adminloading');
+    setSeletctedUser(value)
+  }
+  }
 
   return (
     <BrowserRouter>
@@ -399,8 +478,57 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
             <Typography variant="h4" noWrap>
               B-Drill
           </Typography>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
+            <div className="white-text">
+             {/* {classes.search} */}
+            <NoPaddingAutocomplete
+      id="asynchronous-demo"
+      style={{ width: 300, color:"white", padding:0 }}
+      open={searchOpen}
+      onOpen={() => {
+        searchSetOpen(true);
+      }}
+      onClose={() => {
+        searchSetOpen(false);
+      }}
+      onChange={(e, value)=>onSelectSearchUser(e, value)}
+      
+      classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput,
+
+        }}
+      getOptionSelected={(option, value) => option.email === value}
+      getOptionLabel={(option) => option.email}
+      options={options}
+      loading={searchLoading}
+      renderOption={(option) =>(
+        <React.Fragment>
+        {option.email} &nbsp; <strong><small> {option.firstname}&nbsp;{option.role}  </small></strong>
+          
+        </React.Fragment>
+      )}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Search Users"
+          variant="outlined"  
+          style={{height:'40%', padding:0}}
+          InputLabelProps={{
+            style:{height:'40%', color:'white'}
+          }}
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <React.Fragment>
+                {loading ? <CircularProgress color="primary" size={20} /> : null}
+                {params.InputProps.endAdornment}
+              </React.Fragment>
+            ),
+          }}
+        />
+      )}
+    />
+              {/* <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
               <InputBase
@@ -410,19 +538,12 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
                   input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search' }}
-              />
+              /> */}
             </div>
             <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
+            {/* <div className={classes.sectionDesktop}> */}
             {!loading && (<Fragment>{isAuthenticated ? notificationLink : null}</Fragment>)}
-              {/* <IconButton aria-label="show 17 new notifications" color="inherit">
-                <Badge badgeContent={17} color="primary">
-                  <a href="/chatlayout">
-                    <MailIcon className="white-text" />
-                  </a>
-                </Badge>
-              </IconButton> */}
-            </div>
+            {/* </div> */}
             {!loading && (<Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>)}
           </Toolbar>
         </AppBar>
@@ -555,6 +676,7 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
                               loadedPage === 'adminchilduserprofile' ? <UserProfile /> :
                                 loadedPage === 'chatlayout' ? <ChatLayout /> :
                                   loadedPage === 'changepassword' ? <ChangePassword /> :
+                                    loadedPage === 'adminloading' ? <Loading /> :      
                                     <AdminDashboard />
           }
           <div className="chatbox" >
@@ -571,6 +693,7 @@ const AdminNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, 
 AdminNavigation.propTypes = {
   logout: PropTypes.func.isRequired,
   setPage: PropTypes.func.isRequired,
+  getProfileById: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   readNotification: PropTypes.func.isRequired,
   notification: PropTypes.object.isRequired,
@@ -584,4 +707,4 @@ const mapStateToProps = state => ({
   notification: state.notification
 })
 
-export default connect(mapStateToProps, { logout, setPage, loadUser, readNotification })(AdminNavigation)
+export default connect(mapStateToProps, { logout, setPage, loadUser, readNotification, getProfileById })(AdminNavigation)

@@ -475,6 +475,13 @@ input{
   color: white;
 }
 
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"]{
+  padding:0px;
+}
+
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input{
+  padding:0px;
+}
 /* input
  {
  padding:8px 5px;
@@ -979,6 +986,7 @@ if text Overflows
 
 
 
+
   .chatcontainer{color:#fafafa;display:flex;flex-direction:row;align-items:flex-start;
     height:35rem;width:100%; overflow: hidden; overflow-y: hidden; overflow-x: hidden;}
   #side-bar{box-sizing:border-box;width:25.75%;height:100%;display:grid;justify-content:stretch;
@@ -999,6 +1007,7 @@ if text Overflows
           #side-bar .users .user{align-items:center;display:flex;height:66px;justify-content:flex-start;padding:18px 16px}
           #side-bar .users .user.active{background:#1fa398}
           #side-bar .users .user:hover{background:#2d5c58}
+          /* #side-bar .users .user-photo{background: #fff; border-radius: '50%'; width: '40px'; height:'40px'; color:#1fa398} */
           #side-bar .users .user:hover:not(.active){cursor:pointer}
           #side-bar .users .user .user-info{margin-left:15px;flex-grow:1;width:100%}
           #side-bar .users .user .user-info .last-message{font-size:12px;opacity:.56}

@@ -80,6 +80,7 @@ const App = () => {
           <AdminPrivateRoute path="/chatlayout" component={AdminNavigation} />
           <AdminPrivateRoute path="/adminchilduserprofile" component={AdminNavigation} />
           <AdminPrivateRoute path="/changepassword" component={AdminNavigation} />
+          <AdminPrivateRoute path="/adminloading" component={AdminNavigation} />
 
           {/* Organization */}
           <Route path="/orgregistration" component={OrgRegistration} />
@@ -92,6 +93,7 @@ const App = () => {
           <OrganizationPrivateRoute path="/orgchatlayout" component={OrgNavigation} />
           <OrganizationPrivateRoute path="/organizationchilduserprofile" component={OrgNavigation} />
           <OrganizationPrivateRoute path="/orgchangepassword" component={OrgNavigation} />
+          <OrganizationPrivateRoute path="/organizationloading" component={OrgNavigation} />
 
           {/* Manager */}
           

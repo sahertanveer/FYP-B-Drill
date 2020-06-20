@@ -21,11 +21,13 @@ router.get('/', auth, async (req, res) => {
 
             const manager = await Manager.findById(user.manager_id)
             .select('firstname')
-            .select('email');
+            .select('email')
+            .select('avatar');
 
             const organization = await Organization.findById(user.organization_id)
             .select('organizationname')
-            .select('email');
+            .select('email')
+            .select('avatar');
 
             roleBasedUser["contacts"] ={Admin: [{firstname: "Support"}], Managers: [manager], Organizations: [organization]}
             res.json(roleBasedUser)
@@ -38,11 +40,13 @@ router.get('/', auth, async (req, res) => {
 
             const candidates = await User.find({organization_id: user._id})
             .select('firstname')
-            .select('email');
+            .select('email')
+            .select('avatar');
 
             const managers = await Manager.find({organization_id: user._id})
             .select('firstname')
-            .select('email');
+            .select('email')
+            .select('avatar');
 
             roleBasedUser["contacts"] ={Admin: [{firstname: "Support"}], Candidates: candidates, Managers: managers}
             res.json(roleBasedUser);
@@ -56,15 +60,18 @@ router.get('/', auth, async (req, res) => {
 
             const candidates = await User.find()
             .select('firstname')
-            .select('email');
+            .select('email')
+            .select('avatar');
 
             const managers = await Manager.find()
             .select('firstname')
-            .select('email');
+            .select('email')
+            .select('avatar');
 
             const organizations = await Organization.find()
             .select('organizationname')
-            .select('email');
+            .select('email')
+            .select('avatar');
 
             roleBasedUser["contacts"] ={Candidates: candidates, Managers: managers,  Organizations: organizations}
             res.json(roleBasedUser);
@@ -77,11 +84,13 @@ router.get('/', auth, async (req, res) => {
 
             const candidates = await User.find({manager_id: user._id})
             .select('firstname')
-            .select('email');
+            .select('email')
+            .select('avatar');
 
             const organization = await Organization.findById(user.organization_id)
             .select('organizationname')
-            .select('email');
+            .select('email')
+            .select('avatar');
 
             roleBasedUser["contacts"] ={Admin: [{firstname: "Support"}], Candidates: candidates, Organizations: [organization]}
             res.json(roleBasedUser)

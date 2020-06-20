@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SideBarOption from './SideBarOption'
-import { last, get, differenceBy } from 'lodash'
+import { last, get } from 'lodash'
 import { createChatNameFromUsers } from '../Factories'
 export default class SideBar extends Component {
 	static type = {
@@ -52,16 +52,16 @@ export default class SideBar extends Component {
 		return (
 
 			org.map(organization => {
-				console.log(org.email in this.props.usersObj ? true : false)
 
 				return (
 					<SideBarOption
+						avatar={organization.avatar}
 						activeBar={this.state.activeSideBar}
 						onlineStatus={organization.email in this.props.usersObj ? true : false}
 						key={organization._id}
 						name={organization.organizationname}
 						email={organization.email}
-						onClick={() => { this.addChatForUser({ name: organization.organizationname, email: organization.email, role: "organization" }) }}
+						onClick={() => { this.addChatForUser({ name: organization.organizationname, email: organization.email, role: "organization", avatar:organization.avatar }) }}
 					/>
 
 				)
@@ -80,12 +80,13 @@ export default class SideBar extends Component {
 				return (
 
 					<SideBarOption
+						avatar={manager.avatar}
 						onlineStatus={manager.email in this.props.usersObj ? true : false}
 						activeBar={this.state.activeSideBar}
 						key={manager._id}
 						name={manager.firstname}
 						email={manager.email}
-						onClick={() => { this.addChatForUser({ name: manager.firstname, email: manager.email, role: "manager" }) }}
+						onClick={() => { this.addChatForUser({ name: manager.firstname, email: manager.email, role: "manager", avatar:manager.avatar }) }}
 					/>
 				)
 			})
@@ -104,12 +105,13 @@ export default class SideBar extends Component {
 
 				return (
 					<SideBarOption
+						avatar={candidate.avatar}
 						activeBar={this.state.activeSideBar}
 						onlineStatus={candidate.email in this.props.usersObj ? true : false}
 						key={candidate._id}
 						name={candidate.firstname}
 						email={candidate.email}
-						onClick={() => { this.addChatForUser({ name: candidate.firstname, email: candidate.email, role: "candidate" }) }}
+						onClick={() => { this.addChatForUser({ name: candidate.firstname, email: candidate.email, role: "candidate", avatar:candidate.avatar }) }}
 					/>
 					// <li class="collection-item">
 					// 	<li class="collection-item avatar">
@@ -177,8 +179,8 @@ export default class SideBar extends Component {
 
 
 	render() {
-		const { chats, activeChat, user, setActiveChat, logout, usersObj, role, contacts, chatWidget } = this.props
-		const { reciever, activeSideBar } = this.state
+		const { chats, activeChat, user, setActiveChat, role, contacts, chatWidget } = this.props
+		const { activeSideBar } = this.state
 		return (
 			<div id="side-bar" style={chatWidget ? {width:"75%"}: null}>
 				<div className="heading">
@@ -209,6 +211,7 @@ export default class SideBar extends Component {
 							chats.map((chat) => {
 								return (
 									<SideBarOption
+										avatar={chat && chat.avatar}
 										activeBar={this.state.activeSideBar}
 										key={chat.id}
 										lastMessage={get(last(chat.messages), 'message', '')}

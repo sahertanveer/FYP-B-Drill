@@ -1,22 +1,12 @@
 import {
-    COMMUNITY_CHAT,
 	USER_CONNECTED,
-	MESSAGE_RECIEVED,
-	MESSAGE_SENT,
-	USER_DISCONNECTED,
-	TYPING,
-	VERIFY_USER,
-	CHAT_LOGOUT,
-    PRIVATE_MESSAGE,
     SET_ACTIVE_CHAT,
     ADD_CHAT,
     UPDATE_USERS_STATUS,
-    CONNECTION_ESTABLISHED,
     UPDATE_OFFLINE_STATUS,
     SET_OFFLINE_STATUS,
     SET_CHAT_USER,
-    UPDATE_CHAT,
-    CONNECT
+    UPDATE_CHAT
   } from '../actions/types';
 
   const initialState = {
@@ -55,7 +45,6 @@ export default function (state = initialState, action) {
         case UPDATE_CHAT:
 
             let newChats;
-            let i =0;
             if(payload.typingChat !==null){
             let tempChats = state.chats
              newChats = tempChats.map(chat=>{
@@ -64,7 +53,6 @@ export default function (state = initialState, action) {
                     // chat.splice(i,1);
                     // chat.splice(i,0,payload.typingChat)
                 }
-                i++;
                 return chat
             }) 
         }

@@ -16,18 +16,23 @@ import CardBody from "../common/cards/CardBody.js";
 
 //  const location =useLocation()
 
-const BioProfile = ({ getProfileById, auth: { user }, profile: { userprofile } }) => {
+const BioProfile = ({ getProfileById, auth: { user }, profile: { userprofile, loading } }) => {
     const nullProfile = !userprofile;
     const values = queryString.parse(window.location.search)
 
     useEffect(() => {
         getProfileById(values.role, values.userId);
     }, [getProfileById, nullProfile])
-    if (userprofile === null) {
+    if (userprofile === null && loading) {
         return (<div className="white-text center">
             <Loader color="#00BFFF" height={100} width={100} timeout={0} /> <br></br>
                 <p>Fetching User Profile</p>
         </div>);
+    }
+    else if (userprofile === null && !loading) {
+        return(<div className="white-text center">
+            No Profile Found!
+    </div>);
     }
     else
         return (

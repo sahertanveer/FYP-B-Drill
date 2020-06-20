@@ -39,7 +39,8 @@ class GetAllUsers extends Component {
     super(props);
     this.state = {
       organization_id: false,
-      manager_id: false
+      manager_id: false,
+      search: ""
     }
     this.props.getorganizations();
     this.getOrganizationUsers = this.getOrganizationUsers.bind(this)
@@ -83,6 +84,9 @@ class GetAllUsers extends Component {
      
 }
 
+onChange = (e) => {
+  this.setState({ search: e.target.value })
+}
 
   renderCandidates() {
     if (this.props.user.usersFound)
@@ -168,8 +172,17 @@ class GetAllUsers extends Component {
 
   renderTableData() {
     // return this.state.candidates.map((candidate, index) => {
-    if (this.props.user.organizationFound)
-      return this.props.user.org.map((organization, index) => {
+    if (this.props.user.organizationFound){
+    const { search } = this.state;
+      var FilterAttacks = [];
+      var searchFilter = search.toLowerCase()
+      FilterAttacks =  this.props.user.org.filter(organization => {
+        return Object.keys(organization).some(key =>
+          organization[key] ? organization[key].toLowerCase().includes(searchFilter) : null
+        );
+      })
+
+      return FilterAttacks.map((organization, index) => {
         const { _id, username, organizationname, email, avatar } = organization //destructuring
         return (
           <div className="row " key={_id}>
@@ -223,6 +236,7 @@ class GetAllUsers extends Component {
           </div>
         )
       })
+    }
   }
   render() {
 
@@ -233,7 +247,24 @@ class GetAllUsers extends Component {
             <div className="col s12 m12 l12">
               <div className="card animate fadeLeft uicards">
                 <div className="card-content">
+                <div className="row">
+                    <div className="col s6 m6 l7">
                   <h5 className="card-stats-number" style={{ fontFamily: "Princess Sofia" }}> Users</h5>
+                  </div>
+                    <div className="col s1 m1 l1 offset-l1 offset-m1 offset-s1">
+                      <div className="search right" style={{ marginTop: '20%' }}>
+                        <i className="fas fa-search"></i>
+                      </div>
+                    </div>
+                    <div className="col s4 m4 l3">
+                      <input
+                        placeholder="Search…"
+                        inputProps={{ 'aria-label': 'search' }}
+                        value={this.state.search}
+                        onChange={(e) => this.onChange(e)}
+                      />
+                    </div>
+                  </div>
                   <hr />
                   <br />
 

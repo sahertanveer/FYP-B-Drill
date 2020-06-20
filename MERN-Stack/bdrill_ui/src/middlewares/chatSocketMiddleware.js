@@ -261,7 +261,7 @@ const updateTypingInChat = (user, chats, dispatch) => {
     return (name, isTyping, email, chatId) => {
         let typingChat = null
         if (email !== user.email) {
-            let newChats = chats.map((chat) => {
+            chats.map((chat) => {
                 if (chat.id === chatId) {
                     if (isTyping && !chat.typingUsers.includes(name)) {
                         chat.typingUsers.push(name)
@@ -291,7 +291,6 @@ const sendMessage = (chatId, message, socket, activeChat, offlineUsers, user, us
     if (activeChat) {
         let OpenChatForReciever = false
         let reciever = {};
-        let i = -1;
 
         activeChat.users.map(usr => {
             if (usr.email !== user.email) {

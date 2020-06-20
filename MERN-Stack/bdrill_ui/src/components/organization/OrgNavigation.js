@@ -5,22 +5,25 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/authAction'
 import { setPage } from '../../actions/pageAction'
 import { loadUser } from '../../actions/authAction'
+import { getProfileById } from '../../actions/profileAction'
 
 import clsx from 'clsx';
-import { makeStyles, useTheme, fade } from '@material-ui/core/styles';
+import { makeStyles, useTheme, fade, withStyles } from '@material-ui/core/styles';
 import {
   Icon, Drawer, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, Badge, MenuItem, Menu,
-  ListItem, ListItemIcon, ListItemText, InputBase
+  ListItem, ListItemIcon, ListItemText
 } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import SearchIcon from '@material-ui/icons/Search';
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import OrgDashboard from './OrgDashboard'
+import { BackendInstance } from '../../config/axiosInstance';
 import AddManager from './AddManager'
 import UsersList from './UsersList'
 import OrgViewAttacks from './OrgViewAttacks'
@@ -28,6 +31,7 @@ import GetUsersProfiles from './GetUsersProfiles';
 import UserProfile from '../profiles/UserProfile'
 import ChangePassword from '../common/Password/ChangePassword'
 import ChatBox from '../common/ChatBox';
+import Loading from '../common/Loading';
 import ChatLayout from '../chat/ChatLayout';
 import { readNotification } from '../../actions/notificationAction';
 import BDrill_logo from'../BDrill_logo.png'
@@ -106,12 +110,16 @@ const useStyles = makeStyles(theme => ({
     marginLeft: '5%'
   },
   inputRoot: {
+  
     color: 'inherit',
     marginLeft: '30%',
     marginRight: '5%',
+    marginTop:'5%',
+   
 
   },
   inputInput: {
+    color: 'white',
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -180,7 +188,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, readNotification, setPage, page: { loadedPage }, notification  }) => {
+const NoPaddingAutocomplete = withStyles({
+  inputRoot: {
+    '&&[class*="MuiOutlinedInput-root"] $input': {
+      padding: 0,
+      paddingLeft:2
+    },
+    '&&[class*="MuiOutlinedInput-root"]': {
+      padding: 0
+    },
+  },
+  input: {}
+})(Autocomplete);
+
+const OrgNavigation = ({ auth: { isAuthenticated, loading, role },orgId, logout, loadUser, readNotification, setPage, page: { loadedPage }, notification  }) => {
 
   const classes = useStyles();
   const history = useHistory();
@@ -188,6 +209,51 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, r
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [notificationAnchorEl, setnotificationAnchorEl] = React.useState(null);
+  //for Search
+  const [searchOpen, searchSetOpen] = React.useState(false);
+  const [options, setOptions] = React.useState([]);
+  const searchLoading = searchOpen && options.length === 0;
+  const [selectedUser, setSeletctedUser] = React.useState(null);
+
+  React.useEffect(() => {
+    let active = true;
+
+    if (!searchLoading) {
+      return undefined;
+    }
+
+    (async () => {
+      const config = {
+        headers: {
+          'Content-Type': ' application/json ' //application/x-www.form-urlencoded
+        }
+      }
+    
+      const body = JSON.stringify({organization_id:orgId});
+      const response = await BackendInstance.post('/api/organization/searchcandidates', body, config);
+    
+      if (active) {
+       setOptions((response.data).map((candidate) => candidate));
+     }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [searchLoading]);
+
+  React.useEffect(() => {
+    if (!searchOpen) {
+      setOptions([]);
+    }
+  }, [searchOpen]);
+
+React.useEffect(()=>{
+  if (selectedUser){
+  setPage(`${role}childuserprofile`);
+  history.push(`/${role}childuserprofile?userId=${selectedUser._id}&role=candidate`);
+}
+},[selectedUser] )
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -290,7 +356,7 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, r
             }}}
           >
            { notification && notification.notifications.map(notif =>{
-              const { sender, reciever_role, message, reciever_email, notification_type, url, notification_id, _id } = notif
+              const {  message, notification_type, url, notification_id, _id } = notif
             return <MenuItem id={_id} onClick={()=> notificationItemClick(url, notification_id)} > {`${notification_type} | ${message}`} </MenuItem> 
            })}
             {/* <MenuItem> <a href="/candprofile">Profile</a></MenuItem>
@@ -370,12 +436,21 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, r
   //   handleMobileMenuClose();
   // }
 
-  function handleMobileMenuOpen(event) {
-    setMobileMoreAnchorEl(event.currentTarget);
-  }
+  // function handleMobileMenuOpen(event) {
+  //   setMobileMoreAnchorEl(event.currentTarget);
+  // }
   // const menuId = 'primary-search-account-menu';
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  // const mobileMenuId = 'primary-search-account-menu-mobile';
 
+  const onSelectSearchUser = (e, value)=>{
+    if(value){
+    getProfileById(value._id)
+    
+    history.push('/organizationloading');
+    setPage('organizationloading');
+    setSeletctedUser(value)
+    }
+  }
 
 
   return (
@@ -407,8 +482,56 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, r
             <Typography variant="h4" noWrap>
               B-Drill
           </Typography>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
+            <div className="white-text"> 
+            {/* {classes.search} */}
+            <NoPaddingAutocomplete
+      id="asynchronous-demo"
+      style={{ width: 300, color:"white", padding:0 }}
+      open={searchOpen}
+      onOpen={() => {
+        searchSetOpen(true);
+      }}
+      onClose={() => {
+        searchSetOpen(false);
+      }}
+      onChange={(e, value)=>onSelectSearchUser(e, value)}
+      classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput,
+
+        }}
+      getOptionSelected={(option, value) => option.email === value }
+      getOptionLabel={(option) => option.email}
+      options={options}
+      loading={searchLoading}
+      renderOption={(option) =>(
+        <React.Fragment>
+        {option.email} &nbsp; <strong><small> {option.firstname}</small></strong>
+          
+        </React.Fragment>
+      )}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Search Candidates"
+          variant="outlined"  
+          style={{height:'40%', padding:0}}
+          InputLabelProps={{
+            style:{height:'40%', color:'white'}
+          }}
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <React.Fragment>
+                {loading ? <CircularProgress color="white" size={20} /> : null}
+                {params.InputProps.endAdornment}
+              </React.Fragment>
+            ),
+          }}
+        />
+      )}
+    />
+              {/* <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
               <InputBase
@@ -418,19 +541,12 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, r
                   input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search' }}
-              />
+              /> */}
             </div>
             <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
+            {/* <div className={classes.sectionDesktop}> */}
             {!loading && (<Fragment>{isAuthenticated ? notificationLink : null}</Fragment>)}
-              {/* <IconButton aria-label="show 17 new notifications" color="inherit">
-                <Badge badgeContent={17} color="primary">
-                  <a href="/orgchatlayout">
-                    <MailIcon className="white-text" />
-                  </a>
-                </Badge>
-              </IconButton> */}
-            </div>
+            {/* </div> */}
             {!loading && (<Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>)}
           </Toolbar>
         </AppBar>
@@ -546,6 +662,7 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, r
                       loadedPage === 'organizationchilduserprofile' ? <UserProfile /> :
                         loadedPage === 'orgchatlayout' ? <ChatLayout /> :
                           loadedPage === 'orgchangepassword' ? <ChangePassword /> :
+                            loadedPage === 'organizationloading' ? <Loading /> :
 
                             <OrgDashboard />
           }
@@ -562,7 +679,9 @@ const OrgNavigation = ({ auth: { isAuthenticated, loading }, logout, loadUser, r
 OrgNavigation.propTypes = {
   logout: PropTypes.func.isRequired,
   setPage: PropTypes.func.isRequired,
+  getProfileById: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  orgId: PropTypes.object.isRequired,
   readNotification: PropTypes.func.isRequired,
   notification: PropTypes.object.isRequired,
   page: PropTypes.object.isRequired,
@@ -571,8 +690,9 @@ OrgNavigation.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  orgId: state.auth._id,
   page: state.page,
   notification: state.notification
 })
 
-export default connect(mapStateToProps, { logout, setPage, loadUser, readNotification })(OrgNavigation)
+export default connect(mapStateToProps, { logout, setPage, loadUser, readNotification, getProfileById })(OrgNavigation)

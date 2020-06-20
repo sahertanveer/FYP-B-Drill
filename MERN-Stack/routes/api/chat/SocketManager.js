@@ -215,7 +215,7 @@ module.exports = function (socket) {
 			console.log(error)
 			room = null;
 		}
-		let newChat = createChat({ id: roomId, name: `${reciever.name} & ${sender.name}`, users: [reciever, sender], usersEmail: [reciever.email, socket.user.email], messages: room })
+		let newChat = createChat({ id: roomId, name: `${reciever.name} & ${sender.name}`, users: [reciever, sender], usersEmail: [reciever.email, socket.user.email], messages: room, avatar: reciever && reciever.avatar })
 
 		if (reciever.email in connectedUsers) {
 

@@ -10,7 +10,7 @@ import clsx from 'clsx';
 import { makeStyles, useTheme, fade } from '@material-ui/core/styles'
 import {
   Icon, Drawer, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, MenuItem, Menu, Badge,
-  ListItem, ListItemIcon, ListItemText, InputBase
+  ListItem, ListItemIcon, ListItemText
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
@@ -285,7 +285,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
             }}}
           >
            { notification && notification.notifications.map(notif =>{
-              const { sender, reciever_role, message, reciever_email, notification_type, url, notification_id, _id } = notif
+              const { message, notification_type, url, notification_id, _id } = notif
             return <MenuItem id={_id} onClick={()=> notificationItemClick(url, notification_id)} > {`${notification_type} | ${message}`} </MenuItem> 
            })}
           </Menu>
@@ -345,7 +345,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
 
 
   // const [anchorEl, setAnchorEl] = React.useState(null);
-  const [ setMobileMoreAnchorEl] = React.useState(null);
+  // const [ setMobileMoreAnchorEl] = React.useState(null);
 
   // const isMenuOpen = Boolean(anchorEl);
   // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -363,9 +363,9 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
   //   handleMobileMenuClose();
   // }
 
-  function handleMobileMenuOpen(event) {
-    setMobileMoreAnchorEl(event.currentTarget);
-  }
+  // function handleMobileMenuOpen(event) {
+  //   setMobileMoreAnchorEl(event.currentTarget);
+  // }
   // const menuId = 'primary-search-account-menu';
   // const renderMenu = (
   //   <Menu
@@ -382,7 +382,7 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
   //   </Menu>
   // );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  // const mobileMenuId = 'primary-search-account-menu-mobile';
   // const renderMobileMenu = (
   //   <Menu
   //     anchorEl={mobileMoreAnchorEl}
@@ -460,17 +460,9 @@ const CandNavigation = ({ auth: { isAuthenticated, loading }, logout, setPage, l
               />
             </div> */}
             <div className={classes.grow} />
-            <div className={classes.sectionDesktop}>
+            {/* <div className={classes.sectionDesktop}> */}
             {!loading && (<Fragment>{isAuthenticated ? notificationLink : null}</Fragment>)}
-              
-              {/* <IconButton aria-label="show 17 new notifications" color="inherit">
-                <Badge badgeContent={17} color="primary">
-                  <a href="/candchatlayout">
-                    <MailIcon className="white-text" />
-                  </a>
-                </Badge>
-              </IconButton> */}
-            </div>
+            {/* </div> */}
             {!loading && (<Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>)}
             {/* <div className={classes.sectionMobile}>
               <IconButton
