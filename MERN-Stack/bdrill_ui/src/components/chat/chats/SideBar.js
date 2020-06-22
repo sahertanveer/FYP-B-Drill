@@ -209,9 +209,11 @@ export default class SideBar extends Component {
 					{
 						activeSideBar === SideBar.type.CHATS ?
 							chats.map((chat) => {
+								const reciverAvatar =chat && chat.users && chat.users.find(u => u.email !== user.email )
 								return (
+									
 									<SideBarOption
-										avatar={chat && chat.avatar}
+										avatar={reciverAvatar && reciverAvatar.avatar ? reciverAvatar.avatar : null}
 										activeBar={this.state.activeSideBar}
 										key={chat.id}
 										lastMessage={get(last(chat.messages), 'message', '')}

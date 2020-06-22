@@ -9,7 +9,7 @@ const { v4: uuidv4 } = require('uuid');
 *	@param {object} 
 *		name {string}
 */
-const createUser = ({name = "", socketId = null, adminChats=[], email="", role = null, userId=null } = {})=>(
+const createUser = ({name = "", socketId = null, adminChats=[], email="", role = null, userId=null, avatar=null } = {})=>(
 	{
 		
 		id:uuidv4(),
@@ -18,7 +18,8 @@ const createUser = ({name = "", socketId = null, adminChats=[], email="", role =
 		adminChats,
 		email,
 		role,
-		userId
+		userId,
+		avatar
 		
 	}
 )

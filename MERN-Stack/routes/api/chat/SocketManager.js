@@ -55,7 +55,7 @@ module.exports = function (socket) {
 			}
 			catch (err) { console.log(err); }
 
-			callback({ isUser: false, user: createUser({ name: user.firstname, socketId: socket.id, email: user.email, userId: user._id, role: role }), notifications: notifications })
+			callback({ isUser: false, user: createUser({ name: user.firstname, socketId: socket.id, email: user.email, userId: user._id, role: role, avatar:user.avatar }), notifications: notifications })
 		} else
 			callback({ isUser: true, user: null, notifications: null })
 
@@ -215,7 +215,7 @@ module.exports = function (socket) {
 			console.log(error)
 			room = null;
 		}
-		let newChat = createChat({ id: roomId, name: `${reciever.name} & ${sender.name}`, users: [reciever, sender], usersEmail: [reciever.email, socket.user.email], messages: room, avatar: reciever && reciever.avatar })
+		let newChat = createChat({ id: roomId, name: `${reciever.name} & ${sender.name}`, users: [reciever, sender], usersEmail: [reciever.email, socket.user.email], messages: room })
 
 		if (reciever.email in connectedUsers) {
 
